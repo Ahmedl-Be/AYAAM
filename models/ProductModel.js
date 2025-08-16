@@ -6,8 +6,9 @@ export class Product {
     #category;
     #subcategory;
     #price;
+    #sale;
+    #offers;
     #stock;
-    #images;
     #brand;
     #material;
     #sellerId;
@@ -22,8 +23,9 @@ export class Product {
         _category = '',
         _subcategory = '',
         _price= 0,
+        _sale= 0,
+        _offers = [],
         _stock = [],
-        _images = [],
         _brand= '',
         _material = "",
         _sellerId= '',
@@ -35,8 +37,9 @@ export class Product {
         this.Category = _category;
         this.Subcategory = _subcategory;
         this.Price = _price;
+        this.Sale = _sale;
+        this.Offers = _offers;
         this.Stock = _stock;
-        this.Images = _images;
         this.Brand = _brand;
         this.Material = _material;
         this.SellerId = _sellerId;
@@ -68,6 +71,34 @@ export class Product {
     }
     get Description() { return this.#description; }
     
+    
+/* ---PRICE--- */
+    set Price(_price) {
+        if (_price.constructor.name !== "Number") {
+            throw new Error("Price Must be a Number");
+        }
+        this.#price = _price;
+    }
+    get Price() { return this.#price; }
+
+/* ---SALE--- */
+    set Sale(_sale) {
+
+        if (_sale.constructor.name !== "Number" || 1 < _sale < 0) {
+            throw new Error("Sale Must be a fraction between 0 and 1");
+        }
+        this.#sale = _sale;
+    }
+    get Sale() { return this.#sale; }
+    
+/* ---OFFERS--- */
+    set Offers(_offers) { this.#offers = _offers; }
+    get Offers() { return this.#offers; }
+    
+/* ---SELLER ID--- */
+    set SellerId(_sellerId) { this.#sellerId = _sellerId; }
+    get SellerId() { return this.#sellerId; }
+    
 /* ---CATEGORY--- */
     set Category(_category) {
             if (_category.constructor.name !== "String") throw new Error("Category must be a string");
@@ -82,15 +113,6 @@ export class Product {
     }
     get Subcategory() { return this.#subcategory; }
 
-/* ---PRICE--- */
-    set Price(_price) {
-        if (_price.constructor.name !== "Number") {
-                throw new Error("Price Must be a Number");
-            }
-        this.#price = _price;
-    }
-    get Price() { return this.#price; }
-
 /* ---STOCK--- */
     set Stock(_stock) { 
         if (!Array.isArray(_stock)) throw new Error("Stock must be an array of {color, size, quantity}");
@@ -102,30 +124,20 @@ export class Product {
         this.#stock = _stock;
      }
     get Stock() { return this.#stock; }
-
-/* ---COLOR IMAGES--- */
-    set Images(_images) { this.#images = _images; }
-    get Images() { return this.#images; }
-
-
-/* ---BRAND--- */
-    set Brand(_brand) {
-        if (_brand.constructor.name !== "String") throw new Error("Brand must be a string");
-        this.#brand = _brand.trim().split(" ") .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join("");
-    }
-    get Brand() { return this.#brand; }
-
+    
 /* ---MATERIAL--- */
     set Material(_material) {
         if (_material.constructor.name !== "String") throw new Error("Material must be a string");
         this.#material = _material.toLowerCase();
     }
     get Material() { return this.#material; }
-
-
-/* ---SELLER ID--- */
-    set SellerId(_sellerId) { this.#sellerId = _sellerId; }
-    get SellerId() { return this.#sellerId; }
+    
+/* ---BRAND--- */
+    set Brand(_brand) {
+        if (_brand.constructor.name !== "String") throw new Error("Brand must be a string");
+        this.#brand = _brand.trim().split(" ") .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join("");
+    }
+    get Brand() { return this.#brand; }
 
 /* ---STATUS--- */
     set Status(_status) { this.#status = _status; }
@@ -140,14 +152,15 @@ export class Product {
             id: this.#id,
             name: this.#name,
             description: this.#description,
+            price: this.#price,
+            sale: this.#sale,
+            offers: this.#offers,
+            sellerId: this.#sellerId,
             category: this.#category,
             subcategory: this.#subcategory,
-            price: this.#price,
             stock: this.#stock,
-            images: this.#images,
-            brand: this.#brand,
             material: this.#material,
-            sellerId: this.#sellerId,
+            brand: this.#brand,
             status: this.#status
         };
     }
