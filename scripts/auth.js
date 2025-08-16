@@ -19,8 +19,6 @@ export function setupLogin() {
             return;
         }
 
-        // localStorage.setItem('loggedUser', JSON.stringify(user));
-
         setData('loggedUser', user);
         router(user.role)
         

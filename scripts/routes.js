@@ -23,8 +23,8 @@ const allowedRoutes = {
 }; 
 
 export default function router(_page) {
-    // Takes the page name from routes as an input and renders the page
-    // if the user has no access to the page it returns to the first page of allowed pages
+    // Takes the page name from routes as an input and renders the page.
+    // if the user has no access to the page it returns to the first page of allowed pages.
 
     const loggedUser = getData('loggedUser')[0];
 
@@ -35,15 +35,14 @@ export default function router(_page) {
     }
 
     const role = loggedUser.role;
-    
-
-
-
 
     if (!allowedRoutes[role] || !allowedRoutes[role].includes(_page)) {
+        console.log(allowedRoutes[role].includes(_page)) 
         document.getElementById('app').innerHTML = routes[allowedRoutes[role][0]]();
     } else {
-        document.getElementById('app').innerHTML = routes[allowedRoutes[role][0]]();
+        const page = routes[_page]
+        console.log(page)
+        document.getElementById('app').innerHTML = page();
     }
 
     // document.getElementById('app').innerHTML = routes[allowedRoutes[role][0]]();

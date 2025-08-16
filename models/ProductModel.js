@@ -16,17 +16,17 @@ export class Product {
     
 
     constructor(
-        _id,
-        _name,
-        _description,
-        _category,
-        _subcategory,
-        _price,
+        _id = '',
+        _name = '',
+        _description = '',
+        _category = '',
+        _subcategory = '',
+        _price= 0,
         _stock = [],
         _images = [],
-        _brand,
+        _brand= '',
         _material = "",
-        _sellerId,
+        _sellerId= '',
         _status = "pending"
     ) {
         this.Id = _id;
@@ -95,7 +95,7 @@ export class Product {
     set Stock(_stock) { 
         if (!Array.isArray(_stock)) throw new Error("Stock must be an array of {color, size, quantity}");
          _stock.forEach(item => {
-            if (typeof item.color !== "string" || typeof item.size !== "string" || typeof item.quantity !== "number") {
+            if (typeof item.color !== "string" || typeof item.quantity !== "number") {
                 throw new Error("Each stock item must have {color: string, size: string, quantity: number}");
             }
         });
@@ -111,7 +111,7 @@ export class Product {
 /* ---BRAND--- */
     set Brand(_brand) {
         if (_brand.constructor.name !== "String") throw new Error("Brand must be a string");
-        this.#brand = _brand;
+        this.#brand = _brand.trim().split(" ") .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join("");
     }
     get Brand() { return this.#brand; }
 
