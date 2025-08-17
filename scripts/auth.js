@@ -11,10 +11,10 @@ export function setupLogin() {
         const password = document.getElementById('password').value.trim();
 
         const users = getData('users');
-        const user = [];
-        user[0] = users.find(u => u.email === email && u.password === password);
+        const user = users.find(u => u.email === email && u.password === password);
 
-        if (!user[0]) {
+
+        if (!user) {
             document.getElementById('loginError').textContent = "Invalid email or password";
             return;
         }

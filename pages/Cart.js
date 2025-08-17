@@ -1,3 +1,3 @@
-export default function Catalog() {
+export default function Cart() {
     return `<h1>Product Catalog</h1>`;
 }

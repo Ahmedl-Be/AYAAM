@@ -22,8 +22,8 @@ const allowedRoutes = {
     Seller: ['seller', 'home', 'catalog']
 }; 
 
-export default function router(_page, push = true) {
-    const loggedUser = getData('loggedUser')[0];
+export default function router(_page) {
+    const loggedUser = getData('loggedUser');
 
     // go home if no user is registered
     if (!loggedUser) {
@@ -35,6 +35,7 @@ export default function router(_page, push = true) {
     const role = loggedUser.role;
 
     let targetPage = _page;
+    console.log(_page)
 
     if (!allowedRoutes[role] || !allowedRoutes[role].includes(_page)) {
         targetPage = allowedRoutes[role][0];
@@ -43,10 +44,6 @@ export default function router(_page, push = true) {
     const page = routes[targetPage];
     document.getElementById('app').innerHTML = page();
 
-    // push to history only if it's a new navigation
-    if (push) {
-        history.pushState({ page: targetPage }, '', `/${targetPage}`);
-    }
 }
 
 /* ---Handle back/forward buttons--- */

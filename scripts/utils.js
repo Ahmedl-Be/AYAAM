@@ -1,8 +1,11 @@
 import { Product } from "../models/ProductModel.js";
 
-export function formatPrice(price) {
-    return `$${price.toFixed(2)}`;
+/* ========== DISPLAYING FUNCTIONS =============== */
+
+export function formatPrice(price) { //in: num => out: string
+    return `$${price.toFixed(2)}`;   // 10 => '$10' 
 }
+/* =============================================== */
 
 export function toProduct(_obj) {
     const product = new Product();

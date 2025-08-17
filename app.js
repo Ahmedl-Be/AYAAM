@@ -5,8 +5,8 @@ import router from './scripts/routes.js';
 
 
 window.addEventListener('load', () => {
-    router('Admin')
-    setupLogin();
+    router('User')
+    setupLogin();  // Do setup first
 });
 
 
