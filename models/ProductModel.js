@@ -115,12 +115,7 @@ export class Product {
 
 /* ---STOCK--- */
     set Stock(_stock) { 
-        if (!Array.isArray(_stock)) throw new Error("Stock must be an array of {color, size, quantity}");
-         _stock.forEach(item => {
-            if (typeof item.color !== "string" || typeof item.quantity !== "number") {
-                throw new Error("Each stock item must have {color: string, size: string, quantity: number}");
-            }
-        });
+        if (!Array.isArray(_stock)) throw new Error("Stock must be an array");
         this.#stock = _stock;
      }
     get Stock() { return this.#stock; }
