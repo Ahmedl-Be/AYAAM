@@ -19,12 +19,12 @@ const accessories = [
         stock:[
             {
                 color: "Gold",
-                imgs: ['acs1-gold.png'],
+                images: ['acs1-gold.png'],
                 qty: 5 ,
             },
             {
                 color: "ٍSilver",
-                imgs: ['acs1-silver.png'],
+                images: ['acs1-silver.png'],
                 qty: 7 ,
             },
         ],
@@ -49,12 +49,12 @@ const accessories = [
         stock:[
                 {
                 color: "Gold",
-                imgs: ['acs2-gold.png'],
+                images: ['acs2-gold.png'],
                 qty: 5 ,
                 },
                 {
                 color: "ٍSilver",
-                imgs: ['acs2-silver.png'],
+                images: ['acs2-silver.png'],
                 qty: 7 ,
                 },
         ],
@@ -79,12 +79,12 @@ const accessories = [
         stock:[
             {
               color: "Gold",
-              imgs: ['acs3-gold.png'],
+              images: ['acs3-gold.png'],
               qty: 6 ,
             },
             {
               color: "ٍSilver",
-              imgs: ['acs3-silver.png'],
+              images: ['acs3-silver.png'],
               qty: 7 ,
             },
         ],
@@ -110,12 +110,12 @@ const accessories = [
         stock:[
                 {
                 color: "Gold",
-                imgs: ['acs4-gold.png'],
+                images: ['acs4-gold.png'],
                 qty: 12 ,
                 },
                 {
                 color: "ٍSilver",
-                imgs: ['acs4-silver.png'],
+                images: ['acs4-silver.png'],
                 qty: 10 ,
                 },
         ],
@@ -140,7 +140,7 @@ const accessories = [
         stock:[
             {
               color: "ٍSilver",
-              imgs: ['acs5-silver.png'],
+              images: ['acs5-silver.png'],
               qty: 7 ,
             },
         ],
@@ -165,12 +165,12 @@ const accessories = [
         stock:[
                 {
                 color: "Gold",
-                imgs: ['acs6-gold.png'],
+                images: ['acs6-gold.png'],
                 qty: 6 ,
                 },
                 {
                 color: "ٍSilver",
-                imgs: ['acs6-silver.png'],
+                images: ['acs6-silver.png'],
                 qty: 7 ,
                 },
         ],
@@ -195,12 +195,12 @@ const accessories = [
         stock:[
                 {
                 color: "Gold",
-                imgs: ['acs7-gold.png'],
+                images: ['acs7-gold.png'],
                 qty: 6 ,
                 },
                 {
                 color: "ٍSilver",
-                imgs: ['acs7-silver.png'],
+                images: ['acs7-silver.png'],
                 qty: 7 ,
                 },
         ],
@@ -225,12 +225,12 @@ const accessories = [
         stock:[
                 {
                 color: "Gold",
-                imgs: ['acs8-gold.png'],
+                images: ['acs8-gold.png'],
                 qty: 5 ,
                 },
                 {
                 color: "ٍSilver",
-                imgs: ['acs8-silver.png'],
+                images: ['acs8-silver.png'],
                 qty: 6 ,
                 },
     ],
@@ -255,12 +255,12 @@ const accessories = [
         stock:[
                 {
                 color: "Gold",
-                imgs: ['acs9-gold.png'],
+                images: ['acs9-gold.png'],
                 qty: 12 ,
                 },
                 {
                 color: "ٍSilver",
-                imgs: ['acs9-silver.png'],
+                images: ['acs9-silver.png'],
                 qty: 10 ,
                 },
         ],
@@ -285,12 +285,12 @@ const accessories = [
         stock:[
                 {
                 color: "Gold",
-                imgs: ['acs3-gold.png'],
+                images: ['acs10-gold.png'],
                 qty: 6 ,
                 },
                 {
                 color: "ٍSilver",
-                imgs: ['acs3-silver.png'],
+                images: ['acs10-silver.png'],
                 qty: 7 ,
                 },
             ],

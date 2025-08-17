@@ -17,7 +17,7 @@ const data =
         stock: [
             {
                 color: "Black",
-                imgs: "Shoes2.jpeg",
+                images: ["Shoes2.jpeg"],
                 sizes: [
                     {name: '36', qty: 5},
                     {name: '37', qty: 7},
@@ -27,7 +27,7 @@ const data =
             },
             {
                 color: "Beige",
-                imgs: "Shoes3.jpeg",
+                images: ["Shoes3.jpeg"],
                 sizes: [
                     {name: '36', qty: 3},
                     {name: '37', qty: 5},
@@ -52,7 +52,7 @@ const data =
         stock: [
             {
                 color: "Beige",
-                imgs: "Shoes4.jpeg",
+                images: ["Shoes4.jpeg"],
                 sizes: [
                     {name: '36', qty: 5},
                     {name: '37', qty: 6},
@@ -77,7 +77,7 @@ const data =
         stock: [
             {
                 color: "Black",
-                imgs: "Shoes5.jpeg",
+                images: ["Shoes5.jpeg"],
                 sizes: [
                     {name: '36', qty: 5},
                     {name: '37', qty: 3},
@@ -104,7 +104,7 @@ const data =
         stock: [
             {
                 color: "Black",
-                imgs: "Shoes7.jpeg",
+                images: ["Shoes7.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},
@@ -130,7 +130,7 @@ const data =
         stock: [
             {
                 color: "Black",
-                imgs: "Shoes8.jpeg",
+                images: ["Shoes8.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},
@@ -140,7 +140,7 @@ const data =
             },
             {
                 color: "Brown",
-                imgs: "Shoes9.jpeg",
+                images: ["Shoes9.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},
@@ -165,7 +165,7 @@ const data =
         stock: [
             {
                 color: "Beige",
-                imgs: "Shoes10.jpeg",
+                images: ["Shoes10.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},
@@ -190,7 +190,7 @@ const data =
         stock: [
             {
                 color: "Navy",
-                imgs: "Shoes11.jpeg",
+                images: ["Shoes11.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},
@@ -200,13 +200,13 @@ const data =
             },
             {
                 color: "Burgundy",
-                imgs: "Shoes12.jpeg",
+                images: ["Shoes12.jpeg"],
                 sizes: [
                     {name: '37', qty: 3},
                     {name: '39', qty: 4},
                     {name: '40', qty: 1}
-                ]
-            }
+                
+]            }
         ],
         material: "Suede",
         brand: "Shein"
@@ -224,7 +224,7 @@ const data =
         stock: [
             {
                 color: "White",
-                imgs: "Shoes13.jpeg",
+                images: ["Shoes13.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 1},
@@ -249,7 +249,7 @@ const data =
         stock: [
             {
                 color: "Khaki",
-                imgs: "Shoes14.jpeg",
+                images: ["Shoes14.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 4},
@@ -274,7 +274,7 @@ const data =
         stock: [
             {
                 color: "White",
-                imgs: "Shoes15.jpeg",
+                images: ["Shoes15.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 4},
@@ -300,7 +300,7 @@ const data =
         stock: [
             {
                 color: "Brown",
-                imgs: "Shoes16.jpeg",
+                images: ["Shoes16.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},
@@ -310,7 +310,7 @@ const data =
             },
             {
                 color: "Beige",
-                imgs: "Shoes17.jpeg",
+                images: ["Shoes17.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},
@@ -335,7 +335,7 @@ const data =
         stock: [
             {
                 color: "Beige",
-                imgs: "Shoes18.jpeg",
+                images: ["Shoes18.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},
@@ -345,7 +345,7 @@ const data =
             },
             {
                 color: "White",
-                imgs: "Shoes19.jpeg",
+                images: ["Shoes19.jpeg"],
                 sizes: [
                     {name: '36', qty: 2},
                     {name: '37', qty: 3},

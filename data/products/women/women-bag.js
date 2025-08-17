@@ -17,21 +17,21 @@ const data =
         stock: [
             {
                 color: "Brown",
-                imgs: "bag3.jpeg",
+                images: ["bag3.jpeg"],
                 sizes: [
                     {name: "OS", qty: 5}
                 ]
             },
             {
                 color: "Black",
-                imgs: "bag2.jpeg",
+                images: ["bag2.jpeg"],
                 sizes: [
                     {name: "OS", qty: 7}
                 ]
             },
             {
                 color: "Multicolor",
-                imgs: "bag1.jpeg",
+                images: ["bag1.jpeg"],
                 sizes: [
                     {name: "OS", qty: 4}
                 ]
@@ -53,14 +53,14 @@ const data =
         stock: [
             {
                 color: "Khaki",
-                imgs: "bag4.jpeg",
+                images: ["bag4.jpeg"],
                 sizes: [
                     {name: "OS", qty: 2}
                 ]
             },
             {
                 color: "White",
-                imgs: "bag5.jpeg",
+                images: ["bag5.jpeg"],
                 sizes: [
                     {name: "OS", qty: 4}
                 ]
@@ -82,14 +82,14 @@ const data =
         stock: [
             {
                 color: "Pink",
-                imgs: "bag7.jpeg",
+                images: ["bag7.jpeg"],
                 sizes: [
                     {name: "OS", qty: 2}
                 ]
             },
             {
                 color: "White",
-                imgs: "bag6.jpeg",
+                images: ["bag6.jpeg"],
                 sizes: [
                     {name: "OS", qty: 4}
                 ]
@@ -111,7 +111,7 @@ const data =
         stock: [
             {
                 color: "Beige",
-                imgs: "bag15.jpeg",
+                images: ["bag15.jpeg"],
                 sizes: [
                     {name: "OS", qty: 2}
                 ]
@@ -133,7 +133,7 @@ const data =
         stock: [
             {
                 color: "Black",
-                imgs: "bag13.jpeg",
+                images: ["bag13.jpeg"],
                 sizes: [
                     {name: "OS", qty: 4}
                 ]
@@ -155,7 +155,7 @@ const data =
         stock: [
             {
                 color: "White",
-                imgs: "bag12.jpeg",
+                images: ["bag12.jpeg"],
                 sizes: [
                     {name: "OS", qty: 3}
                 ]
@@ -177,14 +177,14 @@ const data =
         stock: [
             {
                 color: "White",
-                imgs: "bag10.jpeg",
+                images: ["bag10.jpeg"],
                 sizes: [
                     {name: "OS", qty: 3}
                 ]
             },
             {
                 color: "Brown",
-                imgs: "bag11.jpeg",
+                images: ["bag11.jpeg"],
                 sizes: [
                     {name: "OS", qty: 3}
                 ]
@@ -206,14 +206,14 @@ const data =
         stock: [
             {
                 color: "Green",
-                imgs: "bag9.jpeg",
+                images: ["bag9.jpeg"],
                 sizes: [
                     {name: "OS", qty: 3}
                 ]
             },
             {
                 color: "White",
-                imgs: "bag8.jpeg",
+                images: ["bag8.jpeg"],
                 sizes: [
                     {name: "OS", qty: 4}
                 ]

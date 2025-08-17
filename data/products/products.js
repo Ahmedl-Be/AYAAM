@@ -36,15 +36,14 @@ products.push(...menTop);
 products.push(...menShoes);
 
 // /* ----------WOMEN ADDED--------- */
-//     //SHOES
-// products.push(...womenShoes);
-//     // Dresses
-// products.push(...womenDresses);
-//     // Accessories
-// products.push(...womenAccessories);
-//     // BAGS
-// products.push(...womenBags);
-//     // SKIRTS
-// products.push(...womenSkirts);
-//     //Blouses
-// products.push(...womenBlouses);
+products.push(...womenShoes);
+    // Dresses
+products.push(...womenDresses);
+    // Accessories
+products.push(...womenAccessories);
+    // BAGS
+products.push(...womenBags);
+    // SKIRTS
+products.push(...womenSkirts);
+    //Blouses
+products.push(...womenBlouses);

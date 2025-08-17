@@ -17,7 +17,7 @@ const data =
         stock: [
             {
                 color: "Black",
-                imgs: "Blouse19.jpeg",
+                images: ["Blouse19.jpeg"],
                 sizes: [
                     {name: "S", qty: 5},
                     {name: "M", qty: 7},
@@ -42,7 +42,7 @@ const data =
         stock: [
             {
                 color: "Mint Green",
-                imgs: "Blouse18.jpeg",
+                images: ["Blouse18.jpeg"],
                 sizes: [
                     {name: "S", qty: 6},
                     {name: "M", qty: 8},
@@ -52,7 +52,7 @@ const data =
             },
             {
                 color: "Red",
-                imgs: "Blouse17.jpeg",
+                images: ["Blouse17.jpeg"],
                 sizes: [
                     {name: "S", qty: 6},
                     {name: "M", qty: 2},
@@ -76,7 +76,7 @@ const data =
         stock: [
             {
                 color: "White",
-                imgs: "Blouse16.jpeg",
+                images: ["Blouse16.jpeg"],
                 sizes: [
                     {name: "S", qty: 3},
                     {name: "M", qty: 2},
@@ -101,7 +101,7 @@ const data =
         stock: [
             {
                 color: "Mint Green",
-                imgs: "Blouse15.jpeg",
+                images: ["Blouse15.jpeg"],
                 sizes: [
                     {name: "S", qty: 1},
                     {name: "M", qty: 3},
@@ -110,7 +110,7 @@ const data =
             },
             {
                 color: "Red",
-                imgs: "Blouse14.jpeg",
+                images: ["Blouse14.jpeg"],
                 sizes: [
                     {name: "S", qty: 2},
                     {name: "M", qty: 4},
@@ -134,7 +134,7 @@ const data =
         stock: [
             {
                 color: "Blue",
-                imgs: "Blouse13.jpeg",
+                images: ["Blouse13.jpeg"],
                 sizes: [
                     {name: "XS", qty: 4},
                     {name: "S", qty: 6},
@@ -160,7 +160,7 @@ const data =
         stock: [
             {
                 color: "Black",
-                imgs: "Blouse12.jpeg",
+                images: ["Blouse12.jpeg"],
                 sizes: [
                     {name: "S", qty: 5},
                     {name: "M", qty: 7},
@@ -170,7 +170,7 @@ const data =
             },
             {
                 color: "Blue",
-                imgs: "Blouse11.jpeg",
+                images: ["Blouse11.jpeg"],
                 sizes: [
                     {name: "S", qty: 5},
                     {name: "M", qty: 7},
@@ -195,7 +195,7 @@ const data =
         stock: [
             {
                 color: "White",
-                imgs: "Blouse10.jpeg",
+                images: ["Blouse10.jpeg"],
                 sizes: [
                     {name: "S", qty: 5},
                     {name: "M", qty: 7},
@@ -220,7 +220,7 @@ const data =
         stock: [
             {
                 color: "Pink",
-                imgs: "Blouse9.jpeg",
+                images: ["Blouse9.jpeg"],
                 sizes: [
                     {name: "S", qty: 6},
                     {name: "M", qty: 8},
@@ -230,7 +230,7 @@ const data =
             },
             {
                 color: "Blue",
-                imgs: "Blouse8.jpeg",
+                images: ["Blouse8.jpeg"],
                 sizes: [
                     {name: "S", qty: 2},
                     {name: "M", qty: 4},
@@ -255,7 +255,7 @@ const data =
         stock: [
             {
                 color: "Multicolor",
-                imgs: "Blouse6.jpeg",
+                images: ["Blouse6.jpeg"],
                 sizes: [
                     {name: "S", qty: 6},
                     {name: "L", qty: 5},
@@ -279,7 +279,7 @@ const data =
         stock: [
             {
                 color: "White",
-                imgs: "Blouse2.jpeg",
+                images: ["Blouse2.jpeg"],
                 sizes: [
                     {name: "S", qty: 5},
                     {name: "M", qty: 7}
@@ -302,7 +302,7 @@ const data =
         stock: [
             {
                 color: "Striped",
-                imgs: "Blouse1.jpeg",
+                images: ["Blouse1.png"],
                 sizes: [
                     {name: "XS", qty: 4},
                     {name: "M", qty: 5},

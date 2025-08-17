@@ -19,7 +19,7 @@ const dresses = [
         stock:[
             {
             color: "White",
-            imgs: ['dress1-white.png'],
+            images: ['dress1-white.png'],
             sizes: [
                 {name: 'M', qty: 5 },
                 {name: 'L', qty: 7 },
@@ -28,7 +28,7 @@ const dresses = [
             },
             {
             color: "Black",
-            imgs: ['dress1-black.png'],
+            images: ['dress1-black.png'],
             sizes: [
                 {name: 'M', qty: 6 },
                 {name: 'L', qty: 12 },
@@ -37,7 +37,7 @@ const dresses = [
             },
             {
             color: "Baby Blue",
-            imgs: ['dress1-babyblue.png'],
+            images: ['dress1-babyblue.png'],
             sizes: [
                 {name: 'M', qty: 10 },
                 {name: 'L', qty: 5 },
@@ -67,7 +67,7 @@ const dresses = [
         stock:[
                 {
                 color: "White",
-                imgs: ['dress2-white.png'],
+                images: ['dress2-white.png'],
                 sizes: [
                     {name: 'M', qty: 5 },
                     {name: 'L', qty: 7 },
@@ -76,7 +76,7 @@ const dresses = [
                 },
                 {
                 color: "Black",
-                imgs: ['dress2-black.png'],
+                images: ['dress2-black.png'],
                 sizes: [
                     {name: 'M', qty: 6 },
                     {name: 'L', qty: 12 },
@@ -85,7 +85,7 @@ const dresses = [
                 },
                 {
                 color: "Baby Blue",
-                imgs: ['dress2-babyblue.png'],
+                images: ['dress2-babyblue.png'],
                 sizes: [
                     {name: 'M', qty: 10 },
                     {name: 'L', qty: 5 },
@@ -94,7 +94,7 @@ const dresses = [
                 },
                 {
                 color: "Pink",
-                imgs: ['dress2-pink.png'],
+                images: ['dress2-pink.png'],
                 sizes: [
                     {name: 'M', qty: 10 },
                     {name: 'L', qty: 5 },
@@ -124,7 +124,7 @@ const dresses = [
         stock:[
                     {
                     color: "White",
-                    imgs: ['dress3-white.png'],
+                    images: ['dress3-white.png'],
                     sizes: [
                         {name: 'M', qty: 5 },
                         {name: 'L', qty: 12 },
@@ -133,7 +133,7 @@ const dresses = [
                     },
                     {
                     color: "Black",
-                    imgs: ['dress3-black.png'],
+                    images: ['dress3-black.png'],
                     sizes: [
                         {name: 'S', qty: 6 },
                         {name: 'L', qty: 2 },
@@ -164,7 +164,7 @@ const dresses = [
         stock:[
                 {
                 color: "Black",
-                imgs: ['dress4-black.png'],
+                images: ['dress4-black.png'],
                 sizes: [
                     {name: 'S', qty: 6 },
                     {name: 'L', qty: 2 },
@@ -195,7 +195,7 @@ const dresses = [
         stock:[
                 {
                 color: "Black",
-                imgs: ['dress5-black.png'],
+                images: ['dress5-black.png'],
                 sizes: [
                     {name: 'S', qty: 6 },
                     {name: 'M', qty: 12 },
@@ -205,7 +205,7 @@ const dresses = [
                 },
                 {
                 color: "Blue",
-                imgs: ['dress5-blue.png'],
+                images: ['dress5-blue.png'],
                 sizes: [
                     {name: 'S', qty: 6 },
                     {name: 'M', qty: 12 },
@@ -235,7 +235,7 @@ const dresses = [
         stock:[
                     {
                     color: "Black",
-                    imgs: ['dress6-black.png'],
+                    images: ['dress6-black.png'],
                     sizes: [
                         {name: 'S', qty: 6 },
                         {name: 'M', qty: 12 },
@@ -245,7 +245,7 @@ const dresses = [
                     },
                     {
                     color: "Baby Blue",
-                    imgs: ['dress6-babyblue.png'],
+                    images: ['dress6-babyblue.png'],
                     sizes: [
                         {name: 'S', qty: 6 },
                         {name: 'M', qty: 12 },
@@ -255,7 +255,7 @@ const dresses = [
                     },
                     {
                     color: "Olive Green",
-                    imgs: ['dress6-oliveGreen.png'],
+                    images: ['dress6-oliveGreen.png'],
                     sizes: [
                         {name: 'S', qty: 6 },
                         {name: 'M', qty: 12 },
@@ -285,7 +285,7 @@ const dresses = [
         stock:[
                 {
                   color: "Black",
-                  imgs: ['dress7-black.png'],
+                  images: ['dress7-black.png'],
                   sizes: [
                       {name: 'S', qty: 6 },
                       {name: 'M', qty: 12 },
@@ -295,7 +295,7 @@ const dresses = [
                 },
                 {
                   color: "Dark Green",
-                  imgs: ['dress7-darkGreen.png'],
+                  images: ['dress7-darkGreen.png'],
                   sizes: [
                       {name: 'S', qty: 6 },
                       {name: 'M', qty: 12 },
@@ -305,7 +305,7 @@ const dresses = [
                 },
                 {
                   color: "Pink",
-                  imgs: ['dress7-pink.png'],
+                  images: ['dress7-pink.png'],
                   sizes: [
                       {name: 'S', qty: 6 },
                       {name: 'M', qty: 12 },
@@ -315,7 +315,7 @@ const dresses = [
                 },
                 {
                   color: "Red",
-                  imgs: ['dress7-red.png'],
+                  images: ['dress7-red.png'],
                   sizes: [
                       {name: 'S', qty: 6 },
                       {name: 'M', qty: 12 },
@@ -344,7 +344,7 @@ const dresses = [
         stock:[
                 {
                     color: "Blue",
-                    imgs: ['dress8-blue.png'],
+                    images: ['dress8-blue.png'],
                     sizes: [
                         {name: 'M', qty: 5 },
                         {name: 'L', qty: 7 },
@@ -353,7 +353,7 @@ const dresses = [
                 },
                 {
                     color: "Baby Blue",
-                    imgs: ['dress8-babyblue.png'],
+                    images: ['dress8-babyblue.png'],
                     sizes: [
                         {name: 'M', qty: 6 },
                         {name: 'L', qty: 12 },
@@ -362,7 +362,7 @@ const dresses = [
                 },
                 {
                     color: "Red",
-                    imgs: ['dress8-red.png'],
+                    images: ['dress8-red.png'],
                     sizes: [
                         {name: 'M', qty: 10 },
                         {name: 'L', qty: 5 },
@@ -391,7 +391,7 @@ const dresses = [
         stock:[
                 {
                     color: "Black",
-                    imgs: ['dress9-black.png'],
+                    images: ['dress9-black.png'],
                     sizes: [
                         {name: 'XS', qty: 4},
                         {name: 'S', qty: 6 },
@@ -422,7 +422,7 @@ const dresses = [
         stock:[
                 {
                 color: "Black",
-                imgs: ['dress10-black.png'],
+                images: ['dress10-black.png'],
                 sizes: [
                     {name: 'XS', qty: 4},
                     {name: 'S', qty: 6 },
@@ -433,7 +433,7 @@ const dresses = [
                 },
                 {
                 color: "Green",
-                imgs: ['dress10-green.png'],
+                images: ['dress10-green.png'],
                 sizes: [
                     {name: 'XS', qty: 4},
                     {name: 'S', qty: 6 },

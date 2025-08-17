@@ -17,7 +17,7 @@ const data =
         stock: [
             {
                 color: "Beige",
-                imgs: "Skirt2.jpeg",
+                images: ["Skirt2.jpeg"],
                 sizes: [
                     {name: "S", qty: 5},
                     {name: "M", qty: 7},
@@ -42,7 +42,7 @@ const data =
         stock: [
             {
                 color: "Printed",
-                imgs: "Skirt3.jpeg",
+                images: ["Skirt3.jpeg"],
                 sizes: [
                     {name: "XS", qty: 5},
                     {name: "S", qty: 8},
@@ -68,7 +68,7 @@ const data =
         stock: [
             {
                 color: "Yellow",
-                imgs: "Skirt4.jpeg",
+                images: ["Skirt4.jpeg"],
                 sizes: [
                     {name: "XS", qty: 4},
                     {name: "S", qty: 6},
@@ -94,7 +94,7 @@ const data =
         stock: [
             {
                 color: "Khaki",
-                imgs: "Skirt6.jpeg",
+                images: ["Skirt6.jpeg"],
                 sizes: [
                     {name: "XS", qty: 5},
                     {name: "S", qty: 7},
@@ -120,7 +120,7 @@ const data =
         stock: [
             {
                 color: "Plaid",
-                imgs: "Skirt7.jpeg",
+                images: ["Skirt7.jpeg"],
                 sizes: [
                     {name: "XS", qty: 4},
                     {name: "S", qty: 6},
@@ -145,7 +145,7 @@ const data =
         stock: [
             {
                 color: "Brown Plaid",
-                imgs: "Skirt8.jpeg",
+                images: ["Skirt8.jpeg"],
                 sizes: [
                     {name: "S", qty: 5},
                     {name: "M", qty: 7},
@@ -171,7 +171,7 @@ const data =
     stock: [
         {
             color: "Brown Leopard",
-            imgs: "Skirt1.png",
+            images: ["Skirt1.jpeg"],
             sizes: [
                 {name: "S", qty: 5},
                 {name: "M", qty: 7},
