@@ -2,7 +2,7 @@ import { toProduct } from "../../../scripts/utils.js";
 
 const menProductShoes = [
 	{
-		id: "MCShoe001",
+		id: "mcshoes001",
 		name: "Leather Sneakers",
 		brand: "Concrete",
 		description: "Comfortable sneakers made of genuine leather. Made in italy.",
@@ -50,7 +50,7 @@ const menProductShoes = [
 		offers: ["free shipping"],
 	},
 	{
-		id: "MLShoe001",
+		id: "mlshoes001",
 		name: "Neo Shot Sneakers",
 		brand: "Lacost",
 		description: "the latest creative addition to the Neo line, is a bold, sophisticated running style. Featuring a premium multi-panel upper and an oversized molded sole, for a dynamic, high-contrast look.",

@@ -3,10 +3,16 @@
 import { uniHats } from "./unisex/uni-hat.js";
 
 /* -----------MEN DATA---------- */
-import { menTop } from "./men/men-top.js";
+    //TOP
+import { menTop } from "./men/men-top.js"; 
 import { menShoes } from "./men/men-shoes.js";
+
 /* ----------WOMEN DATA--------- */
     //SHOES
+import { womenBags } from "./women/women-bag.js";
+    // Skirts
+import { womenSkirts } from "./women/women-bottom.js";
+    // Shoes
 import { womenShoes } from "./women/women-shoes.js";
     // Dresses
 import { womenDresses } from "./women/women-dresses.js";
@@ -25,6 +31,7 @@ export const products = [];
 products.push(...uniHats)
 
 /* -----------MEN ADDED---------- */
+    //TOPS
 products.push(...menTop);
 products.push(...menShoes);
 

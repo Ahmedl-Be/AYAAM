@@ -3,7 +3,7 @@ import { toProduct } from "../../../scripts/utils.js";
 
 const menProductTop = [
 	{
-		id: "MDSh001",
+		id: "mdsh001",
 		name: "Linen Shirt",
 		brand: "Defacto",
 		description: "Long Sleeves, regular fit, machine washable",
@@ -56,7 +56,7 @@ const menProductTop = [
 		offers: ["free shipping"],
 	},
 	{
-		id: "MZSh001",
+		id: "mzsh001",
 		name: "Cotton Linen Shirt",
 		brand: "Zara",
 		description:
@@ -99,7 +99,7 @@ const menProductTop = [
 		offers: ["free shipping"],
 	},
 	{
-		id: "MASh001",
+		id: "mash001",
 		name: "Real Madrid US Pack Shirt",
 		brand: "Adidas",
 		description: "A button-up, baseball-style shirt for Real Madrid supporters",
@@ -124,7 +124,7 @@ const menProductTop = [
 		offers: ["free shipping"],
 	},
 	{
-		id: "MBBL001",
+		id: "mbbl001",
 		name: "Classic Blazer",
 		brand: "British House",
 		description: "Smart fit solid blazer made of anti bacterial, water resistant, breathable and natural stretch wool fabric.",
