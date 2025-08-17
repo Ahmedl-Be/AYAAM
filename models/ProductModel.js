@@ -47,7 +47,7 @@ export class Product {
     }
 
 /* ---ID */
-    set Id(_id) { this.#id = _id; }
+    set Id(_id) { this.#id = _id.toLowerCase(); }
     get Id() { return this.#id; }
 
 /* ---NAME */

@@ -163,5 +163,6 @@ const MenTop = [];
 for (let i=0; i<menProducts.length; i++) {
 		MenTop[i] = toProduct(menProducts[i]);
 }
-// console.log(MenTop);
+
+/* EXPORTING MEN TOPS */
 export { MenTop };
