@@ -8,6 +8,8 @@ import { MenTop } from "./men/men-top.js";
 
 /* ----------WOMEN DATA--------- */
     //SHOES
+import { womenBags } from "./women/women-bag.js";
+import { womenSkirts } from "./women/women-bottom.js";
 import { womenShoes } from "./women/women-shoes.js";
 
     // Dresses
@@ -15,6 +17,7 @@ import { womenDresses } from "./women/women-dresses.js";
 
     // Accessories
 import { womenAccessories } from "./women/women-accessories.js";
+import { womenBlouses } from "./women/women-top.js";
 
 
 /* -----------PRODUCTS---------- */
@@ -36,3 +39,9 @@ products.push(...womenShoes);
 products.push(...womenDresses);
     // Accessories
 products.push(...womenAccessories);
+    // BAGS
+products.push(...womenBags);
+    // SKIRTS
+products.push(...womenSkirts);
+    //Blouses
+products.push(...womenBlouses);
