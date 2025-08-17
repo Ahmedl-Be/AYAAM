@@ -1,6 +1,4 @@
 import { toProduct } from "../../../scripts/utils.js";
-
-
 // structure of each product based on the provided data ,
 //  images value is an array of image names
 
