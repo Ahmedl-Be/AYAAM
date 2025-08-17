@@ -18,7 +18,7 @@ const data = [
         stock:[
         {
             color: "Grey",
-            imgs: ['grey-f.png','grey-b.png','grey-in.png','grey-s.png','grey-top.png'],
+            images: ['grey-f.png','grey-b.png','grey-in.png','grey-s.png','grey-top.png'],
             sizes: [
             {name: 'M', qty: 4 },
             {name: 'L', qty: 2 },
@@ -44,21 +44,21 @@ const data = [
         stock:[
         {
             color: "Black",
-            imgs: ['black-f.png','black-b.png','black-in.png','black-s.png','black-top.png'],
+            images: ['black-f.png','black-b.png','black-in.png','black-s.png','black-top.png'],
             sizes: [
             {name: '', qty:2},
             ]
         },
         {
             color: "Brown",
-            imgs: ['brown-f.png','brown-b.png','brown-in.png','brown-s.png','brown-top.png'],
+            images: ['brown-f.png','brown-b.png','brown-in.png','brown-s.png','brown-top.png'],
             sizes: [
             {name: '', qty:5},
             ]
         },
         {
             color: "Lightgrey",
-            imgs: ['lightgrey-f.png','lightgrey-b.png','lightgrey-in.png','lightgrey-s.png','lightgrey-top.png'],
+            images: ['lightgrey-f.png','lightgrey-b.png','lightgrey-in.png','lightgrey-s.png','lightgrey-top.png'],
             sizes: [
             {name: '', qty:4},
             ]
@@ -82,7 +82,7 @@ const data = [
         stock:[
         {
             color: "Cyan",
-            imgs: ['cyan-top.png','cyan-front.png','cyan-back.png','cyan-side.png','cyan-in.png'],
+            images: ['cyan-top.png','cyan-front.png','cyan-back.png','cyan-side.png','cyan-in.png'],
             sizes: [
                 {name: 'M', qty: 3 },
                 {name: 'L', qty: 1 },
@@ -91,7 +91,7 @@ const data = [
         },
         {
             color: "Black",
-            imgs: ['black-top.png','black-front.png','black-back.png','black-side.png','black-in.png'],
+            images: ['black-top.png','black-front.png','black-back.png','black-side.png','black-in.png'],
             sizes: [
                 {name: 'M', qty: 3 },
                 {name: 'L', qty: 4 },
@@ -100,7 +100,7 @@ const data = [
         },
         {
             color: "Blue",
-            imgs: ['blue-front.png','blue-back.png','blue-in.png','blue-side.png','blue-top.png'],
+            images: ['blue-front.png','blue-back.png','blue-in.png','blue-side.png','blue-top.png'],
             sizes: [
                 {name: 'M', qty: 0 },
                 {name: 'L', qty: 3 },
@@ -126,7 +126,7 @@ const data = [
         stock:[
         {
             color: "Light blue",
-            imgs: ['lightblue-face.png','lightblue-front.png','lightblue-back.png','lightblue-details.png'],
+            images: ['lightblue-face.png','lightblue-front.png','lightblue-back.png','lightblue-details.png'],
             sizes: [
             {name: 'M', qty: 4 },
             {name: 'L', qty: 2 },
@@ -135,7 +135,7 @@ const data = [
         },
         {
             color: "Blue",
-            imgs: ['blue-face.png','blue-front.png','blue-back.png','blue-details.png'],
+            images: ['blue-face.png','blue-front.png','blue-back.png','blue-details.png'],
             sizes: [
             {name: 'M', qty: 4 },
             {name: 'L', qty: 2 },
@@ -144,7 +144,7 @@ const data = [
         },
         {
             color: "Black",
-            imgs: ['black-face.png','black-front.png','black-back.png','black-details.png'],
+            images: ['black-face.png','black-front.png','black-back.png','black-details.png'],
             sizes: [
             {name: 'M', qty: 4 },
             {name: 'L', qty: 2 },
@@ -168,7 +168,7 @@ const data = [
         stock:[
         {
             color: "Black",
-            imgs: ['black-female.png','black-male.png','black-front.png','black-back.png','black-details.png'],
+            images: ['black-female.png','black-male.png','black-front.png','black-back.png','black-details.png'],
             sizes: [
             {name: 'M', qty:0},
             {name: 'L', qty:3},
@@ -177,7 +177,7 @@ const data = [
         },
         {
             color: "Cyan",
-            imgs: ['cyan-female.png','cyan-male.png','cyan-front.png','cyan-back.png','cyan-details.png'],
+            images: ['cyan-female.png','cyan-male.png','cyan-front.png','cyan-back.png','cyan-details.png'],
             sizes: [
             {name: 'M', qty:2},
             {name: 'L', qty:3},
@@ -186,7 +186,7 @@ const data = [
         },
         {
             color: "White",
-            imgs: ['white-female.png','white-male.png','white-front.png','white-back.png','white-details.png'],
+            images: ['white-female.png','white-male.png','white-front.png','white-back.png','white-details.png'],
             sizes: [
             {name: 'M', qty:4},
             {name: 'L', qty:34},
@@ -213,21 +213,21 @@ const data = [
         stock:[
         {
             color: "Camo",
-            imgs: ['camo-male.png','camo-details.png','camo-details2.png','camo-dimentions.png'],
+            images: ['camo-male.png','camo-details.png','camo-details2.png','camo-dimentions.png'],
             sizes: [
                 {name: '', qty: 3 }
             ]
         },
         {
             color: "Pink",
-            imgs: ['pink-female.png','pink-details.png','pink-dimentions.png','pink-top.png'],
+            images: ['pink-female.png','pink-details.png','pink-dimentions.png','pink-top.png'],
             sizes: [
             {name: '', qty:2},
             ]
         },
         {
             color: "Rose",
-            imgs: ['rose-female.png','rose-details.png','rose-details2.png','rose-dimentions.png','rose-top.png'],
+            images: ['rose-female.png','rose-details.png','rose-details2.png','rose-dimentions.png','rose-top.png'],
             sizes: [
             {name: '', qty:4},
             ]
