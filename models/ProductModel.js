@@ -47,7 +47,7 @@ export class Product {
     }
 
 /* ---ID */
-    set Id(_id) { this.#id = _id; }
+    set Id(_id) { this.#id = _id.toLowerCase(); }
     get Id() { return this.#id; }
 
 /* ---NAME */
@@ -62,7 +62,7 @@ export class Product {
         }
     get Name() { return this.#name; }
         
-/* ---DESCRIPTION */
+/* ---DESCRIPTION-- */
     set Description(_description) {
         if (_description.constructor.name !== "String") {
             throw new Error("Description Must be a String");
