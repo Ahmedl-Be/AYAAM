@@ -335,6 +335,5 @@ const womenShoes = [];
 
 /* Loop over the array of data and covert to products */
 for (let i = 0; i < data.length; i++) { womenShoes[i] = toProduct(data[i]) }
-
 //Export the data
 export { womenShoes }; 

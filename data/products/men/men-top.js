@@ -160,11 +160,8 @@ const menProducts = [
 ];
 
 const MenTop = [];
-console.log(menProducts);
-for (const pro of menProducts) {
-	if (pro.category === "Men") {
-		MenTop.push(toProduct(pro));
-	}
+for (let i=0; i<menProducts.length; i++) {
+		MenTop[i] = toProduct(menProducts[i]);
 }
-console.log(MenTop);
+// console.log(MenTop);
 export { MenTop };
