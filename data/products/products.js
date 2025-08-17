@@ -1,24 +1,49 @@
 /* -----------UNI DATA---------- */
-import { uniHats } from "./unisex/uni-hat.js";    //HATS
+    //HATS
+import { uniHats } from "./unisex/uni-hat.js";
 
 /* -----------MEN DATA---------- */
-
-import { MenTop } from "./men/men-top.js"; //TOP
+    //TOP
+import { MenTop } from "./men/men-top.js"; 
 
 /* ----------WOMEN DATA--------- */
-import { womenShoes } from "./women/women-shoes.js";    //SHOES
+    //SHOES
+import { womenShoes } from "./women/women-shoes.js";
 
+    // Dresses
+import { womenDresses } from "./women/women-dresses.js";
+
+    // Accessories
+import { womenAccessories } from "./women/women-accessories.js";
 
 
 /* -----------PRODUCTS---------- */
 export const products = [];
 
 
+/* -----------MEN ADDED---------- */
+
+/* ----------WOMEN ADDED--------- */
+    //SHOES
+products.push(...womenShoes);
+
+
+
+
+
+
 /* -----------UNI ADDED---------- */
-products.push(...uniHats)    //HATS
+    //HATS
+products.push(...uniHats)
 
 /* -----------MEN ADDED---------- */
+    //TOPS
 products.push(...MenTop);
 
 /* ----------WOMEN ADDED--------- */
-products.push(...womenShoes);    //SHOES
+    //SHOES
+products.push(...womenShoes);
+    // Dresses
+products.push(...womenDresses);
+    // Accessories
+products.push(...womenAccessories);
