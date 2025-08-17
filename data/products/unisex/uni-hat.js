@@ -93,14 +93,18 @@ const data = [
             color: "Black",
             imgs: ['black-top.png','black-front.png','black-back.png','black-side.png','black-in.png'],
             sizes: [
-            {name: '', qty:2},
+                {name: 'M', qty: 3 },
+                {name: 'L', qty: 4 },
+                {name: 'XL', qty: 2 }
             ]
         },
         {
             color: "Blue",
             imgs: ['blue-front.png','blue-back.png','blue-in.png','blue-side.png','blue-top.png'],
             sizes: [
-            {name: '', qty:4},
+                {name: 'M', qty: 0 },
+                {name: 'L', qty: 3 },
+                {name: 'XL', qty: 10 }
             ]
         },
         ],
@@ -108,4 +112,138 @@ const data = [
         brand: "Nike", // optional for later use
         addedAt: ''
     },
+    {   id: 'uha004', 
+        name: "Unisex Denim Strapback", 
+        description: "Classic unisex denim strapback cap, designed with a comfortable adjustable strap and a timeless casual look — perfect for everyday wear.",
+        price: 27.99,
+        sale: 0,
+        offers: [
+                'free shipping'
+            ],
+        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        category: "UniSex", 
+        subCategory: "Hat", // for later use
+        stock:[
+        {
+            color: "Light blue",
+            imgs: ['lightblue-face.png','lightblue-front.png','lightblue-back.png','lightblue-details.png'],
+            sizes: [
+            {name: 'M', qty: 4 },
+            {name: 'L', qty: 2 },
+            {name: 'XL', qty: 1 }
+            ]
+        },
+        {
+            color: "Blue",
+            imgs: ['blue-face.png','blue-front.png','blue-back.png','blue-details.png'],
+            sizes: [
+            {name: 'M', qty: 4 },
+            {name: 'L', qty: 2 },
+            {name: 'XL', qty: 1 }
+            ]
+        },
+        {
+            color: "Black",
+            imgs: ['black-face.png','black-front.png','black-back.png','black-details.png'],
+            sizes: [
+            {name: 'M', qty: 4 },
+            {name: 'L', qty: 2 },
+            {name: 'XL', qty: 1 }
+            ]
+        },
+        ],
+        material: "Denim", //optional for later use
+        brand: "Adidas", // optional for later use
+        addedAt: ''
+    },
+    {   id: 'uha005', 
+        name: "Mercedes - AMG Petronas Formula One Team Driver Cap", 
+        description: "Official Mercedes-AMG Petronas Formula One Team driver cap, featuring premium design, team branding, and adjustable fit — a must-have for F1 fans and motorsport enthusiasts.",
+        price: 50,
+        sale: 0.2,
+        offers: [],
+        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        category: "UniSex", 
+        subCategory: "Hat", // for later use
+        stock:[
+        {
+            color: "Black",
+            imgs: ['black-female.png','black-male.png','black-front.png','black-back.png','black-details.png'],
+            sizes: [
+            {name: 'M', qty:0},
+            {name: 'L', qty:3},
+            {name: 'XL', qty:4},
+            ]
+        },
+        {
+            color: "Cyan",
+            imgs: ['cyan-female.png','cyan-male.png','cyan-front.png','cyan-back.png','cyan-details.png'],
+            sizes: [
+            {name: 'M', qty:2},
+            {name: 'L', qty:3},
+            {name: 'XL', qty:3},
+            ]
+        },
+        {
+            color: "White",
+            imgs: ['white-female.png','white-male.png','white-front.png','white-back.png','white-details.png'],
+            sizes: [
+            {name: 'M', qty:4},
+            {name: 'L', qty:34},
+            {name: 'XL', qty:4},
+            ]
+        },
+        
+        ],
+        material: "Recycled Polyester Fibers", //optional for later use
+        brand: "Adidas", // optional for later use
+        addedAt: ''
+    },
+    {   id: 'uha006', 
+        name: "Fishing Hat", 
+        description: "Anti-UV and UPF 50+ excellent sun protection keep yourself protected from the damaging rays. Wide Brim keeps your face and neck from the strong sun.360 degree sweatband inside the hat and breathable lining absorb sweat efficiently.",
+        price: 8.99,
+        sale: 0,
+        offers: [
+                'free shipping'
+            ],
+        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        category: "UniSex", 
+        subCategory: "Hat", // for later use
+        stock:[
+        {
+            color: "Camo",
+            imgs: ['camo-male.png','camo-details.png','camo-details2.png','camo-dimentions.png'],
+            sizes: [
+                {name: '', qty: 3 }
+            ]
+        },
+        {
+            color: "Pink",
+            imgs: ['pink-female.png','pink-details.png','pink-dimentions.png','pink-top.png'],
+            sizes: [
+            {name: '', qty:2},
+            ]
+        },
+        {
+            color: "Rose",
+            imgs: ['rose-female.png','rose-details.png','rose-details2.png','rose-dimentions.png','rose-top.png'],
+            sizes: [
+            {name: '', qty:4},
+            ]
+        },
+        ],
+        material: "100% Nylon", //optional for later use
+        brand: "Rosos", // optional for later use
+        addedAt: ''
+    },
 ];
+
+// declare an array to contain the ouput ***MUST BE <PascalCase> ***
+const uniHats = []; 
+
+/* Loop over the array of data and covert to products */
+for (let i = 0; i < data.length; i++) { uniHats[i] = toProduct(data[i]) }
+
+//Export the data
+export { uniHats }; 

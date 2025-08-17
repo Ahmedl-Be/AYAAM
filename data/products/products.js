@@ -1,16 +1,20 @@
+/* -----------UNI DATA---------- */
+import { uniHats } from "./unisex/uni-hat.js";    //HATS
+
 /* -----------MEN DATA---------- */
 
 /* ----------WOMEN DATA--------- */
-    //SHOES
-import { womenShoes } from "./women/women-shoes.js";
+import { womenShoes } from "./women/women-shoes.js";    //SHOES
 
 
 /* -----------PRODUCTS---------- */
 export const products = [];
 
 
+/* -----------UNI ADDED---------- */
+products.push(...uniHats)    //HATS
+
 /* -----------MEN ADDED---------- */
 
 /* ----------WOMEN ADDED--------- */
-    //SHOES
-products.push(...womenShoes);
+products.push(...womenShoes);    //SHOES
