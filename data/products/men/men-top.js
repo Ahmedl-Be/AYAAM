@@ -1,52 +1,52 @@
 
 import { toProduct } from "../../../scripts/utils.js";
 
-const menProducts = [
+const menProductTop = [
 	{
-		id: "Sh001",
+		id: "MDSh001",
 		name: "Linen Shirt",
 		brand: "Defacto",
 		description: "Long Sleeves, regular fit, machine washable",
 		category: "Men",
-		subCategory: "T-shirt",
-		price: 1499.99,
+		subCategory: "Shirt",
+		price: 29.99,
 		stock: [
 			{
-				color: "grey",
+				color: "Grey",
 				images: [
-					"../../imgs/products/men/top/defactoShirts/defactoGrey.avif",
-					"../../imgs/products/men/top/defactoShirts/defactoGreyBack.avif",
+					"defactoGrey.png",
+					"defactoGreyBack.png",
 				],
 				sizes: [
-					{ name: "S", quantity: 5 },
-					{ name: "M", quantity: 2 },
-					{ name: "L", quantity: 2 },
+					{ name: "S", qty: 5 },
+					{ name: "M", qty: 2 },
+					{ name: "L", qty: 2 },
 				],
 			},
 			{
-				color: "khaki",
+				color: "Khaki",
 				images: [
-					"../../imgs/products/men/top/defactoShirts/defactoKhaki.avif",
-					"../../imgs/products/men/top/defactoShirts/defactoKhaki2.avif",
-					"../../imgs/products/men/top/defactoShirts/defactoKhakiBack.avif",
+					"defactoKhaki.png",
+					"defactoKhaki2.png",
+					"defactoKhakiBack.png",
 				],
 				sizes: [
-					{ name: "S", quantity: 3 },
-					{ name: "M", quantity: 7 },
-					{ name: "L", quantity: 3 },
+					{ name: "S", qty: 3 },
+					{ name: "M", qty: 7 },
+					{ name: "L", qty: 3 },
 				],
 			},
 			{
-				color: "beige",
+				color: "Beige",
 				images: [
-					"../../imgs/products/men/top/defactoShirts/defactoBeige.avif",
-					"../../imgs/products/men/top/defactoShirts/defactoBeige2.avif",
-					"../../imgs/products/men/top/defactoShirts/defactoBeigeBack.avif",
+					"defactoBeige.png",
+					"defactoBeige2.png",
+					"defactoBeigeBack.png",
 				],
 				sizes: [
-					{ name: "S", quantity: 3 },
-					{ name: "M", quantity: 5 },
-					{ name: "L", quantity: 2 },
+					{ name: "S", qty: 3 },
+					{ name: "M", qty: 5 },
+					{ name: "L", qty: 2 },
 				],
 			},
 		],
@@ -56,40 +56,40 @@ const menProducts = [
 		offers: ["free shipping"],
 	},
 	{
-		id: "Sh002",
+		id: "MZSh001",
 		name: "Cotton Linen Shirt",
 		brand: "Zara",
 		description:
 			"Relaxed fit shirt made of a linen and cotton blend. Button-down collar. Long sleeves with buttoned cuffs. Chest patch pocket. Button-up front.",
 		category: "Men",
-		subCategory: "T-shirt",
-		price: 2499.99,
+		subCategory: "Shirt",
+		price: 49.99,
 		stock: [
 			{
-				color: "green",
-				images: ["../../imgs/products/men/top/zaraShirts/zaraShirtGreen.jpg"],
+				color: "Green",
+				images: ["zaraShirtGreen.jpg"],
 				sizes: [
-					{ name: "S", quantity: 6 },
-					{ name: "M", quantity: 2 },
-					{ name: "L", quantity: 1 },
+					{ name: "S", qty: 6 },
+					{ name: "M", qty: 2 },
+					{ name: "L", qty: 1 },
 				],
 			},
 			{
-				color: "beige",
-				images: ["../../imgs/products/men/top/zaraShirts/zaraShirtBeige.jpg"],
+				color: "Beige",
+				images: ["zaraShirtBeige.jpg"],
 				sizes: [
-					{ name: "S", quantity: 3 },
-					{ name: "M", quantity: 5 },
-					{ name: "L", quantity: 4 },
+					{ name: "S", qty: 3 },
+					{ name: "M", qty: 5 },
+					{ name: "L", qty: 4 },
 				],
 			},
 			{
-				color: "blue",
-				images: ["../../imgs/products/men/top/zaraShirts/zaraShirtBlue.jpg"],
+				color: "Blue",
+				images: ["zaraShirtBlue.jpg"],
 				sizes: [
-					{ name: "S", quantity: 3 },
-					{ name: "M", quantity: 5 },
-					{ name: "L", quantity: 2 },
+					{ name: "S", qty: 3 },
+					{ name: "M", qty: 5 },
+					{ name: "L", qty: 2 },
 				],
 			},
 		],
@@ -99,22 +99,22 @@ const menProducts = [
 		offers: ["free shipping"],
 	},
 	{
-		id: "Sh003",
+		id: "MASh001",
 		name: "Real Madrid US Pack Shirt",
 		brand: "Adidas",
 		description: "A button-up, baseball-style shirt for Real Madrid supporters",
 		category: "Men",
-		subCategory: "T-shirt",
-		price: 899.99,
+		subCategory: "Shirt",
+		price: 19.99,
 		stock: [
 			{
-				color: "white",
-				images: ["images/hoodie-grey-front.jpg", "images/hoodie-grey-back.jpg"],
+				color: "White",
+				images: ["adidasRM.png", "adidasRM2.png", "adidasRM3.png"],
 				sizes: [
-					{ name: "S", quantity: 5 },
-					{ name: "M", quantity: 5 },
-					{ name: "L", quantity: 4 },
-					{ name: "XL", quantity: 2 },
+					{ name: "S", qty: 5 },
+					{ name: "M", qty: 5 },
+					{ name: "L", qty: 4 },
+					{ name: "XL", qty: 2 },
 				],
 			},
 		],
@@ -124,29 +124,29 @@ const menProducts = [
 		offers: ["free shipping"],
 	},
 	{
-		id: "BL001",
+		id: "MBBL001",
 		name: "Classic Blazer",
 		brand: "British House",
 		description: "Smart fit solid blazer made of anti bacterial, water resistant, breathable and natural stretch wool fabric.",
 		category: "Men",
 		subCategory: "Blazer",
-		price: 14999.99,
+		price: 220,
 		stock: [
 			{
 				color: "Blue",
-				images: ["../../imgs/products/men/top/brithHouseBlazer/BHblueblazer1.jpg",
-                    "../../imgs/products/men/top/brithHouseBlazer/BHblueblazer2.jpg",
-                    "../../imgs/products/men/top/brithHouseBlazer/BHblueblazer3.jpg",
-                    "../../imgs/products/men/top/brithHouseBlazer/BHblueblazer4.jpg",
-                    "../../imgs/products/men/top/brithHouseBlazer/BHblueblazer5.jpg",
-                    "../../imgs/products/men/top/brithHouseBlazer/BHblueblazerBack.jpg",
-                    "../../imgs/products/men/top/brithHouseBlazer/BHblueblazerFull.jpg",
+				images: ["BHblueblazer1.jpg",
+                    "BHblueblazer2.jpg",
+                    "BHblueblazer3.jpg",
+                    "BHblueblazer4.jpg",
+                    "BHblueblazer5.jpg",
+                    "BHblueblazerBack.jpg",
+                    "BHblueblazerFull.jpg",
                 ],
 				
 				sizes: [
-					{ name: "S", quantity: 5 },
-					{ name: "M", quantity: 2 },
-					{ name: "L", quantity: 2 },
+					{ name: "S", qty: 5 },
+					{ name: "M", qty: 10 },
+					{ name: "L", qty: 2 },
 				],
 			},
 			
@@ -159,10 +159,9 @@ const menProducts = [
 	},
 ];
 
-const MenTop = [];
-for (let i=0; i<menProducts.length; i++) {
-		MenTop[i] = toProduct(menProducts[i]);
+const menTop = [];
+for (let i=0; i<menProductTop.length; i++) {
+		menTop[i] = toProduct(menProductTop[i]);
 }
-
-/* EXPORTING MEN TOPS */
-export { MenTop };
+// console.log(MenTop);
+export { menTop };
