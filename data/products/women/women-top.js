@@ -8,7 +8,7 @@ const data =
         id: 'wbl001',
         name: "Chiquease Solid Color Cap Sleeve Fitted Blouse",
         description: "Fitted women's casual blouse with cap sleeves, stretch fabric, versatile solid color, ideal for daily wear.",
-        price: 529,
+        price: 26.45,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -16,13 +16,13 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "black",
-                imgs: "./data/imgs/products/women/top/Blouse19.jpeg",
+                color: "Black",
+                imgs: "Blouse19.jpeg",
                 sizes: [
-                    {name: "S", qty: "5"},
-                    {name: "M", qty: "7"},
-                    {name: "L", qty: "4"},
-                    {name: "XL", qty: "3"}
+                    {name: "S", qty: 5},
+                    {name: "M", qty: 7},
+                    {name: "L", qty: 4},
+                    {name: "XL", qty: 3}
                 ]
             }
         ],
@@ -33,7 +33,7 @@ const data =
         id: 'wbl002',
         name: "SHEIN Solid Color Stand Collar Casual Blouse",
         description: "Women's mint green stand-collar blouse with front tie, comfortable and stylish for casual daily wear.",
-        price: 534,
+        price: 26.70,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -42,32 +42,32 @@ const data =
         stock: [
             {
                 color: "Mint Green",
-                imgs: "./data/imgs/products/women/top/Blouse18.jpeg",
+                imgs: "Blouse18.jpeg",
                 sizes: [
-                    {name: "S", qty: "6"},
-                    {name: "M", qty: "8"},
-                    {name: "L", qty: "5"},
-                    {name: "XL", qty: "4"}
+                    {name: "S", qty: 6},
+                    {name: "M", qty: 8},
+                    {name: "L", qty: 5},
+                    {name: "XL", qty: 4}
                 ]
             },
             {
-                color: "red",
-                imgs: "./data/imgs/products/women/top/Blouse17.jpeg",
+                color: "Red",
+                imgs: "Blouse17.jpeg",
                 sizes: [
-                    {name: "S", qty: "6"},
-                    {name: "M", qty: "2"},
-                    {name: "L", qty: "5"}
+                    {name: "S", qty: 6},
+                    {name: "M", qty: 2},
+                    {name: "L", qty: 5}
                 ]
             }
         ],
         material: "Polyester Blend",
-        brand: "SHEIN"
+        brand: "Shein"
     },
     {
         id: 'wbl003',
         name: "Simplee Women's Fitted Lace Blouse",
         description: "Fitted blouse with Steven lace and round neckline, elegant and feminine, ideal for back-to-school and outings.",
-        price: 608,
+        price: 30.40,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -75,13 +75,13 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "white",
-                imgs: "./data/imgs/products/women/top/Blouse16.jpeg",
+                color: "White",
+                imgs: "Blouse16.jpeg",
                 sizes: [
-                    {name: "S", qty: "3"},
-                    {name: "M", qty: "2"},
-                    {name: "L", qty: "5"},
-                    {name: "XL", qty: "4"}
+                    {name: "S", qty: 3},
+                    {name: "M", qty: 2},
+                    {name: "L", qty: 5},
+                    {name: "XL", qty: 4}
                 ]
             }
         ],
@@ -92,7 +92,7 @@ const data =
         id: 'wbl004',
         name: "Eclosion Wood Ear Short Sleeve Top",
         description: "Short-sleeve top with wood ear accents and red embroidery, stylish and versatile for spring and summer.",
-        price: 631,
+        price: 31.55,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -101,20 +101,20 @@ const data =
         stock: [
             {
                 color: "Mint Green",
-                imgs: "./data/imgs/products/women/top/Blouse15.jpeg",
+                imgs: "Blouse15.jpeg",
                 sizes: [
-                    {name: "S", qty: "1"},
-                    {name: "M", qty: "3"},
-                    {name: "XL", qty: "2"}
+                    {name: "S", qty: 1},
+                    {name: "M", qty: 3},
+                    {name: "XL", qty: 2}
                 ]
             },
             {
-                color: "red",
-                imgs: "./data/imgs/products/women/top/Blouse14.jpeg",
+                color: "Red",
+                imgs: "Blouse14.jpeg",
                 sizes: [
-                    {name: "S", qty: "2"},
-                    {name: "M", qty: "4"},
-                    {name: "L", qty: "5"}
+                    {name: "S", qty: 2},
+                    {name: "M", qty: 4},
+                    {name: "L", qty: 5}
                 ]
             }
         ],
@@ -125,7 +125,7 @@ const data =
         id: 'wbl005',
         name: "Chiquease Retro Daisy Print Mandarin Collar Shirt",
         description: "Women's vacation-style shirt with daisy retro print, mandarin collar, and cap sleeves, lightweight and breezy for summer outings.",
-        price: 485,
+        price: 24.25,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -133,14 +133,14 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "blue",
-                imgs: "./data/imgs/products/women/top/Blouse13.jpeg",
+                color: "Blue",
+                imgs: "Blouse13.jpeg",
                 sizes: [
-                    {name: "XS", qty: "4"},
-                    {name: "S", qty: "6"},
-                    {name: "M", qty: "5"},
-                    {name: "L", qty: "3"},
-                    {name: "XL", qty: "2"}
+                    {name: "XS", qty: 4},
+                    {name: "S", qty: 6},
+                    {name: "M", qty: 5},
+                    {name: "L", qty: 3},
+                    {name: "XL", qty: 2}
                 ]
             }
         ],
@@ -151,7 +151,7 @@ const data =
         id: 'wbl006',
         name: "SHEN CHAI Contract Lace Keyhole Blouse",
         description: "Woven blouse with lace keyhole and raglan long sleeves, elegant and feminine with a modern touch.",
-        price: 704,
+        price: 35.20,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -159,34 +159,34 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "black",
-                imgs: "./data/imgs/products/women/top/Blouse12.jpeg",
+                color: "Black",
+                imgs: "Blouse12.jpeg",
                 sizes: [
-                    {name: "S", qty: "5"},
-                    {name: "M", qty: "7"},
-                    {name: "L", qty: "4"},
-                    {name: "XL", qty: "3"}
+                    {name: "S", qty: 5},
+                    {name: "M", qty: 7},
+                    {name: "L", qty: 4},
+                    {name: "XL", qty: 3}
                 ]
             },
             {
-                color: "blue",
-                imgs: "./data/imgs/products/women/top/Blouse11.jpeg",
+                color: "Blue",
+                imgs: "Blouse11.jpeg",
                 sizes: [
-                    {name: "S", qty: "5"},
-                    {name: "M", qty: "7"},
-                    {name: "L", qty: "4"},
-                    {name: "XL", qty: "3"}
+                    {name: "S", qty: 5},
+                    {name: "M", qty: 7},
+                    {name: "L", qty: 4},
+                    {name: "XL", qty: 3}
                 ]
             }
         ],
         material: "Woven Fabric with Lace",
-        brand: "SHEN CHAI"
+        brand: "Shein"
     },
     {
         id: 'wbl007',
         name: "Elenzga Puff Sleeve Bow Detail Blouse",
         description: "Women's blouse with round neck, puff sleeves, waist bow, and A-line hem, flattering and casual for spring and summer.",
-        price: 649,
+        price: 32.45,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -194,13 +194,13 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "white",
-                imgs: "./data/imgs/products/women/top/Blouse10.jpeg",
+                color: "White",
+                imgs: "Blouse10.jpeg",
                 sizes: [
-                    {name: "S", qty: "5"},
-                    {name: "M", qty: "7"},
-                    {name: "L", qty: "4"},
-                    {name: "XL", qty: "3"}
+                    {name: "S", qty: 5},
+                    {name: "M", qty: 7},
+                    {name: "L", qty: 4},
+                    {name: "XL", qty: 3}
                 ]
             }
         ],
@@ -211,7 +211,7 @@ const data =
         id: 'wbl008',
         name: "SHEN CLAS Minimalist Embroidery Blouse",
         description: "Women's blouse with minimalist embroidery and short sleeves, casual and comfortable for everyday wear.",
-        price: 397,
+        price: 19.85,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -219,34 +219,34 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "pink",
-                imgs: "./data/imgs/products/women/top/Blouse9.jpeg",
+                color: "Pink",
+                imgs: "Blouse9.jpeg",
                 sizes: [
-                    {name: "S", qty: "6"},
-                    {name: "M", qty: "8"},
-                    {name: "L", qty: "5"},
-                    {name: "XL", qty: "4"}
+                    {name: "S", qty: 6},
+                    {name: "M", qty: 8},
+                    {name: "L", qty: 5},
+                    {name: "XL", qty: 4}
                 ]
             },
             {
-                color: "blue",
-                imgs: "./data/imgs/products/women/top/Blouse8.jpeg",
+                color: "Blue",
+                imgs: "Blouse8.jpeg",
                 sizes: [
-                    {name: "S", qty: "2"},
-                    {name: "M", qty: "4"},
-                    {name: "L", qty: "3"},
-                    {name: "XL", qty: "4"}
+                    {name: "S", qty: 2},
+                    {name: "M", qty: 4},
+                    {name: "L", qty: 3},
+                    {name: "XL", qty: 4}
                 ]
             }
         ],
         material: "Cotton",
-        brand: "SHEN CLAS"
+        brand: "Shein"
     },
     {
         id: 'wbl009',
         name: "Shell Clas Float Print Laser Cut Top",
         description: "Women's top with float print, bubbled texture, and laser-cut embroidery, casual and artistic for everyday wear.",
-        price: 650,
+        price: 32.50,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -254,12 +254,12 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "multicolor",
-                imgs: "./data/imgs/products/women/top/Blouse6.jpeg",
+                color: "Multicolor",
+                imgs: "Blouse6.jpeg",
                 sizes: [
-                    {name: "S", qty: "6"},
-                    {name: "L", qty: "5"},
-                    {name: "XL", qty: "4"}
+                    {name: "S", qty: 6},
+                    {name: "L", qty: 5},
+                    {name: "XL", qty: 4}
                 ]
             }
         ],
@@ -270,7 +270,7 @@ const data =
         id: 'wbl010',
         name: "Chi-square Ruffle Neck Chiffon Blouse",
         description: "Chiffon blouse with ruffle neck, lightweight and flowy, elegant for casual or dressy occasions.",
-        price: 534,
+        price: 26.70,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -278,22 +278,22 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "white",
-                imgs: "./data/imgs/products/women/top/Blouse2.jpeg",
+                color: "White",
+                imgs: "Blouse2.jpeg",
                 sizes: [
-                    {name: "S", qty: "5"},
-                    {name: "M", qty: "7"}
+                    {name: "S", qty: 5},
+                    {name: "M", qty: 7}
                 ]
             }
         ],
         material: "Chiffon",
-        brand: "Chi-square"
+        brand: "Shein"
     },
     {
         id: 'wbl011',
         name: "SHEIN Frenchy Striped Cotton-Like Shirt",
         description: "Women's striped shirt with cotton-like fabric, breathable and relaxed, ideal for casual daily wear.",
-        price: 534,
+        price: 26.70,
         offers: ["free shipping"],
         sellerId: 'smariamexamplecom',
         category: "Women",
@@ -301,17 +301,17 @@ const data =
         status: "pending",
         stock: [
             {
-                color: "striped",
-                imgs: "./data/imgs/products/women/top/Blouse1.jpeg",
+                color: "Striped",
+                imgs: "Blouse1.jpeg",
                 sizes: [
-                    {name: "XS", qty: "4"},
-                    {name: "M", qty: "5"},
-                    {name: "L", qty: "3"}
+                    {name: "XS", qty: 4},
+                    {name: "M", qty: 5},
+                    {name: "L", qty: 3}
                 ]
             }
         ],
         material: "Cotton-Like Fabric",
-        brand: "SHEIN French"
+        brand: "Shein"
     }
 ]
 
