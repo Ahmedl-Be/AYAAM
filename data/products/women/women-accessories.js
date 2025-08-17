@@ -4,7 +4,7 @@ import { toProduct } from "../../../scripts/utils.js"
 // Women Accessories Data 
 
 const accessories = [
-    {   id: 'wac_001', 
+    {   id: 'wac001', 
         name: "Stainless Steel Butterfly Pendant Necklace & Earring Set", 
         description: "3pcs Stainless Steel Butterfly Pendant Necklace & Earring Set, Fashion Gold And Silver Color Jewelry Accessories",
         price: 2.60,
@@ -34,7 +34,7 @@ const accessories = [
         addedAt : '' ,
         status : 'approved'
     },
-    {   id: 'wac_002',  
+    {   id: 'wac002',  
         name: "Set Stainless Steel", 
         description: "3Pcs Set Stainless Steel Nail With Clover Bracelet & Clover Chain Anklet, Suitable For Women Daily Wear",
         price: 6.50,
@@ -64,7 +64,7 @@ const accessories = [
         addedAt : '' ,
         status : 'approved'
     },
-    {   id: 'wac_003', 
+    {   id: 'wac003', 
         name: "Bangle & Ring", 
         description: "1Pc Charm Stylish Geometric Bangle & Ring",
         price: 5.68,
@@ -94,7 +94,7 @@ const accessories = [
         addedAt : '' ,
         status : 'approved'
     },
-    {   id: 'wac_004', 
+    {   id: 'wac004', 
         name: "Bracelet & Cuff Ring", 
         description: "Rhinestone Decor Cuff Bracelet & Cuff Ring",
         price: 8.69,
@@ -125,7 +125,7 @@ const accessories = [
         addedAt : '' ,
         status : 'approved'
     },
-    {   id: 'wac_005', 
+    {   id: 'wac005', 
         name: "Pendant Necklace And Clavicle Chain Set", 
         description: "5pcs New Arrival European & American Minimalist Geometric Shaped Rhinestone Inlaid Ring, Earring, Bracelet, Pendant Necklace And Clavicle Chain Set",
         price: 12.0,
@@ -150,7 +150,7 @@ const accessories = [
         addedAt : '' ,
         status : 'approved'
     },
-    {    id: 'wac_006',  
+    {    id: 'wac006',  
         name: "Jewelry Set For Women", 
         description: "Leaf Bracelet And Ring Jewelry Set For Women",
         price: 100,
@@ -180,7 +180,7 @@ const accessories = [
         addedAt : '' ,
         status : 'approved'
     },
-    {   id: 'wac_007', 
+    {   id: 'wac007', 
         name: "Tone Coil Bangle Bracelet", 
         description: "50pcs Matte Gold Or Silver Tone Coil Bangle Bracelet, Suitable For Women's Party And Holiday Jewelry Accessories",
         price: 20.69,
@@ -210,7 +210,7 @@ const accessories = [
         addedAt : '' ,
         status : 'approved'
     },
-    {   id: 'wac_008', 
+    {   id: 'wac008', 
         name: "Heart Shaped Pendant Necklace", 
         description: "1pc Silver Heart Shaped Pendant Necklace, Jewelry Gift For Women",
         price: 16.36,
@@ -240,7 +240,7 @@ const accessories = [
     addedAt : '' ,
     status : 'approved'
     },
-    {    id: 'wac_009', 
+    {    id: 'wac009', 
         name: "Silver Leaf Cubic Zirconia Handchain", 
         description: "1 Pc Adjustable Silver Leaf Cubic Zirconia Handchain, Luxury Bridal Connected Finger Bracelet Jewelry For Wedding",
         price: 6.99,
@@ -270,7 +270,7 @@ const accessories = [
         addedAt : '' ,
         status : 'approved'
     },
-    {   id: 'wac_010' ,
+    {   id: 'wac010' ,
         name: "Tassel Ear Thread", 
         description: "1pc Tassel Ear Thread",
         price: 10.66,

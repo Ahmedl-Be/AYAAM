@@ -21,17 +21,6 @@ import { womenAccessories } from "./women/women-accessories.js";
 export const products = [];
 
 
-/* -----------MEN ADDED---------- */
-
-/* ----------WOMEN ADDED--------- */
-    //SHOES
-products.push(...womenShoes);
-
-
-
-
-
-
 /* -----------UNI ADDED---------- */
     //HATS
 products.push(...uniHats)

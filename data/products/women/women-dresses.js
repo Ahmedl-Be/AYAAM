@@ -3,7 +3,7 @@ import { toProduct } from "../../../scripts/utils.js" ;
 
 /*Dresses Data*/
 const dresses = [
-    {   id: 'wdr_001', 
+    {   id: 'wdr001', 
         name: "Short Dress", 
         description: "White Short Sleeve Formal Occasion Elegant Slim A-Line Dress",
         price: 5.68,
@@ -51,7 +51,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     },
-    {   id: 'wdr_002',
+    {   id: 'wdr002',
         name: "Casual Dress",
         description: "Franclia Women's Casual Striped Button Front Dress, Summer Summer Dress Roupa Para A Universidade",
         price: 13.50,
@@ -108,7 +108,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     } ,
-    { id: 'wdr_003',
+    { id: 'wdr003',
         name: "Classic Short Dress",
         description: "Solid Color Lapel Neck Short Sleeve Shirt Midi Dress",
         price: 10.60,
@@ -147,7 +147,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     } ,
-    {   id: 'wdr_004',
+    {   id: 'wdr004',
         name: "Elegant Long Dress",
         description: "Black Textured Fabric Button Decor Back Slit Long Sleeve Elegant Long Dress For Women",
         price: 20,
@@ -178,7 +178,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     } ,
-    {   id: 'wdr_005',
+    {   id: 'wdr005',
         name: "Formal Long Dress",
         description: "Square Neck 3/4 Sleeve Retro Casual Business Professional OL Bodycon Dress",
         price: 12.36,
@@ -220,7 +220,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     } ,
-    {   id: 'wdr_006',
+    {   id: 'wdr006',
         name: "Soiree Long Dress",
         description: " Round Neck Long Sleeve Crystal Decor Simple Casual Long Dress Long Evening Dresses",
         price: 16.9,
@@ -270,7 +270,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     } ,
-    {   id: 'wdr_007',
+    {   id: 'wdr007',
         name: "Soiree Long Dress",
         description: " Round Neck Long Sleeve Crystal Decor Simple Casual Long Dress Long Evening Dresses",
         price: 20.3,
@@ -330,7 +330,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     } ,
-    {   id: 'wdr_008',
+    {   id: 'wdr008',
         name: " Long Summer Dress",
         description: "Long Bell Sleeve Asymmetrical Ruffle Hem Dress",
         price: 10.6,
@@ -376,7 +376,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     } ,
-    {   id: 'wdr_009',
+    {   id: 'wdr009',
         name: "Flower Long Summer Dress",
         description: "Women 3D Flower Decor Patchwork Ruffle Hem Dress",
         price: 15.3,
@@ -407,7 +407,7 @@ const dresses = [
         addedAt : '' ,
         status : 'approved'
     } , 
-    {   id: 'wdr_010',
+    {   id: 'wdr010',
         name: "Elegant Long Dress",
         description: "Modelyn Asymmetrical Neck Pleated Detail Dress",
         price: 12.63,
