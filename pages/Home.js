@@ -1,14 +1,11 @@
+import LoginModal from '../components/auth/LoginModal.js';
+
 export default function Home() {
     return `
-    <h1>Welcome Home</h1>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <label>Email:</label>
-                <input type="email" id="email" required>
-                <label>Password:</label>
-                <input type="password" id="password" required>
-                <button type="submit">Login</button>
-            </form>
-            <p id="loginError" style="color:red;"></p>
+        <div class="container mt-5">
+            <h1 class="display-4">Welcome to our Store</h1>
+            <p class="lead">Browse our amazing products</p>
+            <a href="#" class="btn btn-primary">View Catalog</a>
+        </div>
     `;
 }

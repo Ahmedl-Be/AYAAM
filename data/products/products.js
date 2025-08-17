@@ -7,7 +7,7 @@ import { uniHats } from "./unisex/uni-hat.js";
 import { MenTop } from "./men/men-top.js"; 
 
 /* ----------WOMEN DATA--------- */
-    //SHOES
+    // BAGS
 import { womenBags } from "./women/women-bag.js";
     // Skirts
 import { womenSkirts } from "./women/women-bottom.js";
@@ -31,18 +31,18 @@ products.push(...uniHats)
 
 /* -----------MEN ADDED---------- */
     //TOPS
-products.push(...MenTop);
+// products.push(...MenTop);
 
-/* ----------WOMEN ADDED--------- */
-    //SHOES
-products.push(...womenShoes);
-    // Dresses
-products.push(...womenDresses);
-    // Accessories
-products.push(...womenAccessories);
-    // BAGS
-products.push(...womenBags);
-    // SKIRTS
-products.push(...womenSkirts);
-    //Blouses
-products.push(...womenBlouses);
+// /* ----------WOMEN ADDED--------- */
+//     //SHOES
+// products.push(...womenShoes);
+//     // Dresses
+// products.push(...womenDresses);
+//     // Accessories
+// products.push(...womenAccessories);
+//     // BAGS
+// products.push(...womenBags);
+//     // SKIRTS
+// products.push(...womenSkirts);
+//     //Blouses
+// products.push(...womenBlouses);

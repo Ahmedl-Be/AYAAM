@@ -1,12 +1,6 @@
+import { initRouter } from './scripts/routes.js';
 
-import { setupLogin } from './scripts/auth.js';
-import router from './scripts/routes.js';
-
-
-
-window.addEventListener('load', () => {
-    router('User')
-    setupLogin();  // Do setup first
+// Initialize the app
+window.addEventListener('DOMContentLoaded', () => {
+  initRouter();
 });
-
-

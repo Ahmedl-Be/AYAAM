@@ -1,63 +1,59 @@
+
+import Navbar from './../components/ui/NavBar.js';
 import AdminDashboard from '../pages/AdminDashboard.js';
 import Home from '../pages/Home.js';
 import Cart from '../pages/Cart.js';
 import Catalog from '../pages/Catalog.js';
-import SellerDashbaord from '../pages/SellerDashboard.js';
+import SellerDashboard from '../pages/SellerDashboard.js';
+import { getData } from './data-init.js';
 
-import { setData, getData } from './data-init.js';
-
-/* ---Routes--- */
+// Route configuration
 const routes = {
-    admin: AdminDashboard,
-    seller: SellerDashbaord,
-    home: Home,
-    catalog: Catalog,
-    cart: Cart
+    '#/': Home,
+    '#/home': Home,
+    '#/catalog': Catalog,
+    '#/cart': Cart,
+    '#/admin': AdminDashboard,
+    '#/seller': SellerDashboard
 };
 
-/* ---List of user privileges and pages each can access--- */
-const allowedRoutes = {
-    Admin: Object.keys(routes), //Can Access all Pages
-    User: ['home', 'catalog', 'cart'],
-    Seller: ['seller', 'home', 'catalog']
-}; 
+export function initRouter() {
+    // Add navbar to DOM
+    document.body.insertAdjacentHTML('afterbegin', Navbar());
+    
+    // Handle route buttons
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('nav-btn')) {
+            e.preventDefault();
+            const route = e.target.getAttribute('data-route');
+            window.location.hash = route;
+        }
+    });
 
-export default function router(_page) {
-    const loggedUser = getData('loggedUser');
-
-    // go home if no user is registered
-    if (!loggedUser) {
-        document.getElementById('app').innerHTML = Home();
-        if (push) history.pushState({ page: 'home' }, '', '/home');
-        return;
-    }
-
-    const role = loggedUser.role;
-
-    let targetPage = _page;
-    console.log(_page)
-
-    if (!allowedRoutes[role] || !allowedRoutes[role].includes(_page)) {
-        targetPage = allowedRoutes[role][0];
-    }
-
-    const page = routes[targetPage];
-    document.getElementById('app').innerHTML = page();
-
+    // Handle initial load and hash changes
+    window.addEventListener('load', handleHashChange);
+    window.addEventListener('hashchange', handleHashChange);
+    
+    // Initial route
+    handleHashChange();
 }
 
-/* ---Handle back/forward buttons--- */
-window.addEventListener('popstate', (e) => {
-    const state = e.state;
-    if (state && state.page) {
-        router(state.page, false); // false = ما تعملش pushState تاني
-    } else {
-        router('home', false);
-    }
-});
+function handleHashChange() {
+    const hash = window.location.hash || '#/';
+    const path = Object.keys(routes).find(route => route === hash) || '#/';
+    
+    // Update active button
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        const btnRoute = btn.getAttribute('data-route');
+        btn.classList.toggle('active', `#${btnRoute}` === path);
+    });
+    
+    // Render the component
+    const component = routes[path] || Home;
+    document.getElementById('app').innerHTML = component();
+}
 
-/* ---Load initial page on refresh--- */
-window.addEventListener('DOMContentLoaded', () => {
-    const path = location.pathname.replace('/', '') || 'home';
-    router(path, false);
-});
+// Helper function to navigate programmatically
+export function navigate(path) {
+    window.location.hash = path;
+}

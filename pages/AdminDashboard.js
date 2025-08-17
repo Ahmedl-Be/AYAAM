@@ -1,7 +1,7 @@
 import { getData } from "../scripts/data-init.js";
 
 export default function AdminDashboard() {
-    const name = getData('loggedUser').name;
-
-    return `<h1>Welcome ${name}</h1>`;
+    const user = getData('loggedUser');
+    if (!user) return `<p>Please log in</p>`;
+    return `<h1>Welcome ${user.name || 'Admin'}</h1>`;
 }
