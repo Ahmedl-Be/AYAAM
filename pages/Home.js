@@ -1,7 +1,9 @@
-
+import Navbar from "../components/ui/NavBar.js";
 
 export default function Home() {
+    
     return `
+        ${Navbar()}
         <div class="container mt-5">
             <h1 class="display-4">Welcome to our Store</h1>
             <p class="lead">Browse our amazing products</p>

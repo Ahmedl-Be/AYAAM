@@ -1,14 +1,15 @@
 
-import Navbar from './../components/ui/NavBar.js';
 import AdminDashboard from '../pages/AdminDashboard.js';
 import Home from '../pages/Home.js';
 import Cart from '../pages/Cart.js';
 import Catalog from '../pages/Catalog.js';
 import SellerDashboard from '../pages/SellerDashboard.js';
 import { getData } from './data-init.js';
+import NotFound from '../pages/NotFound.js';
 
 // Route configuration
 const routes = {
+    '#/404': NotFound,
     '#/': Home,
     '#/home': Home,
     '#/catalog': Catalog,
@@ -17,15 +18,25 @@ const routes = {
     '#/seller': SellerDashboard
 };
 
+/* ========= Navigation Functions ============= */
+
+// Helper function to navigate programmatically
+// _path: one of the available routes
+export function navigate(_path) {
+    window.location.hash = _path;
+}
+
+
+/* ========= Initial Routing ========= */
 export function initRouter() {
-    // Add navbar to DOM
-    document.body.insertAdjacentHTML('afterbegin', Navbar());
-    
+    const loggedUser = getData('loggedUser')||{};
+    const role = loggedUser.role || 'guest';
+
     // Handle route buttons
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('nav-btn')) {
+        if (e.target.classList.contains('router')) {
             e.preventDefault();
-            const route = e.target.getAttribute('data-route');
+            const route = e.target.getAttribute('href');
             window.location.hash = route;
         }
     });
@@ -40,20 +51,17 @@ export function initRouter() {
 
 function handleHashChange() {
     const hash = window.location.hash || '#/';
-    const path = Object.keys(routes).find(route => route === hash) || '#/';
+    const path = Object.keys(routes).find(route => route === hash) || '#/404';
     
     // Update active button
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        const btnRoute = btn.getAttribute('data-route');
-        btn.classList.toggle('active', `#${btnRoute}` === path);
+    document.querySelectorAll('.router').forEach(_anchor => {
+        const _route = _anchor.getAttribute('href');
+        console.log(_route)
+        _anchor.classList.toggle('active', `${_route}` === path);
     });
     
     // Render the component
-    const component = routes[path] || Home;
+    const component = routes[path] || NotFound;
     document.getElementById('app').innerHTML = component();
 }
 
-// Helper function to navigate programmatically
-export function navigate(path) {
-    window.location.hash = path;
-}
