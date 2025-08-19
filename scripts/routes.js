@@ -1,17 +1,20 @@
-
+import { getData } from './data-init.js';
 import AdminDashboard from '../pages/AdminDashboard.js';
 import Home from '../pages/Home.js';
 import Cart from '../pages/Cart.js';
 import Catalog from '../pages/Catalog.js';
 import SellerDashboard from '../pages/SellerDashboard.js';
-import { getData } from './data-init.js';
 import NotFound from '../pages/NotFound.js';
+import SignupPage from '../pages/SignupPage.js';
+
+
 
 // Route configuration
 const routes = {
     '#/404': NotFound,
     '#/': Home,
     '#/home': Home,
+    '#/register': SignupPage,
     '#/catalog': Catalog,
     '#/cart': Cart,
     '#/admin': AdminDashboard,
@@ -63,5 +66,15 @@ function handleHashChange() {
     // Render the component
     const component = routes[path] || NotFound;
     document.getElementById('app').innerHTML = component();
+
+    // INIT THE LOGIC
+    console.log(path)
+    initLogic()
+}
+
+
+function initLogic() {
+import('./auth.js').then(module => module.validateSignUp());
+
 }
 

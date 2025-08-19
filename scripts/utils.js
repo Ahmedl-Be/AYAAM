@@ -11,7 +11,7 @@ export function formatPrice(price) { //in: num => out: string
 /* ========== GENERATING FUNCTIONS =============== */
 
 export function generateID(_str) { //in: string => out : ID
-    return _str.toLowerCase() + Date.now().toString().slice(8);   // 'user' => 'user58769' 
+    return (_str.toLowerCase() + Date.now().toString().slice(8));   // 'user' => 'user58769' 
     
 }
 /* =============================================== */

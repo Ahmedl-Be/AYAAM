@@ -1,7 +1,10 @@
+import { getData } from "../../scripts/data-init.js";
 import NavLink from "./NavLink.js";
 import NotificationBadge from "./NotificationBadge.js";
 
 let hasNotifications = false;
+const loggedUser = getData('loggedUser')
+console.log(loggedUser)
 
 export default function Navbar() {
       return `
@@ -21,7 +24,7 @@ export default function Navbar() {
                 <!-- Notification Bell -->
                         ${NotificationBadge(hasNotifications)}
                 <!-- Profile Icon -->
-                        <a class="nav-link px-4" href="#/profile">
+                        <a class="nav-link px-4" href="#${loggedUser? '/profile': '/register'}">
                             <i class="fas fa-user-circle fa-lg fa-fw"></i>
                         </a>
                     </div>

@@ -1,5 +1,4 @@
 import { getData, setData } from './data-init.js';
-import router from './routes.js';
 
 
 export function validateSignUp() {

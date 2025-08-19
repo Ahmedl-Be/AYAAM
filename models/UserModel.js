@@ -1,16 +1,20 @@
+import { generateID } from "../scripts/utils.js";
+
 // User Class
 export default class User {
     #id;
     #name;
     #email;
     #password;
+    #phoneNumber;
     #role;
 
-    constructor(_id, _name, _email, _password, _role= 'user') {
+    constructor(_id,_name, _email, _password, _phoneNumber = '01000000000', _role = 'user') {
         this.Id = _id;
         this.Name = _name;
         this.Email = _email;
         this.Password = _password;
+        this.PhoneNumber = _phoneNumber;
         this.Role = _role; // Admin, Seller, User
     }
 
@@ -34,7 +38,7 @@ export default class User {
     }
 
     get Email() {
-        return this.#email
+        return this.#email;
     }
 
     /* PASSWORD SETTER AND GETTER */
@@ -43,7 +47,16 @@ export default class User {
     }
 
     get Password() {
-        return this.#password
+        return this.#password;
+    }
+
+    /* PHONENUMER SETTER AND GETTER */
+    set PhoneNumer(_phoneNumer) {
+        this.#phoneNumber = _phoneNumer;
+    }
+
+    get PhoneNumer() {
+        return this.#phoneNumber;
     }
 
     /* ROLE SETTER AND GETTER */
@@ -62,6 +75,7 @@ export default class User {
         name: this.#name,
         email: this.#email,
         password: this.#password,
+        phoneNumer: this.#phoneNumber,
         role: this.#role
     };
 }

@@ -236,7 +236,7 @@
                 email: email.value.trim(),
                 password: password.value,
                 password2: repeatedPassword.value,
-                role: "user",
+                role: 'user'
               };
               console.log("======== REGISTERED =========");
               console.log(JSON.stringify(user));
@@ -348,7 +348,7 @@
       }
 
       /* ===========function to validate password======= */
-      function validatePassword(_password) {
+       function validatePassword(_password) {
         // Regular expression for password validation
         // Must be atleast 8 digits
         // Must have atleast 1 Capital letter
@@ -361,7 +361,7 @@
         return regex.test(_password);
       }
       /* ==================RE PASSWORD=================== */
-      function clearError(_element) {
+       function clearError(_element) {
         //takes a form input and resets it as valid
         _element.classList.remove("is-invalid");
       }

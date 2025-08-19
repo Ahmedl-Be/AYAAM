@@ -31,7 +31,7 @@ export function setData(key, data) {
 //Out: The formatted data .. Failure => empty array
 export function getData(key) { 
     try {                       
-        return JSON.parse(localStorage.getItem(key)) || [];
+        return JSON.parse(localStorage.getItem(key)) || '';
     } catch (error) {
         console.error('Failed to parse localStorage data:', error);
         return [];
