@@ -2,7 +2,7 @@ import { getData } from "../../scripts/data-init.js";
 import NavLink from "./NavLink.js";
 import NotificationBadge from "./NotificationBadge.js";
 
-let hasNotifications = false;
+let hasNotifications =  true;
 const loggedUser = getData('loggedUser')
 console.log(loggedUser)
 
