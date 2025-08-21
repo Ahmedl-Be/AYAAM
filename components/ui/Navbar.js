@@ -1,42 +1,57 @@
 import { getData } from "../../scripts/data-init.js";
-import NavLink from "./NavLink.js";
-import NotificationBadge from "./NotificationBadge.js";
+import { Navlink, Anchor } from "./links.js";
+import { Icon } from "./icons.js";
+import { Button } from "./buttons.js";
 
-let hasNotifications =  true;
+
+
+
+const notifications = Icon('bell','solid','',true)
 const loggedUser = getData('loggedUser')
 console.log(loggedUser)
 
 export default function Navbar() {
-      return `
+  return `
     <header class="sticky-top">
         <nav class="navbar navbar-light container bg-white border-bottom ">
-    <!-- First Row (visible on all screens) -->
+<!-- First Row (visible on all screens) -->
             <div class="row p-0 m-0 w-100 g-3">
 
         <!-- LOGO - always first -->
                 <div class="col-6 col-md-3 order-md-1p logo d-flex align-items-center">
-                    <a class="navbar-brand py-0" href="/" style="height: 100%">MY SHOP</a>
+                    ${Anchor('MY SHOP', 'home', "navbar-brand py-0")}
                 </div>
 
         <!-- ICONS - moves to third position on md+ -->
-                <div class="d-flex justify-content-end align-content-center col-6 col-md-3 order-2 order-md-3 profile">
-                    <div class="d-flex align-items-center justify-content-center p-0">
-                <!-- Notification Bell -->
-                        ${NotificationBadge(hasNotifications)}
+                <div class="d-flex justify-content-end align-content-center col-6 col-md-3 order-2 order-md-3">
+                    <div class="d-flex align-items-center justify-content-center p-0 gap-3">
+                <!-- Notification Bell -->       
+                        ${Button(notifications, 'ico-notify')}
+                        
                 <!-- Profile Icon -->
-                        <a class="nav-link px-4" href="#${loggedUser? '/profile': '/register'}">
-                            <i class="fas fa-user-circle fa-lg fa-fw"></i>
-                        </a>
-                    </div>
+                        <div class="dropdown">
+                            ${Button(Icon('user', 'solid', 'fa-lg'), 'profileDropdown','btn border-0 bg-transparent p-0', 'data-bs-toggle="dropdown" aria-expanded="false"')}
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                              <li>
+                                  <a class="dropdown-item d-flex" href="#/login">
+                                    ${Icon('right-to-bracket','solid','me-2')} Login
+                                  </a>
+                              </li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li>
+                                  <button class="dropdown-item d-flex" id="toggleDarkMode">
+                                    ${Icon('moon','solid','me-2')} Dark Mode
+                                  </button>
+                              </li>
+                            </ul>
+                        </div>
+                        
+                <!-- Cart Icon -->
+                        ${Button(Icon('cart-shopping', 'solid', 'fa-lg'), 'ico-cart',)}
+                        
                 <!-- Mobile Toggler -->
-                    <button
-                    class="navbar-toggler d-md-none border-0 p-0"
-                    type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNav"
-                    >
-                    <i class="fa-solid fa-bars"></i>
-                    </button>
+                        ${Button(Icon('bars','solid','fa-lg '),'ico-bars',"navbar-toggler d-md-none border-0 p-0",'type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav"')}
+                    </div>
                 </div>
 
         <!-- SEARCH BAR - becomes second on md+ -->
@@ -60,20 +75,22 @@ export default function Navbar() {
           <!-- OFF CANVAS -->
           <div class="offcanvas-body">
             <ul class="navbar-nav flex-grow-1">
-              ${NavLink('MEN', 'products/men')}
-              ${NavLink('WOMEN', 'products/women')}
-              ${NavLink('SALE', 'products/sale')}
+              ${Navlink('MEN', 'products/men')}
+              ${Navlink('WOMEN', 'products/women')}
+              ${Navlink('SALE', 'products/sale')}
             </ul>
           </div>
         </div>
       </nav>
-      <!-- SECOND ROW (visible only in md+) -->
+<!-- SECOND ROW (visible only in md+) -->
       <div class="navbar row d-none d-md-flex w-100 ps-0" id="category">
         <ul class="navbar-nav d-flex flex-row justify-content-center w-100">
-            ${NavLink('MEN', 'products/men', 'mx-3')}
-            ${NavLink('WOMEN', 'products/women', 'mx-3')}
-            ${NavLink('SALE', 'products/sale', 'mx-3')}
+            ${Navlink('MEN', 'products/men', 'mx-3')}
+            ${Navlink('WOMEN', 'products/women', 'mx-3')}
+            ${Navlink('SALE', 'products/sale', 'mx-3')}
         </ul>
       </div>
+      
+       
     </header>`
 };

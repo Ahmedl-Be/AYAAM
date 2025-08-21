@@ -1,8 +1,13 @@
-import { validateSignUp } from './scripts/auth.js';
-import { initRouter } from './scripts/routes.js';
+import Home from "./pages/HomePage.js";
+import Router from "./scripts/router.js";
 
-// Initialize the app
-window.addEventListener('DOMContentLoaded', () => {
-  initRouter();
-  validateSignUp()
-});
+
+
+const routes = {
+  "/home": Home,
+/*   "/catalog": Catalog,
+  "/signup": Signup,
+  "/404": NotFound, */
+};
+
+new Router(routes, "app");

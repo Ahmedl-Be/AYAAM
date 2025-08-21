@@ -2,19 +2,16 @@ import Product from "../models/ProductModel.js";
 import User from "../models/UserModel.js";
 
 /* ========== DISPLAYING FUNCTIONS =============== */
-
 export function formatPrice(price) { //in: num => out: string
     return `$${price.toFixed(2)}`;   // 10 => '$10' 
     
 }
-/* =============================================== */
-/* ========== GENERATING FUNCTIONS =============== */
 
+/* ========== GENERATING FUNCTIONS =============== */
 export function generateID(_str) { //in: string => out : ID
     return (_str.toLowerCase() + Date.now().toString().slice(8));   // 'user' => 'user58769' 
     
 }
-/* =============================================== */
 
 /* ===========Create Product from object========== */
 export function toProduct(_obj) {

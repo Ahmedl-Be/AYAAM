@@ -1,9 +1,8 @@
 import { getData, setData } from './data-init.js';
 
 
-export function validateSignUp() {
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('signupForm');
+export function signUp() {
+    const form = document.getElementById('signupForm');
         const name = document.getElementById('name');
         const email = document.getElementById('email');
         const password = document.getElementById('password');
@@ -44,6 +43,10 @@ export function validateSignUp() {
             if (!isNameValid || !isEmailValid || !isPasswordValid || !isPasswordMatchValid || !isTermsValid) {
                 event.preventDefault();
                 event.stopPropagation();
+            } else {
+                event.preventDefault();
+                console.log("registered");
+                navigate("/")
             }
             
             form.classList.add('was-validated');
@@ -140,9 +143,6 @@ export function validateSignUp() {
             matchMessage.className = 'mt-1 small text-success';
             return true;
         }
-        
-
-    });
 }
 
 /* ===========function to validate email======= */

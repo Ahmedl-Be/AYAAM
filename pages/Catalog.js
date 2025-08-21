@@ -1,4 +1,4 @@
-import ProductList from '../components/products/ProductList.js';
+/* import ProductList from '../components/products/ProductList.js';
 
 export default function Catalog() {
     return `
@@ -7,4 +7,4 @@ export default function Catalog() {
             ${ProductList()}
         </main>
     `;
-}
+} */
