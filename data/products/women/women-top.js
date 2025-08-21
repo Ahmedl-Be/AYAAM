@@ -1,5 +1,5 @@
 //import toProduct from utils
-import { toProduct } from "../../../scripts/utils.js" 
+import { toProduct } from "../../../scripts/utilities/data.js";
 
 /* Declare data to transform as an array of objects */
 const data = 

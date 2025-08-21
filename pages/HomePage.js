@@ -1,5 +1,6 @@
-import Navbar from "../components/ui/NavBar.js";
-import View from "../scripts/view.js";
+import SignupForm from "../components/auth/SignupForm.js";
+import Navbar from "../components/ui/Nav.js";
+import View from "../components/core/view.js";
 
 export default class Home extends View {
     template() {
@@ -323,7 +324,13 @@ export default class Home extends View {
         </div>
       </div>
     </footer>
+    <!-- Modal Root for subviews -->
+        <div id="modal-root"></div>
         `;
-    }
-   
+  }
+  
+  script() {
+    
+  }
 }
+   

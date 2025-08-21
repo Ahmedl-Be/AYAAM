@@ -1,4 +1,4 @@
-import { toProduct } from "../../../scripts/utils.js";
+import { toProduct } from "../../../scripts/utilities/data.js";
 
 const menProductShoes = [
 	{	id: "msh001",

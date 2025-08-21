@@ -1,5 +1,6 @@
+import { toProduct } from "../../../scripts/utilities/data.js";
 
-import { toProduct } from "../../../scripts/utils.js";
+
 
 const menProductTop = [
 	{	id: "mdsh001",
