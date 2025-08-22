@@ -1,4 +1,4 @@
-import { showLoader, hideLoader } from "./utilities/loader.js";
+import { showLoader, hideLoader } from "./utils/loader.js";
 
 /* Simple navigation helper */
 export function navigate(_path) {

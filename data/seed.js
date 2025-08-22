@@ -1,4 +1,4 @@
-import { localStore } from "../scripts/utilities/storage.js";
+import { localStore } from "../scripts/utils/storage.js";
 import { products } from "./products/products.js";
 import { users } from "./users/users.js";
 

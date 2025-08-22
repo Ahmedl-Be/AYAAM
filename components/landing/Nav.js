@@ -1,12 +1,13 @@
 import Component from "../core/component.js";
-import { localStore } from "../../scripts/utilities/storage.js";
+import { localStore } from "../../scripts/utils/storage.js";
 import { getCurrentUser, logout } from "../../data/authentication.js";
 import { Navlink, Anchor } from "../ui/links.js";
 import { Icon } from "../ui/icons.js";
 import { Button } from "../ui/buttons.js";
 import { Toggler } from "../ui/toggler.js";
+import View from "../core/view.js";
 
-export default class Navbar extends Component {
+export default class Navbar extends View {
   constructor(_config = {}, _params = {}) {
     super(_config, _params);
     this.user = getCurrentUser();

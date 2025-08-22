@@ -1,9 +1,10 @@
-import { toProduct } from "../../../scripts/utilities/data.js";
+import { toProduct } from "../../../scripts/utils/data.js";
 
 
 
 const menProductTop = [
-	{	id: "mdsh001",
+	{
+		id: "mdsh001",
 		name: "Linen Shirt",
 		brand: "Defacto",
 		description: "Long Sleeves, regular fit, machine washable",
@@ -55,7 +56,8 @@ const menProductTop = [
 		sale: 0.1,
 		offers: ["free shipping"],
 	},
-	{	id: "mzsh001",
+	{
+		id: "mzsh001",
 		name: "Cotton Linen Shirt",
 		brand: "Zara",
 		description:
@@ -97,7 +99,8 @@ const menProductTop = [
 		sale: 0.14,
 		offers: ["free shipping"],
 	},
-	{	id: "mash001",
+	{
+		id: "mash001",
 		name: "Real Madrid US Pack Shirt",
 		brand: "Adidas",
 		description: "A button-up, baseball-style shirt for Real Madrid supporters",
@@ -121,7 +124,8 @@ const menProductTop = [
 		sale: 0.15,
 		offers: ["free shipping"],
 	},
-	{	id: "mbbl001",
+	{
+		id: "mbbl001",
 		name: "Classic Blazer",
 		brand: "British House",
 		description: "Smart fit solid blazer made of anti bacterial, water resistant, breathable and natural stretch wool fabric.",
@@ -132,22 +136,22 @@ const menProductTop = [
 			{
 				color: "Blue",
 				images: ["BHblueblazer1.jpg",
-                    "BHblueblazer2.jpg",
-                    "BHblueblazer3.jpg",
-                    "BHblueblazer4.jpg",
-                    "BHblueblazer5.jpg",
-                    "BHblueblazerBack.jpg",
-                    "BHblueblazerFull.jpg",
-                ],
-				
+					"BHblueblazer2.jpg",
+					"BHblueblazer3.jpg",
+					"BHblueblazer4.jpg",
+					"BHblueblazer5.jpg",
+					"BHblueblazerBack.jpg",
+					"BHblueblazerFull.jpg",
+				],
+
 				sizes: [
 					{ name: "S", qty: 5 },
 					{ name: "M", qty: 10 },
 					{ name: "L", qty: 2 },
 				],
 			},
-			
-			
+
+
 		],
 		material: "Linen",
 		sellerId: "ahmedossama",
@@ -157,8 +161,8 @@ const menProductTop = [
 ];
 
 const menTop = [];
-for (let i=0; i<menProductTop.length; i++) {
-		menTop[i] = toProduct(menProductTop[i]);
+for (let i = 0; i < menProductTop.length; i++) {
+	menTop[i] = toProduct(menProductTop[i]);
 }
 // console.log(MenTop);
 export { menTop };

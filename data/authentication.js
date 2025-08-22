@@ -1,10 +1,10 @@
-import { generateID, toUser } from "../scripts/utilities/data.js";
-import { localStore, sessionStore } from "../scripts/utilities/storage.js";
+import { generateID, toUser } from "../scripts/utils/data.js";
+import { localStore, sessionStore } from "../scripts/utils/storage.js";
 
 /* ======================= SIGNUP =========================== */
-export function signup(_name, _email, _password, _repeatedPassword, _phone='01000000000' ,_role='user') {
+export function signup(_name, _email, _password, _repeatedPassword, _phone = '01000000000', _role = 'user') {
     const users = localStore.read('users', []);
-    
+
     const name = _name;
     const email = _email;
     const password = _password;
@@ -41,18 +41,18 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone='0100
         console.warn("Passwords MUST Match...");
         return null;
     }
-    
+
     const createdAt = Date.now();
 
     let newUser = {
         id: generateID(role),
         name, email, password, role, phone
     }
-    
+
     newUser = toUser(newUser);
     users.push(newUser);
 
-    localStore.write('users', users)
+    localStore.write('users', users);
 
     return login(newUser.Email, newUser.Password, true);
 
@@ -68,7 +68,7 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone='0100
  */
 export function login(_identifier, _password, _remember = false) {
     const users = localStore.read("users", []);
-    const user = users.find( _user => (_user.email === _identifier || _user.phone === _identifier) && _user.password === _password);
+    const user = users.find(_user => (_user.email === _identifier || _user.phone === _identifier) && _user.password === _password);
 
     if (!user) {
         console.warn("Invalid email or password!!!!!");
@@ -119,15 +119,15 @@ export function validateEmail(_email) {
 
 
 /* ===========function to validate password======= */
-export function validatePassword(_password) { 
+export function validatePassword(_password) {
     // Regular expression for password validation
     // Must be atleast 8 digits
     // Must have atleast 1 Capital letter
     // Must have atleast 1 small letter
     // Must have a special character
-    
+
     var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-// Return true if password matches regex, false otherwise
+    // Return true if password matches regex, false otherwise
     return regex.test(_password);
 }
 /* ==================RE PASSWORD=================== */

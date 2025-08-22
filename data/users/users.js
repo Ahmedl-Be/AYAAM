@@ -1,6 +1,6 @@
-import { toUser } from "../../scripts/utilities/data.js";
+import { toUser } from "../../scripts/utils/data.js";
 
- const data = [
+const data = [
     {
         id: 'yasser',
         name: "Yasser",
