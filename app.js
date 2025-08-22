@@ -1,21 +1,32 @@
 import Router from "./scripts/router.js";
 import seedData from "./data/seed.js";
-import Home from "./pages/HomePage.js";
-import NotFound from "./pages/NotFound.js";
-import SignupPage from "./pages/SignupPage.js";
-/* ================ APP =============== */
-const app = document.getElementById('app');
-if(!app) {console.error("APP DOESN'T EXIST CHECK 'index.html' ")}
 
-/* ============== ROUTES ============== */
+/* ====== LAZY-LOADED PAGES (DYNAMIC IMPORTS) ====== */
+// Each route dynamically imports the corresponding page.
+// This improves performance by only loading code when needed.
 const routes = {
-  "/home": Home,
-  // "/catalog": Catalog,
-  "/signup": SignupPage,
-  "/404": NotFound,
+  "/404": () => import("./pages/NotFound.js"),
+  "/home": () => import("./pages/HomePage.js"),
+  "/signup": () => import("./pages/SignupPage.js"),
+  "/login": () => import("./pages/LoginPage.js"),
+  // Future routes:
+  // "/catalog": () => import("./pages/CatalogPage.js"),
+  // "/cart": () => import("./pages/CartPage.js"),
+  // "/admin": () => import("./pages/AdminDashboard.js"),
+  // "/seller": () => import("./pages/SellerDashboard.js"),
 };
 
-/* =========== SEEDING DATA =========== */
+/* ====== APP ROOT ELEMENT ====== */
+// The main container where all views will be rendered.
+const app = document.getElementById("app");
+if (!app) {
+  console.error("ERROR: Root element '#app' not found in index.html");
+}
+
+/* ====== DATA SEEDING ====== */
+// Load initial data into storage (if needed for demo or testing).
 seedData();
-/* =========== INITIALIZING =========== */
+
+/* ====== ROUTER INITIALIZATION ====== */
+// Create the router instance with the defined routes and root container.
 const router = new Router(routes, app);

@@ -25,7 +25,6 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone='0100
         console.warn("USER ALREADY EXISTS LOGIN...");
         return null;
     }
-    console.log(password)
     /* VALIDATE PASSOWRD */
     if (!validatePassword(password)) {
         console.warn(` Passwords must have:

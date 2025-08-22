@@ -1,5 +1,5 @@
-import { signup, login, getCurrentUser, logout } from "./data/authentication.js";
-import { localStore, sessionStore } from "./scripts/utilities/storage.js";
+// import { signup, login, getCurrentUser, logout } from "./data/authentication.js";
+// import { localStore, sessionStore } from "./scripts/utilities/storage.js";
 /* 
 
 // 🔹 Step 1: Clear old data for testing
