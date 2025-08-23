@@ -10,7 +10,7 @@ const routes = {
   "/signup": () => import("./pages/SignupPage.js"),
   "/login": () => import("./pages/LoginPage.js"),
   // Future routes:
-  // "/catalog": () => import("./pages/CatalogPage.js"),
+  "/catalog": () => import("./pages/CatalogPage.js"),
   "/cart": () => import("./pages/CartPage.js"),
   "/admin": () => import("./pages/AdminDashboard.js"),
   // "/seller": () => import("./pages/SellerDashboard.js"),
