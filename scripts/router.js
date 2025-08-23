@@ -89,7 +89,7 @@ export default class Router {
                 baseRoute = "/404";
             }
 
-            // Reuse current view if still in the same base route
+            // If already inside the same view → just forward to subroute
             if (this.currentView && this.currentView.route === baseRoute) {
                 this.currentView.onSubRoute(pathPart, params);
                 hideLoader();
@@ -105,6 +105,11 @@ export default class Router {
                 params
             );
             this.currentView.render();
+
+            // 👇 بعد أول render لازم نمررله subroute كمان
+            if (this.currentView.onSubRoute) {
+                this.currentView.onSubRoute(pathPart, params);
+            }
 
             hideLoader();
         } catch (error) {
