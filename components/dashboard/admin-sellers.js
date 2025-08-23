@@ -1,6 +1,5 @@
 //admin seller page
-import { getData, setData,capitalizeWords,generateId,getInitials,getRandomColor, formatDate,showAlert, showConfirmDialog} from "../../scripts/data-init.js";
-import User from "../../models/UserModel.js";
+import User from "../../data/_schema/UserModel.js";
 // import {} from "./admin-utils.js";
 
 export function renderSellers(container) {

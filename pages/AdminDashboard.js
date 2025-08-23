@@ -1,14 +1,16 @@
 //admin dashboard
 import Views from "../components/core/view.js";
-import { getData } from "../scripts/data-init.js";
+import { localStore } from './../scripts/utils/storage.js';
+
 import { Sidebar } from "../components/ui/sidebar.js";
 import { renderProducts } from "../components/dashboard/admin-products.js";
 import { renderSellers } from "../components/dashboard/admin-sellers.js";
 import { renderUsersStats, renderSellersStats, renderProductsStats } from "../components/dashboard/admin-stats.js";
+import { getCurrentUser } from './../data/authentication.js';
 
 export default class AdminDashboard extends Views{
     template(){
-         const user = getData("loggedUser");
+         const user = getCurrentUser();
         if (!user) return `<p>Please log in</p>`;
 
         const sections = [

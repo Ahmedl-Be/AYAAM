@@ -1,5 +1,5 @@
 //admin-products page
-import { getData, setData, checkStock, getRandomColor, showAlert, showConfirmDialog } from "../../scripts/data-init.js";
+
 
 // Global sorting state
 let currentSort = { field: null, direction: 'asc' };

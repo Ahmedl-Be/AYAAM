@@ -1,4 +1,3 @@
-import { getData } from "../../scripts/data-init.js";
 
 export function renderUsersStats(container) {
     const users = getData("users") || [];
