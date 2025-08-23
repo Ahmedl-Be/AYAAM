@@ -1,5 +1,6 @@
-export function ProductCard(product) {
+import { navigate } from "../../../scripts/router.js";
 
+export function ProductCard(product) {
   const stock = product.stock[0];
   const images = stock.images;
   const price = product.price;
@@ -8,7 +9,6 @@ export function ProductCard(product) {
 
   const card = document.createElement("div");
   card.className = "col-md-6 col-lg-4 col-sm-12  mb-4";
-
 
 card.innerHTML = `
 <div class="card shadow-sm h-100">
@@ -54,10 +54,8 @@ card.innerHTML = `
 
     <button 
       class="add-to-cart-btn btn btn-dark add-to-cart mt-3 d-flex align-items-center justify-content-center gap-2" 
-      data-id="${product.id}">
-      <a href="../singleProduct/product.html?id=${product.id}" class="text-white text-decoration-none">
+      data-id="${product.id}" id="viewDetailsBtn">
         <i class="fa-solid fa-cart-shopping text-white"></i> View Details      
-      </a>
     </button>
   </div>
 </div>
@@ -67,7 +65,13 @@ card.innerHTML = `
   const leftArrow = card.querySelector(".arrow.left");
   const rightArrow = card.querySelector(".arrow.right");
 
-
+  
+  const viewDetailsBtn = card.querySelector('#viewDetailsBtn')
+  
+  viewDetailsBtn.addEventListener("click",()=>{
+    sessionStorage.setItem("currentProduct",product.id);
+    navigate('product')
+  });
 
 
   let currentIndex = 0;

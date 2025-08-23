@@ -13,6 +13,7 @@ const routes = {
   "/catalog": () => import("./pages/CatalogPage.js"),
   "/cart": () => import("./pages/CartPage.js"),
   "/admin": () => import("./pages/AdminDashboard.js"),
+  "/product": () => import("./pages/Product.js")
   // "/seller": () => import("./pages/SellerDashboard.js"),
 };
 
