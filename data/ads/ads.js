@@ -1,18 +1,18 @@
 export const ads = [
     {
-        src: "https://picsum.photos/id/1015/1200/600",
-        title: "New Season",
-        subtitle: "Up to 50% Off",
-        info: "Discover the latest trends",
+        img: "./assets/images/thumbnails/fashion.avif",
+        title: "Shop the Latest Trends",
+        text: "Discover amazing deals on top products.",
         btnText: "Shop Now",
+        btnLink: "products",
         btnClass: "btn-primary"
     },
     {
-        src: "https://picsum.photos/id/1011/1200/600",
-        title: "Women's Essentials",
-        subtitle: "Timeless Style",
-        info: "Elegant pieces that define your style",
-        btnText: "Explore",
+        img: "./assets/images/thumbnails/Accessories.avif",
+        title: "Exclusive Offers",
+        text: "Save more with our limited-time deals.",
+        btnText: "See Offers",
+        btnLink: "offers",
         btnClass: "btn-warning"
     }
 ];

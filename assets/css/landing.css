@@ -40,16 +40,58 @@ i:hover {
 }
 
 /* HERO SECTION */
-.ad-slide {
-    transition: opacity .6s ease;
-    z-index: 0;
+#headCarousel .carousel-item {
+    height: 50vh;
+    /* Large banner */
+    min-height: 400px;
+    position: relative;
 }
 
-
-.hero-dots .dot {
-    background: rgba(255, 255, 255, 0.5);
+#headCarousel .carousel-item >a{
+    height: 100%;
+    width: 100%;
 }
 
-.hero-dots .dot.active {
-    background: white;
+#headCarousel .carousel-item a img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+    /* darken background */
+}
+
+/* Center text in the middle */
+#headCarousel .carousel-data {
+    color: #f5f2f9;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    align-items: center !important;
+    user-select: none;
+        text-align: center;
+}
+
+#headCarousel .carousel-data h1 {
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+}
+#headCarousel .carousel-data .btn {
+    border: 1px solid #f5f2f9;
+    width: 60% !important;
+    background-color: rgba(245, 242, 249, 0.13)
+}
+#headCarousel .carousel-data .btn:hover {
+    background-color: rgba(245, 242, 249, 0.178)!important;
+}
+
+/* Buttons */
+#headCarousel .carousel-data .btn {
+    width: auto;
+    padding: 0.6rem 1.5rem;
+    /* compact button */
+    font-size: 1rem;
 }

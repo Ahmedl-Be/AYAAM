@@ -12,58 +12,35 @@ export default class HeroSection extends Component {
     }
 
     template() {
+        const adsEl = this.ads.map((ads, i) => Advertisement(ads, i === 0)).join("");
+
         return `
-      <section class="hero position-relative overflow-hidden" style="height:600px;">
-        <!-- Slide container -->
-        <div class="hero-slide position-absolute top-0 start-0 w-100 h-100"></div>
+      <div id="headCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    ${adsEl}
+  </div>
 
-        <!-- Controls -->
-        <button class="hero-prev btn btn-light position-absolute top-50 start-0 translate-middle-y" style="z-index:3;">◀</button>
-        <button class="hero-next btn btn-light position-absolute top-50 end-0 translate-middle-y" style="z-index:3;">▶</button>
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#headCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#headCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
 
-        <!-- Dots -->
-        <div class="hero-dots position-absolute bottom-0 start-50 translate-middle-x mb-3 d-flex gap-2" style="z-index:3;">
-          ${this.ads.map((_, i) =>
-            `<span class="dot ${i === 0 ? "active" : ""}" data-i="${i}" 
-                style="width:12px; height:12px; border-radius:50%; display:inline-block; cursor:pointer;"></span>`
-        ).join("")}
-        </div>
-      </section>
+  <!-- Bars instead of dots -->
+  <div class="carousel-indicators">
+    ${this.ads.map((ad, i) =>
+        `<button type="button" data-bs-target="#headCarousel" data-bs-slide-to="${i}" 
+         class="${i === 0 ? "active" : ""}" aria-current="${i === 0 ? "true" : "false"}" 
+         style="width:40px; height:6px; border-radius:3px; background-color:#fff; margin:0 4px;"></button>`
+    ).join("")}
+  </div>
+</div>
     `;
     }
 
     script() {
-        const slideContainer = this.parent.querySelector(".hero-slide");
-        const dots = this.parent.querySelectorAll(".dot");
-        const prevBtn = this.parent.querySelector(".hero-prev");
-        const nextBtn = this.parent.querySelector(".hero-next");
-
         
-
-        const renderAd = (i) => {
-            slideContainer.innerHTML = "";
-            this.mount(Advertisement, ".hero-slide", {
-                ...this.ads[i],
-                btn: { content: this.ads[i].btnText, classList: this.ads[i].btnClass }
-            });
-            dots.forEach((d, idx) => d.classList.toggle("active", idx === i));
-            this.current = i;
-        };
-
-        const next = () => renderAd((this.current + 1) % this.ads.length);
-        const prev = () => renderAd((this.current - 1 + this.ads.length) % this.ads.length);
-
-        prevBtn.onclick = prev;
-        nextBtn.onclick = next;
-        dots.forEach(dot => dot.onclick = (e) => renderAd(+e.target.dataset.i));
-
-        // اول اعلان
-        renderAd(0);
-
-        this.timer = setInterval(next, this.interval);
-    }
-
-    onLeave() {
-        clearInterval(this.timer);
     }
 }
