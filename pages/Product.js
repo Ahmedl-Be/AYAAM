@@ -140,7 +140,7 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
 
     const backToCatalogBtn = document.getElementById('backToCatalogBtn');
     backToCatalogBtn.addEventListener("click", () => {
-      navigate('/catalog')
+      navigate('catalog')
     });
 
     function notify(message, type = "dark") {

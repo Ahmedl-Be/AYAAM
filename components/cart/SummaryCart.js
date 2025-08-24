@@ -1,12 +1,12 @@
 import Component from "../core/component.js";
-import { CartManager } from "../../scripts/cartScripts.js/cartManager.js";
-import { navigate } from "../../scripts/router.js";
+import { CartManager } from "../../scripts/cartScripts/cartManager.js";
+import { navigate } from "../../scripts/utils/navigation.js";
 
 
-const cartManager = new CartManager() ;
+const cartManager = new CartManager();
 
 
-export default class SummaryCart extends Component{
+export default class SummaryCart extends Component {
 
     template() {
         return `
@@ -57,11 +57,11 @@ export default class SummaryCart extends Component{
     }
 
     script() {
-        document.querySelectorAll('.checkout-btn').forEach(btn =>{
-            btn.addEventListener('click' , ()=>{
+        document.querySelectorAll('.checkout-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
                 navigate('/checkout')
             })
         })
-        
+
     }
 }

@@ -1,6 +1,6 @@
 import View from "../components/core/view.js";
-import { CartManager } from "../scripts/cartScripts.js/cartManager.js";
-import { navigate } from "../scripts/router.js";
+import { CartManager } from "../scripts/cartScripts/cartManager.js";
+import { navigate } from "../scripts/utils/navigation.js";
 import { sessionStore } from "../scripts/utils/storage.js";
 
 const cartManager = new CartManager();
@@ -44,7 +44,7 @@ export default class CheckoutPage extends View {
                     <div>
                     <p class="fw-semibold text-secondary fs-5 ">Order Details</p>
                     <div class="orders-height g-2 py-3">
-                        ${cartItems.map(item =>  `
+                        ${cartItems.map(item => `
                                         <div class=" d-flex flex-row align-items-center gap-3 cardItem-height pb-2  mb-3  border-bottom">
                                             <div class="h-100">
                                                 <img src="${item.img}" class="img-order h-100 rounded-3"/>
@@ -105,13 +105,13 @@ export default class CheckoutPage extends View {
     }
 
     script() {
-        document.getElementById('pay').addEventListener('click' , ()=>{
+        document.getElementById('pay').addEventListener('click', () => {
             navigate('/home');
         });
 
-        document.getElementById('continue-shoping').addEventListener('click' , ()=>{
+        document.getElementById('continue-shoping').addEventListener('click', () => {
             navigate('/catalog');
         });
     }
-    
+
 }
