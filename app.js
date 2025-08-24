@@ -12,6 +12,7 @@ const routes = {
   // Future routes:
   // "/catalog": () => import("./pages/CatalogPage.js"),
   "/cart": () => import("./pages/CartPage.js"),
+  "/checkout": () => import("./pages/CheckOutPage.js"),
   "/admin": () => import("./pages/AdminDashboard.js"),
   // "/seller": () => import("./pages/SellerDashboard.js"),
 };
