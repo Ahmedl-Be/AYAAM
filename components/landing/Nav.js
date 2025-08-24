@@ -63,7 +63,13 @@ export default class Navbar extends View {
                 </div>
 
     <!-- Shopping Cart -->
-                ${Button(Icon("cart-shopping", "solid", "fa-lg"), "ico-cart")}
+               ${Button(`
+            <span class="position-relative">
+              ${Icon("cart-shopping", "solid", "fa-lg")}
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">
+                </span>
+             </span>
+             `, "ico-cart", "btn border-0 bg-transparent p-0")}
     <!-- Toggler Icon -->
                 ${Toggler('offcanvasNav')}
               </div>
@@ -124,6 +130,23 @@ export default class Navbar extends View {
       btnDark.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
       });
+    };
+
+
+    // handle Shopping Cart Count
+    const cartCount = this.parent.querySelector("#cart-count");
+    function updateCartCount() {
+      const cartItems = JSON.parse(sessionStorage.getItem("ShopingCart") || "[]");
+      cartCount.textContent = cartItems.length;
+      cartCount.classList.toggle("d-none", cartItems.length === 0);
     }
+    updateCartCount();  // Run once at start
+    // Listen for custom event from Product
+    window.addEventListener("cartUpdated", updateCartCount);
+
+
+
+
   }
 }
+
