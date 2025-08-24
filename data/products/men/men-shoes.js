@@ -1,7 +1,8 @@
-import { toProduct } from "../../../scripts/utils.js";
+import { toProduct } from "../../../scripts/utils/data.js";
 
 const menProductShoes = [
-	{	id: "msh001",
+	{
+		id: "msh001",
 		name: "Leather Sneakers",
 		brand: "Concrete",
 		description: "Comfortable sneakers made of genuine leather. Made in italy.",
@@ -41,14 +42,15 @@ const menProductShoes = [
 					{ name: "45", qty: 14 },
 				],
 			},
-			
+
 		],
 		material: "Leather",
 		sellerId: "ahmedossama",
 		sale: 0.1,
 		offers: ["free shipping"],
 	},
-	{	id: "msh002",
+	{
+		id: "msh002",
 		name: "Neo Shot Sneakers",
 		brand: "Lacost",
 		description: "the latest creative addition to the Neo line, is a bold, sophisticated running style. Featuring a premium multi-panel upper and an oversized molded sole, for a dynamic, high-contrast look.",
@@ -86,14 +88,14 @@ const menProductShoes = [
 					{ name: "45", qty: 18 },
 				],
 			},
-			
+
 		],
 		material: "Premium mixed material upper with mesh, synthetic and nubuck elements",
 		sellerId: "ahmedossama",
 		sale: 0.1,
 		offers: ["free shipping"],
 	},
-	
+
 ];
 
 const menShoes = [];
