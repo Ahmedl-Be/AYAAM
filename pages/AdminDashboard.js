@@ -3,6 +3,7 @@ import UsersPage from "./admin/UsersPage.js";
 import ProductsPage from "./admin/ProductsPage.js";
 import { Anchor } from "../components/ui/links.js";
 import Navbar from "../components/landing/Nav.js";
+import { navigate } from "../scripts/utils/navigation.js";
 
 export default class AdminDashboard extends View {
     template() {
@@ -11,8 +12,8 @@ export default class AdminDashboard extends View {
       <section>
         <h1>Admin Dashboard</h1>
         <nav>
-          ${Anchor('Products', 'admin/products')} |
-          ${Anchor('Users', 'admin/users')}
+          ${Anchor('Products', '/admin/products')} |
+          ${Anchor('Users', '/admin/users')}
         </nav>
         <div id="subview-slot">
 
@@ -24,6 +25,7 @@ export default class AdminDashboard extends View {
     }
 
     script() {
+        console.log('loaded')
         this.mount(Navbar,'#slot');
         // register subviews
         this.subview(UsersPage, {
@@ -37,6 +39,7 @@ export default class AdminDashboard extends View {
             route: "products",
             title: "Manage Products"
         });
+        navigate('/admin/users')
 
     }
 }

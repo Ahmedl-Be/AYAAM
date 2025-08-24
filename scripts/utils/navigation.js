@@ -1,6 +1,5 @@
 export function navigate(_path) {
   if (location.hash !== "#" + _path || location.hash !== _path) {
-    console.log(_path)
     location.hash = _path.startsWith("/") ? "#" + _path : _path;
   }
 }

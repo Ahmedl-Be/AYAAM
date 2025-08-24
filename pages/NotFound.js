@@ -1,6 +1,6 @@
 import View from "../components/core/view.js";
 import { Button } from "../components/ui/buttons.js";
-import { navigate } from "../scripts/router.js";
+import { navigate } from "../scripts/utils/navigation.js";
 
 
 export default class NotFound extends View {

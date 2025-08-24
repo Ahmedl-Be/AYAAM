@@ -11,7 +11,7 @@ export default class UsersPage extends View {
         <ul>
           ${users.map((user, i) => `
             <li>
-              ${u.name} (${user.email})
+              ${user.name} (${user.email})
               <button data-index="${i}" class="deleteUser">Delete</button>
             </li>
           `).join("")}
