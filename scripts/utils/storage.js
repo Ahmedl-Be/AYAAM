@@ -74,11 +74,13 @@ class StorageManager {
     * @param {boolean} [_autoSave=true] - Whether to save the updated value automatically.
     * @returns {any} The new value (not depending on autoSave).
    */
-    update(_key, _newVal, _fallback = null,_autoSave = false) {
-        const oldval = this.read(_key, _fallback);
-        const newval = oldval.push(_newVal);
-        this.write(_key, newval);
-        return newval;
+    update(_key, _updater, _fallback = null) {
+        const current = this.read(_key, _fallback);
+        const next = (typeof _updater === 'function')
+            ? _updater(current)
+            : _updater;
+        this.write(_key, next);
+        return next;
     }
 }
 
