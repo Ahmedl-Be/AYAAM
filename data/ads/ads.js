@@ -4,7 +4,7 @@ export const ads = [
         title: "Shop the Latest Trends",
         text: "Discover amazing deals on top products.",
         btnText: "Shop Now",
-        btnLink: "/products",
+        btnLink: "/catalog",
         btnClass: "btn-primary"
     },
     {
@@ -12,7 +12,7 @@ export const ads = [
         title: "Exclusive Offers",
         text: "Save more with our limited-time deals.",
         btnText: "See Offers",
-        btnLink: "/offers",
+        btnLink: "/catalog",
         btnClass: "btn-warning"
     }
 ];
