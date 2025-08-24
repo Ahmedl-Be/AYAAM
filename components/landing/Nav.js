@@ -7,7 +7,7 @@ import { Button } from "../ui/buttons.js";
 import { Toggler } from "../ui/toggler.js";
 import View from "../core/view.js";
 
-export default class Navbar extends View {
+export default class Navbar extends Component {
   constructor(_config = {}, _params = {}) {
     super(_config, _params);
     this.user = getCurrentUser();

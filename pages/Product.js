@@ -1,31 +1,22 @@
 import View from "../components/core/view.js";
 import { navigate } from "../scripts/utils/navigation.js";
 import Navbar from "../components/landing/Nav.js";
+import Toast from './../components/ui/toast.js';
 
 
 export default class Product extends View {
   template() {
     return `
-    <header class="sticky-top bg-white" id='navbar'></header>
-    <div class="container my-5">
-    <div id="product-container"></div>
-  </div>
-  <!-- Toast Container -->
-<div class="position-fixed end-0 p-4" style="top: 2.8rem; z-index: 9999">
-    <div id="liveToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive"
-      aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body" id="toastMessage">
-          <!-- Message goes here -->
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-      </div>
-    </div>
-  </div>
+        <header class="sticky-top bg-white" id='navbar'></header>
+        <div id="toastMsg"></div>
+        <div class="container my-5">
+        <div id="product-container"></div>
+    
         `}
 
   script() {
     this.mount(Navbar, "#navbar");
+    this.mount(Toast, "#toastMsg")
     const productId = sessionStorage.getItem("currentProduct")
     console.log(productId);
 
@@ -140,23 +131,10 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
 
     const backToCatalogBtn = document.getElementById('backToCatalogBtn');
     backToCatalogBtn.addEventListener("click", () => {
-      navigate('catalog')
+      navigate('/catalog')
     });
 
-    function notify(message, type = "dark") {
-      const toastEl = document.getElementById("liveToast");
-      const toastMsg = document.getElementById("toastMessage");
 
-      // set message
-      toastMsg.textContent = message;
-
-      // update color class (success, danger, warning, etc.)
-      toastEl.className = `toast align-items-center text-bg-${type} border-0`;
-
-      // show toast
-      const toast = new bootstrap.Toast(toastEl);
-      toast.show();
-    }
 
 
 
@@ -174,7 +152,7 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
 
 
         if (!selectedColor) {
-          notify("⚠️ Please select a color.", "warning");
+          Toast.notify("⚠️ Please select a color.", "warning");
           return;
         }
 
@@ -185,7 +163,7 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
         if (selectedSize) {
           sizeData = variant?.sizes.find(s => s.name === selectedSize);
           if (!sizeData) {
-            notify("❌ This size is not available for the selected color.", "danger");
+            Toast.notify("❌ This size is not available for the selected color.", "danger");
             return;
           }
         }
@@ -203,17 +181,17 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
 
         if (existingItem) {
           if (existingItem.qty + qty > maxQty) {
-            notify(`⚠️ Only ${maxQty} units available. You already have ${existingItem.qty}.`, "warning");
+            Toast.notify(`⚠️ Only ${maxQty} units available. You already have ${existingItem.qty}.`, "warning");
             return;
           }
           existingItem.qty += qty;
           sessionStorage.setItem("ShopingCart", JSON.stringify(cart));
-          notify(`✅ Quantity updated! Added +${qty}. Total: ${existingItem.qty}`, "info");
+          Toast.notify(`✅ Quantity updated! Added +${qty}. Total: ${existingItem.qty}`, "info");
           return;
         }
 
         if (qty > maxQty) {
-          notify(`⚠️ Only ${maxQty} units available.`, "warning");
+          Toast.notify(`⚠️ Only ${maxQty} units available.`, "warning");
           return;
         }
 
@@ -231,7 +209,7 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
         // Fire a **custom event** so Navbar knows to update
         window.dispatchEvent(new Event("cartUpdated"));
 
-        notify(`🛒 ${qty} x ${product.name} (${selectedSize || "One Size"}, ${selectedColor}) added to cart!`, "success");
+        Toast.notify(`🛒 ${qty} x ${product.name} (${selectedSize || "One Size"}, ${selectedColor}) added to cart!`, "success");
       });
     }
 
