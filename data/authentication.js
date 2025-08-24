@@ -1,4 +1,5 @@
 import { generateID, toUser } from "../scripts/utils/data.js";
+import { navigate } from "../scripts/utils/navigation.js";
 import { localStore, sessionStore } from "../scripts/utils/storage.js";
 
 /* ======================= SIGNUP =========================== */
@@ -86,6 +87,32 @@ export function login(_identifier, _password, _remember = false) {
     console.log("Logged in:", user.name);
     return user;
 }
+
+
+export function redirect(_role) {
+    const redirected = sessionStore.read('redirectedPage', '');
+
+    if (redirected && redirected !== '/home') {
+
+        sessionStore.remove('redirectedPage'); 
+        navigate(redirected);
+    } else {
+        switch (_role) {
+            case 'master':
+                navigate(`/admin`);
+                break;
+            case 'admin':
+                navigate(`/admin`);
+                break;
+            case 'seller':
+                navigate(`/seller`);
+                break;
+            default:
+                navigate(`/home`);
+        }
+    }
+    }
+
 
 /* ==================== CURRENT USER ======================== */
 /**

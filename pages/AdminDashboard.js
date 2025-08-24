@@ -39,7 +39,7 @@ export default class AdminDashboard extends View {
             route: "products",
             title: "Manage Products"
         });
-        navigate('/admin/users')
+  
 
     }
 }

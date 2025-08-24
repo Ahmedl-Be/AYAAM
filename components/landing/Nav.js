@@ -120,7 +120,7 @@ export default class Navbar extends View {
     if (btnLogout) {
       btnLogout.addEventListener("click", () => {
         logout();
-        location.reload(); // or trigger rerender
+        location.reload(); 
       });
     }
 
