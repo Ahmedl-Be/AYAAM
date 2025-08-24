@@ -1,6 +1,4 @@
 import View from "../components/core/view.js";
-import { Button } from "../components/ui/buttons.js";
-import { navigate } from "../scripts/router.js";
 
 
 export default class CartPage extends View {

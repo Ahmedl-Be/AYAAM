@@ -9,11 +9,9 @@ const routes = {
   "/home": { loader: () => import("./pages/HomePage.js") },
   "/signup": { loader: () => import("./pages/SignupPage.js") },
   "/login": { loader: () => import("./pages/LoginPage.js") },
-  "/catalog": () => { loader: () => import("./pages/CatalogPage.js")},
-  "/cart": {
-    loader: { loader: () => () => import("./pages/CartPage.js") },
-  },
-    "/product": { loader: () => () => import("./pages/Product.js") },
+  "/catalog": { loader: () => import("./pages/CatalogPage.js")},
+  "/cart": { loader:  () => import("./pages/CartPage.js") },
+    "/product": { loader: () => import("./pages/Product.js") },
 
   /* ADMIN ONLY PAGES */
   "/admin": { loader: () => import("./pages/AdminDashboard.js"), roles: ["admin", "master"] },

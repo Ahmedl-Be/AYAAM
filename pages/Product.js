@@ -1,5 +1,5 @@
 import View from "../components/core/view.js";
-import { navigate } from "../scripts/router.js";
+import { navigate } from "../scripts/utils/navigation.js";
 import Navbar from "../components/landing/Nav.js";
 
 
@@ -140,7 +140,7 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
 
     const backToCatalogBtn = document.getElementById('backToCatalogBtn');
     backToCatalogBtn.addEventListener("click", () => {
-      navigate('catalog')
+      navigate('/catalog')
     });
 
     function notify(message, type = "dark") {

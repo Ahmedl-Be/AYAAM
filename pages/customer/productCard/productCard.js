@@ -1,4 +1,4 @@
-import { navigate } from "../../../scripts/router.js";
+import { navigate } from "../../../scripts/utils/navigation.js";
 
 export function ProductCard(product) {
   const stock = product.stock[0];
@@ -70,7 +70,7 @@ card.innerHTML = `
   
   viewDetailsBtn.addEventListener("click",()=>{
     sessionStorage.setItem("currentProduct",product.id);
-    navigate('product')
+    navigate('/product')
   });
 
 
