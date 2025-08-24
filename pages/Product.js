@@ -1,12 +1,13 @@
 import View from "../components/core/view.js";
-// import { Button } from "../components/ui/buttons.js";
-// import { navigate } from "../scripts/router.js";
+import { navigate } from "../scripts/router.js";
+import Navbar from "../components/landing/Nav.js";
 
 
 export default class Product extends View {
     template() {
         return `
-          <div class="container my-5">
+    <header class="sticky-top bg-white" id='navbar'></header>
+    <div class="container my-5">
     <div id="product-container"></div>
   </div>
   <!-- Toast Container -->
@@ -21,15 +22,10 @@ export default class Product extends View {
       </div>
     </div>
   </div>
-        
-        `
-    }
+        `}
 
     script() {
-        // document.addEventListener("DOMContentLoaded", () => {
-            // const params = new URLSearchParams(window.location.search);
-            // const productId = params.get("id");
-
+          this.mount(Navbar, "#navbar");
            const productId = sessionStorage.getItem("currentProduct")
            console.log(productId);
 
@@ -130,13 +126,11 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
         ${product.material ? `<p class="mt-2"><strong>Material:</strong> ${product.material}</p>` : ""}
         
         <button id="addToCartBtn" class="btn btn-dark btn-cart">
-          <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          <i class="fa-solid fa-cart-shopping text-white"></i> Add to Cart
         </button>
 
         <button id="backToCatalogBtn" class="btn btn-cart .text-success-emphasis border">
-          <a href="../productList/productList.html" class="text-decoration-none text-dark" id="backToCatalogBtnLink"> 
-            <i class="fa fa-home" aria-hidden="true"></i> Back to Catalog        
-          </a>
+            <i class="fa fa-home " aria-hidden="true"></i> Back to Catalog        
         </button>
 
       </div>
@@ -144,7 +138,10 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
   `;
         }
 
-
+        const backToCatalogBtn = document.getElementById('backToCatalogBtn');
+        backToCatalogBtn.addEventListener("click",()=>{
+            navigate('catalog')
+        });
 
         function notify(message, type = "dark") {
             const toastEl = document.getElementById("liveToast");
