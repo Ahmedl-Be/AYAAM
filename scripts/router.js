@@ -1,3 +1,4 @@
+import { getCurrentUser } from "../data/authentication.js";
 import { showLoader, hideLoader } from "./utils/loader.js";
 import { parseQuery, navigate } from "./utils/navigation.js";
 
@@ -24,12 +25,15 @@ export default class Router {
 
     async resolve() {
         try {
-
-            // If no hash or just "#/" → force set it to "#/home"
+            // REDIRECT TO HOME
             if (!location.hash || location.hash === "#/") {
                 navigate("/home");
                 return;
             }
+
+            
+
+            
             let fullPath = location.hash.slice(1) || "/home";
             if (!fullPath || fullPath === "/") {
                 fullPath = "/home";
@@ -40,13 +44,13 @@ export default class Router {
 
             let ViewClass = null;
             let baseRoute = null;
-            let routeLoader = null;
+            let routeConfig = null;
 
             // Find the best matching route (longest prefix match)
             for (const route in this.routes) {
                 if (pathPart === route || pathPart.startsWith(route)) {
                     if (!baseRoute || route.length > baseRoute.length) {
-                        routeLoader = this.routes[route];
+                        routeConfig = this.routes[route];
                         baseRoute = route;
                     }
                 }
@@ -54,22 +58,45 @@ export default class Router {
 
             showLoader();
 
+            if (!routeConfig) {
+                routeConfig = this.routes["/404"];
+                baseRoute = "/404";
+            }
+
+            // 📌 Authorization check
+            if (routeConfig.roles) {
+                const user = getCurrentUser();
+                if (!user) {
+                    navigate("/login");
+                    hideLoader();
+                    return;
+                }
+                if (!routeConfig.roles.includes(user.role)) {
+                    navigate("/403");
+                    hideLoader();
+                    return;
+                }
+            }
+
+
             // Handle lazy loaded routes
-            if (typeof routeLoader === "function") {
+            if (typeof routeConfig.loader === "function") {
                 try {
-                    const module = await routeLoader();
+                    const module = await routeConfig.loader();
                     ViewClass = module.default;
                 } catch (error) {
                     console.error("Failed to load route:", baseRoute, error);
-                    ViewClass = this.routes["/404"];
+                    routeConfig = this.routes["/404"];
+                    ViewClass = (await routeConfig.loader()).default;
                     baseRoute = "/404";
                 }
             } else {
-                ViewClass = routeLoader; // Static route
+                ViewClass = routeConfig.loader; // Static route
             }
 
             if (!ViewClass) {
-                ViewClass = this.routes["/404"];
+                routeConfig = this.routes["/404"];
+                ViewClass = (await routeConfig.loader()).default;
                 baseRoute = "/404";
             }
 
@@ -90,7 +117,6 @@ export default class Router {
             );
             this.currentView.render();
 
-            // 👇 بعد أول render لازم نمررله subroute كمان
             if (this.currentView.onSubRoute) {
                 this.currentView.onSubRoute(pathPart, params);
             }

@@ -54,7 +54,7 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone = '01
 
     localStore.write('users', users);
 
-    return login(newUser.Email, newUser.Password, true);
+    return login(newUser.Email, newUser.Password, false);
 
 }
 

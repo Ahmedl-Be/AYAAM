@@ -5,26 +5,28 @@ import seedData from "./data/seed.js";
 // Each route dynamically imports the corresponding page.
 // This improves performance by only loading code when needed.
 const routes = {
-  "/404": () => import("./pages/NotFound.js"),
-  "/home": () => import("./pages/HomePage.js"),
-  "/signup": () => import("./pages/SignupPage.js"),
-  "/login": () => import("./pages/LoginPage.js"),
-  // Future routes:
-  // "/catalog": () => import("./pages/CatalogPage.js"),
-  "/cart": () => import("./pages/CartPage.js"),
-  "/admin": () => import("./pages/AdminDashboard.js"),
-  // "/seller": () => import("./pages/SellerDashboard.js"),
+  "/404": { loader: () => import("./pages/NotFound.js") },
+  "/home": { loader: () => import("./pages/HomePage.js") },
+  "/signup": { loader: () => import("./pages/SignupPage.js") },
+  "/login": { loader: () => import("./pages/LoginPage.js") },
+  "/cart": { loader: () => import("./pages/CartPage.js")},
+
+  /* ADMIN ONLY PAGES */
+  "/admin": { loader: () => import("./pages/AdminDashboard.js"), roles: ["admin", "master"] },
+
+ /* SELLER ONLY PAGES */
+  // "/seller": { loader: () => import("./pages/SellerDashboard.js"), roles: ["seller"] },
 };
 
 /* ====== APP ROOT ELEMENT ====== */
-// The main container where all views will be rendered.
+// MAIN APP CONTAINER
 const app = document.getElementById("app");
 if (!app) {
   console.error("ERROR: Root element '#app' not found in index.html");
 }
 
 /* ====== DATA SEEDING ====== */
-// Load initial data into storage (if needed for demo or testing).
+// LOADING DATA FOR THE FIRST TIME
 seedData();
 
 /* ====== ROUTER INITIALIZATION ====== */
