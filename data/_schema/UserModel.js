@@ -75,7 +75,7 @@ export default class User {
         name: this.#name,
         email: this.#email,
         password: this.#password,
-        phoneNumer: this.#phone,
+        phone: this.#phone,
         role: this.#role
     };
 }

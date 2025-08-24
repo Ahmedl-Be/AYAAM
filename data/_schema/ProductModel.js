@@ -84,8 +84,8 @@ export default class Product {
 /* ---SALE--- */
     set Sale(_sale) {
 
-        if (_sale.constructor.name !== "Number" || 1 < _sale < 0) {
-            throw new Error("Sale Must be a fraction between 0 and 1");
+        if (typeof _sale !== 'number' || _sale < 0 || _sale > 1) {
+            throw new Error('Sale must be a number between 0 and 1');
         }
         this.#sale = _sale;
     }
