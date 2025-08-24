@@ -1,9 +1,10 @@
 import { signup, validateEmail, validatePassword } from '../../data/authentication.js';
+import { localStore } from '../../scripts/utils/storage.js';
 import Component from '../core/component.js';
 
-export default class SignupForm extends Component{
+export default class SignupForm extends Component {
     template() {
-      return `
+        return `
     <!-- SIGNUP FORM -->
               <form id="signupForm" class="">
         <!-- Name Field -->
@@ -79,8 +80,8 @@ export default class SignupForm extends Component{
                     Sign Up
                 </button>
                   `
-    } 
-    
+    }
+
     script() {
         const form = document.getElementById('signupForm');
         const nameF = document.getElementById('name');
@@ -91,22 +92,22 @@ export default class SignupForm extends Component{
 
         // Real-time validation for name
         nameF.addEventListener('blur', checkName);
-        nameF.addEventListener('input', ()=>{clearError(nameF)});
-        
+        nameF.addEventListener('input', () => { clearError(nameF) });
+
         // Real-time validation for email
         emailF.addEventListener('blur', checkEmail);
-        emailF.addEventListener('input', ()=>{clearError(emailF)});
-        
+        emailF.addEventListener('input', () => { clearError(emailF) });
+
         // Real-time validation for password
         passwordF.addEventListener('blur', checkPassword);
-        passwordF.addEventListener('input', ()=>{clearError(passwordF)});
-        
+        passwordF.addEventListener('input', () => { clearError(passwordF) });
+
         // Real-time password matching
         repeatedPasswordF.addEventListener('input', validatePasswordMatch);
 
         // Real-time Terms Check
         termsF.addEventListener('change', () => {
-            const termsErr =document.getElementById('termsError')
+            const termsErr = document.getElementById('termsError')
             if (termsF.checked) {
                 termsErr.classList.add('d-none');
                 termsErr.classList.remove('d-block');
@@ -118,15 +119,15 @@ export default class SignupForm extends Component{
         })
 
         // Form submission
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
             // Validate all fields
             const isNameValid = checkName();
             const isEmailValid = checkEmail();
             const isPasswordValid = checkPassword();
             const isPasswordMatchValid = validatePasswordMatch();
             const isTermsValid = termsF.checked;
-            const termsErr =document.getElementById('termsError')
-            
+            const termsErr = document.getElementById('termsError')
+
             if (!isTermsValid) {
                 termsErr.classList.remove('d-none');
                 termsErr.classList.add('d-block');
@@ -134,50 +135,57 @@ export default class SignupForm extends Component{
                 termsErr.classList.add('d-none');
                 termsErr.classList.remove('d-block');
             }
-            
+
             // If any validation fails, prevent form submission
             if (!isNameValid || !isEmailValid || !isPasswordValid || !isPasswordMatchValid || !isTermsValid) {
                 event.preventDefault();
                 event.stopPropagation();
-            } else {
-                const name = nameF.value.trim();
-                const email = emailF.value.trim();
-                const password = passwordF.value;
-                const repeatedPassword = repeatedPasswordF.value;
-
-                event.preventDefault();
-                console.log("registered");
-                form.classList.add('was-validated');
-                signup(name, email, password, repeatedPassword);
+                return;
             }
-            
+            const name = nameF.value.trim();
+            const email = emailF.value.toLowerCase().trim();
+            const password = passwordF.value;
+            const repeatedPassword = repeatedPasswordF.value;
+
+            const users = localStore.read('users', []);
+
+            if (users.filter(user => user.email.toLowerCase() === email))
+
+
+
+
+            event.preventDefault();
+            console.log("registered");
+            form.classList.add('was-validated');
+            signup(name, email, password, repeatedPassword);
+
 
         });
 
         /* ============== VALIDATION FUNCTIONS ================================ */
-     /* === NAME === */   
+        /* === NAME === */
         function checkName() {
             const nameValue = nameF.value.trim();
             const nameError = document.getElementById('nameError');
-            
+
             if (!nameValue) {
                 nameError.textContent = 'Name cannot be empty!';
                 nameF.classList.add('is-invalid');
                 return false;
             }
-            
+
             if (nameValue.split(" ").length < 2) {
                 nameError.textContent = 'Please enter your full name (first and last name)';
                 nameF.classList.add('is-invalid');
                 return false;
             }
-            
+
             nameF.classList.remove('is-invalid');
             return true;
         }
-            
-            
-    /* === EMAIL === */
+
+
+        /* === EMAIL === */
         function checkEmail() {
             const emailValue = emailF.value.trim();
             const emailError = document.getElementById('emailError');
@@ -187,68 +195,68 @@ export default class SignupForm extends Component{
                 emailF.classList.add('is-invalid');
                 return false;
             }
-            
+
             if (!validateEmail(emailValue)) {
                 emailError.textContent = 'Please enter a valid email address';
                 emailF.classList.add('is-invalid');
                 return false;
             }
-            
+
             emailF.classList.remove('is-invalid');
             return true;
         }
-            
-            
-    /* === PASSWORD === */
+
+
+        /* === PASSWORD === */
         function checkPassword() {
             const passwordValue = passwordF.value;
             const passwordError = document.getElementById('passwordError');
-            
+
             if (!passwordValue) {
                 passwordError.textContent = 'Password cannot be empty!';
                 passwordF.classList.add('is-invalid');
                 return false;
             }
-            
+
             if (!validatePassword(passwordValue)) {
                 passwordError.textContent = 'Password must have : \n - atleast 8 digits. \n- atleast 1 Capital letter \n- atleast 1 small letter \n- a special character';
                 passwordF.classList.add('is-invalid');
                 return false;
             }
-            
+
             passwordF.classList.remove('is-invalid');
             return true;
         }
-            
-            
-    /* === RE PASSWORD === */
+
+
+        /* === RE PASSWORD === */
         function validatePasswordMatch() {
             const passwordValue = passwordF.value;
             const repeatedPasswordValue = repeatedPasswordF.value;
             const matchMessage = document.getElementById('passwordMatchMessage');
-            
+
             if (!repeatedPasswordValue) {
                 matchMessage.textContent = 'Enter Password again';
                 matchMessage.className = 'mt-1 small text-danger d-block';
                 return false;
             }
-            
+
             if (passwordValue !== repeatedPasswordValue) {
                 matchMessage.textContent = '✗ Passwords do not match';
                 matchMessage.className = 'mt-1 small text-danger d-block';
                 return false;
             }
-            
+
             repeatedPasswordF.classList.remove('is-invalid');
             matchMessage.textContent = '✓ Passwords match';
             matchMessage.className = 'mt-1 small text-success d-block';
             return true;
-    }
-    
-    /* === CLEAR ERROR */
-    function clearError(_element) { //takes a form input and resets it as valid
-        _element.classList.remove('is-invalid')
-    }
+        }
+
+        /* === CLEAR ERROR */
+        function clearError(_element) { //takes a form input and resets it as valid
+            _element.classList.remove('is-invalid')
+        }
 
     }
 }

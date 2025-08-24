@@ -21,7 +21,7 @@ export default class Navbar extends View {
 
 <!-- LOGO -->
             <div class="col-6 col-md-3 d-flex align-items-center">
-              ${Anchor("MY SHOP", "home", "navbar-brand py-0")}
+              ${Anchor("MY SHOP", "/home", "navbar-brand py-0")}
             </div>
 
 <!-- ICONS - moves to third position on md+ -->
@@ -88,9 +88,9 @@ export default class Navbar extends View {
 
             <div class="offcanvas-body">
               <ul class="navbar-nav flex-grow-1">
-                ${Navlink('MEN', 'products/men')}
-                ${Navlink('WOMEN', 'products/women')}
-                ${Navlink('SALE', 'products/sale')}
+                ${Navlink('MEN', '/products/men')}
+                ${Navlink('WOMEN', '/products/women')}
+                ${Navlink('SALE', '/products/sale')}
               </ul>
             </div>
           </div>
@@ -99,9 +99,9 @@ export default class Navbar extends View {
 <!-- SECOND ROW -->
         <div class="navbar row d-none d-md-flex w-100 ps-0" id="category">
           <ul class="navbar-nav d-flex flex-row justify-content-center w-100">
-            ${Navlink("MEN", "products/men", "mx-3")}
-            ${Navlink("WOMEN", "products/women", "mx-3")}
-            ${Navlink("SALE", "products/sale", "mx-3")}
+            ${Navlink("MEN", "/products/men", "mx-3")}
+            ${Navlink("WOMEN", "/products/women", "mx-3")}
+            ${Navlink("SALE", "/products/sale", "mx-3")}
           </ul>
         </div>
       </header>

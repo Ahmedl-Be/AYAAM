@@ -1,23 +1,5 @@
 import { showLoader, hideLoader } from "./utils/loader.js";
-
-/* Simple navigation helper */
-export function navigate(_path) {
-    if (location.hash !== "#" + _path) {
-        location.hash = _path.startsWith("/") ? "#" + _path : "#/" + _path;
-    }
-}
-
-/* Parse query string into an object */
-export function parseQuery(_query) {
-    const query = _query.startsWith("?") ? _query.slice(1) : _query;
-    if (!query) return {};
-
-    return query.split("&").reduce((params, param) => {
-        const [key, value] = param.split("=").map(decodeURIComponent);
-        params[key] = value;
-        return params;
-    }, {});
-}
+import { parseQuery, navigate } from "./utils/navigation.js";
 
 export default class Router {
     constructor(_routes, _rootId = "app") {
@@ -29,12 +11,14 @@ export default class Router {
         window.addEventListener("hashchange", () => this.resolve());
 
         // Intercept <a data-route> clicks
-        document.body.addEventListener("click", (e) => {
-            if (e.target.matches("[data-route]")) {
-                e.preventDefault();
-                const path = e.target.getAttribute("href");
-                navigate(path);
-            }
+        document.body.addEventListener('click', (e) => {
+            const a = e.target.closest('a[data-route]');
+            if (!a) return;
+
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+
+            e.preventDefault();
+            navigate(a.getAttribute('href'));
         });
     }
 

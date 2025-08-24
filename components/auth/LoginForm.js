@@ -1,5 +1,5 @@
 import { login, signup, validateEmail, validatePassword } from '../../data/authentication.js';
-import { navigate } from '../../scripts/router.js';
+import { navigate } from '../../scripts/utils/navigation.js';
 import Component from '../core/component.js';
 
 export default class LoginForm extends Component{

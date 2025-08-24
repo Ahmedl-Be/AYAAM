@@ -1,6 +1,4 @@
-import { navigate } from "../../scripts/router.js";
-import Component from "../core/component.js";
-import { Button } from "../ui/buttons.js";
+
 import { Anchor } from "../ui/links.js";
 
 
