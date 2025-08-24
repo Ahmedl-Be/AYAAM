@@ -4,14 +4,14 @@ import Navbar from "../components/landing/Nav.js";
 
 
 export default class Product extends View {
-    template() {
-        return `
+  template() {
+    return `
     <header class="sticky-top bg-white" id='navbar'></header>
     <div class="container my-5">
     <div id="product-container"></div>
   </div>
   <!-- Toast Container -->
-  <div class="position-fixed top-0 end-0 p-4" style="z-index: 9999">
+<div class="position-fixed end-0 p-4" style="top: 2.8rem; z-index: 9999">
     <div id="liveToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive"
       aria-atomic="true">
       <div class="d-flex">
@@ -24,43 +24,43 @@ export default class Product extends View {
   </div>
         `}
 
-    script() {
-          this.mount(Navbar, "#navbar");
-           const productId = sessionStorage.getItem("currentProduct")
-           console.log(productId);
+  script() {
+    this.mount(Navbar, "#navbar");
+    const productId = sessionStorage.getItem("currentProduct")
+    console.log(productId);
 
-            if (!productId) {
-                document.getElementById("product-container").innerHTML =
-                    "<p>Product not found</p>";
-                return;
-            }
+    if (!productId) {
+      document.getElementById("product-container").innerHTML =
+        "<p>Product not found</p>";
+      return;
+    }
 
-            const products = JSON.parse(localStorage.getItem("products")) || [];
-            const product = products.find(p => p.id === productId);
+    const products = JSON.parse(localStorage.getItem("products")) || [];
+    const product = products.find(p => p.id === productId);
 
-            if (!product) {
-                document.getElementById("product-container").innerHTML =
-                    "<p>Product not found</p>";
-                return;
-            }
+    if (!product) {
+      document.getElementById("product-container").innerHTML =
+        "<p>Product not found</p>";
+      return;
+    }
 
-            renderProductDetails(product);
-            setupAddToCart(product);
-        // });
+    renderProductDetails(product);
+    setupAddToCart(product);
+    // });
 
 
-        function renderProductDetails(product) {
-            const container = document.getElementById("product-container");
+    function renderProductDetails(product) {
+      const container = document.getElementById("product-container");
 
-            const hasDiscount = product.sale > 0;
-            const discountPercent = hasDiscount ? Math.round(product.sale * 100) : 0;
-            const originalPrice = product.price;
-            const discountedPrice = originalPrice * (1 - product.sale);
+      const hasDiscount = product.sale > 0;
+      const discountPercent = hasDiscount ? Math.round(product.sale * 100) : 0;
+      const originalPrice = product.price;
+      const discountedPrice = originalPrice * (1 - product.sale);
 
-            const images = (product.stock?.[0]?.images || []);
-            const carouselId = "productCarousel";
+      const images = (product.stock?.[0]?.images || []);
+      const carouselId = "productCarousel";
 
-            const carouselHTML = `
+      const carouselHTML = `
     <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         ${images.map((img, idx) => `
@@ -79,7 +79,7 @@ export default class Product extends View {
     </div>
   `;
 
-            container.innerHTML = `
+      container.innerHTML = `
     <div class="row g-4">
       <div class="col-12 col-lg-6">${carouselHTML}</div>
       <div class="col-12 col-lg-6 border p-4 rounded shadow-sm">
@@ -98,10 +98,10 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
     <label class="form-label fw-bold"><i class="fa-solid fa-ruler"></i> Size:</label>
     <select id="sizeSelect" class="form-select">
       ${product.stock[0].sizes.map(s =>
-                `<option value="${s.name}" ${s.qty === 0 ? "disabled" : ""}>
+        `<option value="${s.name}" ${s.qty === 0 ? "disabled" : ""}>
           ${s.name || "Default"} (${s.qty} left)
         </option>`
-            ).join("")}
+      ).join("")}
     </select>
   </div>
 ` : ""}
@@ -136,101 +136,105 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
       </div>
     </div>
   `;
+    }
+
+    const backToCatalogBtn = document.getElementById('backToCatalogBtn');
+    backToCatalogBtn.addEventListener("click", () => {
+      navigate('catalog')
+    });
+
+    function notify(message, type = "dark") {
+      const toastEl = document.getElementById("liveToast");
+      const toastMsg = document.getElementById("toastMessage");
+
+      // set message
+      toastMsg.textContent = message;
+
+      // update color class (success, danger, warning, etc.)
+      toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+
+      // show toast
+      const toast = new bootstrap.Toast(toastEl);
+      toast.show();
+    }
+
+
+
+
+    function setupAddToCart(product) {
+      const btn = document.getElementById("addToCartBtn");
+      if (!btn) return;
+
+      btn.addEventListener("click", () => {
+        const sizeSelect = document.getElementById("sizeSelect");
+        const selectedSize = sizeSelect ? sizeSelect.value : null;
+        const selectedColor = document.getElementById("colorSelect")?.value || "";
+        const qtyInput = document.getElementById("qtyInput");
+        const qty = parseInt(qtyInput?.value || "1", 10);
+
+
+        if (!selectedColor) {
+          notify("⚠️ Please select a color.", "warning");
+          return;
         }
 
-        const backToCatalogBtn = document.getElementById('backToCatalogBtn');
-        backToCatalogBtn.addEventListener("click",()=>{
-            navigate('catalog')
+        // Find stock variant
+        const variant = product.stock.find(v => v.color === selectedColor);
+
+        let sizeData;
+        if (selectedSize) {
+          sizeData = variant?.sizes.find(s => s.name === selectedSize);
+          if (!sizeData) {
+            notify("❌ This size is not available for the selected color.", "danger");
+            return;
+          }
+        }
+
+        const maxQty = sizeData ? sizeData.qty : variant?.sizes?.[0]?.qty || variant?.qty || Infinity;
+
+        let cart = JSON.parse(sessionStorage.getItem("ShopingCart")) || [];
+
+        // check if same item already in cart (ignore size if no size exists)
+        const existingItem = cart.find(item =>
+          item.id === product.id &&
+          item.color === selectedColor &&
+          (selectedSize ? item.size === selectedSize : true)
+        );
+
+        if (existingItem) {
+          if (existingItem.qty + qty > maxQty) {
+            notify(`⚠️ Only ${maxQty} units available. You already have ${existingItem.qty}.`, "warning");
+            return;
+          }
+          existingItem.qty += qty;
+          sessionStorage.setItem("ShopingCart", JSON.stringify(cart));
+          notify(`✅ Quantity updated! Added +${qty}. Total: ${existingItem.qty}`, "info");
+          return;
+        }
+
+        if (qty > maxQty) {
+          notify(`⚠️ Only ${maxQty} units available.`, "warning");
+          return;
+        }
+
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: (product.price * (1 - product.sale)).toFixed(2),
+          size: selectedSize || null,
+          color: selectedColor,
+          qty
         });
 
-        function notify(message, type = "dark") {
-            const toastEl = document.getElementById("liveToast");
-            const toastMsg = document.getElementById("toastMessage");
+        sessionStorage.setItem("ShopingCart", JSON.stringify(cart));
 
-            // set message
-            toastMsg.textContent = message;
+        // Fire a **custom event** so Navbar knows to update
+        window.dispatchEvent(new Event("cartUpdated"));
 
-            // update color class (success, danger, warning, etc.)
-            toastEl.className = `toast align-items-center text-bg-${type} border-0`;
-
-            // show toast
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        }
-
-
-
-
-        function setupAddToCart(product) {
-            const btn = document.getElementById("addToCartBtn");
-            if (!btn) return;
-
-            btn.addEventListener("click", () => {
-                const sizeSelect = document.getElementById("sizeSelect");
-                const selectedSize = sizeSelect ? sizeSelect.value : null;
-
-                const selectedColor = document.getElementById("colorSelect")?.value || "";
-                const qtyInput = document.getElementById("qtyInput");
-                const qty = parseInt(qtyInput?.value || "1", 10);
-
-                if (!selectedColor) {
-                    notify("⚠️ Please select a color.", "warning");
-                    return;
-                }
-
-                // Find stock variant
-                const variant = product.stock.find(v => v.color === selectedColor);
-
-                let sizeData;
-                if (selectedSize) {
-                    sizeData = variant?.sizes.find(s => s.name === selectedSize);
-                    if (!sizeData) {
-                        notify("❌ This size is not available for the selected color.", "danger");
-                        return;
-                    }
-                }
-
-                const maxQty = sizeData ? sizeData.qty : variant?.sizes?.[0]?.qty || variant?.qty || Infinity;
-
-                let cart = JSON.parse(sessionStorage.getItem("ShopingCart")) || [];
-
-                // check if same item already in cart (ignore size if no size exists)
-                const existingItem = cart.find(item =>
-                    item.id === product.id &&
-                    item.color === selectedColor &&
-                    (selectedSize ? item.size === selectedSize : true)
-                );
-
-                if (existingItem) {
-                    if (existingItem.qty + qty > maxQty) {
-                        notify(`⚠️ Only ${maxQty} units available. You already have ${existingItem.qty}.`, "warning");
-                        return;
-                    }
-                    existingItem.qty += qty;
-                    sessionStorage.setItem("ShopingCart", JSON.stringify(cart));
-                    notify(`✅ Quantity updated! Added +${qty}. Total: ${existingItem.qty}`, "info");
-                    return;
-                }
-
-                if (qty > maxQty) {
-                    notify(`⚠️ Only ${maxQty} units available.`, "warning");
-                    return;
-                }
-
-                cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: (product.price * (1 - product.sale)).toFixed(2),
-                    size: selectedSize || null,
-                    color: selectedColor,
-                    qty
-                });
-
-                sessionStorage.setItem("ShopingCart", JSON.stringify(cart));
-                notify(`🛒 ${qty} x ${product.name} (${selectedSize || "One Size"}, ${selectedColor}) added to cart!`, "success");
-            });
-        }
-
+        notify(`🛒 ${qty} x ${product.name} (${selectedSize || "One Size"}, ${selectedColor}) added to cart!`, "success");
+      });
     }
+
+  }
 
 }
