@@ -1,4 +1,5 @@
 import { navigate } from "../../../scripts/utils/navigation.js";
+import { sessionStore } from "../../../scripts/utils/storage.js";
 
 export function ProductCard(product) {
   const stock = product.stock[0];
@@ -69,7 +70,7 @@ card.innerHTML = `
   const viewDetailsBtn = card.querySelector('#viewDetailsBtn')
   
   viewDetailsBtn.addEventListener("click",()=>{
-    sessionStorage.setItem("currentProduct",product.id);
+    sessionStore.write('currentProduct',product.id,'')
     navigate('/product')
   });
 

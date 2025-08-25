@@ -37,6 +37,33 @@ export default class Navbar extends Component {
                     ${this.user ? `
                           <li class="dropdown-item-text">Hello, ${this.user.name}</li>
                           <li><hr class="dropdown-divider"></li>
+
+                          <li>
+                              ${((_u) => {
+                                switch (_u.role) {
+                                  case 'master'||'admin':
+                                    return `
+                                    <a class="dropdown-item d-flex" href="#/admin" data-route>
+                                      ${Icon("chart-simple", "solid", "me-2")} Dashboard
+                                    </a>
+                                    `
+                                  case 'seller':
+                                    return `
+                                    <a class="dropdown-item d-flex" href="#/seller" data-route>
+                                      ${Icon("store", "solid", "me-2")} Manage Store
+                                    </a>
+                                    `
+                                
+                                  default: 
+                                    return `
+                                      <a class="dropdown-item d-flex" href = "#/catalog" data - route >
+                                        ${ Icon("bag-shopping", "solid", "me-2") } Shop
+                                    </a>
+                                    `
+                                }
+                              })(this.user)}
+                          </li>
+
                           <li>
                             <button class="dropdown-item d-flex" id="btnLogout">
                               ${Icon("right-from-bracket", "solid", "me-2")} Logout
@@ -44,12 +71,12 @@ export default class Navbar extends Component {
                           </li>`
 
         : `<li>
-                            <a class="dropdown-item d-flex" href="#/login">
+                            <a class="dropdown-item d-flex" href="#/login" data-route>
                               ${Icon("right-to-bracket", "solid", "me-2")} Login
                             </a>
                           </li>
                           <li>
-                            <a class="dropdown-item d-flex" href="#/signup">
+                            <a class="dropdown-item d-flex" href="#/signup" data-route>
                               ${Icon("user-plus", "solid", "me-2")} Sign Up
                             </a>
                           </li>

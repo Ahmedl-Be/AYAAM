@@ -8,6 +8,7 @@ const menProductShoes = [
 		description: "Comfortable sneakers made of genuine leather. Made in italy.",
 		category: "Men",
 		subCategory: "Shoes",
+		sale:0,
 		price: 19.99,
 		stock: [
 			{
@@ -56,6 +57,7 @@ const menProductShoes = [
 		description: "the latest creative addition to the Neo line, is a bold, sophisticated running style. Featuring a premium multi-panel upper and an oversized molded sole, for a dynamic, high-contrast look.",
 		category: "Men",
 		subCategory: "Shoes",
+		sale:0,
 		price: 29.99,
 		stock: [
 			{

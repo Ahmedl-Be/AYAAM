@@ -31,6 +31,7 @@ export function toProduct(_obj) {
     product.Category = _obj.category;
     product.Subcategory = _obj.subCategory;
     product.Price = _obj.price;
+    product.Sale = _obj.sale? _obj.sale: 0;
     product.Stock = _obj.stock;
     product.Images = _obj.images;
     product.Material = _obj.material;

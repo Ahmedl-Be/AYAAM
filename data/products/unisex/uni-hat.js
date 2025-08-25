@@ -48,7 +48,7 @@ const data = [
         stock: [
             {
                 color: "Black",
-                images: ['black-f.png', 'black-b.png', 'black-in.png', 'black-s.png', 'black-top.png'],
+                images: ['black-f.png', 'black-b.png', 'black-s.png', 'black-top.png'],
                 sizes: [
                     { name: '', qty: 2 },
                 ]

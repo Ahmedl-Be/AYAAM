@@ -2,6 +2,7 @@ import View from "../components/core/view.js";
 import { navigate } from "../scripts/utils/navigation.js";
 import Navbar from "../components/landing/Nav.js";
 import Toast from './../components/ui/toast.js';
+import { sessionStore } from "../scripts/utils/storage.js";
 
 
 export default class Product extends View {
@@ -17,7 +18,7 @@ export default class Product extends View {
   script() {
     this.mount(Navbar, "#navbar");
     this.mount(Toast, "#toastMsg")
-    const productId = sessionStorage.getItem("currentProduct")
+    const productId = sessionStore.read('currentProduct','')
     console.log(productId);
 
     if (!productId) {

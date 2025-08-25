@@ -94,7 +94,7 @@ export function redirect(_role) {
 
     if (redirected && redirected !== '/home') {
 
-        sessionStore.remove('redirectedPage'); 
+        sessionStore.remove('redirectedPage');
         navigate(redirected);
     } else {
         switch (_role) {
@@ -111,7 +111,7 @@ export function redirect(_role) {
                 navigate(`/home`);
         }
     }
-    }
+}
 
 
 /* ==================== CURRENT USER ======================== */
@@ -131,7 +131,9 @@ export function getCurrentUser() {
  * Logout current user from session (and local if exists).
  */
 export function logout() {
-    sessionStore.remove("currentUser");
+    let currentP = sessionStore.read('currentProduct', '');
+    sessionStore.clear();
+    sessionStore.write('currentProduct', currentP, '');
     localStore.remove("currentUser");
     console.log("✅ Logged out");
 }
