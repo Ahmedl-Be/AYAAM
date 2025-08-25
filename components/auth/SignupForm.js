@@ -1,4 +1,4 @@
-import { signup, validateEmail, validatePassword } from '../../data/authentication.js';
+import { getCurrentUser, redirect, signup, validateEmail, validatePassword } from '../../data/authentication.js';
 import { localStore } from '../../scripts/utils/storage.js';
 import Component from '../core/component.js';
 
@@ -83,6 +83,12 @@ export default class SignupForm extends Component {
     }
 
     script() {
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+            redirect(currentUser.role);
+        }
+        
+
         const form = document.getElementById('signupForm');
         const nameF = document.getElementById('name');
         const emailF = document.getElementById('email');

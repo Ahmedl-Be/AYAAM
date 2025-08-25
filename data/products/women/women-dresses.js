@@ -342,6 +342,7 @@ const dresses = [
         name: " Long Summer Dress",
         description: "Long Bell Sleeve Asymmetrical Ruffle Hem Dress",
         price: 10.6,
+        sale:0,
         offers: [
             'free shipping'
         ],

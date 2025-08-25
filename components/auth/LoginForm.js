@@ -1,10 +1,10 @@
-import { login, signup, validateEmail, validatePassword } from '../../data/authentication.js';
+import { getCurrentUser, login, redirect, signup, validateEmail, validatePassword } from '../../data/authentication.js';
 import { navigate } from '../../scripts/utils/navigation.js';
 import Component from '../core/component.js';
 
-export default class LoginForm extends Component{
+export default class LoginForm extends Component {
     template() {
-      return `
+        return `
     <!-- LOGIN FORM -->
               <form id="loginForm" class="">
 
@@ -42,23 +42,28 @@ export default class LoginForm extends Component{
                     Log In
                 </button>
                   `
-    } 
-    
+    }
+
     script() {
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+            redirect(currentUser.role);
+        }
+
         const form = this.parent.querySelector('#loginForm');
         const emailF = document.getElementById('email');
         const passwordF = document.getElementById('password');
         const rememberF = document.getElementById('remember');
 
-        
+
         // Real-time validation for email
         emailF.addEventListener('blur', checkEmail);
-        emailF.addEventListener('input', ()=>{clearError(emailF)});
-        
+        emailF.addEventListener('input', () => { clearError(emailF) });
+
         let rememberMe = false;
         // Real-time Remember Check
         rememberF.addEventListener('change', () => {
-            const rememberErr =document.getElementById('rememberError')
+            const rememberErr = document.getElementById('rememberError')
             if (rememberF.checked) {
                 rememberMe = true;
             } else {
@@ -69,42 +74,32 @@ export default class LoginForm extends Component{
 
         // Form submission
         form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const isEmailValid = checkEmail();
-            if (!isEmailValid) {
-                return;
-            }
-            
-            const user = login(emailF.value.toLowerCase(), passwordF.value, rememberMe);
-            if (!user) {
-                const emailError = document.getElementById('emailError');
-                const pwError = document.getElementById('passwordError');
-                emailError.textContent = '';
-                pwError.textContent = 'Invalid Email Or Password';
-                emailF.classList.add("is-invalid");
-                passwordF.classList.add("is-invalid");
-                return;
-            }
+                e.preventDefault();
+                const isEmailValid = checkEmail();
+                if (!isEmailValid) {
+                    return;
+                }
 
-            // Redirect based on role
-            switch (user.role) {
-                case "admin":
-                    navigate("/dashboard") ;
-                    break;
-                case "seller":
-                    navigate("/dashboard");
-                    break;
-                default:
-                    navigate("/home");
-                    break;
-            }
+                const user = login(emailF.value.toLowerCase(), passwordF.value, rememberMe);
+                if (!user) {
+                    const emailError = document.getElementById('emailError');
+                    const pwError = document.getElementById('passwordError');
+                    emailError.textContent = '';
+                    pwError.textContent = 'Invalid Email Or Password';
+                    emailF.classList.add("is-invalid");
+                    passwordF.classList.add("is-invalid");
+                    return;
+                }
+                redirect(user.role);
+
             
+
 
         });
 
         /* ============== VALIDATION FUNCTIONS ================================ */
-            
-    /* === EMAIL === */
+
+        /* === EMAIL === */
         function checkEmail() {
             const emailValue = emailF.value.trim();
             const emailError = document.getElementById('emailError');
@@ -114,21 +109,21 @@ export default class LoginForm extends Component{
                 emailF.classList.add('is-invalid');
                 return false;
             }
-            
+
             if (!validateEmail(emailValue)) {
                 emailError.textContent = 'Please enter a valid email address';
                 emailF.classList.add('is-invalid');
                 return false;
             }
-            
+
             emailF.classList.remove('is-invalid');
             return true;
         }
-    
-    /* === CLEAR ERROR */
-    function clearError(_element) { //takes a form input and resets it as valid
-        _element.classList.remove('is-invalid')
-    }
+
+        /* === CLEAR ERROR */
+        function clearError(_element) { //takes a form input and resets it as valid
+            _element.classList.remove('is-invalid')
+        }
 
     }
 }

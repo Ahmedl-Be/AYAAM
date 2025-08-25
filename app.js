@@ -10,9 +10,11 @@ const routes = {
   "/signup": { loader: () => import("./pages/SignupPage.js") },
   "/login": { loader: () => import("./pages/LoginPage.js") },
   "/catalog": { loader: () => import("./pages/CatalogPage.js")},
+  "/product": { loader: () => import("./pages/Product.js") },
   "/cart": { loader:  () => import("./pages/CartPage.js") },
-    "/product": { loader: () => import("./pages/Product.js") },
-
+  
+  /* LOGIN ONLY NEEDED*/
+  "/checkout": { loader: () => import("./pages/CheckOutPage.js"), roles:['admin', 'user', 'master', 'seller'] },
   /* ADMIN ONLY PAGES */
   "/admin": { loader: () => import("./pages/AdminDashboard.js"), roles: ["admin", "master"] },
 

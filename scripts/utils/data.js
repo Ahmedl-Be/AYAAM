@@ -2,10 +2,17 @@ import Product from "../../data/_schema/ProductModel.js";
 import User from "../../data/_schema/UserModel.js";
 
 
-/* ========== DISPLAYING FUNCTIONS =============== */
-export function formatPrice(price) { //in: num => out: string
-    return `$${price.toFixed(2)}`;   // 10 => '$10' 
+/* ========== Formatting FUNCTIONS =============== */
+export function formatPrice(_price) { //in: num => out: string
+    return `$${_price.toFixed(2)}`;   // 10 => '$10' 
     
+}
+
+
+export function formatEmail(_email) {
+    if (typeof _email == 'string' && !(+_email)) {
+        return _email.toLowerCase().trim();
+    }
 }
 
 /* ========== GENERATING FUNCTIONS =============== */
@@ -24,6 +31,7 @@ export function toProduct(_obj) {
     product.Category = _obj.category;
     product.Subcategory = _obj.subCategory;
     product.Price = _obj.price;
+    product.Sale = _obj.sale? _obj.sale: 0;
     product.Stock = _obj.stock;
     product.Images = _obj.images;
     product.Material = _obj.material;

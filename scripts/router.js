@@ -1,6 +1,7 @@
 import { getCurrentUser } from "../data/authentication.js";
 import { showLoader, hideLoader } from "./utils/loader.js";
 import { parseQuery, navigate } from "./utils/navigation.js";
+import { sessionStore } from "./utils/storage.js";
 
 export default class Router {
     constructor(_routes, _rootId = "app") {
@@ -25,22 +26,27 @@ export default class Router {
 
     async resolve() {
         try {
-            // REDIRECT TO HOME
+            // REDIRECT TO HOME (NO HASH)
             if (!location.hash || location.hash === "#/") {
                 navigate("/home");
                 return;
             }
 
-            
 
-            
             let fullPath = location.hash.slice(1) || "/home";
             if (!fullPath || fullPath === "/") {
                 fullPath = "/home";
             }
 
+
+
             const [pathPart, queryString] = fullPath.split("?");
             const params = parseQuery(queryString || "");
+
+            
+            if (pathPart !== '/login' && pathPart !== '/signup') {
+                sessionStore.write('redirectedPage', fullPath);
+            }
 
             let ViewClass = null;
             let baseRoute = null;
@@ -63,7 +69,6 @@ export default class Router {
                 baseRoute = "/404";
             }
 
-            // 📌 Authorization check
             if (routeConfig.roles) {
                 const user = getCurrentUser();
                 if (!user) {

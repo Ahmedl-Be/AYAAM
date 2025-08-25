@@ -1,0 +1,168 @@
+.img-cart{
+    width: 150px;
+    height: 200px;
+}
+
+
+.pointer{
+    cursor: pointer;
+}
+
+.checkoutBTN:hover{
+    background-color: #0dcaf0 !important;
+    color: white;
+    transition: all 1s;
+}
+
+.marginBottomCart{
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.disclass{
+    cursor: not-allowed ;
+}
+
+.centerArIcon{
+    position: relative ;
+    top: 3px;
+}
+
+.toggleNone{
+    display: none;
+}
+
+.hoverIcon:hover{
+    color: red;
+}
+
+.border-code{
+    border: 1px solid #eee;
+    outline: none;
+}
+
+.bagecartItem{
+    top: 10px !important;
+    left: 15px !important;
+}
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#cart-container .row {
+  align-items: flex-start; 
+  max-height: 150vh;   
+}
+
+.cart-items-container {
+  max-height: 120vh; 
+  overflow-y: auto; 
+   scrollbar-width: none;  
+  -ms-overflow-style: none;
+}
+
+.cart-items-container::-webkit-scrollbar {
+  display: none;          
+}
+
+.summary-container {
+ position: sticky;
+  top: 20px;  
+  align-self: flex-start; 
+}
+
+
+.marginTop-related{
+    margin-top: 20rem;
+}
+
+.slider-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.slider {
+  display: flex;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.slide {
+  flex: 0 0 100%; 
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+}
+
+.left-btn {
+  left: 10px;
+}
+
+.right-btn {
+  right: 10px;
+}
+
+@media all and (min-width : 768px) {
+
+   .img-cart{
+        width: 200px;
+        height: 210px;
+    }
+    .totalCart{
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+    }
+
+    .bordernoneMD{
+        border: 0 !important;
+    }
+
+    .borderblockMD{
+        border-bottom: 1px solid #ccc !important;
+    }
+
+    .editBTNposition{
+        position: static !important;
+
+    }
+
+    .marginBottomCart{
+        padding-bottom: 0;
+        border:  none;
+    }
+
+    .marginTop-related{
+        margin-top: 2rem;
+    }
+
+    .slide {
+        flex: 0 0 33.33%;
+    }
+    
+}
+
+@media (min-width: 1024px) {
+  .slide {
+    flex: 0 0 25%; /* تلت الشاشة */
+  }
+}
+
+
