@@ -129,7 +129,7 @@ ${(product.stock?.[0]?.sizes?.length && product.stock[0].sizes.some(s => s.name)
           <i class="fa-solid fa-cart-shopping text-white"></i> Add to Cart
         </button>
 
-        <button id="backToCatalogBtn" class="btn btn-cart .text-success-emphasis border">
+        <button id="backToCatalogBtn" class="btn btn-cart text-success-emphasis border ms-lg-2">
             <i class="fa fa-home " aria-hidden="true"></i> Back to Catalog        
         </button>
 

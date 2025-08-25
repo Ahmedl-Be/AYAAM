@@ -36,12 +36,13 @@
 
 #addToCartBtn{
   color: white;
+  width: 11rem;
 }
 
 #backToCatalogBtn{
-  margin-left: 10px;
   background-color: #e7f3e7;
   transition: all 0.4s ease;
+  width: 11rem;
 }
 
 #backToCatalogBtn:hover{
