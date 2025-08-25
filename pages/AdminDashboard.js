@@ -74,8 +74,8 @@ export function loadSection(section, container) {
         case "products":
             renderProducts(container);
             break;
-        case "sellers":
-            renderSellers(container);
+/*         case "sellers":
+            renderSellers(container); */
             break;
         case "users":
             renderUsersStats(container);
