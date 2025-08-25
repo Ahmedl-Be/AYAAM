@@ -1,11 +1,12 @@
 //admin-products page
-import { getData, setData, checkStock, getRandomColor, showAlert, showConfirmDialog } from "../../scripts/data-init.js";
+import { checkStock, showAlert, showConfirmDialog, truncateText, getProductThumbnail } from "../../scripts/utils/dashboardUtils.js";
+import { localStore } from "../../scripts/utils/storage.js";
 
 // Global sorting state
 let currentSort = { field: null, direction: 'asc' };
 
 export function renderProducts(container) {
-    const products = getData("products") || [];
+    const products = localStore.read("products") || [];
 
     container.innerHTML = `
         <!--.............................Header Section.......................... -->
@@ -131,7 +132,7 @@ function renderCategoryFilter() {
     const select = document.getElementById("categoryFilter");
     select.innerHTML = `<option value="">All Categories</option>`; // default option
 
-    const products = getData("products") || [];
+    const products = localStore.read("products") || [];
     const categories = [...new Set(products.map(p => p.category))];
 
     categories.forEach(cat => {
@@ -151,8 +152,8 @@ function renderProductsTable(products) {
                         <th scope="col" class="ps-4">
                             <input type="checkbox" class="form-check-input" id="selectAll">
                         </th>
-                        <th scope="col" class="sortable-header" data-sort="id" style="cursor: pointer;">
-                            ID 
+                        <th scope="col" class="sortable-header" data-sort="id" style="cursor: pointer;" >
+                            ID
                             <i class="fas fa-sort ms-1" data-field="id"></i>
                         </th>
                         <th scope="col" class="sortable-header" data-sort="name" style="cursor: pointer;">
@@ -229,7 +230,7 @@ function renderProductRow(product) {
             </td>
             <!-- Stock column (#6th)-->
             <td>
-                ${checkStock(product)}
+                ${checkStock(product)==="In Stock" ? `<span class="badge bg-success">${checkStock(product)}</span>` : `<span class="badge bg-danger">${checkStock(product)}</span>`}
             </td>
             <!-- Actions column (#7th)-->
             <td class="text-center">
@@ -263,56 +264,57 @@ function renderEmptyState() {
     `;
 }
 
+//event listeners
 function ProductEvents(container) {
     // Search functionality
     const searchInput = document.getElementById("searchInput");
     if (searchInput) {
-        searchInput.addEventListener("input", handleProductSearch);      // ........fun #1
+        searchInput.addEventListener("input", handleProductSearch);      // ev1........needs fun #1
     }
 
     // Category filter
     const categoryFilter = document.getElementById("categoryFilter");
     if (categoryFilter) {
-        categoryFilter.addEventListener("change", handleCategoryFilter);// ........fun #2
+        categoryFilter.addEventListener("change", handleCategoryFilter);// ev2........needs fun #2
     }
 
     // Delete product buttons
     document.querySelectorAll(".remove-product").forEach((btn) => {
-        btn.addEventListener("click", handleProductDelete);             // ........fun #3
+        btn.addEventListener("click", handleProductDelete);             // ev3........ needsfun #3
     });
 
     // View product buttons
     document.querySelectorAll(".view-product-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
             const productId = btn.getAttribute("data-product-id");
-            viewProductDetails(productId);                               // ........fun #4
+            viewProductDetails(productId);                               // ev4........needs fun #4
         });
     });
 
     // Bulk action button
     const bulkDeleteBtn = document.getElementById("bulkDeleteBtn");
     if (bulkDeleteBtn) {
-        bulkDeleteBtn.addEventListener("click", () => bulkAction("delete"));// ........fun #5
+        bulkDeleteBtn.addEventListener("click", () => bulkAction("delete"));//ev5 ........needs fun #5
     }
 
     // Select all checkbox
     const selectAllCheckbox = document.getElementById("selectAll");
     if (selectAllCheckbox) {
-        selectAllCheckbox.addEventListener("change", function () {      
+        selectAllCheckbox.addEventListener("change", function () {
             const checkboxes = container.querySelectorAll(".product-checkbox");
             checkboxes.forEach((cb) => (cb.checked = this.checked)); // this = selectAllCheckbox
-            toggleBulkActions();                                           // ........fun #6
+            toggleBulkActions();                                           // ev6........ needs fun #6
         });
     }
 
     // Individual checkboxes ( makes the bulk action button visible too)
     container.querySelectorAll(".product-checkbox").forEach((checkbox) => {
-        checkbox.addEventListener("change", toggleBulkActions);    // ........Same fun as above #6
+        checkbox.addEventListener("change", toggleBulkActions);    // ev7........Same fun as above #6
     });
 
     // Sorting table
     container.querySelectorAll(".sortable-header").forEach((header) => {
-        header.addEventListener("click", handleSort);                  // ........fun #7
+        header.addEventListener("click", handleSort);                  // ev8........ needsfun #7
     });
 
     // tooltips (data-bs-toggle="tooltip") make the titles visible on hover using bootstrap js
@@ -321,128 +323,12 @@ function ProductEvents(container) {
         new bootstrap.Tooltip(tp); //bootstrap js
     });
 
-    toggleBulkActions();
+    toggleBulkActions(); //....fun #6
 }
 
-// Sorting Functions
-function handleSort(e) {   // ......................for event #7
-    const header = e.currentTarget;
-    const field = header.getAttribute('data-sort'); //id, name, category, price, stock
-    
-    // Toggle direction if same field
-    if (currentSort.field === field) { //If same col clicked again =>change sorting direction value "asc , desc"
-        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc'; 
-    } else {
-        currentSort.field = field; // instead of default "null"
-        currentSort.direction = 'asc'; //if diff col clicked =>change sorting direction value to "asc" default
-    }
-    
-    // Sort products
-    sortProducts(field, currentSort.direction);
-}
-
-function sortProducts(field, direction) {
-    const products = getData("products") || [];
-    
-    const sortedProducts = [...products].sort((a, b) => {
-        let aVal, bVal;
-        
-        switch (field) {
-            case 'id':
-                aVal = a.id;
-                bVal = b.id;
-                break;
-            case 'name':
-                aVal = a.name.toLowerCase();
-                bVal = b.name.toLowerCase();
-                break;
-            case 'category':
-                aVal = a.category.toLowerCase();
-                bVal = b.category.toLowerCase();
-                break;
-            case 'price':
-                aVal = parseFloat(a.price);
-                bVal = parseFloat(b.price);
-                break;
-            case 'stock':
-                aVal = getStockStatus(a);
-                bVal = getStockStatus(b);
-                break;
-            default:
-                return 0;
-        }
-        
-        // Handle string comparison
-        if (typeof aVal === 'string' && typeof bVal === 'string') {
-            if (direction === 'asc') {
-                return aVal.localeCompare(bVal);
-            } else {
-                return bVal.localeCompare(aVal);
-            }
-        }
-        
-        // Handle numeric comparison
-        if (direction === 'asc') {
-            return aVal - bVal;
-        } else {
-            return bVal - aVal;
-        }
-    });
-    
-    // Re-render table body
-    const tbody = document.getElementById('productsTableBody');
-    if (tbody) {
-        tbody.innerHTML = sortedProducts.map(product => renderProductRow(product)).join("");
-        attachRowEventListeners();
-    }
-}
-
-function getStockStatus(product) {
-    if (!product.stock || product.stock.length === 0) {
-        return 0; // Out of Stock
-    }
-    
-    let hasStock = false;
-    product.stock.forEach(stockItem => {
-        if (stockItem.sizes && stockItem.sizes.length > 0) {
-            stockItem.sizes.forEach(size => {
-                if (parseInt(size.qty) > 0) {
-                    hasStock = true;
-                }
-            });
-        }
-    });
-    
-    return hasStock ? 1 : 0; // 1 = In Stock, 0 = Out of Stock
-}
-
-function attachRowEventListeners() {
-    // Re-attach delete buttons
-    document.querySelectorAll(".remove-product").forEach((btn) => {
-        btn.addEventListener("click", handleProductDelete);
-    });
-
-    // Re-attach view buttons
-    document.querySelectorAll(".view-product-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-            const productId = btn.getAttribute("data-product-id");
-            viewProductDetails(productId);
-        });
-    });
-
-    // Re-attach checkboxes
-    document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
-        checkbox.addEventListener("change", toggleBulkActions);
-    });
-
-    // Re-attach tooltips
-    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((tp) => {
-        new bootstrap.Tooltip(tp);
-    });
-}
 
 // Event Handlers
-function handleProductSearch() {
+function handleProductSearch() { // for  event #1
     const searchTerm = this.value.toLowerCase();
     const container = document.getElementById("adminContent");
     const rows = container.querySelectorAll("tbody tr");
@@ -459,7 +345,7 @@ function handleProductSearch() {
     });
 }
 
-function handleCategoryFilter() {
+function handleCategoryFilter() { // for event #2
     const selectedCategory = this.value;
     const container = document.getElementById("adminContent");
     const rows = container.querySelectorAll("tbody tr");
@@ -475,7 +361,7 @@ function handleCategoryFilter() {
     });
 }
 
-async function handleProductDelete(e) {
+async function handleProductDelete(e) { // for event #3
     e.preventDefault();
     const button = e.target.closest('button');
     if (!button) return;
@@ -486,9 +372,9 @@ async function handleProductDelete(e) {
     const confirmed = await showConfirmDialog(`Are you sure you want to delete ${name}?`);
     if (!confirmed) return;
 
-    const products = getData("products") || [];
+    const products = localStore.read("products") || [];
     const updated = products.filter((p) => p.id !== id);
-    setData("products", updated);
+    localStore.write("products", updated);
     showAlert(`${name} has been successfully deleted.`);
 
     const container = document.getElementById("adminContent");
@@ -496,8 +382,8 @@ async function handleProductDelete(e) {
     renderCategoryFilter();
 }
 
-export function viewProductDetails(productId) {
-    const products = getData("products") || [];
+export function viewProductDetails(productId) { // for event #4
+    const products = localStore.read("products") || [];
     const product = products.find((p) => p.id === productId);
 
     if (product) {
@@ -514,18 +400,19 @@ export function viewProductDetails(productId) {
                         <div class="modal-body">
                             <div class="row g-4">
                                 <div class="col-md-4 text-center">
-                                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" 
-                                        style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">
-                                        ${product.brand ? product.brand.charAt(0) : 'P'}
-                                    </div>
-                                    <h5>${product.name}</h5>
-                                    <span class="badge bg-light text-dark">${product.category}</span>
+                                    <img 
+                                    src="${getProductThumbnail(product)}" 
+                                    alt="${product.name}" 
+                                    class="rounded me-3" 
+                                    style="width: 100px; height: 100px; object-fit: fill;"/>
+                                    <p class="fw-semibold" >${product.name}</p>
+                                    <span class="badge bg-dark ">${product.category}</span>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="row g-3">
                                         <div class="col-12">
                                             <label class="form-label text-muted small">DESCRIPTION</label>
-                                            <div class="fw-semibold">${product.description || "No description"}</div>
+                                            <div class="fw-semibold">${truncateText(product.description, 100) || "No description"}</div>
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label text-muted small">PRICE</label>
@@ -570,12 +457,12 @@ export function viewProductDetails(productId) {
     }
 }
 
-async function bulkAction(action) {
+async function bulkAction(action) { //for event #5
     const selectedCheckboxes = document.querySelectorAll(".product-checkbox:checked");
     const selectedIds = Array.from(selectedCheckboxes).map((cb) => cb.value);
     if (selectedIds.length === 0) return;
 
-    let products = getData("products") || [];
+    let products = localStore.read("products") || [];
 
     if (action === "delete") {
         const confirmed = await showConfirmDialog(`Are you sure you want to delete ${selectedIds.length} selected product(s)?`);
@@ -584,14 +471,14 @@ async function bulkAction(action) {
         products = products.filter((p) => !selectedIds.includes(p.id));
         showAlert(`${selectedIds.length} product(s) have been deleted successfully.`, "success");
     }
-    
-    setData("products", products);
+
+    localStore.write("products", products);
     const container = document.getElementById("adminContent");
     renderProducts(container);
     renderCategoryFilter();
 }
 
-function toggleBulkActions() {
+function toggleBulkActions() { //for event #6 and #7
     const selectedCheckboxes = document.querySelectorAll(".product-checkbox:checked");
     const bulkActionsBar = document.getElementById("bulkActionsBar");
 
@@ -607,22 +494,103 @@ function toggleBulkActions() {
     }
 }
 
-function getProductThumbnail(product) {
-    try {
-        if (
-            product.category &&
-            product.subcategory &&
-            product.id &&
-            product.stock?.length > 0 &&
-            product.stock[0].images?.length > 0
-        ) {
-            return `../../data/imgs/products/${product.category.toLowerCase()}/${product.subcategory.toLowerCase()}/${product.id.toLowerCase()}/${product.stock[0].images[0]}`;
-        }
-    } catch (err) {
-        console.error("Thumbnail error:", err);
+// ...................................Sorting Functions....................................................
+function handleSort(e) {   // ......................for event #8
+    const header = e.currentTarget;
+    const field = header.getAttribute('data-sort'); //id, name, category, price, stock
+
+    // Toggle direction if same field
+    if (currentSort.field === field) { //If same col clicked again =>change sorting direction value "asc , desc"
+        currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+    } else {
+        currentSort.field = field; // instead of default "null"
+        currentSort.direction = 'asc'; //if diff col clicked =>change sorting direction value to "asc" default
     }
-    return `<div ${getRandomColor()} style="width: 40px; height: 40px; font-size: 0.875rem; font-weight: bold;">
-            ${product.brand.charAt(0)}</div>`;
+
+    // Sort products
+    sortProducts(field, currentSort.direction);
 }
+
+function sortProducts(field, direction) {
+    const products = localStore.read("products") || [];
+
+    const sortedProducts = [...products].sort((a, b) => {
+        let aVal, bVal;
+
+        switch (field) {
+            case 'id':
+                aVal = a.id;
+                bVal = b.id;
+                break;
+            case 'name':
+                aVal = a.name.toLowerCase();
+                bVal = b.name.toLowerCase();
+                break;
+            case 'category':
+                aVal = a.category.toLowerCase();
+                bVal = b.category.toLowerCase();
+                break;
+            case 'price':
+                aVal = parseFloat(a.price);
+                bVal = parseFloat(b.price);
+                break;
+            case 'stock':
+                aVal = checkStock(a);
+                bVal = checkStock(b);
+                break;
+            default:
+                return 0;
+        }
+
+        // Handle string comparison
+        if (typeof aVal === 'string' && typeof bVal === 'string') {
+            if (direction === 'asc') {
+                return aVal.localeCompare(bVal);
+            } else {
+                return bVal.localeCompare(aVal);
+            }
+        }
+
+        // Handle numeric comparison
+        if (direction === 'asc') {
+            return aVal - bVal;
+        } else {
+            return bVal - aVal;
+        }
+    });
+
+    // Re-render table body
+    const tbody = document.getElementById('productsTableBody');
+    if (tbody) {
+        tbody.innerHTML = sortedProducts.map(product => renderProductRow(product)).join("");
+        attachRowEventListeners();
+    }
+}
+//reattaching events after sorting cause somehow it gets lost
+function attachRowEventListeners() {
+    // Re-attach delete buttons
+    document.querySelectorAll(".remove-product").forEach((btn) => {
+        btn.addEventListener("click", handleProductDelete);
+    });
+
+    // Re-attach view buttons
+    document.querySelectorAll(".view-product-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const productId = btn.getAttribute("data-product-id");
+            viewProductDetails(productId);
+        });
+    });
+
+    // Re-attach checkboxes
+    document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
+        checkbox.addEventListener("change", toggleBulkActions);
+    });
+
+    // Re-attach tooltips
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((tp) => {
+        new bootstrap.Tooltip(tp);
+    });
+}
+
 
 

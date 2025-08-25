@@ -2,18 +2,20 @@
 export function Sidebar(sections = []) {
     return `
     <!-- ...............Toggle Button................ -->
-        <button class="btn btn-transparent rounded-circle position-sticky start-0 m-1 shadow 
-                    d-flex align-items-center justify-content-center"
-                type="button"
-                style="width: 50px; height: 50px;"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#sidebarOffcanvas"
-                id="sidebarTogglerBtn">
+    <button 
+        class="btn btn-transparent rounded-circle shadow 
+                d-flex align-items-center justify-content-center
+                position-fixed start-0 top-0 m-2"
+        type="button"
+        style="width: 50px; height: 50px; z-index: 10;"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#sidebarOffcanvas"
+        id="sidebarTogglerBtn">
         <i class="fas fa-bars"></i> 
     </button>
 
     <!--...............Offcanvas Sidebar........... -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarOffcanvas" style="width: 250px;">
+    <div class="offcanvas offcanvas-start"  id="sidebarOffcanvas" style="width: 250px;">
         <div class="offcanvas-header">
         <!-- the h5 can be replaced with logo or image or our website nameto be reusable -->
                 <h5 class="offcanvas-title">Admin Panel</h5>

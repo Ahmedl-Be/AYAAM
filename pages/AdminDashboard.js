@@ -1,24 +1,25 @@
 //admin dashboard
 import Views from "../components/core/view.js";
-import { getData } from "../scripts/data-init.js";
 import { Sidebar } from "../components/ui/sidebar.js";
 import { renderProducts } from "../components/dashboard/admin-products.js";
-import { renderSellers } from "../components/dashboard/admin-sellers.js";
+import { renderUsers } from "../components/dashboard/admin-users.js";
 import { renderUsersStats, renderSellersStats, renderProductsStats } from "../components/dashboard/admin-stats.js";
+import { getCurrentUser } from './../data/authentication.js';
+
 
 export default class AdminDashboard extends Views{
     template(){
-         const user = getData("loggedUser");
+         const user = getCurrentUser();
         if (!user) return `<p>Please log in</p>`;
 
         const sections = [
             {
                 id: "ecommerce",
-                title: "E-Commerce",
+                title: "Management",
                 icon: "fas fa-store",
                 items: [
                     { id: "products", title: "Products", icon: "fas fa-box" },
-                    { id: "sellers", title: "Sellers", icon: "fas fa-users" }
+                    { id: "users", title: "Users", icon: "fas fa-users" }
                 ]
             },
             {
@@ -26,29 +27,34 @@ export default class AdminDashboard extends Views{
                 title: "Statistics",
                 icon: "fas fa-chart-line",
                 items: [
-                    { id: "users", title: "Users", icon: "fas fa-user" },
-                    { id: "sellers-count", title: "Sellers Count", icon: "fas fa-user-tag" },
-                    { id: "products-count", title: "Products Count", icon: "fas fa-cube" }
+                    { id: "sellers-count", title: "Sellers Stats", icon: "fas fa-user-tag" },
+                    { id: "user-count", title: "User Stats", icon: "fas fa-user-tag" },
+                    { id: "products-count", title: "Products Stats", icon: "fas fa-cube" }
                 ]
             }
         ];
 
         return `
-    <div class="container-fluid">
-      <div class="row">
-        ${Sidebar(sections)}
-
-        <main class="col pt-3">
-          <div class="page-header pt-3"></div>
-          <div class="row">
-            <div class="col-12" id="adminContent">
-              <p class="text-muted text-center">Select a section from the sidebar.</p>
+            <div class="container-fluid">
+                <div class="row">
+                    ${Sidebar(sections)}
+                    
+                    <main class="col pt-3">
+                        <div class="page-header pt-3">
+                            <h1 class="text-center">Admin Dashboard</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" id="adminContent">
+                                <div class="alert alert-info text-center">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    Select a section from the sidebar to get started.
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
             </div>
-          </div>
-        </main>
-      </div>
-    </div>
-  `;
+        `;
     }
     script(){
         setupAdminLogic();
@@ -72,10 +78,10 @@ export function loadSection(section, container) {
         case "products":
             renderProducts(container);
             break;
-        case "sellers":
-            renderSellers(container);
-            break;
         case "users":
+            renderUsers (container);
+            break;
+        case "users-count":
             renderUsersStats(container);
             break;
         case "sellers-count":
@@ -85,6 +91,7 @@ export function loadSection(section, container) {
             renderProductsStats(container);
             break;
         default:
-            container.innerHTML = `<p class="text-muted ps-5">Select a section from the sidebar.</p>`;
+            renderUsersStats(container);
+            break;
     }
 }

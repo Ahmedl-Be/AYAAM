@@ -89,10 +89,10 @@ export default class LoginForm extends Component{
             // Redirect based on role
             switch (user.role) {
                 case "admin":
-                    navigate("/dashboard") ;
+                    navigate("/admin") ;
                     break;
                 case "seller":
-                    navigate("/dashboard");
+                    navigate("/seller");
                     break;
                 default:
                     navigate("/home");

@@ -1,1 +1,17 @@
 @import url(landing.css);
+@media (max-width: 768px) {
+	#adminContent td:nth-child(1),
+	#adminContent th:nth-child(1),
+	#adminContent td:nth-child(2),
+	#adminContent th:nth-child(2),
+	#adminContent td:nth-child(4),
+	#adminContent th:nth-child(4),
+	#adminContent td:nth-child(6),
+	#adminContent th:nth-child(6) {
+		display: none;
+	}
+}
+
+.sortable-header:hover {
+	background-image: linear-gradient(rgba(0, 4, 12, 0.2), rgba(90, 90, 196, 0.2));
+}
