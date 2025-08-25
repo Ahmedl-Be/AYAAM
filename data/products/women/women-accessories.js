@@ -21,12 +21,12 @@ const accessories = [
             {
                 color: "Gold",
                 images: ['acs1-gold.png'],
-                qty: 5 ,
+                sizes: [{ name: "One Size", qty: 7 }]
             },
             {
                 color: "ٍSilver",
                 images: ['acs1-silver.png'],
-                qty: 7 ,
+                sizes: [{ name: "One Size", qty: 7 }]
             },
         ],
 
@@ -48,16 +48,16 @@ const accessories = [
         subCategory: "Accessories", 
         
         stock:[
-            {
+                {
                 color: "Gold",
                 images: ['acs2-gold.png'],
-                qty: 5 ,
-            },
-            {
+                sizes: [{ name: "One Size", qty: 6 }]
+                },
+                {
                 color: "ٍSilver",
                 images: ['acs2-silver.png'],
-                qty: 7 ,
-            },
+                sizes: [{ name: "One Size", qty: 7 }]
+                },
         ],
 
         material: "Stainless Steel", 
@@ -81,12 +81,12 @@ const accessories = [
             {
               color: "Gold",
               images: ['acs3-gold.png'],
-              qty: 6 ,
+              sizes: [{ name: "One Size", qty: 7 }]
             },
             {
               color: "ٍSilver",
               images: ['acs3-silver.png'],
-              qty: 7 ,
+              sizes: [{ name: "One Size", qty: 7 }]
             },
         ],
 
@@ -112,12 +112,12 @@ const accessories = [
                 {
                 color: "Gold",
                 images: ['acs4-gold.png'],
-                qty: 12 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
                 {
                 color: "ٍSilver",
                 images: ['acs4-silver.png'],
-                qty: 10 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
         ],
 
@@ -142,7 +142,7 @@ const accessories = [
             {
               color: "ٍSilver",
               images: ['acs5-silver.png'],
-              qty: 7 ,
+              sizes: [{ name: "One Size", qty: 7 }]
             },
         ],
 
@@ -167,12 +167,12 @@ const accessories = [
                 {
                 color: "Gold",
                 images: ['acs6-gold.png'],
-                qty: 6 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
                 {
                 color: "ٍSilver",
                 images: ['acs6-silver.png'],
-                qty: 7 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
         ],
 
@@ -197,12 +197,12 @@ const accessories = [
                 {
                 color: "Gold",
                 images: ['acs7-gold.png'],
-                qty: 6 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
                 {
                 color: "ٍSilver",
                 images: ['acs7-silver.png'],
-                qty: 7 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
         ],
 
@@ -227,12 +227,12 @@ const accessories = [
                 {
                 color: "Gold",
                 images: ['acs8-gold.png'],
-                qty: 5 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
                 {
                 color: "ٍSilver",
                 images: ['acs8-silver.png'],
-                qty: 6 ,
+                sizes: [{ name: "One Size", qty: 10 }]
                 },
     ],
 
@@ -257,12 +257,12 @@ const accessories = [
                 {
                 color: "Gold",
                 images: ['acs9-gold.png'],
-                qty: 12 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
                 {
                 color: "ٍSilver",
                 images: ['acs9-silver.png'],
-                qty: 10 ,
+                sizes: [{ name: "One Size", qty: 10 }]
                 },
         ],
 
@@ -287,12 +287,12 @@ const accessories = [
                 {
                 color: "Gold",
                 images: ['acs10-gold.png'],
-                qty: 6 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
                 {
                 color: "ٍSilver",
                 images: ['acs10-silver.png'],
-                qty: 7 ,
+                sizes: [{ name: "One Size", qty: 7 }]
                 },
             ],
 

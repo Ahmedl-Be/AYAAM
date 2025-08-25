@@ -1,26 +1,28 @@
-
-
 // User Class
 export default class User {
     #id;
     #name;
     #email;
     #password;
-    #phone;
     #role;
+    #phone;
+    #status;
+    #joinDate;
 
-    constructor(_id,_name, _email, _password, _phone = '01000000000', _role = 'user') {
+    constructor(_id, _name, _email, _password, _role = 'user', _phone = '', _status = 'active', _joinDate = null) {
         this.Id = _id;
         this.Name = _name;
         this.Email = _email;
         this.Password = _password;
-        this.Phone = _phone;
         this.Role = _role; // Admin, Seller, User
+        this.Phone = _phone;
+        this.Status = _status;
+        this.JoinDate = _joinDate || new Date().toISOString();
     }
 
     /* ID SETTER & GETTER */
     set Id(_id) { this.#id = _id; }
-    get Id() { return this.#id}
+    get Id() { return this.#id }
 
     /* NAME SETTER & GETTER */
 
@@ -38,7 +40,7 @@ export default class User {
     }
 
     get Email() {
-        return this.#email;
+        return this.#email
     }
 
     /* PASSWORD SETTER AND GETTER */
@@ -47,16 +49,7 @@ export default class User {
     }
 
     get Password() {
-        return this.#password;
-    }
-
-    /* PHONENUMER SETTER AND GETTER */
-    set Phone(_phone) {
-        this.#phone = _phone;
-    }
-
-    get Phone() {
-        return this.#phone;
+        return this.#password
     }
 
     /* ROLE SETTER AND GETTER */
@@ -67,18 +60,46 @@ export default class User {
     get Role() {
         return this.#role
     }
+    /* PHONE NUMBER SETTER AND GETTER */
+    set Phone(_phone) {
+        this.#phone = _phone;
+    }
 
-/* ---toJSON--- */
+    get Phone() {
+        return this.#phone
+    }
+
+    /* STATUS SETTER AND GETTER */
+    set Status(_status) {
+        this.#status = _status;
+    }
+
+    get Status() {
+        return this.#status
+    }
+
+    /* JOIN DATE SETTER AND GETTER */
+    set JoinDate(_joinDate) {
+        this.#joinDate = _joinDate;
+    }
+
+    get JoinDate() {
+        return this.#joinDate
+    }
+
+    /* ---toJSON--- */
     toJSON() {
-    return {
-        id: this.#id,
-        name: this.#name,
-        email: this.#email,
-        password: this.#password,
-        phone: this.#phone,
-        role: this.#role
-    };
-}
+        return {
+            id: this.#id,
+            name: this.#name,
+            email: this.#email,
+            password: this.#password,
+            role: this.#role,
+            phone: this.#phone,
+            status: this.#status,
+            joinDate: this.#joinDate
+        };
+    }
 }
 
 

@@ -50,6 +50,8 @@ export function toUser(_obj) {
     user.Password = _obj.password;
     user.Role = _obj.role;
     user.Phone = _obj.phone;
+    user.Status = _obj.status;
+    user.JoinDate = _obj.joinDate;
 
     return user;
 }
