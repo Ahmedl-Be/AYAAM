@@ -10,6 +10,7 @@ const menProductTop = [
 		description: "Long Sleeves, regular fit, machine washable",
 		category: "Men",
 		subCategory: "Top",
+		sale:0,
 		price: 29.99,
 		stock: [
 			{
@@ -64,6 +65,7 @@ const menProductTop = [
 			"Relaxed fit shirt made of a linen and cotton blend. Button-down collar. Long sleeves with buttoned cuffs. Chest patch pocket. Button-up front.",
 		category: "Men",
 		subCategory: "Top",
+		sale:0,
 		price: 49.99,
 		stock: [
 			{
@@ -106,6 +108,7 @@ const menProductTop = [
 		description: "A button-up, baseball-style shirt for Real Madrid supporters",
 		category: "Men",
 		subCategory: "Top",
+		sale:0,
 		price: 19.99,
 		stock: [
 			{
@@ -131,6 +134,7 @@ const menProductTop = [
 		description: "Smart fit solid blazer made of anti bacterial, water resistant, breathable and natural stretch wool fabric.",
 		category: "Men",
 		subCategory: "Top",
+		sale:0,
 		price: 220,
 		stock: [
 			{

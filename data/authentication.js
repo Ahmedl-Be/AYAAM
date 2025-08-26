@@ -1,4 +1,5 @@
 import { generateID, toUser } from "../scripts/utils/data.js";
+import { navigate } from "../scripts/utils/navigation.js";
 import { localStore, sessionStore } from "../scripts/utils/storage.js";
 
 /* ======================= SIGNUP =========================== */
@@ -87,6 +88,32 @@ export function login(_identifier, _password, _remember = false) {
     return user;
 }
 
+
+export function redirect(_role) {
+    const redirected = sessionStore.read('redirectedPage', '');
+
+    if (redirected && redirected !== '/home') {
+
+        sessionStore.remove('redirectedPage');
+        navigate(redirected);
+    } else {
+        switch (_role) {
+            case 'master':
+                navigate(`/admin`);
+                break;
+            case 'admin':
+                navigate(`/admin`);
+                break;
+            case 'seller':
+                navigate(`/seller`);
+                break;
+            default:
+                navigate(`/home`);
+        }
+    }
+}
+
+
 /* ==================== CURRENT USER ======================== */
 /**
  * Get the currently logged-in user (from session or local).
@@ -104,7 +131,9 @@ export function getCurrentUser() {
  * Logout current user from session (and local if exists).
  */
 export function logout() {
-    sessionStore.remove("currentUser");
+    let currentP = sessionStore.read('currentProduct', '');
+    sessionStore.clear();
+    sessionStore.write('currentProduct', currentP, '');
     localStore.remove("currentUser");
     console.log("✅ Logged out");
 }

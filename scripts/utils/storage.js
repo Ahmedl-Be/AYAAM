@@ -82,8 +82,13 @@ class StorageManager {
         this.write(_key, next);
         return next;
     }
+
+    clear() {
+        this.storage.clear();
+    }
 }
 
 /*======= INSTANCES TO USE ========*/
 export const localStore = new StorageManager("local");
 export const sessionStore = new StorageManager("session");
+

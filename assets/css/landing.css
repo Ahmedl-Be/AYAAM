@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.5s !important;
 }
 
 
@@ -41,7 +42,7 @@ i:hover {
 
 /* HERO SECTION */
 #headCarousel .carousel-item {
-    height: 50vh;
+    height: 75vh;
     /* Large banner */
     min-height: 400px;
     position: relative;
