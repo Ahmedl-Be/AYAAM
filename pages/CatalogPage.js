@@ -1,6 +1,7 @@
 import View from "../components/core/view.js";
 import { ProductList } from "./customer/productList/ProductList.js";
 import Navbar from "../components/landing/Nav.js";
+import Footer from "../components/landing/Footer.js";
 
 
 export default class Catalog extends View {
@@ -185,13 +186,14 @@ export default class Catalog extends View {
         <div class="row g-3" id="product-list"></div>
       </section>
     </div>
-  </div> `
+  </div>
+  <div id="footerCatalog" class="bg-dark text-white">${Footer()}</div>
+  `
   }
 
   script() {
 
     this.mount(Navbar, "#navbar");
-
     const products = JSON.parse(localStorage.getItem("products")) || [];
     // Central filter state
     const state = {
