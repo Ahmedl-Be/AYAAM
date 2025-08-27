@@ -163,7 +163,7 @@ export default class Navbar extends Component {
     // handle Shopping Cart Count
     const cartCount = this.parent.querySelector("#cart-count");
     function updateCartCount() {
-      const cartItems = JSON.parse(sessionStorage.getItem("ShopingCart") || "[]");
+      const cartItems = JSON.parse(sessionStorage.getItem("shoppingCart") || "[]");
       cartCount.textContent = cartItems.length;
       cartCount.classList.toggle("d-none", cartItems.length === 0);
     }

@@ -40,7 +40,7 @@ card.innerHTML = `
           ? `
             <div class="d-flex flex-column">
               <span class="new-price fw-bold text-success">${discounted} USD</span>
-              <span class="old-price text-decoration-line-through text-muted">${price} USD</span>
+              <span class="old-price text-decoration-line-through text-muted ms-0 fs-6">${price} USD</span>
             </div>
           `
           : `<span class="new-price fw-bold">${price} USD</span>`
