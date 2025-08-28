@@ -1,35 +1,35 @@
 import { localStore, sessionStore } from "../utils/storage.js";
 
 // Dummy user Cart
-const userCart = {
-  userId: "u1",
-  items: [
-    {
-      id: "wdr009",
-      name: "Flower Long Summer Dress",
-      color: "Black",
-      price: Number((15.3 * (1 - 0.2)).toFixed(2)),
-      size: "XS",
-      qty: 2,
-    },
-    {
-      id: "wdr009",
-      name: "Flower Long Summer Dress",
-      color: "Black",
-      price: Number((15.3 * (1 - 0.2)).toFixed(2)),
-      size: "S",
-      qty: 4,
-    },
-    {
-      id: "wdr010",
-      name: "Elegant Long Dress",
-      color: "Green",
-      price: Number((12.63 * (1 - 0.2)).toFixed(2)),
-      size: "XS",
-      qty: 1,
-    }
-  ]
-};
+// const userCart = {
+//   userId: "u1",
+//   items: [
+//     {
+//       id: "wdr009",
+//       name: "Flower Long Summer Dress",
+//       color: "Black",
+//       price: Number((15.3 * (1 - 0.2)).toFixed(2)),
+//       size: "XS",
+//       qty: 2,
+//     },
+//     {
+//       id: "wdr009",
+//       name: "Flower Long Summer Dress",
+//       color: "Black",
+//       price: Number((15.3 * (1 - 0.2)).toFixed(2)),
+//       size: "S",
+//       qty: 4,
+//     },
+//     {
+//       id: "wdr010",
+//       name: "Elegant Long Dress",
+//       color: "Green",
+//       price: Number((12.63 * (1 - 0.2)).toFixed(2)),
+//       size: "XS",
+//       qty: 1,
+//     }
+//   ]
+// };
 
 // Set dummy cart items to session
 // sessionStore.write("ShopingCart", userCart);
@@ -39,12 +39,14 @@ export function CartManager() {
   this.products = localStore.read("products", []);
 
   // Get user cart from session
-  this.cart = sessionStore.read("ShopingCart", []);
-
+  this.cart = sessionStore.read("shoppingCart", []);
+  console.log("Cart items" , this.cart)
   // Get detailed cart items
   this.getCartItem = function () {
     return this.cart.map(item => {
       const product = this.products.find(p => p.id === item.id);
+      if (!product) return { ...item, error: "Product not found" };
+
       const stockItem = product?.stock.find(s => s.color === item.color);
       const sizeInStock = stockItem?.sizes.find(sz => sz.name === item.size);
 
@@ -70,7 +72,7 @@ export function CartManager() {
 
   // Save cart to session
   this.saveCart = function () {
-    sessionStore.write("ShopingCart", this.cart);
+    sessionStore.write("shoppingCart", this.cart);
   };
 
   // Update quantity UI

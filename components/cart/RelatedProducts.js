@@ -3,7 +3,7 @@ import Component from "../core/component.js";
 
 
 
-const cartItems = sessionStore.read("ShopingCart" , []);
+const cartItems = sessionStore.read("shoppingCart" , []);
 const localProducts = localStore.read("products" , []);
 
 const cartCat = cartItems.map(item => {
@@ -93,49 +93,52 @@ export default class RelatedProducts extends Component{
     }
 
     script() {
-            const slider = document.querySelector(".slider");
-            const slides = document.querySelectorAll(".slide");
+            document.addEventListener('DOMContentLoaded' ,()=>{
+                const slider = document.querySelector(".slider");
+                const slides = document.querySelectorAll(".slide");
+    
+                let currentIndex = 0;
+                const slideWidth = slides[0].offsetWidth;
+    
+                function goToSlide(index) {
+                slider.scrollTo({
+                    left: index * slideWidth,
+                    behavior: "smooth",
+                });
+                }
+    
+                document.querySelector(".right-btn").addEventListener("click", () => {
+                nextSlide();
+                });
+    
+                document.querySelector(".left-btn").addEventListener("click", () => {
+                prevSlide();
+                });
+    
+                // دالة للـ next slide
+                function nextSlide() {
+                currentIndex++;
+                if (currentIndex >= slides.length) {
+                    currentIndex = 0; 
+                }
+                goToSlide(currentIndex);
+                }
+    
+                // دالة للـ previous slide
+                function prevSlide() {
+                currentIndex--;
+                if (currentIndex < 0) {
+                    currentIndex = slides.length - 1;
+                }
+                goToSlide(currentIndex);
+                }
+    
+                let autoplay = setInterval(nextSlide, 2000);
+    
+                slider.addEventListener("mouseenter", () => clearInterval(autoplay));
+                slider.addEventListener("mouseleave", () => autoplay = setInterval(nextSlide, 3000));
 
-            let currentIndex = 0;
-            const slideWidth = slides[0].offsetWidth;
-
-            function goToSlide(index) {
-            slider.scrollTo({
-                left: index * slideWidth,
-                behavior: "smooth",
-            });
-            }
-
-            document.querySelector(".right-btn").addEventListener("click", () => {
-            nextSlide();
-            });
-
-            document.querySelector(".left-btn").addEventListener("click", () => {
-            prevSlide();
-            });
-
-            // دالة للـ next slide
-            function nextSlide() {
-            currentIndex++;
-            if (currentIndex >= slides.length) {
-                currentIndex = 0; 
-            }
-            goToSlide(currentIndex);
-            }
-
-            // دالة للـ previous slide
-            function prevSlide() {
-            currentIndex--;
-            if (currentIndex < 0) {
-                currentIndex = slides.length - 1;
-            }
-            goToSlide(currentIndex);
-            }
-
-            let autoplay = setInterval(nextSlide, 2000);
-
-            slider.addEventListener("mouseenter", () => clearInterval(autoplay));
-            slider.addEventListener("mouseleave", () => autoplay = setInterval(nextSlide, 3000));
+            })
         }   
     
 }
