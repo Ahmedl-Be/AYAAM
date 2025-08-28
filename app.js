@@ -12,6 +12,7 @@ const routes = {
   "/catalog": { loader: () => import("./pages/CatalogPage.js")},
   "/product": { loader: () => import("./pages/Product.js") },
   "/cart": { loader:  () => import("./pages/CartPage.js") },
+  "/profile": { loader:  () => import("./pages/Profile.js") },
   
   /* LOGIN ONLY NEEDED*/
   "/checkout": { loader: () => import("./pages/CheckOutPage.js"), roles:['admin', 'user', 'master', 'seller'] },

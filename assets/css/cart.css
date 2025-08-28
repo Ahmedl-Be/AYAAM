@@ -78,7 +78,7 @@
 
 
 .marginTop-related{
-    margin-top: 20rem;
+    margin-top: 2rem;
 }
 
 .slider-container {
@@ -91,6 +91,7 @@
   display: flex;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  background-color: white !important;
 }
 
 .slide {
