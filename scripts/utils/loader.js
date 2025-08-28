@@ -12,7 +12,7 @@ export function showLoader() {
     loader.style.cssText = `
       position: fixed; inset: 0;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.7); z-index: 9999;
+      background: rgba(255, 255, 255, 1); z-index: 9999;
     `;
     document.body.appendChild(loader);
   }
@@ -22,5 +22,7 @@ export function showLoader() {
 // Hide loader
 export function hideLoader() {
   const loader = document.getElementById("app-loader");
-  if (loader) loader.style.display = "none";
+  window.setTimeout(() => {
+    if (loader) loader.style.display = "none";
+  },400)
 }

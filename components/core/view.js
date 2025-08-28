@@ -1,3 +1,4 @@
+import { hideLoader, showLoader } from "../../scripts/utils/loader.js";
 import Component from "./component.js";
 
 /*
@@ -35,9 +36,12 @@ export default class View extends Component {
 
   onEnter() {
     if (this.title) document.title = this.title;
+    window.scrollTo(0, 0);
+    hideLoader();
   }
 
   onLeave() {
+    showLoader();
     if (this.activeSubview) {
       this.activeSubview.onLeave();
       this.activeSubview = null;

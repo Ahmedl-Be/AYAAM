@@ -6,6 +6,10 @@
 @import url(productlist.css);
 @import url(checkout.css) ;
 
+#app-loader{
+	transition: all 0.5s;
+}
+
 @media (max-width: 768px) {
 	#adminContent td:nth-child(1),
 	#adminContent th:nth-child(1),

@@ -43,7 +43,7 @@ export default class Router {
             const [pathPart, queryString] = fullPath.split("?");
             const params = parseQuery(queryString || "");
 
-            
+
             if (pathPart !== '/login' && pathPart !== '/signup') {
                 sessionStore.write('redirectedPage', fullPath);
             }
@@ -62,7 +62,7 @@ export default class Router {
                 }
             }
 
-            showLoader();
+
 
             if (!routeConfig) {
                 routeConfig = this.routes["/404"];
@@ -73,12 +73,10 @@ export default class Router {
                 const user = getCurrentUser();
                 if (!user) {
                     navigate("/login");
-                    hideLoader();
                     return;
                 }
                 if (!routeConfig.roles.includes(user.role)) {
-                    navigate("/403");
-                    hideLoader();
+                    navigate("/404");
                     return;
                 }
             }
@@ -107,8 +105,9 @@ export default class Router {
 
             // If already inside the same view → just forward to subroute
             if (this.currentView && this.currentView.route === baseRoute) {
+                
                 this.currentView.onSubRoute(pathPart, params);
-                hideLoader();
+
                 return;
             }
 
@@ -126,10 +125,10 @@ export default class Router {
                 this.currentView.onSubRoute(pathPart, params);
             }
 
-            hideLoader();
+
         } catch (error) {
             console.error("Router error:", error);
-            hideLoader();
+
 
             // Fallback to 404
             const fallbackLoader = this.routes["/404"];
