@@ -60,6 +60,8 @@ export default class AdminDashboard extends Views {
 export function setupAdminLogic() {
     const adminContent = document.getElementById("adminContent");
 
+    loadSection("users-stats", adminContent);
+
     // Sidebar section clicks
     document.querySelectorAll("[data-section]").forEach((item) => {
         item.addEventListener("click", () => {

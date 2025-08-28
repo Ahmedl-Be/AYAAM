@@ -4,6 +4,7 @@ import User from "../../data/_schema/UserModel.js";
 import { localStore } from "../../scripts/utils/storage.js";
 
 let currentSort = { field: null, direction: 'asc' }; // for sorting
+//main function that renders all users page
 export function renderUsers(container) {
     const users = localStore.read("users") || [];
 
