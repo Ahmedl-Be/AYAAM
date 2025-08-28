@@ -373,16 +373,17 @@ export default class CheckOutForm extends Component{
                     items.forEach(item => {
                                     
                         const order = {
-                                        order_id: Date.now() + "-" + item.id,
-                                        user_id : userData.id ,
-                                        user_name : userData.name ,
-                                        user_email : userData.email ,
-                                        product_name : item.name ,
+                                        orderId: Date.now() + "-" + item.id,
+                                        userId : userData.id ,
+                                        userName : userData.name ,
+                                        userEmail : userData.email ,
+                                        productName : item.name ,
                                         qty : item.qty ,
                                         price :item.price , 
                                         size : item.size ,
                                         category : item.category ,
                                         img:item.img ,
+                                        state:item.state || "",
                         }
                         
                         orderLocal.push(order);
