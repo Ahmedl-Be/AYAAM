@@ -1,6 +1,4 @@
 import { CartManager } from "../../scripts/cartScripts/cartManager.js";
-import { navigate } from "../../scripts/utils/navigation.js";
-import { localStore, sessionStore } from "../../scripts/utils/storage.js";
 import Component from "../core/component.js";
 
 

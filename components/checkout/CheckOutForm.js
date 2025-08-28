@@ -65,14 +65,14 @@ export default class CheckOutForm extends Component{
 
                     <!-- ______________Detailed Address_______________-->
                     <div class="col-12">
-                        <label class="form-label">Label in Detail*</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter a your label in detail...." id="adrs-detail" required></textarea>
+                        <label class="form-label">Address in Detail*</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter a your address in detail...." id="adrs-detail" required></textarea>
                         <div class="invalid-feedback">Please enter your address details.</div>
                     </div>
 
                     <!-- ______________Shipping Method_______________-->
                     <div class="col-12">
-                        <label class="form-label">Shipping Method*</label>
+                        <label class="form-label">Payment Method*</label>
                         <div class="row g-3">
                             <!-- __________ Cash ___________ -->
                             <div class="col-md-6">
@@ -326,10 +326,16 @@ export default class CheckOutForm extends Component{
                 }
 
                 // 4) التعامل مع النتيجة
-                if (!isValid) {
+                const shoppingCartItems = sessionStore.read("shoppingCart");
+                if (!isValid || shoppingCartItems === null || shoppingCartItems.length === 0) {
                     event.preventDefault();
                     event.stopPropagation();
                     form.classList.add('was-validated');
+
+                    if(shoppingCartItems === null || shoppingCartItems.length === 0){
+                        alert("Please Choose an Item Before");
+                        navigate('/catalog')
+                    }
                 } else {
                     event.preventDefault();
 
@@ -370,26 +376,33 @@ export default class CheckOutForm extends Component{
                     const items = cartManager.getCartItem();
                     
                     const orderLocal = localStore.read("orders") || [];
+
+
+                    const today = new Date();
+                    const day = String(today.getDate()).padStart(2, "0");       
+                    const month = String(today.getMonth() + 1).padStart(2, "0"); 
+                    const year = today.getFullYear();  
                     items.forEach(item => {
                                     
-                        const order = {
-                                        orderId: Date.now() + "-" + item.id,
-                                        userId : userData.id ,
-                                        userName : userData.name ,
-                                        userEmail : userData.email ,
-                                        productName : item.name ,
-                                        qty : item.qty ,
-                                        price :item.price , 
-                                        size : item.size ,
-                                        category : item.category ,
-                                        img:item.img ,
-                                        state:item.state || "",
-                        }
+                    const order = {
+                        orderId: Date.now() + "-" + item.id,
+                        userId: userData.id,
+                        userName: userData.name,
+                        userEmail: userData.email,
+                        productName: item.name,
+                        qty: item.qty,
+                        price: item.price,
+                        size: item.size,
+                        category: item.category,
+                        img: item.img,
+                        state: item.state || "",
+                        orderDate: `${day}/${month}/${year}` 
+                    };
                         
                         orderLocal.push(order);
                     });
                     localStore.write("orders" , orderLocal);
-                    sessionStore.write("ShopingCart" , [])
+                    sessionStore.write("shoppingCart" , [])
                     console.log(orderLocal);
                     navigate('/home');
                     console.log("all is Done")
