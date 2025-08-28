@@ -69,7 +69,7 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone = '01
  */
 export function login(_identifier, _password, _remember = false) {
     const users = localStore.read("users", []);
-    const user = users.find(_user => (_user.email === _identifier || _user.phone === _identifier) && _user.password === _password);
+    const user = users.find(_user => _user.email === _identifier  && _user.password === _password);
 
     if (!user) {
         console.warn("Invalid email or password!!!!!");

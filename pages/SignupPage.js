@@ -2,6 +2,8 @@ import View from "../components/core/view.js";
 import SideToSide from './../components/layout/SidetoSide.js';
 import HalfImage from './../components/layout/HalfImage.js';
 import SignupForm from "../components/auth/SignupForm.js";
+import Toast from "../components/ui/toast.js";
+
 
 
 export default class SignupPage extends View {
@@ -19,13 +21,14 @@ export default class SignupPage extends View {
           </div>
         </div>
       </div>`
-        return `
+      return `
+        <div class="toast-body" id="toastMsg"></div>
         ${SideToSide(HalfImage('','',''),formHalf,'hideLeft')}
         `
     }
 
     script() {
-        let signup = new SignupForm({ parent: 'form-root' })
-        signup.render()
+      this.mount(Toast, "#toastMsg")
+      this.mount(SignupForm, '#form-root')
     }
 }

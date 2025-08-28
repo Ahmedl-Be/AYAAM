@@ -1,6 +1,7 @@
 import { getCurrentUser, login, redirect, signup, validateEmail, validatePassword } from '../../data/authentication.js';
 import { navigate } from '../../scripts/utils/navigation.js';
 import Component from '../core/component.js';
+import Toast from '../ui/toast.js';
 
 export default class LoginForm extends Component {
     template() {
@@ -63,7 +64,6 @@ export default class LoginForm extends Component {
         let rememberMe = false;
         // Real-time Remember Check
         rememberF.addEventListener('change', () => {
-            const rememberErr = document.getElementById('rememberError')
             if (rememberF.checked) {
                 rememberMe = true;
             } else {
@@ -81,16 +81,20 @@ export default class LoginForm extends Component {
                 }
 
                 const user = login(emailF.value.toLowerCase(), passwordF.value, rememberMe);
-                if (!user) {
+            if (!user) {
+                Toast.notify("❌ Invalid Email or Password!","danger")
                     const emailError = document.getElementById('emailError');
                     const pwError = document.getElementById('passwordError');
-                    emailError.textContent = '';
+                    emailError.textContent = 'Invalid Email Or Password';
                     pwError.textContent = 'Invalid Email Or Password';
                     emailF.classList.add("is-invalid");
                     passwordF.classList.add("is-invalid");
                     return;
-                }
-                redirect(user.role);
+            }
+            
+            Toast.notify("✅ Logged In Succefully! Redirecting...", "success");
+
+            setTimeout(() => redirect(user.role), 1500);
 
             
 

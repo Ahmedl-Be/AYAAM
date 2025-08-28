@@ -1,6 +1,7 @@
 import { getCurrentUser, redirect, signup, validateEmail, validatePassword } from '../../data/authentication.js';
 import { localStore } from '../../scripts/utils/storage.js';
 import Component from '../core/component.js';
+import Toast from '../ui/toast.js';
 
 export default class SignupForm extends Component {
     template() {
@@ -79,6 +80,26 @@ export default class SignupForm extends Component {
                 <button type="submit" class="btn btn-primary w-100 py-2">
                     Sign Up
                 </button>
+            </form>
+
+            <!-- The Modal -->
+            <div class="modal fade" id="emailExistsModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">⚠️ Already Registered!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            This account is already registered, proceed to login?
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a href="#/login" class="btn btn-primary" data-route data-bs-dismiss="modal">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
                   `
     }
 
@@ -87,7 +108,7 @@ export default class SignupForm extends Component {
         if (currentUser) {
             redirect(currentUser.role);
         }
-        
+
 
         const form = document.getElementById('signupForm');
         const nameF = document.getElementById('name');
@@ -154,19 +175,31 @@ export default class SignupForm extends Component {
             const repeatedPassword = repeatedPasswordF.value;
 
             const users = localStore.read('users', []);
+            const existing = users.find(_user => _user.email === email);
 
-            if (users.filter(user => user.email.toLowerCase() === email))
+            if (existing) {
+                Toast.notify("This Email is already Registered.", "warning")
+                const modal = new bootstrap.Modal(document.getElementById("emailExistsModal"));
+                modal.show();
+                return;
+            }
 
+            const newUser = signup(name, email, password, repeatedPassword);
 
+            if (!newUser) {
+                Toast.notify("❌ Something went wrong while creating your account!", "danger");
+                return;
+            }
 
+            Toast.notify("Account created successfully!", "success");
+            const user = login(email, password, true);
 
-            event.preventDefault();
-            console.log("registered");
-            form.classList.add('was-validated');
-            signup(name, email, password, repeatedPassword);
-
-
+            setTimeout(() => {
+                redirect(user.role);
+            }, 1500);
         });
+
+
 
         /* ============== VALIDATION FUNCTIONS ================================ */
         /* === NAME === */
