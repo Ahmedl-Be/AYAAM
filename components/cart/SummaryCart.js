@@ -3,12 +3,13 @@ import { CartManager } from "../../scripts/cartScripts/cartManager.js";
 import { navigate } from "../../scripts/utils/navigation.js";
 
 
-const cartManager = new CartManager();
+
 
 
 export default class SummaryCart extends Component {
 
     template() {
+        const cartManager = new CartManager();
         return `
              <h2 class='mb-4 mt-5 mt-md-2 mt-md-0'>Summary</h2>
 

@@ -1,13 +1,14 @@
 import { CartManager } from "../../scripts/cartScripts/cartManager.js";
 import Component from "../core/component.js"
 
-const cartManager = new CartManager();
-const items = cartManager.getCartItem();
-console.log(items);
+
 
 export default class CartItems extends Component {
 
     template() {
+        const cartManager = new CartManager();
+        const items = cartManager.getCartItem();
+        console.log(items);
         return `
             <div class="cart-items-container" id="cart-container">  
                  <div class="cart-items-container">
@@ -22,9 +23,9 @@ export default class CartItems extends Component {
 
                         <div class='py-4' id='cart-container' >
                             ${items.length === 0
-                                ? ` <h6 id="no-items"> There are no items in your bag. </h6> `
-                                : items.map(item =>
-                                    `
+                ? ` <h6 id="no-items"> There are no items in your bag. </h6> `
+                : items.map(item =>
+                    `
                                                         <div class='py-4 borderblockMD w-100 h cart-card' data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
                                                             <div class='d-flex align-align-items-center gap-4 '>
                                                                 <div  >
@@ -34,13 +35,13 @@ export default class CartItems extends Component {
                                                                     <div class='cart-item rounded-pill border p-2 my-2 d-flex align-items-center justify-content-around'>
                                                                         <!-- BTN MINUS -->
                                                                         ${item.qty >= 2
-                                        ? `<button class="bg-transparent border-0 decrease-btn" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                        ? `<button class="bg-transparent border-0 decrease-btn" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
                                                                                 <i class="fa-solid fa-minus fa-fw pointer"></i>
                                                                             </button>`
-                                        : `<button class="bg-transparent border-0 delete-btn" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                        : `<button class="bg-transparent border-0 delete-btn" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
                                                                                 <i class="fa-regular fa-trash-can fa-fw hoverIcon pointer"></i>
                                                                             </button>`
-                                    }
+                    }
                                                                         <!-- ____________Span Qty _______________ -->
                                                                         <span class="qty"> ${item.qty} </span>
 
@@ -82,8 +83,8 @@ export default class CartItems extends Component {
                                                             
                                                         </div>
                                                     `
-                                ).join("")
-                            }
+                ).join("")
+            }
                         </div>
                     </div>
 

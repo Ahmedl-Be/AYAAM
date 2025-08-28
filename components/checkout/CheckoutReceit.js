@@ -2,14 +2,15 @@ import { CartManager } from "../../scripts/cartScripts/cartManager.js";
 import Component from "../core/component.js";
 
 
-const cartManager = new CartManager();
-const items = cartManager.getCartItem();
 
-console.log(items)
 
 export default class CheckoutReceit extends Component{
 
     template() {
+        const cartManager = new CartManager();
+        const items = cartManager.getCartItem();
+
+        console.log(items)
         return `
             <div>
                 <h5>Your Bag</h5>

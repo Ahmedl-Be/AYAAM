@@ -3,29 +3,30 @@ import Component from "../core/component.js";
 
 
 
-const cartItems = sessionStore.read("shoppingCart" , []);
-const localProducts = localStore.read("products" , []);
-
-const cartCat = cartItems.map(item => {
-    const product = localProducts.find(p => p.id === item.id);
-    return product ? product.category : null ;
-}).filter(Boolean);
-
-console.log(cartCat) ;
-
-const uniqCats = [...new Set(cartCat)];
 
 
-const relatedItems = uniqCats.map(cat => {
-    return localProducts.filter(product => product.category === cat);
-}).flat();
 
-console.log( 'related item', relatedItems);
-        
-
-export default class RelatedProducts extends Component{
+export default class RelatedProducts extends Component {
 
     template() {
+        const cartItems = sessionStore.read("shoppingCart", []);
+        const localProducts = localStore.read("products", []);
+
+        const cartCat = cartItems.map(item => {
+            const product = localProducts.find(p => p.id === item.id);
+            return product ? product.category : null;
+        }).filter(Boolean);
+
+        console.log(cartCat);
+
+        const uniqCats = [...new Set(cartCat)];
+
+
+        const relatedItems = uniqCats.map(cat => {
+            return localProducts.filter(product => product.category === cat);
+        }).flat();
+
+        console.log('related item', relatedItems);
         return `    
             <div class=" marginTop-related mb-4 ms-lg-0 me-lg-0 ps-lg-0 pe-lg-0" id="related-items">
                 <h2 class="text-center mb-4 mt-3 mt-md-0">Related Products</h2>
@@ -40,14 +41,13 @@ export default class RelatedProducts extends Component{
                     ${relatedItems.map(product => `
                         <div class='col-12 col-md-4 col-lg-3 d-flex align-items-center justify-content-center slide'>
                         <div class="card h-100 position-relative " style="width: 18rem;">
-                            ${
-                                product.sale ? `
+                            ${product.sale ? `
                                 <span class="position-absolute bg-black text-white px-2 py-2 fs-6 fw-semibold bagecartItem" 
                                     style="z-index: 1; font-size: 0.8rem;">
-                                        ${product.sale / 100 }% SALE 
+                                        ${product.sale / 100}% SALE 
                                 </span>
                                 ` : ``
-                            }
+            }
 
                             <img style="height:320px" 
                                 src="./data/imgs/products/${product.category.toLowerCase()}/${product.subcategory.toLowerCase()}/${product.id.toLowerCase()}/${product.stock[0].images[0]}"  
@@ -66,7 +66,7 @@ export default class RelatedProducts extends Component{
                                     ` : `
                                     <span class="text-primary fw-bold">$ ${product.price}</span>
                                     `
-                                }
+            }
                                 <div class="d-flex align-items-center gap-2">
                                 <span class="badge bg-dark rounded-4">${product.category}</span>
                                 <span class="badge bg-dark rounded-4"> ${product.subcategory}</span>
@@ -93,52 +93,52 @@ export default class RelatedProducts extends Component{
     }
 
     script() {
-            document.addEventListener('DOMContentLoaded' ,()=>{
-                const slider = document.querySelector(".slider");
-                const slides = document.querySelectorAll(".slide");
-    
-                let currentIndex = 0;
-                const slideWidth = slides[0].offsetWidth;
-    
-                function goToSlide(index) {
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.querySelector(".slider");
+            const slides = document.querySelectorAll(".slide");
+
+            let currentIndex = 0;
+            const slideWidth = slides[0].offsetWidth;
+
+            function goToSlide(index) {
                 slider.scrollTo({
                     left: index * slideWidth,
                     behavior: "smooth",
                 });
-                }
-    
-                document.querySelector(".right-btn").addEventListener("click", () => {
+            }
+
+            document.querySelector(".right-btn").addEventListener("click", () => {
                 nextSlide();
-                });
-    
-                document.querySelector(".left-btn").addEventListener("click", () => {
+            });
+
+            document.querySelector(".left-btn").addEventListener("click", () => {
                 prevSlide();
-                });
-    
-                // دالة للـ next slide
-                function nextSlide() {
+            });
+
+            // دالة للـ next slide
+            function nextSlide() {
                 currentIndex++;
                 if (currentIndex >= slides.length) {
-                    currentIndex = 0; 
+                    currentIndex = 0;
                 }
                 goToSlide(currentIndex);
-                }
-    
-                // دالة للـ previous slide
-                function prevSlide() {
+            }
+
+            // دالة للـ previous slide
+            function prevSlide() {
                 currentIndex--;
                 if (currentIndex < 0) {
                     currentIndex = slides.length - 1;
                 }
                 goToSlide(currentIndex);
-                }
-    
-                let autoplay = setInterval(nextSlide, 2000);
-    
-                slider.addEventListener("mouseenter", () => clearInterval(autoplay));
-                slider.addEventListener("mouseleave", () => autoplay = setInterval(nextSlide, 3000));
+            }
 
-            })
-        }   
-    
+            let autoplay = setInterval(nextSlide, 2000);
+
+            slider.addEventListener("mouseenter", () => clearInterval(autoplay));
+            slider.addEventListener("mouseleave", () => autoplay = setInterval(nextSlide, 3000));
+
+        })
+    }
+
 }

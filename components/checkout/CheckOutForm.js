@@ -1,3 +1,4 @@
+import { getCurrentUser } from "../../data/authentication.js";
 import { CartManager } from "../../scripts/cartScripts/cartManager.js";
 import { navigate } from "../../scripts/utils/navigation.js";
 import { localStore, sessionStore } from "../../scripts/utils/storage.js";
@@ -144,7 +145,7 @@ export default class CheckOutForm extends Component{
         const phoneEl = document.getElementById('phone');
        
         //read user info from session storage
-        const userData = sessionStore.read('currentUser');
+        const userData = getCurrentUser();
         console.log(userData)
 
         // _____________________collaps Visa ________________________________
