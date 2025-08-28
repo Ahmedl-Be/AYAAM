@@ -91,12 +91,15 @@ export default class Navbar extends Component {
 
     <!-- Shopping Cart -->
                ${Button(`
-            <span class="position-relative">
-              ${Icon("cart-shopping", "solid", "fa-lg")}
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">
-                </span>
-             </span>
+                    <span class="position-relative">
+                        <a href="/cart" data-route>
+                          ${Icon("cart-shopping", "solid", "fa-lg")}
+                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count"></span>
+                        </a>
+                    </span>
              `, "ico-cart", "btn border-0 bg-transparent p-0")}
+
+
     <!-- Toggler Icon -->
                 ${Toggler('offcanvasNav')}
               </div>
@@ -121,9 +124,9 @@ export default class Navbar extends Component {
 
             <div class="offcanvas-body">
               <ul class="navbar-nav flex-grow-1">
-                ${Navlink('MEN', '/products/men')}
-                ${Navlink('WOMEN', '/products/women')}
-                ${Navlink('SALE', '/products/sale')}
+                ${Navlink("HOME", "/home")}
+                ${Navlink("CATALOG", "/catalog")}
+                ${Navlink("ABOUT US", "/about")}
               </ul>
             </div>
           </div>
@@ -132,9 +135,9 @@ export default class Navbar extends Component {
 <!-- SECOND ROW -->
         <div class="navbar row d-none d-md-flex w-100 ps-0" id="category">
           <ul class="navbar-nav d-flex flex-row justify-content-center w-100">
-            ${Navlink("MEN", "/products/men", "mx-3")}
-            ${Navlink("WOMEN", "/products/women", "mx-3")}
-            ${Navlink("SALE", "/products/sale", "mx-3")}
+            ${Navlink("HOME", "/home", "mx-3")}
+            ${Navlink("CATALOG", "/catalog", "mx-3")}
+            ${Navlink("ABOUT US", "/about", "mx-3")}
           </ul>
         </div>
       </header>
@@ -158,6 +161,8 @@ export default class Navbar extends Component {
         document.body.classList.toggle("dark-mode");
       });
     };
+
+
 
 
     // handle Shopping Cart Count
