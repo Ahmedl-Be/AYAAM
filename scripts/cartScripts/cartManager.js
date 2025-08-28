@@ -32,7 +32,7 @@ const userCart = {
 };
 
 // Set dummy cart items to session
-sessionStore.write("ShopingCart", userCart);
+// sessionStore.write("ShopingCart", userCart);
 
 export function CartManager() {
   // Get local data to work on
@@ -43,7 +43,7 @@ export function CartManager() {
 
   // Get detailed cart items
   this.getCartItem = function () {
-    return this.cart.items.map(item => {
+    return this.cart.map(item => {
       const product = this.products.find(p => p.id === item.id);
       const stockItem = product?.stock.find(s => s.color === item.color);
       const sizeInStock = stockItem?.sizes.find(sz => sz.name === item.size);
@@ -75,7 +75,7 @@ export function CartManager() {
 
   // Update quantity UI
   this.rerender = function () {
-    this.cart.items.forEach(item => {
+    this.cart.forEach(item => {
       const qtyEl = document.querySelector(
         `.cart-item[data-id="${item.id}"][data-color="${item.color}"][data-size="${item.size}"] .qty`
       );
@@ -85,7 +85,7 @@ export function CartManager() {
   
   // Calculate totals
   this.calculateTotal = function () {
-    const totals = this.cart.items.reduce((acc, item) => {
+    const totals = this.cart.reduce((acc, item) => {
       const product = this.products.find(p => p.id === item.id);
       if (!product) return acc;
   
@@ -106,7 +106,7 @@ export function CartManager() {
      const subtotalEls = document.querySelectorAll(".subtotal");
     const totalEls = document.querySelectorAll(".total");
     const discountEls = document.querySelectorAll(".discount");
-    const totalItemsEls = document.querySelectorAll('.totalItems');
+    const totalItemsEls = document.querySelectorAll('#totalItems');
     const hNoItems = document.querySelector('#no-items');
   
     subtotalEls.forEach(el => el.innerText =`SubTotal : $ ${ totals.subtotal.toFixed(2)}`);
@@ -120,7 +120,7 @@ export function CartManager() {
 
   // Increase item quantity
     this.increaseQty = function (id, color, size, btnEl) {
-        const item = this.cart.items.find(
+        const item = this.cart.find(
         i => i.id === id && i.color === color && i.size === size
         );
     
@@ -151,7 +151,7 @@ export function CartManager() {
   
   // Decrease item quantity
   this.decreaseQty = function(id, color, size, btnEl) {
-        const item = this.cart.items.find(i => i.id === id && i.color === color && i.size === size);
+        const item = this.cart.find(i => i.id === id && i.color === color && i.size === size);
         if (!item) return;
 
         item.qty -= 1;
@@ -182,7 +182,7 @@ export function CartManager() {
 
     // Remove item from cart
    this.removeItem = function(id, color, size) {
-        this.cart.items = this.cart.items.filter(
+        this.cart = this.cart.filter(
             i => !(i.id === id && i.color === color && i.size === size)
         );
         this.saveCart();
@@ -192,13 +192,13 @@ export function CartManager() {
 
         const totals = this.calculateTotal();
         this.updateTotalUI(totals);
-        console.log(this.cart.items)
+        console.log(this.cart)
     };
   
   
   // Count total items in cart
-  this.itemCount = function () {
-    return this.cart.items.reduce((sum, item) => sum + (item.qty || 0), 0);
+  this.itemCount = function () {    
+    return  this.cart.reduce((sum, item) => sum + (item.qty || 0), 0);
   };
 
 }

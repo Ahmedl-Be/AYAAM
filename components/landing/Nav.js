@@ -67,8 +67,8 @@ export default class Navbar extends Component {
             <span class="position-relative">
               ${Icon("cart-shopping", "solid", "fa-lg")}
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">
-                </span>
-             </span>
+              </span>
+            </span>
              `, "ico-cart", "btn border-0 bg-transparent p-0")}
     <!-- Toggler Icon -->
                 ${Toggler('offcanvasNav')}

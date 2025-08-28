@@ -6,7 +6,7 @@ import Component from "../core/component.js";
 const cartItems = sessionStore.read("ShopingCart" , []);
 const localProducts = localStore.read("products" , []);
 
-const cartCat = cartItems.items.map(item => {
+const cartCat = cartItems.map(item => {
     const product = localProducts.find(p => p.id === item.id);
     return product ? product.category : null ;
 }).filter(Boolean);
