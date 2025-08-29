@@ -1,0 +1,77 @@
+@import url(design.sys.css);
+
+
+
+
+
+.text-muted {
+    color: var(--fontcolor2) !important;
+}
+
+.link-light,
+a {
+    color: var(--fontcolor0);
+}
+
+a:hover {
+    color: var(--fontcolor1);
+}
+
+/* Hero */
+.hero {
+    background: radial-gradient(1200px 400px at 50% -10%, rgba(249, 115, 22, .25), transparent),
+        linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0));
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.hero .badge-brand {
+    background: rgba(249, 115, 22, .15);
+    color: var(--brand);
+}
+
+/* Card-like section container */
+.policy-card {
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+}
+
+.policy-card h2,
+.policy-card h3 {
+    color: var(--fontcolor0);
+}
+
+/* Accordion */
+.accordion-button {
+    background: transparent;
+    color: var(--fontcolor0);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--fontcolor0);
+    background: rgba(249, 115, 22, .12);
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .06);
+}
+
+.accordion-item {
+    background: transparent;
+    border-color: rgba(255, 255, 255, .1);
+}
+
+/* Check list */
+.list-check li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: .5rem;
+}
+
+.list-check li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: .05rem;
+    color: var(--brand);
+}

@@ -10,6 +10,13 @@ import CardsSection from "../components/landing/Section.js";
 import { localStore } from "../scripts/utils/storage.js";
 
 export default class HomePage extends View {
+  constructor(_config , _params = {}) {
+    // Call base constructor
+    super({
+      title: 'Home | AYAAM' 
+    }, _params);
+
+  }
   template() {
     return `
             <header class="sticky-top bg-white" id='navbar'></header>

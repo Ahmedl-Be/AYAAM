@@ -12,6 +12,13 @@ const cartItems = cartManager.getCartItem();
 console.log(cartItems)
 
 export default class CheckoutPage extends View {
+    constructor(_config, _params = {}) {
+        // Call base constructor
+        super({
+            title: 'Complete purcashe | AYAAM'
+        }, _params);
+
+    }
     template() {
         return `
            <header class="sticky-top bg-white" id='navbar'></header>

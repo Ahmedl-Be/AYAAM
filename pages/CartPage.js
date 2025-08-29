@@ -7,6 +7,13 @@ import Navbar from "../components/landing/Nav.js";
 
 
 export default class CartPage extends View {
+    constructor(_config, _params = {}) {
+        // Call base constructor
+        super({
+            title: 'Your Cart | AYAAM'
+        }, _params);
+
+    }
     template() {
         return `
             <header class="sticky-top bg-white" id='navbar'></header>

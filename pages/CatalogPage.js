@@ -5,6 +5,13 @@ import Footer from "../components/landing/Footer.js";
 
 
 export default class Catalog extends View {
+  constructor(_config, _params = {}) {
+    // Call base constructor
+    super({
+      title: 'Products Catalog | AYAAM'
+    }, _params);
+
+  }
   template() {
     return `
     <header class="sticky-top bg-white" id='navbar'></header>

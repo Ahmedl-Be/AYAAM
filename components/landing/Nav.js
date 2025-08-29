@@ -21,7 +21,10 @@ export default class Navbar extends Component {
 
 <!-- LOGO -->
             <div class="col-6 col-md-3 d-flex align-items-center">
-              ${Anchor("MY SHOP", "/home", "navbar-brand py-0")}
+            <h5 class="mb-4 font-weight-bold text-uppercase">
+            ${Anchor("AYAAM", "/home", "navbar-brand")}
+            </h5>
+              
             </div>
 
 <!-- ICONS - moves to third position on md+ -->
@@ -133,8 +136,8 @@ export default class Navbar extends Component {
         </nav>
 
 <!-- SECOND ROW -->
-        <div class="navbar row d-none d-md-flex w-100 ps-0" id="category">
-          <ul class="navbar-nav d-flex flex-row justify-content-center w-100">
+        <div class="navbar row d-none d-md-flex w-100 mx-0" id="category">
+          <ul class="navbar-nav d-flex flex-row justify-content-center w-100 px-0">
             ${Navlink("HOME", "/home", "mx-3")}
             ${Navlink("CATALOG", "/catalog", "mx-3")}
             ${Navlink("ABOUT US", "/about", "mx-3")}

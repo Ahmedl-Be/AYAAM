@@ -7,6 +7,13 @@ import Toast from "../components/ui/toast.js";
 
 
 export default class SignupPage extends View {
+  constructor(_config, _params = {}) {
+    // Call base constructor
+    super({
+      title: 'Signup | AYAAM'
+    }, _params);
+
+  }
     template() {
         const formHalf = `<div
           class="col-9 d-flex align-items-center justify-content-center py-5"

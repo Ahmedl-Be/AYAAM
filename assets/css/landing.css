@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.5s !important;
+    
 }
 
 
@@ -31,13 +31,21 @@
     }
 }
 
-i {
+#navbar i {
     color: rgb(59, 59, 59);
 
 }
 
-i:hover {
+#navbar i:hover {
     color: rgb(26, 26, 26);
+}
+#footer i {
+    color: rgb(185, 185, 185);
+
+}
+
+#footer i:hover {
+    color: rgb(228, 228, 228);
 }
 
 /* HERO SECTION */

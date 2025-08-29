@@ -2,6 +2,7 @@ import { getCurrentUser, redirect, signup, validateEmail, validatePassword } fro
 import { localStore } from '../../scripts/utils/storage.js';
 import Component from '../core/component.js';
 import Toast from '../ui/toast.js';
+import TermsModal from './terms.js';
 
 export default class SignupForm extends Component {
     template() {
@@ -64,13 +65,8 @@ export default class SignupForm extends Component {
                     />
                     <label class="form-check-label" for="terms"
                     >I agree to the
-                    <a
-                        href="#"
-                        data-bs-toggle="modal"
-                        data-bs-target="#termsModal"
-                        >Terms & Conditions</a
-                    ></label
-                    >
+                    <a href=""
+                        data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a> and <a href='#/policy' target='_blank' >Privacy Policy</a>.</label>
                     <div id="termsError" class="invalid-feedback d-none">
                     You must accept the terms.
                     </div>
@@ -82,7 +78,7 @@ export default class SignupForm extends Component {
                 </button>
             </form>
 
-            <!-- The Modal -->
+            <!-- The Invalid Modal -->
             <div class="modal fade" id="emailExistsModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -100,6 +96,9 @@ export default class SignupForm extends Component {
                     </div>
                 </div>
             </div>
+
+            <!-- The Terms Modal -->
+            ${TermsModal()}
                   `
     }
 

@@ -2,9 +2,18 @@ import View from "../components/core/view.js";
 import { navigate } from "../scripts/utils/navigation.js";
 import Navbar from "../components/landing/Nav.js";
 import Toast from './../components/ui/toast.js';
-import { sessionStore } from "../scripts/utils/storage.js";
+import { localStore, sessionStore } from "../scripts/utils/storage.js";
 
 export default class Product extends View {
+  constructor(_config, _params = {}) {
+    const currentId = sessionStore.read('currentProduct', '');
+    const currentProd = localStore.read('products', []).filter(product => product.id === currentId)[0];
+    // Call base constructor
+    super({
+      title: `${currentProd.name} | AYAAM`
+    }, _params);
+
+  }
   template() {
     return `
       <header class="sticky-top bg-white" id="navbar"></header>

@@ -9,6 +9,13 @@ import { renderUsersStats, renderSellersStats, renderProductsStats } from "../co
 import { getCurrentUser } from './../data/authentication.js';
 
 export default class AdminDashboard extends Views {
+    constructor(_config, _params = {}) {
+        // Call base constructor
+        super({
+            title: 'Admin Dashboard | AYAAM'
+        }, _params);
+
+    }
     template() {
         const user = getCurrentUser();
         if (!user) return `<p>Please log in</p>`;
