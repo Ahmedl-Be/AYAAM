@@ -3,17 +3,19 @@ import View from "../core/view.js";
 
 
 const currentUserData = sessionStore.read("currentUser"); 
-const orders = localStore.read("orders");
+const orders = localStore.read("orders")||[];
 
-const userOrders = orders.filter(order => order.userId === currentUserData.id);
-console.log(userOrders);
+const userOrders = orders.filter(order => order.userId === currentUserData?.id);
+console.log(userOrders , "Current user orders");
+
+
 
 export default class TableOrders extends View {
     template() {
         return `
             <div class="accordion card shadow-none" id="ordersAccordion">
                 <tale class=""table>
-                ${orders.map((order, i) => `
+                ${userOrders.map((order, i) => `
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading-${i}">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${i}" aria-expanded="false" aria-controls="collapse-${i}">
