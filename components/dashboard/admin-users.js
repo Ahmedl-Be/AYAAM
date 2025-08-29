@@ -1,7 +1,8 @@
 //admin users page
-import { capitalizeWords, generateId, getInitials, getRandomColor,getRoleBadge, formatDate, showAlert, showConfirmDialog, generateRandomPassword } from "../../scripts/utils/dashboardUtils.js";
+import { capitalizeWords, generateId, getInitials, getRandomColor,getRoleBadge, formatDate, showConfirmDialog, generateRandomPassword } from "../../scripts/utils/dashboardUtils.js";
 import User from "../../data/_schema/UserModel.js";
 import { localStore } from "../../scripts/utils/storage.js";
+import Toast from "../ui/toast.js";
 
 let currentSort = { field: null, direction: 'asc' }; // for sorting
 //main function that renders all users page
@@ -80,7 +81,7 @@ export function renderUsers(container) {
                             <option value="">All Roles</option>
                             <option value="admin">Admin</option>
                             <option value="seller">Seller</option>
-                            <option value="customer">Customer</option>
+                            <option value="user">User</option>
                         </select>
                     </div>
                     <div class="col-12 col-lg-4 ms-auto text-end">
@@ -317,7 +318,7 @@ function renderUserForm() {
                         <option value="">Select Role</option>
                         <option value="admin">Admin</option>
                         <option value="seller">Seller</option>
-                        <option value="customer">Customer</option>
+                        <option value="user">User</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select a role.
@@ -443,7 +444,7 @@ function handleUserFormSubmit(e) {
 
         // Check if email already exists
         if (users.find((u) => u.email === document.getElementById("userEmail").value)) {
-            showAlert("Email address already exists!", "danger");
+            Toast.notify("Email address already exists!", "warning");
             return;
         }
         // if everything is ok, add new user>>>
@@ -468,7 +469,7 @@ function handleUserFormSubmit(e) {
         e.target.reset();
         e.target.classList.remove("was-validated");
         document.getElementById("userForm").classList.add("d-none");
-        showAlert("New user has been successfully added", "success");
+        Toast.notify("New user has been successfully added", "success");
 
         // Re-render users
         const container = document.getElementById("adminContent");
@@ -494,7 +495,7 @@ async function handleUserDelete(e) {
     const updated = users.filter((u) => u.id !== id);
     localStore.write("users", updated);
 
-    showAlert(`${name} has been successfully deleted.`);
+    Toast.notify(`${name} has been successfully deleted.`,"success");
 
     const container = document.getElementById("adminContent");
     renderUsers(container);
@@ -555,7 +556,7 @@ export function viewUserDetails(userId) {
                                 <div class="col-md-4 text-center mt-5">
                                     <h4 class="fw-bold mb-4">${user.name}</h4>
                                     <span class="badge bg-primary mb-2">
-                                        ${capitalizeWords(user.role || 'Customer')}
+                                        ${capitalizeWords(user.role || 'User')}
                                     </span>
                                     <br>
                                     <span class="badge ${user.status === "active" || !user.status ? "bg-success" : "bg-secondary"}">
@@ -682,7 +683,7 @@ export function editUser(userId) {
                                         <select class="form-select" id="editUserRole">
                                             <option value="admin" ${user.role === "admin" ? "selected" : ""}>Admin</option>
                                             <option value="seller" ${user.role === "seller" ? "selected" : ""}>Seller</option>
-                                            <option value="customer" ${user.role === "customer" ? "selected" : ""}>Customer</option>
+                                            <option value="user" ${user.role === "user" ? "selected" : ""}>User</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
@@ -738,7 +739,7 @@ export function editUser(userId) {
                 localStore.write("users", users);
 
                 // Show success message
-                showAlert(`Password reset successfully for ${users[userIndex].name}`, "success");
+                Toast.notify(`New password: ${newPassword}`, "success");
             }
         });
 
@@ -767,7 +768,7 @@ export function updateUser(userId) {
             // Check if email already exists for other users except the one being updated
             const emailExists = users.find((u) => u.email === updatedEmail && u.id != userId);
             if (emailExists) {
-                showAlert("Email address already exists for another user!", "danger");
+                Toast.notify("Email address already exists for another user!", "danger");
                 return;
             }
             // Update user data
@@ -784,7 +785,7 @@ export function updateUser(userId) {
             const modal = bootstrap.Modal.getInstance(document.getElementById("editUserModal"));
             modal.hide();
 
-            showAlert(`${updatedName} has been successfully updated.`);
+            Toast.notify(`${updatedName} has been successfully updated.`, "success");
 
             // Re-render the users table
             const container = document.getElementById("adminContent");
@@ -825,7 +826,7 @@ export async function bulkAction(action) {
         }
         //filter out users that are not selected 
         users = users.filter((u) => !selectedIds.includes(u.id.toString()));
-        showAlert(`${selectedIds.length} user(s) have been deleted successfully.`, "success");
+        Toast.notify(`${selectedIds.length} user(s) have been deleted successfully.`,"success");
     }
     else {//activate or deactivate (needs confirmation too)
         const confirmed = await showConfirmDialog(`Are you sure you want to delete ${selectedIds.length} selected user(s)?`);
@@ -837,7 +838,7 @@ export async function bulkAction(action) {
                 user.status = action === "activate" ? "active" : "inactive";
             }
         });
-        showAlert(`${selectedIds.length} user(s) have been ${action}d.`, "success");
+        Toast.notify(`${selectedIds.length} user(s) have been ${action}d successfully.`,"success");
     }
 
     localStore.write("users", users);

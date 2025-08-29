@@ -1,6 +1,7 @@
 //admin-products page
-import { checkStock, showAlert, showConfirmDialog, truncateText, getProductThumbnail } from "../../scripts/utils/dashboardUtils.js";
+import { checkStock, showConfirmDialog, truncateText, getProductThumbnail } from "../../scripts/utils/dashboardUtils.js";
 import { localStore } from "../../scripts/utils/storage.js";
+import Toast from "../ui/toast.js";
 
 // Global sorting state
 let currentSort = { field: null, direction: 'asc' };
@@ -143,7 +144,7 @@ function renderCategoryFilter() {
     });
 }
 
-function renderProductsTable(products) {
+export function renderProductsTable(products) {
     return `
         <div class="table-responsive ">
             <table class="table table-hover mb-0">
@@ -265,7 +266,7 @@ function renderEmptyState() {
 }
 
 //event listeners
-function ProductEvents(container) {
+export function ProductEvents(container) {
     // Search functionality
     const searchInput = document.getElementById("searchInput");
     if (searchInput) {
@@ -375,7 +376,7 @@ async function handleProductDelete(e) { // for event #3
     const products = localStore.read("products") || [];
     const updated = products.filter((p) => p.id !== id);
     localStore.write("products", updated);
-    showAlert(`${name} has been successfully deleted.`);
+    Toast.notify(`${name} has been successfully deleted.`,"warning");
 
     const container = document.getElementById("adminContent");
     renderProducts(container);
@@ -469,7 +470,7 @@ async function bulkAction(action) { //for event #5
         if (!confirmed) return;
 
         products = products.filter((p) => !selectedIds.includes(p.id));
-        showAlert(`${selectedIds.length} product(s) have been deleted successfully.`, "success");
+            Toast.notify(`${selectedIds.length} product(s) have been deleted successfully.`, "warning");
     }
 
     localStore.write("products", products);
