@@ -19,7 +19,8 @@ const routes = {
   "/admin": { loader: () => import("./pages/AdminDashboard.js"), roles: ["admin", "master"] },
 
  /* SELLER ONLY PAGES */
-  // "/seller": { loader: () => import("./pages/SellerDashboard.js"), roles: ["seller"] },
+  "/seller": { loader: () => import("./pages/SellerDashboard.js"), roles: ["seller"] },
+  "/addproduct": { loader: () => import("./pages/seller/AddProduct.js"), roles: ["seller"] },
 }
 
 /* ====== APP ROOT ELEMENT ====== */
