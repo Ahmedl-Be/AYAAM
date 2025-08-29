@@ -143,6 +143,12 @@ export default class CheckOutForm extends Component{
         const lnameEl = document.getElementById('lname');
         const emailEl = document.getElementById('email');
         const phoneEl = document.getElementById('phone');
+        const cardNum = document.getElementById('card-num');
+        const expDate = document.getElementById('exp-date');
+        const cvv = document.getElementById('cvv');
+        // const cityEl = document.getElementById('city');
+        // const stateEl = document.getElementById('state');
+        // const zCodeEl = document.getElementById('zip-code');
        
         //read user info from session storage
         const userData = getCurrentUser();
@@ -187,19 +193,18 @@ export default class CheckOutForm extends Component{
 
             if(userData.email) emailEl.value = userData.email;
             if(userData.phone) phoneEl.value = userData.phone;
+            // if(userData.city) cityEl.value = userData.city;
+            // if(userData.state) stateEl.value = userData.state;
+            // if(userData.zipCode) zCodeEl.value = userData.zipCode;
 
 
-            document.querySelectorAll("#fname , #lname , #email  , #phone").forEach(input => {
+            document.querySelectorAll("#fname , #lname , #email  , #phone ").forEach(input => {
                 input.disabled = true ;
             });
         }
 
 
         //bootstrap Validation
-
-        const cardNum = document.getElementById('card-num');
-        const expDate = document.getElementById('exp-date');
-        const cvv = document.getElementById('cvv');
 
         cardNum.addEventListener("input", function (e) {
             let value = e.target.value.replace(/\D/g, "");
@@ -271,7 +276,6 @@ export default class CheckOutForm extends Component{
             form.addEventListener('submit', event => {
                 const selectedPay = document.querySelector('input[name="pay-method"]:checked');
 
-                // 1) ضبط required للبطاقة حسب وسيلة الدفع
                 if (selectedPay && selectedPay.value === 'visa') {
                     cardNum.setAttribute("required", "true");
                     expDate.setAttribute("required", "true");
@@ -282,14 +286,12 @@ export default class CheckOutForm extends Component{
                     cvv.removeAttribute("required");
                 }
 
-                // 2) بعد ضبط required نعمل checkValidity
                 let isValid = form.checkValidity();
 
                 const city = document.getElementById('city').value;
                 const state = document.getElementById('state').value;
                 const zipcode = document.getElementById('zip-code').value;
 
-                // 3) Validation إضافي لو الدفع Visa
                 if (selectedPay && selectedPay.value === 'visa') {
                     let value = cardNum.value.replace(/\D/g, "");
                     let cvvValue = cvv.value.replace(/\D/g, "");
@@ -320,13 +322,11 @@ export default class CheckOutForm extends Component{
                         }
                     }
                 } else {
-                    // لو مش فيزا نمسح أي validation قديم
                     cardNum.classList.remove("is-valid", "is-invalid");
                     expDate.classList.remove("is-valid", "is-invalid");
                     cvv.classList.remove("is-valid", "is-invalid");
                 }
 
-                // 4) التعامل مع النتيجة
                 const shoppingCartItems = sessionStore.read("shoppingCart");
                 if (!isValid || shoppingCartItems === null || shoppingCartItems.length === 0) {
                     event.preventDefault();
@@ -346,6 +346,7 @@ export default class CheckOutForm extends Component{
                         phone: userData.phone,
                         city: city,
                         state: state,
+                        address : city + "," +state ,
                         zipCode: zipcode,
                         payMethod: selectedPay ? selectedPay.value : "",
                         cardNumber: selectedPay && selectedPay.value === 'visa' ? cardNum.value : "",
@@ -354,8 +355,10 @@ export default class CheckOutForm extends Component{
                     };
 
                     console.log("Form Data:", formData);
+                    const newData = {...userData , ...formData}
+                    sessionStore.write("currentUser" , newData);
+                    
 
-                    // Reset مخصص: نمسح كل حاجة ماعدا disabled
                     form.querySelectorAll("input, textarea").forEach(el => {
                         if (!el.disabled) {
                             if (el.type === "checkbox" || el.type === "radio") {
@@ -366,7 +369,6 @@ export default class CheckOutForm extends Component{
                         }
                     });
 
-                    // نمسح أي validation classes
                     form.classList.remove('was-validated');
                     form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
                         el.classList.remove('is-valid', 'is-invalid');
@@ -375,6 +377,27 @@ export default class CheckOutForm extends Component{
 
                     const cartManager = new CartManager();
                     const items = cartManager.getCartItem();
+                    const localProducts = localStore.read("products", []);
+
+                    items.forEach(cartItem => {
+                        const product = localProducts.find(p => p.id === cartItem.id);
+                        if (!product) return;
+
+                        const stockItem = product.stock.find(s => s.color === cartItem.color);
+                        if (!stockItem) return;
+
+                        const sizeObj = stockItem.sizes.find(sz => sz.name === cartItem.size);
+                        if (!sizeObj) return;
+
+                        console.log("QTY Before", sizeObj.qty);
+
+                        sizeObj.qty -= cartItem.qty; 
+                        if (sizeObj.qty < 0) sizeObj.qty = 0;
+
+                        console.log("QTY After", sizeObj.qty);
+                    });
+
+                    localStore.write("products", localProducts);
                     
                     const orderLocal = localStore.read("orders") || [];
 
@@ -383,27 +406,31 @@ export default class CheckOutForm extends Component{
                     const day = String(today.getDate()).padStart(2, "0");       
                     const month = String(today.getMonth() + 1).padStart(2, "0"); 
                     const year = today.getFullYear();  
-                    items.forEach(item => {
                                     
                     const order = {
-                        orderId: Date.now() + "-" + item.id,
-                        userId: userData.id,
-                        userName: userData.name,
-                        userEmail: userData.email,
-                        productName: item.name,
-                        qty: item.qty,
-                        price: item.price,
-                        size: item.size,
-                        category: item.category,
-                        img: item.img,
-                        state: item.state || "",
-                        orderDate: `${day}/${month}/${year}` 
-                    };
-                        
-                        orderLocal.push(order);
-                    });
+                            orderId: Date.now() + "-" + userData.id,
+                            userId : userData.id,
+                            userName: userData.name,
+                            userEmail: userData.email,
+                            orderDate: `${day}/${month}/${year}` ,
+                            orderItems: items.map(item => ({
+                                productId: item.id,
+                                productName: item.name,
+                                qty: item.qty,
+                                price: item.price,
+                                size: item.size,
+                                category: item.category,
+                                color: item.color,
+                                img: item.img,
+                                state: "pending" 
+                            })),
+                    }
+                            
+                    orderLocal.push(order);
+                    console.log(orderLocal);
                     localStore.write("orders" , orderLocal);
                     sessionStore.write("shoppingCart" , [])
+
                     console.log(orderLocal);
                     navigate('/home');
                     console.log("all is Done")

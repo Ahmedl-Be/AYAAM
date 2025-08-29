@@ -12,19 +12,23 @@ export default class RelatedProducts extends Component {
         const cartItems = sessionStore.read("shoppingCart", []);
         const localProducts = localStore.read("products", []);
 
-        const cartCat = cartItems.map(item => {
-            const product = localProducts.find(p => p.id === item.id);
-            return product ? product.category : null;
-        }).filter(Boolean);
+let relatedItems = [];
 
-        console.log(cartCat);
+if (cartItems.length === 0) {
+    relatedItems = localProducts;
+} else {
+    const cartCat = cartItems.map(item => {
+        const product = localProducts.find(p => p.id === item.id);
+        return product ? product.category : null;
+    }).filter(Boolean);
 
-        const uniqCats = [...new Set(cartCat)];
+    const uniqCats = [...new Set(cartCat)];
 
-
-        const relatedItems = uniqCats.map(cat => {
-            return localProducts.filter(product => product.category === cat);
-        }).flat();
+    relatedItems = uniqCats.map(cat => {
+        const filtered = localProducts.filter(product => product.category === cat);
+        return filtered.length > 0 ? filtered : localProducts;
+    }).flat();
+}
 
         console.log('related item', relatedItems);
         return `    
@@ -93,14 +97,14 @@ export default class RelatedProducts extends Component {
     }
 
     script() {
-        document.addEventListener('DOMContentLoaded', () => {
-            const slider = document.querySelector(".slider");
-            const slides = document.querySelectorAll(".slide");
-
-            let currentIndex = 0;
-            const slideWidth = slides[0].offsetWidth;
-
-            function goToSlide(index) {
+            // document.addEventListener('DOMContentLoaded' ,()=>{
+                const slider = document.querySelector(".slider");
+                const slides = document.querySelectorAll(".slide");
+    
+                let currentIndex = 0;
+                const slideWidth = slides[0].offsetWidth;
+    
+                function goToSlide(index) {
                 slider.scrollTo({
                     left: index * slideWidth,
                     behavior: "smooth",
@@ -138,7 +142,7 @@ export default class RelatedProducts extends Component {
             slider.addEventListener("mouseenter", () => clearInterval(autoplay));
             slider.addEventListener("mouseleave", () => autoplay = setInterval(nextSlide, 3000));
 
-        })
-    }
-
+        // })
+    }   
+    
 }
