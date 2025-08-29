@@ -2,16 +2,43 @@ import { ProductCard } from "../productCard/productCard.js";
 
 // handles rendering list of products
 
-export function ProductList(containerId,productNumsId, state) {
+export function ProductList(containerId, productNumsId, state) {
 
   const container = document.getElementById(containerId);
-  container.innerHTML = "";
+  const productNums = document.getElementById(productNumsId);
 
-   const productNums = document.getElementById(productNumsId);
+  if (!container) {
+    // console.warn(`ProductList container not found(renderd) yet`);
+    return;
+  };
+
+  container.innerHTML = "";
 
 
   const products = JSON.parse(localStorage.getItem("products")) || [];
   let filtered = [...products];
+
+  // Apply search filter
+  if (state.search) {
+    const terms = state.search.toLowerCase().split(/\s+/).filter(Boolean);
+    filtered = filtered.filter((p) => {
+      if (!p) return false;
+
+      // Collect searchable text from all fields
+      const searchable = [
+        p.subcategory || "",
+        p.name || "",
+        p.brand || "",
+        p.category || "",
+        ...(p.stock || []).map(s => s.color || "")
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return terms.every(term => searchable.includes(term));
+    });
+  }
+
 
   // Filter by category
   if (state.category) {
@@ -43,47 +70,47 @@ export function ProductList(containerId,productNumsId, state) {
 
 
   // Filter by color (if any selected)
-if (state.color && state.color.size > 0) {
-  filtered = filtered.filter(p =>
-    (p.stock || []).some(variant =>
-      state.color.has(variant.color)
-    )
-  );
-}
-
-
-// Filter by Price (if min/max are set)
-if (state.minPrice !== null || state.maxPrice !== null) {
-  filtered = filtered.filter(p => {
-    const price = p.price || 0;
-
-    const meetsMin = state.minPrice !== null ? price >= state.minPrice : true;
-    const meetsMax = state.maxPrice !== null ? price <= state.maxPrice : true;
-
-    return meetsMin && meetsMax;
-  });
-}
-
-
-
-// Filter by discount
-if (state.discount !== null) {
-  if (state.discount === "any") {
-    filtered = filtered.filter(p => (p.sale || 0) > 0);
-  } else {
-    const threshold = parseFloat(state.discount);
-    filtered = filtered.filter(p => (p.sale || 0) >= threshold);
+  if (state.color && state.color.size > 0) {
+    filtered = filtered.filter(p =>
+      (p.stock || []).some(variant =>
+        state.color.has(variant.color)
+      )
+    );
   }
-}
+
+
+  // Filter by Price (if min/max are set)
+  if (state.minPrice !== null || state.maxPrice !== null) {
+    filtered = filtered.filter(p => {
+      const price = p.price || 0;
+
+      const meetsMin = state.minPrice !== null ? price >= state.minPrice : true;
+      const meetsMax = state.maxPrice !== null ? price <= state.maxPrice : true;
+
+      return meetsMin && meetsMax;
+    });
+  }
 
 
 
-// Filter by offers
-if (state.offers.size > 0) {
-  filtered = filtered.filter(p =>
-    (p.offers || []).some(offer => state.offers.has(offer))
-  );
-}
+  // Filter by discount
+  if (state.discount !== null) {
+    if (state.discount === "any") {
+      filtered = filtered.filter(p => (p.sale || 0) > 0);
+    } else {
+      const threshold = parseFloat(state.discount);
+      filtered = filtered.filter(p => (p.sale || 0) >= threshold);
+    }
+  }
+
+
+
+  // Filter by offers
+  if (state.offers.size > 0) {
+    filtered = filtered.filter(p =>
+      (p.offers || []).some(offer => state.offers.has(offer))
+    );
+  }
 
 
 
@@ -92,6 +119,7 @@ if (state.offers.size > 0) {
     const noProductsMessage = document.createElement("div");
     noProductsMessage.className = "alert alert-dark";
     noProductsMessage.textContent = "No products found for the selected filters.";
+    productNums.textContent = `No products`;
     container.appendChild(noProductsMessage);
     return;
   }
@@ -101,8 +129,12 @@ if (state.offers.size > 0) {
     container.appendChild(card);
   });
 
+
+
   //  Update the product count after filtering
-  productNums.textContent = `${filtered.length} products`;
+  if (productNums) {
+    productNums.textContent = `${filtered.length} products`;
+  }
 
 
 };

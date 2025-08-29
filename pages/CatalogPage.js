@@ -195,6 +195,8 @@ export default class Catalog extends View {
 
     this.mount(Navbar, "#navbar");
     const products = JSON.parse(localStorage.getItem("products")) || [];
+
+
     // Central filter state
     const state = {
       category: null,
@@ -206,8 +208,19 @@ export default class Catalog extends View {
       maxPrice: null,
       discount: null,
       offers: new Set(),
+      search : sessionStorage.getItem("searchTerm") || "",
     };
 
+
+    // ****handel search*****
+    const applySearch = () => {
+      ProductList("product-list", "results-count", state);
+    };
+    // listen to custom event (works even if already on Catalog)
+    window.addEventListener("search-updated", (e) => {
+        state.search = e.detail;
+        applySearch();
+    });
 
 
     function filterProductByCategory() {
@@ -560,6 +573,8 @@ export default class Catalog extends View {
       state.maxPrice = null;
       state.discount = null;
       state.offers.clear();
+      state.search = ""
+      sessionStorage.setItem("searchTerm","")
 
       // Reset all filter inputs
       document.querySelectorAll('.filter-input').forEach(input => {
