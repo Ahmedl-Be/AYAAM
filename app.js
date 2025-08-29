@@ -15,23 +15,22 @@ const routes = {
   /* LANDING */
   "/home": { loader: () => import("./pages/HomePage.js") },
   "/about": { loader: () => import("./pages/AboutPage.js") },
-  "/catalog": { loader: () => import("./pages/CatalogPage.js")},
+  "/catalog": { loader: () => import("./pages/CatalogPage.js") },
   "/product": { loader: () => import("./pages/Product.js") },
-  "/cart": { loader:  () => import("./pages/CartPage.js") },
-  "/profile": { loader:  () => import("./pages/Profile.js") },
-  
+  "/cart": { loader: () => import("./pages/CartPage.js") },
+  "/profile": { loader: () => import("./pages/Profile.js") },
+
   /* LOGIN NEEDED*/
   "/checkout": { loader: () => import("./pages/CheckOutPage.js"), roles: ['admin', 'user', 'master', 'seller'] },
-  
+
   /* ADMIN ONLY PAGES */
   "/admin": { loader: () => import("./pages/AdminDashboard.js"), roles: ["admin", "master"] },
 
- /* SELLER ONLY PAGES */
+  /* SELLER ONLY PAGES */
   // "/seller": { loader: () => import("./pages/SellerDashboard.js"), roles: ["seller"] },
 
   /* INFO PAGES */
-  "/faq": { loader: () => import("./pages/Profile.js") },
-  "/policy": { loader: () => import("./pages/PrivacyAndPolicy.js") },
+  "/info": { loader: () => import("./pages/SupportPage.js") },
 }
 
 /* ====== APP ROOT ELEMENT ====== */

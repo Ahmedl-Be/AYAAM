@@ -8,7 +8,7 @@ export default function TermsModal() {
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <div class="modal-body p-4">
+      
         <h6>1. Acceptance of Terms</h6>
         <p>By accessing and using AYAAM, you agree to be bound by these Terms & Conditions. If you do not agree, please discontinue use.</p>
 

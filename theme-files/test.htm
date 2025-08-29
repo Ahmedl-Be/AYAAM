@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tabbed Navigation Example</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; background: #f9fafb; }
+    
+    /* Tabs Nav */
+    .tabs-nav {
+      display: flex;
+      background: #2563eb;
+      color: white;
+      padding: 10px;
+    }
+    .tabs-nav button {
+      flex: 1;
+      padding: 12px;
+      background: transparent;
+      border: none;
+      color: inherit;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tabs-nav button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .tabs-nav button.active {
+      background: white;
+      color: #2563eb;
+      font-weight: bold;
+      border-radius: 6px 6px 0 0;
+    }
+
+    /* Tabs Content */
+    .tab-content {
+      display: none;
+      padding: 20px;
+      background: white;
+      border-top: 2px solid #2563eb;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Tabs Navigation -->
+  <div class="tabs-nav">
+    <button class="tab-link active" data-tab="terms">Terms</button>
+    <button class="tab-link" data-tab="privacy">Privacy</button>
+    <button class="tab-link" data-tab="faqs">FAQs</button>
+    <button class="tab-link" data-tab="reach">Reach Us</button>
+  </div>
+
+  <!-- Tabs Content -->
+  <div id="terms" class="tab-content active">
+    <h2>Terms & Conditions</h2>
+    <p>Here you will find the terms and conditions of our service.</p>
+  </div>
+
+  <div id="privacy" class="tab-content">
+    <h2>Privacy Policy</h2>
+    <p>We respect your privacy and explain here how we handle your data.</p>
+  </div>
+
+  <div id="faqs" class="tab-content">
+    <h2>FAQs</h2>
+    <p>Find answers to the most common questions here.</p>
+  </div>
+
+  <div id="reach" class="tab-content">
+    <h2>Reach Us</h2>
+    <p>Contact information and ways to reach us go here.</p>
+  </div>
+
+  <script>
+    const tabLinks = document.querySelectorAll(".tab-link");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabLinks.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // remove active from all
+        tabLinks.forEach(b => b.classList.remove("active"));
+        tabContents.forEach(c => c.classList.remove("active"));
+
+        // activate clicked
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>

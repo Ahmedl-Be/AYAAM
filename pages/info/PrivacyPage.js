@@ -1,16 +1,9 @@
-import View from "../components/core/view.js";
-import Footer from "../components/landing/Footer.js";
+import View from "../../components/core/view.js";
 
 
 
-export default class PrivacyAndPolicy extends View {
-    constructor(_config, _params = {}) {
-        // Call base constructor
-        super({
-            title: 'Privacy and Policy | AYAAM'
-        }, _params);
+export default class PrivacyPage extends View {
 
-    }
     template() {
         return `
         <!-- Hero -->
@@ -163,7 +156,7 @@ export default class PrivacyAndPolicy extends View {
             </div>
           </div>
 
-          <!-- 8. International Transfers -->
+<!-- 8. International Transfers -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingEight">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
@@ -177,7 +170,7 @@ export default class PrivacyAndPolicy extends View {
             </div>
           </div>
 
-          <!-- 9. Third-Party Links -->
+<!-- 9. Third-Party Links -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingNine">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
@@ -191,7 +184,7 @@ export default class PrivacyAndPolicy extends View {
             </div>
           </div>
 
-          <!-- 10. Changes to This Policy -->
+<!-- 10. Changes to This Policy -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTen">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
@@ -205,7 +198,7 @@ export default class PrivacyAndPolicy extends View {
             </div>
           </div>
 
-          <!-- 11. Contact Us -->
+<!-- 11. Contact Us -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingEleven">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
@@ -223,16 +216,9 @@ export default class PrivacyAndPolicy extends View {
             </div>
           </div>
         </div>
-
-        <!-- Optional: quick links -->
-        <div class="d-flex gap-3 flex-wrap mt-4">
-          <a href="/" class="btn btn-warning btn-sm"><i class="fa-solid fa-house" data-route></i> Home</a>
-        </div>
-
       </div>
     </div>
   </main>
-  <footer class="bg-dark text-light pt-5 pb-4 mt-5" id='footer'>${Footer()}</footer>
         `
     }
 

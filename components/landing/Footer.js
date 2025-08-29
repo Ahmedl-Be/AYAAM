@@ -27,9 +27,9 @@ export default function Footer() {
       <div class=" col col-6 col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
         <h5 class="mb-4 font-weight-bold text-uppercase">Help</h5>
         <p><a href="https://www.facebook.com/ITITantaBranch/" target="_blank" class="text-light text-decoration-none">ITI - Tanta Branch</a></p>
-        <p><a href="#/policy" class="text-light text-decoration-none">Privacy & Policy</a></p>
-        <p><a href="#/terms" class="text-light text-decoration-none">Terms of use</a></p>
-        <p><a href="#/faq" class="text-light text-decoration-none" data-route>FAQs</a></p>
+        <p><a href="#/info/policy" class="text-light text-decoration-none">Privacy & Policy</a></p>
+        <p><a href="#/info/terms" class="text-light text-decoration-none">Terms of use</a></p>
+        <p><a href="#/info/faqs" class="text-light text-decoration-none" data-route>FAQs</a></p>
         <p><a href="#sale" class="text-light text-decoration-none" data-route>Sell with AYAAN</a></p>
       </div>
 

@@ -6,6 +6,7 @@
 
 @import url(about.css);
 @import url(privacy.css);
+@import url(faq.css);
 #app-loader{
 	transition: all 0.5s;
 }

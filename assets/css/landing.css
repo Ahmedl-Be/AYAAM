@@ -30,22 +30,32 @@
     }
 }
 
-#navbar i {
+#navbar .icon i,
+#navbar a {
     color: rgb(59, 59, 59);
+    transition: color 0.5s ;
 
 }
 
-#navbar i:hover {
-    color: rgb(26, 26, 26);
+#navbar  i:hover,
+#navbar a:hover {
+    color: #f97316;
 }
 #footer i {
     color: rgb(185, 185, 185);
-
+    transition: color 0.5s;
+    
 }
 
-#footer i:hover {
-    color: rgb(228, 228, 228);
+#footer a {
+    transition: color 0.5s;
 }
+
+#footer i:hover,
+#footer a:hover {
+    color: #f97316 !important;
+}
+
 
 /* HERO SECTION */
 #headCarousel .carousel-item {

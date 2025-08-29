@@ -1,0 +1,106 @@
+/* TABS SECTION */
+
+.tabs-nav {
+    display: flex;
+    background: rgba(249, 115, 22, .12);
+    text-align: center;
+    color: #f97316;
+    /* orange text */
+    padding: 10px 10px 0 10px;
+    border-radius: 6px 6px 0 0;
+}
+
+.tabs-nav .tab-link {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.tabs-nav .tab-link:hover {
+    background: rgba(249, 115, 22, 0.2);
+}
+
+.tabs-nav .tab-link.active {
+    background: #fff;
+    color: #f97316;
+    font-weight: bold;
+    border-radius: 6px 6px 0 0;
+}
+
+/* Tabs Content */
+.tab-content {
+    display: none;
+    padding: 20px;
+    background: white;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Accordion */
+.accordion-button {
+    background: transparent;
+    color: var(--fontcolor0);
+    font-weight: bold;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--fontcolor0);
+    background: rgba(249, 115, 22, .12);
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .06);
+}
+
+.accordion-item {
+    background: transparent;
+    border-color: rgba(255, 255, 255, .1);
+}
+
+.faq-section {
+    max-width: 900px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+
+
+/* ====== PRIVACY PAGE ======= */
+/* Check list */
+.list-check {
+    padding-left: 10px;
+}
+
+.list-check li {
+    position: relative;
+    padding-left: 1.75rem;
+    margin-bottom: .5rem;
+    list-style: none;
+}
+
+.list-check li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 7 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: .05rem;
+    color: var(--brand);
+}
+

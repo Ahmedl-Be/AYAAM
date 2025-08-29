@@ -28,7 +28,7 @@ export default class Navbar extends Component {
             </div>
 
 <!-- ICONS - moves to third position on md+ -->
-            <div class="d-flex justify-content-end align-content-center col-6 col-md-3 order-2 order-md-3">
+            <div class="icons d-flex justify-content-end align-content-center col-6 col-md-3 order-2 order-md-3">
               <div class="d-flex align-items-center gap-3">
                 ${Button(Icon("bell", "solid", ""), "ico-notify")}
 
