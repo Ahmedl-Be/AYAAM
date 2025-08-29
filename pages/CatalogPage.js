@@ -2,7 +2,7 @@ import View from "../components/core/view.js";
 import { ProductList } from "./customer/productList/ProductList.js";
 import Navbar from "../components/landing/Nav.js";
 import Footer from "../components/landing/Footer.js";
-
+import Toast from "../components/ui/toast.js";
 
 export default class Catalog extends View {
   constructor(_config, _params = {}) {
@@ -15,6 +15,7 @@ export default class Catalog extends View {
   template() {
     return `
     <header class="sticky-top bg-white" id='navbar'></header>
+    <div id="toastMsg"></div>
     <div class="container py-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h2 class="mb-0 text-uppercase fw-light" id="catalogSlogan">Shop Our Amazing Products</h2>
@@ -201,6 +202,7 @@ export default class Catalog extends View {
   script() {
 
     this.mount(Navbar, "#navbar");
+    this.mount(Toast, "#toastMsg");
     const products = JSON.parse(localStorage.getItem("products")) || [];
     const catalogSlogan = document.getElementById("catalogSlogan");
 

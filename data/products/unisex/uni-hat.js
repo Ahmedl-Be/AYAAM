@@ -177,7 +177,7 @@ const data = [
                 color: "Black",
                 images: ['black-female.png', 'black-male.png', 'black-front.png', 'black-back.png', 'black-details.png'],
                 sizes: [
-                    { name: 'M', qty: 0 },
+                    { name: 'M', qty: 2 },
                     { name: 'L', qty: 3 },
                     { name: 'XL', qty: 4 },
                 ]
