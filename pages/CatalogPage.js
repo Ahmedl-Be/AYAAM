@@ -216,19 +216,29 @@ export default class Catalog extends View {
       maxPrice: null,
       discount: null,
       offers: new Set(),
-      search : sessionStorage.getItem("searchTerm") || "",
+      search: sessionStorage.getItem("searchTerm") || "",
+    };
+
+
+    // Set slogan on initial load
+    if (state.search && state.search.trim() !== "") {
+      catalogSlogan.innerText = `Searching For ${state.search}...`;
+    } else {
+      catalogSlogan.innerText = "Shop Our Amazing Products";
     };
 
 
     // ****handel search*****
     const applySearch = () => {
-      catalogSlogan.innerText = `Searching For ${state.search}...`;
+    catalogSlogan.innerText = state.search && state.search.trim() !== ""
+      ? `Searching For ${state.search}...`
+      : "Shop Our Amazing Products";
       ProductList("product-list", "results-count", state);
     };
     // listen to custom event (works even if already on Catalog)
     window.addEventListener("search-updated", (e) => {
-        state.search = e.detail;
-        applySearch();
+      state.search = e.detail;
+      applySearch();
     });
 
 
@@ -583,7 +593,7 @@ export default class Catalog extends View {
       state.discount = null;
       state.offers.clear();
       state.search = ""
-      sessionStorage.setItem("searchTerm","")
+      sessionStorage.setItem("searchTerm", "")
       catalogSlogan.innerText = "Shop Our Amazing Products";
 
       // Reset all filter inputs
