@@ -115,3 +115,12 @@
 }
 
 
+
+/* Navbar-Search */
+#searchInput{
+    outline: none;
+}
+
+#searchInputIcon{
+    cursor: pointer;
+}

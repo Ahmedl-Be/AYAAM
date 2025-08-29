@@ -6,6 +6,7 @@ import { Icon } from "../ui/icons.js";
 import { Button } from "../ui/buttons.js";
 import { Toggler } from "../ui/toggler.js";
 import View from "../core/view.js";
+import { navigate } from "../../scripts/utils/navigation.js";
 
 export default class Navbar extends Component {
   constructor(_config = {}, _params = {}) {
@@ -43,28 +44,28 @@ export default class Navbar extends Component {
 
                           <li>
                               ${((_u) => {
-                                switch (_u.role) {
-                                  case 'master'||'admin':
-                                    return `
+          switch (_u.role) {
+            case 'master' || 'admin':
+              return `
                                     <a class="dropdown-item d-flex" href="#/admin" data-route>
                                       ${Icon("chart-simple", "solid", "me-2")} Dashboard
                                     </a>
                                     `
-                                  case 'seller':
-                                    return `
+            case 'seller':
+              return `
                                     <a class="dropdown-item d-flex" href="#/seller" data-route>
                                       ${Icon("store", "solid", "me-2")} Manage Store
                                     </a>
                                     `
-                                
-                                  default: 
-                                    return `
+
+            default:
+              return `
                                       <a class="dropdown-item d-flex" href = "#/catalog" data - route >
-                                        ${ Icon("bag-shopping", "solid", "me-2") } Shop
+                                        ${Icon("bag-shopping", "solid", "me-2")} Shop
                                     </a>
                                     `
-                                }
-                              })(this.user)}
+          }
+        })(this.user)}
                           </li>
 
                           <li>
@@ -112,8 +113,8 @@ export default class Navbar extends Component {
             <div class="col-12 order-4 order-md-2 col-md-6 search-bar">
               <form class="d-flex search-container form-control rounded-5">
                 <div class="input-group row">
-                  <div class="col px-2 col-1"><i class="fas fa-search fa-fw"></i></div>
-                  <input type="text" class="border-0 col col-11" placeholder="Search for products..."/>
+                  <div class="col px-2 col-1"><i class="fas fa-search fa-fw" id="searchInputIcon"></i></div>
+                  <input type="text" id="searchInput" class="border-0 col col-11" placeholder="Search for products..."/>
                 </div>
               </form>
             </div>
@@ -153,7 +154,7 @@ export default class Navbar extends Component {
     if (btnLogout) {
       btnLogout.addEventListener("click", () => {
         logout();
-        location.reload(); 
+        location.reload();
       });
     }
 
@@ -178,6 +179,24 @@ export default class Navbar extends Component {
     updateCartCount();  // Run once at start
     // Listen for custom event from Product
     window.addEventListener("cartUpdated", updateCartCount);
+
+
+    // handel search-bar
+    const searchBar = document.getElementById("searchInput");
+    searchBar.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const query = e.target.value;
+        if (query) {
+          sessionStorage.setItem("searchTerm", query);
+          // fire a custom event so i can listen in Catalog page
+          window.dispatchEvent(new CustomEvent("search-updated", { detail: query }));
+          e.target.value = ""
+          navigate("/catalog");
+        }
+      }
+    });
+
+
 
 
 
