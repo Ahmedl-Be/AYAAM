@@ -1,0 +1,19 @@
+  .offcanvas {
+            background-color: #e6f4ea;
+            color: #065f46;
+        }
+        .offcanvas .nav-link {
+            color: #10b981;
+        }
+        .offcanvas .nav-link:hover, .offcanvas .nav-link.active {
+            background-color: #d1e7dd;
+            color: #065f46;
+        }
+        .toggle-btn {
+            background-color: #10b981;
+            color: #ffffff;
+            border: none;
+        }
+        .toggle-btn:hover {
+            background-color: #34d399;
+        }

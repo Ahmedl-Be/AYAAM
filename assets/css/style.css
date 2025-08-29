@@ -28,3 +28,9 @@
 .sortable-header:hover {
 	background-image: linear-gradient(rgba(0, 4, 12, 0.2), rgba(90, 90, 196, 0.2));
 }
+
+@import url(ProductStyleSidebar.css) ;
+@import url(mainDashboardStyle.css) ;
+@import url(IncomingOrderStyle.css) ;
+
+@import url(productStyle.css);

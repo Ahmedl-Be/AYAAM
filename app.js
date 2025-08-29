@@ -31,6 +31,8 @@ const routes = {
 
   /* INFO PAGES */
   "/info": { loader: () => import("./pages/SupportPage.js") },
+ /* SELLER ONLY PAGES */
+  "/seller": { loader: () => import("./pages/SellerDashboard.js"), roles: ["seller"] },
 }
 
 /* ====== APP ROOT ELEMENT ====== */

@@ -1,0 +1,29 @@
+  .dashboard { max-width: 1200px; margin: 0 auto; padding-left: 70px; } /* مساحة للسidebar */
+        .summary-card {
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ffffff, #e6f4ea);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .chart-card, .order-table {
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #ffffff, #f0faf4);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .order-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #d1e7dd;
+            transition: background-color 0.3s;
+        }
+        .order-item:last-child { border-bottom: none; }
+        .order-item:hover {
+            background-color: #e8f3ec;
+        }
+        .order-item span {
+            padding: 0 10px;
+        }
+        .text-primary { color: #065f46 !important; }
+        .invalid-feedback { display: block; }
