@@ -98,7 +98,7 @@ export default class Product extends View {
                     .map(
                       (s) => `
                     <option value="${s.name}" ${s.qty === 0 ? "disabled" : ""}>
-                      ${s.name || "Default"} (${s.qty} left)
+                      ${s.name || "Default"}
                     </option>`
                     )
                     .join("")}
