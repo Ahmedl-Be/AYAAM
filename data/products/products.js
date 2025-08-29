@@ -6,7 +6,9 @@ import { uniHats } from "./unisex/uni-hat.js";
     //TOP
 import { menTop } from "./men/men-top.js"; 
 import { menShoes } from "./men/men-shoes.js";
-
+import { MenAcc } from "./men/men-accessories.js";
+import { MenPants } from "./men/men-bottom.js";
+import { MenSuits } from "./men/men-suits.js";
 /* ----------WOMEN DATA--------- */
     // BAGS
 import { womenBags } from "./women/women-bag.js";
@@ -34,6 +36,9 @@ products.push(...uniHats)
     //TOPS
 products.push(...menTop);
 products.push(...menShoes);
+products.push(...MenAcc);
+products.push(...MenPants);
+products.push(...MenSuits);
 
 // /* ----------WOMEN ADDED--------- */
 products.push(...womenShoes);

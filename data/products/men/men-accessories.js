@@ -1,7 +1,5 @@
 
-import { toProduct } from "../../../scripts/utilities/data.js";
-// structure of each product based on the provided data ,
-//  images value is an array of image names
+import { toProduct } from "../../../scripts/utils/data.js";
 
 const menProductsAcc = [
     {
