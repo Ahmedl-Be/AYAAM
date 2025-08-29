@@ -1,10 +1,9 @@
 
-import Navbar from "../components/landing/Nav.js";
 import View from "../components/core/view.js";
-import { Anchor } from "../components/ui/links.js";
 import MainDasboard from "./seller/MainDashboard.js";
 import SellerProducts from "./seller/SellerProducts.js";
-
+import incomeingOrder from "./seller/IncomingOrders.js";
+import AddProduct from "./seller/AddProduct.js";
 
 export default class SellerDashboard extends View {
     template() {
@@ -56,6 +55,18 @@ export default class SellerDashboard extends View {
                 parent: "seller-dashbord",
                 route: "products",
                 title: "seller - products"
+            });
+
+  this.subview(AddProduct, {
+                parent: "seller-dashbord",
+                route: "addproduct",
+                title: "Add New Product"
+            });
+
+      this.subview(incomeingOrder, {
+                parent: "seller-dashbord",
+                route: "incomeingOrders",
+                title: "seller - incomeingOrders"
             });
     }
 }

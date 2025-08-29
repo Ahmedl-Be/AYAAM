@@ -20,7 +20,6 @@ const routes = {
 
  /* SELLER ONLY PAGES */
   "/seller": { loader: () => import("./pages/SellerDashboard.js"), roles: ["seller"] },
-  "/addproduct": { loader: () => import("./pages/seller/AddProduct.js"), roles: ["seller"] },
 }
 
 /* ====== APP ROOT ELEMENT ====== */

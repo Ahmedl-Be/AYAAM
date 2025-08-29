@@ -1,17 +1,17 @@
 import View from "../../components/core/view.js";
 import { localStore } from "../../scripts/utils/storage.js";
+import { Anchor } from "../../components/ui/links.js";
 
 export default class SellerProducts extends View {
   template() {
     return `
-      <!-- Main Content -->
-  <div class="container-fluid mt-4">
+       <div class="container-fluid mt-4">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 p-4 bg-white shadow rounded">
         <div class="d-flex gap-3 mb-3">
-          <a href="AddProduct.html" class="btn btn-success">
-            <i class="fas fa-plus"></i> New Product
-          </a>
+
+          ${Anchor(`<i class="fas fa-plus"></i> New Product`,"/seller/addproduct","btn btn-success" )}   
+
           <input type="text" id="searchInput" class="form-control w-50 w-lg-25" placeholder="Search...">
           <button id="searchBtn" class="btn btn-success">
             <i class="fa fa-search"></i>

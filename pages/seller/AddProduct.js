@@ -2,11 +2,12 @@ import { localStore } from "../../scripts/utils/storage.js";
 import View from "../../components/core/view.js";
 import Toast from "../../components/ui/toast.js";
 import { navigate } from "../../scripts/utils/navigation.js";
+import { toProduct } from "../../scripts/utils/data.js";
 
 export default class AddProduct extends View {
     template() {
         return `
-        <div class="card">
+      <div class="card">
 <div class="card-body">
 <form class="needs-validation container py-4" novalidate style="max-width: 1200px;">
   <div class="row g-4">
@@ -42,10 +43,12 @@ export default class AddProduct extends View {
 
     <!-- Subcategory -->
     <div class="col-12 col-md-6 col-lg-4">
-      <label for="subCategory" class="form-label fw-bold">SubCategory</label>
-      <input type="text" name="subCategory" class="form-control shadow-sm" placeholder="e.g. Bags" required>
+      <label for="subCategory" class="form-label fw-bold">Subcategory</label>
+      <input type="text" name="subcategory" class="form-control shadow-sm" placeholder="e.g. Bags" required>
       <div class="invalid-feedback">Please enter a subcategory.</div>
     </div>
+
+    
 
     <!-- Material -->
     <div class="col-12 col-md-6 col-lg-4">
@@ -133,18 +136,26 @@ export default class AddProduct extends View {
     </button>
   </div>
 
-            <div class="toast-body" id="toastMsg"></div>
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div id="liveToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        ✔ Product saved successfully and wait for admin to approve it !
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+</div>
 
 </form>
-
-  </div>
+ </div>
   </div>
         `
     }
 
     script() {
-            this.mount(Toast, "#toastMsg")
-        
   const form = document.querySelector(".needs-validation");
   const stockSection = document.getElementById("stock-section");
   const addStockBtn = document.getElementById("add-stock-btn");
@@ -233,7 +244,7 @@ export default class AddProduct extends View {
     if (feedback) feedback.textContent = "";
   }
 
-  // امسح الخطأ بمجرد الكتابة
+  // Clear validation errors on input
   form.addEventListener("input", function (e) {
     if (e.target.classList.contains("is-invalid")) {
       clearInvalid(e.target);
@@ -305,15 +316,15 @@ export default class AddProduct extends View {
     if (e.target.closest(".addSizeAndQty")) {
       const sizeSection = e.target.closest(".sizes-section");
       const lastRow = sizeSection.querySelector(".size-item:last-of-type");
-      const sizeName = lastRow.querySelector("input[name='sizeName']");
+      const size = lastRow.querySelector("input[name='sizeName']");
       const qty = lastRow.querySelector("input[name='qty']");
 
       let allow = true;
-      if (sizeName.value.trim() === "") {
-        setInvalid(sizeName, "Please enter a size name.");
+      if (size.value.trim() === "") {
+        setInvalid(size, "Please enter a size name.");
         allow = false;
       } else {
-        clearInvalid(sizeName);
+        clearInvalid(size);
       }
       if (qty.value.trim() === "" || isNaN(parseInt(qty.value)) || parseInt(qty.value) < 0) {
         setInvalid(qty, "Please enter a valid quantity (0 or more).");
@@ -334,6 +345,43 @@ export default class AddProduct extends View {
     }
   });
 
+  // ===== Generate Product ID =====
+  function generateProductID(category, subCategory) {
+    // Ensure inputs are valid
+    if (!category || typeof category !== 'string' || !subCategory || typeof subCategory !== 'string') {
+      return 'INVALID_ID_' + Date.now().toString().slice(8); // Fallback ID
+    }
+
+    // First letter of category
+    const categoryPrefix = category.charAt(0).toUpperCase();
+    // First two letters of subcategory, padded if needed
+    const subCategoryPrefix = subCategory.length >= 2 ? subCategory.slice(0, 2).toLowerCase() : subCategory.toLowerCase().padEnd(2, 'x');
+
+    // Get existing products
+    const products = localStore.read("products") || [];
+
+    // Filter products with valid Category and Subcategory
+    const relatedProducts = products.filter(product => 
+      product && 
+      product.Category && typeof product.Category === 'string' && 
+      product.Subcategory && typeof product.Subcategory === 'string' &&
+      product.Category.charAt(0).toUpperCase() === categoryPrefix &&
+      product.Subcategory.slice(0, 2).toLowerCase() === subCategoryPrefix
+    );
+
+    // Find the highest serial number
+    const maxSerial = relatedProducts.reduce((max, product) => {
+      const serial = parseInt(product.Id.slice(-3)) || 0;
+      return Math.max(max, serial);
+    }, 0);
+
+    // Generate new serial number (padded to 3 digits)
+    const newSerial = (maxSerial + 1).toString().padStart(3, "0");
+
+    // Return ID (e.g., WBa001)
+    return `${categoryPrefix}${subCategoryPrefix}${newSerial}`;
+  }
+
   // ===== Form submit =====
   form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -341,91 +389,97 @@ export default class AddProduct extends View {
 
     let isValid = true;
 
-    // نفس الفاليديشن اللي عندك...
+    // Validation regex
     const nameRegex = /^[^0-9]+$/;
 
+    // Validate Product Name
     const name = form.querySelector("input[name='name']");
-   if (name.value.trim() === "") {
-    setInvalid(name, "Product name is required.");
-     isValid = false;
+    if (name.value.trim() === "") {
+      setInvalid(name, "Product name is required.");
+      isValid = false;
+    } else if (!nameRegex.test(name.value)) {
+      setInvalid(name, "Product name must contain only letters (no numbers).");
+      isValid = false;
+    } else if (name.value.trim().length > 100) {
+      setInvalid(name, "Product Name must not exceed 100 characters.");
+      isValid = false;
+    } else {
+      clearInvalid(name);
     }
 
-  else if (!nameRegex.test(name.value)) {
-  setInvalid(name, "Product name must contain only letters (no numbers).");
-  isValid = false;
-  }
-   else if (name.value.trim().length > 100) {
-  setInvalid(name, "Product Name must not exceed 100 characters.");
-    isValid = false;
-   } 
-else clearInvalid(name);
-
+    // Validate Brand
     const brand = form.querySelector("input[name='brand']");
     if (brand.value.trim() === "") {
-    setInvalid(brand, "brand is required.");
-     isValid = false;
-    }
-    
-     else if (!nameRegex.test(brand.value)) {
-      setInvalid(brand, "brand must contain only letters (no numbers).");
+      setInvalid(brand, "Brand is required.");
       isValid = false;
-     }
-   else if (brand.value.trim().length > 100) {
-    setInvalid(brand, "brand must not exceed 100 characters.");
-    isValid = false;
-   }  
-   else clearInvalid(brand);
+    } else if (!nameRegex.test(brand.value)) {
+      setInvalid(brand, "Brand must contain only letters (no numbers).");
+      isValid = false;
+    } else if (brand.value.trim().length > 100) {
+      setInvalid(brand, "Brand must not exceed 100 characters.");
+      isValid = false;
+    } else {
+      clearInvalid(brand);
+    }
 
+    // Validate Material
     const material = form.querySelector("input[name='material']");
-     if (material.value.trim() === "") {
-    setInvalid(material, "material is required.");
-     isValid = false;
-    }
-    
-     else if (!nameRegex.test(material.value)) {
-      setInvalid(material, "material must contain only letters (no numbers).");
+    if (material.value.trim() === "") {
+      setInvalid(material, "Material is required.");
       isValid = false;
-     }
-   else if (material.value.trim().length > 100) {
-    setInvalid(material, "material must not exceed 100 characters.");
-    isValid = false;
-   }  
-    else clearInvalid(material);
+    } else if (!nameRegex.test(material.value)) {
+      setInvalid(material, "Material must contain only letters (no numbers).");
+      isValid = false;
+    } else if (material.value.trim().length > 100) {
+      setInvalid(material, "Material must not exceed 100 characters.");
+      isValid = false;
+    } else {
+      clearInvalid(material);
+    }
 
+    // Validate Price
     const price = form.querySelector("input[name='price']");
     if (price.value.trim() === "" || parseFloat(price.value) <= 0) {
       setInvalid(price, "Please enter a valid price.");
       isValid = false;
-    } else clearInvalid(price);
+    } else {
+      clearInvalid(price);
+    }
 
+    // Validate Category
     const category = form.querySelector("select[name='category']");
     if (category.value.trim() === "") {
       setInvalid(category, "Please select a category.");
       isValid = false;
-    } else clearInvalid(category);
+    } else {
+      clearInvalid(category);
+    }
 
-    const subCategory = form.querySelector("input[name='subCategory']");
+    // Validate Subcategory
+    const subCategory = form.querySelector("input[name='subcategory']");
     if (subCategory.value.trim() === "") {
       setInvalid(subCategory, "Please enter a subcategory.");
       isValid = false;
-    } else clearInvalid(subCategory);
-
-    const description = form.querySelector("textarea[name='description']");
-      if (description.value.trim() === "") {
-    setInvalid(description, "description is required.");
-     isValid = false;
+    } else {
+      clearInvalid(subCategory);
     }
-    
-     else if (!nameRegex.test(description.value)) {
-      setInvalid(description, "description must contain only letters (no numbers).");
+
+    // Validate Description
+    const description = form.querySelector("textarea[name='description']");
+    if (description.value.trim() === "") {
+      setInvalid(description, "Description is required.");
       isValid = false;
-     }
-   
-    else if (description.value.trim().length < 200) {
+    } else if (!nameRegex.test(description.value)) {
+      setInvalid(description, "Description must contain only letters (no numbers).");
+      isValid = false;
+    } else if (description.value.trim().length < 200) {
       setInvalid(description, "Description must be at least 200 characters.");
       isValid = false;
-    } else clearInvalid(description);
+    } else {
+      clearInvalid(description);
+    }
 
+    // Validate Stock Cards
     const stockCards = stockSection.querySelectorAll(".card");
     if (stockCards.length === 0) {
       stockSection.appendChild(createStockCard());
@@ -435,64 +489,81 @@ else clearInvalid(name);
         if (!validateSingleStockCard(card, true)) isValid = false;
       });
     }
-    
-   Toast.notify("✔ Product saved successfully and wait for admin to approve it !","success")
 
     if (isValid) {
-      // ======= نجمع الداتا ونحفظها =======
-      const formData = new FormData(form);
-      const product = {
-        name: formData.get("name"),
-        price: formData.get("price"),
-        category: formData.get("category"),
-        subCategory: formData.get("subCategory"),
-        material: formData.get("material"),
-        brand: formData.get("brand"),
-        description: formData.get("description"),
+      // Collect form data manually
+      const productData = {
+        id: generateProductID(
+          form.querySelector("select[name='category']").value,
+          form.querySelector("input[name='subcategory']").value
+        ),
+        name: form.querySelector("input[name='name']").value,
+        brand: form.querySelector("input[name='brand']").value,
+        description: form.querySelector("textarea[name='description']").value,
+        category: form.querySelector("select[name='category']").value,
+        subCategory: form.querySelector("input[name='subcategory']").value,
+        price: parseFloat(form.querySelector("input[name='price']").value),
+        material: form.querySelector("input[name='material']").value,
+        sellerId: "SELLER_001", // Replace with actual seller ID
         status: "pending",
-        stock: []
+        stock: [],
+        images: []
       };
 
+      // Collect stock and images data
       stockCards.forEach(card => {
         const color = card.querySelector("input[name='color']").value;
         const images = card.querySelector("input[name='images[]']").files;
         const sizes = [];
 
         card.querySelectorAll(".size-item").forEach(row => {
-          const sizeName = row.querySelector("input[name='sizeName']").value;
-          const qty = row.querySelector("input[name='qty']").value;
-          if (sizeName && qty) {
-            sizes.push({ sizeName, qty: parseInt(qty) });
+          const sizeInput = row.querySelector("input[name='sizeName']");
+          const qtyInput = row.querySelector("input[name='qty']");
+          const size = sizeInput ? sizeInput.value : "";
+          const qty = qtyInput ? qtyInput.value : "";
+
+          if (size && qty) {
+            sizes.push({ size, qty: parseInt(qty) });
           }
         });
 
-        product.stock.push({
+        productData.stock.push({
           color,
-          images: Array.from(images).map(img => img.name), // تخزين أسماء الصور فقط
           sizes
+        });
+
+        Array.from(images).forEach(img => {
+          productData.images.push(img.name);
         });
       });
 
-      let products = localStore.read("products");
+      // Convert to Product object
+      const product = toProduct(productData);
+
+      // Save product
+      let products = localStore.read("products") || [];
       products.push(product);
       localStore.write("products", products);
+
+    
+      console.log(products);
       
+      // Show success toast
+      const toastElement = document.getElementById("liveToast");
+      const toast = new bootstrap.Toast(toastElement);
+      toast.show();
 
-
-    setTimeout(() => {
-        navigate("/seller")
-     }, 5000);
-     
-      // form.reset();
-      // stockSection.innerHTML = "";
-      // stockSection.appendChild(createStockCard());
-
+      //Redirect after 2 seconds
+      setTimeout(() => {
+        navigate("/seller/products")
+      }, 5000);
     }
   });
 
   // ===== Initial stock card =====
   stockSection.innerHTML = "";
   stockSection.appendChild(createStockCard());
+
 
     }
     

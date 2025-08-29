@@ -1,32 +1,19 @@
- body {
-      background-color: #f8f9fa;
-    }
-    .toggle-btn {
-      z-index: 1051;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .offcanvas {
-      width: 250px !important;
-    }
-    .offcanvas-header {
-      background-color: #053a0f;
-      color: white;
-    }
-    .nav-link {
-      font-size: 1rem;
-      padding: 10px;
-      border-radius: 5px;
-      color: #333;
-    }
-    .nav-link:hover {
-      background-color: #e9ecef;
-      color: #053a0f;
-    }
-    .nav-link i {
-      margin-left: 8px;
-    }
+  .offcanvas {
+            background-color: #e6f4ea;
+            color: #065f46;
+        }
+        .offcanvas .nav-link {
+            color: #10b981;
+        }
+        .offcanvas .nav-link:hover, .offcanvas .nav-link.active {
+            background-color: #d1e7dd;
+            color: #065f46;
+        }
+        .toggle-btn {
+            background-color: #10b981;
+            color: #ffffff;
+            border: none;
+        }
+        .toggle-btn:hover {
+            background-color: #34d399;
+        }
