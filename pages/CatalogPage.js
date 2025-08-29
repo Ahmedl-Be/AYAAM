@@ -17,7 +17,7 @@ export default class Catalog extends View {
     <header class="sticky-top bg-white" id='navbar'></header>
     <div class="container py-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h2 class="mb-0 text-uppercase fw-light">Shop Our Amazing Products</h2>
+      <h2 class="mb-0 text-uppercase fw-light" id="catalogSlogan">Shop Our Amazing Products</h2>
     </div>
 
     <div class="row">
@@ -202,6 +202,7 @@ export default class Catalog extends View {
 
     this.mount(Navbar, "#navbar");
     const products = JSON.parse(localStorage.getItem("products")) || [];
+    const catalogSlogan = document.getElementById("catalogSlogan");
 
 
     // Central filter state
@@ -221,6 +222,7 @@ export default class Catalog extends View {
 
     // ****handel search*****
     const applySearch = () => {
+      catalogSlogan.innerText = `Searching For ${state.search}...`;
       ProductList("product-list", "results-count", state);
     };
     // listen to custom event (works even if already on Catalog)
@@ -582,6 +584,7 @@ export default class Catalog extends View {
       state.offers.clear();
       state.search = ""
       sessionStorage.setItem("searchTerm","")
+      catalogSlogan.innerText = "Shop Our Amazing Products";
 
       // Reset all filter inputs
       document.querySelectorAll('.filter-input').forEach(input => {
