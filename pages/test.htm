@@ -6,96 +6,85 @@
     <title>Document</title>
 </head>
 <body>
-   <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-between border-bottom py-3 fw-bold">
-                            <span>Total Amount</span>
-                            <span>$ ${cartManager.calculateTotal().total.toFixed(2)}</span>
+     <div class="cart-items-container" id="cart-container">  
+                 <div class="cart-items-container">
+                    
+                        <div class=' border-bottom bordernoneMD text-center text-md-start '>
+                            <h2>Bag</h2>
+                            <p class='fw-semibold d-block d-md-none'> 
+                                <span class='text-secondary border-end border-2 px-2' id='totalItems'> ${cartManager.itemCount()} Items</span> 
+                                <span class='ms-1 total' >$ ${(cartManager.calculateTotal().total).toFixed(2)}</span> 
+                            </p>
                         </div>
-                        <div class="bg-light-subtle my-3">
-                            <p class="fw-semibold text-secondary fs-5"> Order Information</p>
-                            <div class="table-responsive">
-                                <table class="table ">
-                                    <thead>
-                                        <tr class="text-center fs-small">
-                                            <th scope="col" class="text-secondary">Name</th>
-                                            <th scope="col" class="text-secondary">Email</th>
-                                            <th scope="col" class="text-secondary">Number</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="text-center fw-semibold fs-small">
-                                            <td>Azza</td>
-                                            <td>azzasallam369@gmail.com</td>
-                                            <td>01234567891</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        
+                        <div class='py-4' id='cart-container' >
+                            ${items.length === 0
+                                ? ` <h6 id="no-items"> There are no items in your bag. </h6> `
+                                : items.map(item =>
+                                    `
+                                                        <div class='py-4 borderblockMD w-100 h cart-card' data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                                                            <div class='d-flex align-align-items-center gap-4 '>
+                                                                <div  >
+                                                                    <div class="cart-image-container">
+                                                                        <img src="${item.img}" class="img-cart default-img" />
+                                                                    </div>
+                                                                    <div class='cart-item rounded-pill border p-2 my-2 d-flex align-items-center justify-content-around'>
+                                                                        <!-- BTN MINUS -->
+                                                                        ${item.qty >= 2
+                                        ? `<button class="bg-transparent border-0 decrease-btn" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                                                                                <i class="fa-solid fa-minus fa-fw pointer"></i>
+                                                                            </button>`
+                                        : `<button class="bg-transparent border-0 delete-btn" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                                                                                <i class="fa-regular fa-trash-can fa-fw hoverIcon pointer"></i>
+                                                                            </button>`
+                                    }
+                                                                        <!-- ____________Span Qty _______________ -->
+                                                                        <span class="item-qty" data-qty-id="${item.id}-${item.color}-${item.size}"> ${item.qty} </span>
+
+                                                                        <!-- BTN Plus -->
+                                                                        <button class='bg-transparent border-0 btn-increase icrease-btn'  
+                                                                            data-id="${item.id}"
+                                                                            data-color= "${item.color}"
+                                                                            data-size = "${item.size}" 
+                                                                            ${item.qty >= (item.stockQty) ? "disabled" : ""}
+                                                                        >
+                                                                            <i class="fa-solid fa-plus fa-fw li-pointer"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='fw-semibold w-75'>
+                                                                    <div class=' d-md-flex justify-content-between align-items-center'>
+                                                                        <p >${item.name}</p>
+                                                        
+                                                                        <p>
+                                                                            <!-- ____________________price after sale_________________ -->
+                                                                            $${item.price} 
+                                                                            ${item.sale ? `<span class="text-secondary ms-2 text-decoration-line-through">
+                                                                                $ ${item.realPrice}
+                                                                            </span>` : ""}
+                                                                        </p>
+                                                                    </div>
+                                                                    <p class="card-text line-clamp text-muted small mb-2">${item.description}</p>
+                                                                    <div class=' d-flex align-items-center gap-5'>
+                                                                        <p class='text-secondary'>${item.color}</p>
+                                                                        <p class='text-secondary'>Size : ${item.size}</p>
+                                                                    </div>
+                                                                    <p class=' text-secondary'>Brand : <span class='text-primary'>${item.brand}</span></p>
+                                                                    <p class='d-flex align-items-center gap-2'>${item.category}
+                                                                        <i class="fa-solid fa-angle-right fa-fw centerArIcon" style="color: #0D6EFD;"></i>
+                                                                        ${item.subcategory}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    `
+                                ).join("")
+                            }
                         </div>
+                        
                     </div>
-                    <div class="row p-0 m-0">
-                    <div class="col-12 col-md-8 col-lg-9 ">
-                    <div>
-                    <p class="fw-semibold text-secondary fs-5 ">Order Details</p>
-                    <div class="orders-height g-2 py-3">
-                        ${cartItems.map(item => `
-                                        <div class=" d-flex flex-row align-items-center gap-3 cardItem-height pb-2  mb-3  border-bottom">
-                                            <div class="h-100">
-                                                <img src="${item.img}" class="img-order h-100 rounded-3"/>
-                                            </div>
-                                            <div class="fw-semibold">
-                                                <p class="mb-1">$ ${item.price}</p>
-                                                <p class="mb-1">${item.name} </p>
-                                                <p class="mb-1 text-muted">${item.category} - ${item.subCategory}</p>
-                                                <p class="mb-1 text-muted d-flex align-items-center gap-2"> <span>Qty : ${item.qty} </span> <span> | </span> <span>Color : ${item.color}</span></p>
-                                            </div>
-                                        </div>
-                                        `).join('')}
-                                    </div>
-                                </div>
 
-                        </div>
-
-                        <div class="col-12 col-md-4 col-lg-3 bg-light-subtle py-3 px-2 boxshadow">
-                            <div class=" fw-semibold">
-                                <p>Date : 20/8/2025</p>
-                                <p>Delivery Fee : $ 5 </p>
-                                <p>Total : $ ${cartManager.calculateTotal().total.toFixed(2)}</p>
-                                <p>Discount: $ ${cartManager.calculateTotal().discountTotal.toFixed(2)} </p>
-
-                                <div class="my-3">
-
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cash" value="cash" checked required>
-                                    <label class="form-check-label" for="cash">
-                                        Cash
-                                    </label>
-                                </div>
-
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="paymentMethod" id="visa" value="visa" required>
-                                    <label class="form-check-label" for="visa">
-                                        Visa
-                                    </label>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="py-3">
-                                <div class="progress" role="progressbar" aria-label="Danger example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar text-bg-success" style="width: 100%">100% Confirm Your Order</div>
-                                </div>
-                                <button id="pay" class='w-100 py-3 fw-bold border-0 rounded-pill bg-black text-white mt-3 checkoutBTN'>
-                                    Pay
-                                </button>
-                                <button id="continue-shoping" class='w-100 py-3 fw-bold rounded-pill bg-white text-muted border mt-3 shoping-btn'>
-                                    Continue Shopping
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 </body>
 </html>

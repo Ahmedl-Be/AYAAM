@@ -133,4 +133,3 @@ export default class CartItems extends Component {
 
 }
 
-

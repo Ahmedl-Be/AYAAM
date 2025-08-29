@@ -5,6 +5,7 @@
 
 @import url(productlist.css);
 @import url(checkout.css) ;
+@import url(profile.css) ;
 
 @media (max-width: 768px) {
 	#adminContent td:nth-child(1),
