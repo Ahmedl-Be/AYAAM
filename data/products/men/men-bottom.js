@@ -17,16 +17,16 @@ const menProductPants = [
                 color: "Beige",
                 images: ["prod_p01.jpg"],
                 sizes: [
-                    { name: "M", quantity: 10 },
-                    { name: "L", quantity: 7 }
+                    { name: "M", qty: 10 },
+                    { name: "L", qty: 7 }
                 ]
             },
             {
                 color: "Navy",
                 images: ["prod_p02.jpg"],
                 sizes: [
-                    { name: "M", quantity: 8 },
-                    { name: "L", quantity: 5 }
+                    { name: "M", qty: 8 },
+                    { name: "L", qty: 5 }
                 ]
             },
         ],
@@ -47,15 +47,15 @@ const menProductPants = [
                 color: "Olive",
                 images: ["prod_p11.jpg"],
                 sizes: [
-                    { name: "L", quantity: 7 },
-                    { name: "XL", quantity: 3 }
+                    { name: "L", qty: 7 },
+                    { name: "XL", qty: 3 }
                 ]
             },
             {
                 color: "Khaki",
                 images: ["prod_p12.jpg"],
                 sizes: [
-                    { name: "L", quantity: 6 }
+                    { name: "L", qty: 6 }
                 ]
             },
         ],
@@ -76,15 +76,15 @@ const menProductPants = [
                 color: "Black",
                 images: ["prod_p21.jpg"],
                 sizes: [
-                    { name: "M", quantity: 12 },
-                    { name: "L", quantity: 8 }
+                    { name: "M", qty: 12 },
+                    { name: "L", qty: 8 }
                 ]
             },
             {
                 color: "Gray",
                 images: ["prod_p22.jpg"],
                 sizes: [
-                    { name: "M", quantity: 7 }
+                    { name: "M", qty: 7 }
                 ]
             },
         ],
@@ -105,15 +105,15 @@ const menProductPants = [
                 color: "Charcoal",
                 images: ["prod_p31.jpg"],
                 sizes: [
-                    { name: "32", quantity: 5 },
-                    { name: "34", quantity: 4 }
+                    { name: "32", qty: 5 },
+                    { name: "34", qty: 4 }
                 ]
             },
             {
                 color: "Navy",
                 images: ["prod_p32.jpg"],
                 sizes: [
-                    { name: "32", quantity: 6 }
+                    { name: "32", qty: 6 }
                 ]
             },
         ],
@@ -134,15 +134,15 @@ const menProductPants = [
                 color: "Tan",
                 images: ["prod_p41.jpg"],
                 sizes: [
-                    { name: "M", quantity: 6 },
-                    { name: "L", quantity: 5 }
+                    { name: "M", qty: 6 },
+                    { name: "L", qty: 5 }
                 ]
             },
             {
                 color: "Green",
                 images: ["prod_p42.jpg"],
                 sizes: [
-                    { name: "M", quantity: 4 }
+                    { name: "M", qty: 4 }
                 ]
             },
         ],
@@ -163,15 +163,15 @@ const menProductPants = [
                 color: "Black",
                 images: ["prod_p51.jpg"],
                 sizes: [
-                    { name: "M", quantity: 10 },
-                    { name: "L", quantity: 8 }
+                    { name: "M", qty: 10 },
+                    { name: "L", qty: 8 }
                 ]
             },
             {
                 color: "Blue",
                 images: ["prod_p52.jpg"],
                 sizes: [
-                    { name: "M", quantity: 5 }
+                    { name: "M", qty: 5 }
                 ]
             },
         ],
@@ -192,15 +192,15 @@ const menProductPants = [
                 color: "Gray",
                 images: ["prod_p61.jpg"],
                 sizes: [
-                    { name: "30", quantity: 3 },
-                    { name: "32", quantity: 2 }
+                    { name: "30", qty: 3 },
+                    { name: "32", qty: 2 }
                 ]
             },
             {
                 color: "Black",
                 images: ["prod_p62.jpg"],
                 sizes: [
-                    { name: "30", quantity: 4 }
+                    { name: "30", qty: 4 }
                 ]
             },
         ],
@@ -221,15 +221,15 @@ const menProductPants = [
                 color: "Khaki",
                 images: ["prod_p71.jpg"],
                 sizes: [
-                    { name: "M", quantity: 8 },
-                    { name: "L", quantity: 6 }
+                    { name: "M", qty: 8 },
+                    { name: "L", qty: 6 }
                 ]
             },
             {
                 color: "Gray",
                 images: ["prod_p72.jpg"],
                 sizes: [
-                    { name: "M", quantity: 5 }
+                    { name: "M", qty: 5 }
                 ]
             },
         ],
@@ -250,15 +250,15 @@ const menProductPants = [
                 color: "Navy",
                 images: ["prod_p81.jpg"],
                 sizes: [
-                    { name: "32", quantity: 4 },
-                    { name: "34", quantity: 3 }
+                    { name: "32", qty: 4 },
+                    { name: "34", qty: 3 }
                 ]
             },
             {
                 color: "Charcoal",
                 images: ["prod_p82.jpg"],
                 sizes: [
-                    { name: "32", quantity: 2 }
+                    { name: "32", qty: 2 }
                 ]
             },
         ],
@@ -279,15 +279,15 @@ const menProductPants = [
                 color: "Olive",
                 images: ["prod_p91.jpg"],
                 sizes: [
-                    { name: "M", quantity: 5 },
-                    { name: "L", quantity: 3 }
+                    { name: "M", qty: 5 },
+                    { name: "L", qty: 3 }
                 ]
             },
             {
                 color: "Gray",
                 images: ["prod_p92.jpg"],
                 sizes: [
-                    { name: "M", quantity: 4 }
+                    { name: "M", qty: 4 }
                 ]
             },
         ],

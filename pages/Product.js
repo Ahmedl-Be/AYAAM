@@ -55,14 +55,14 @@ export default class Product extends View {
           <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               ${imgs
-                .map(
-                  (img, idx) => `
+            .map(
+              (img, idx) => `
                 <div class="carousel-item ${idx === 0 ? "active" : ""}">
                   <img src="../../data/imgs/products/${(product.category || "").toLowerCase()}/${(product.subCategory || product.subcategory || "").toLowerCase()}/${(product.id || "").toLowerCase()}/${img}" 
                        class="d-block w-100 rounded shadow-sm" alt="${product.name}">
                 </div>`
-                )
-                .join("")}
+            )
+            .join("")}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
               <span class="carousel-control-prev-icon"></span>
@@ -88,30 +88,32 @@ export default class Product extends View {
             </div>
             ${hasDiscount ? `<p class="discount"><i class="fa-solid fa-tag"></i> ${discountPercent}% OFF</p>` : ""}
 
-            <!-- Size Selector -->
-            ${(defaultVariant?.sizes?.length && defaultVariant.sizes.some((s) => s.name))
-              ? `
-              <div class="sizes mb-4">
-                <label class="form-label fw-bold"><i class="fa-solid fa-ruler"></i> Size:</label>
-                <select id="sizeSelect" class="form-select">
-                  ${defaultVariant.sizes
-                    .map(
-                      (s) => `
-                    <option value="${s.name}" ${s.qty === 0 ? "disabled" : ""}>
-                      ${s.name || "Default"}
-                    </option>`
-                    )
-                    .join("")}
-                </select>
-              </div>` : ""}
+<!-- Size Selector -->
+${(defaultVariant?.sizes?.length && defaultVariant.sizes.some((s) => s.name))
+          ? `
+    <div class="sizes mb-4">
+      <label class="form-label fw-bold"><i class="fa-solid fa-ruler"></i> Size:</label>
+      <select id="sizeSelect" class="form-select">
+        ${defaultVariant.sizes
+            .map(
+              (s) => `
+            <option value="${s.name}" ${s.qty === 0 ? "disabled" : ""}>
+              ${s.name || "Default"}${(typeof s.qty === "number" && s.qty !== undefined) ? ` (${s.qty} left)` : ""}
+            </option>`
+            )
+            .join("")}
+      </select>
+    </div>`
+          : ""
+        }
 
             <!-- Color Selector -->
             <div class="colors mb-4">
               <label class="form-label fw-bold"><i class="fa-solid fa-palette"></i> Color:</label>
               <select id="colorSelect" class="form-select">
                 ${(product.stock || [])
-                  .map((v) => `<option value="${v.color}">${v.color}</option>`)
-                  .join("")}
+          .map((v) => `<option value="${v.color}">${v.color}</option>`)
+          .join("")}
               </select>
             </div>
 
@@ -150,12 +152,13 @@ export default class Product extends View {
           document.getElementById("sizeSelect").innerHTML = variant.sizes
             .map(
               (s) => `
-              <option value="${s.name}" ${s.qty === 0 ? "disabled" : ""}>
-                ${s.name || "Default"} (${s.qty} left)
-              </option>`
+      <option value="${s.name}" ${s.qty === 0 ? "disabled" : ""}>
+        ${s.name || "Default"}${typeof s.qty === "number" ? ` (${s.qty} left)` : ""}
+      </option>`
             )
             .join("");
         }
+
       });
 
       // Back to catalog
