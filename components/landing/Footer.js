@@ -28,6 +28,7 @@ export default function Footer() {
         <h5 class="mb-4 font-weight-bold text-uppercase">Help</h5>
         <p><a href="https://www.facebook.com/ITITantaBranch/" target="_blank" class="text-light text-decoration-none">ITI - Tanta Branch</a></p>
         <p><a href="#/policy" class="text-light text-decoration-none">Privacy & Policy</a></p>
+        <p><a href="#/terms" class="text-light text-decoration-none">Terms of use</a></p>
         <p><a href="#/faq" class="text-light text-decoration-none" data-route>FAQs</a></p>
         <p><a href="#sale" class="text-light text-decoration-none" data-route>Sell with AYAAN</a></p>
       </div>
@@ -35,8 +36,8 @@ export default function Footer() {
       <!-- Contact -->
       <div class="col col-6 col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
         <h5 class="mb-4 font-weight-bold text-uppercase">Contact</h5>
-        <p><i class="bi bi-house-fill"></i> New York, NY 10012, US</p>
-        <p><i class="bi bi-envelope-fill"></i> support@yourbrand.com</p>
+        <p><i class="bi bi-house-fill"></i> Tanta, Gharbia, EG</p>
+        <p><a href="mailto:support@ayaam.example" style="text-decoration: none;"><i class="bi bi-envelope-fill"></i> support@ayaam.example </a></p>
         <p><i class="bi bi-phone-fill"></i> +1 234 567 88</p>
         <!-- Social Media -->
         <div class=" ms-0 text-left">

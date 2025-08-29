@@ -8,14 +8,6 @@
     color: var(--fontcolor2) !important;
 }
 
-.link-light,
-a {
-    color: var(--fontcolor0);
-}
-
-a:hover {
-    color: var(--fontcolor1);
-}
 
 /* Hero */
 .hero {
@@ -68,7 +60,7 @@ a:hover {
 
 .list-check li::before {
     content: "\f00c";
-    font-family: "Font Awesome 6 Free";
+    font-family: "Font Awesome 7 Free";
     font-weight: 900;
     position: absolute;
     left: 0;

@@ -1,0 +1,64 @@
+/* === Color Palette CSS === */
+:root {
+    /* accent orange */
+    --brand: #f97316;
+
+    /* Light Mode Font Colors */
+    --grey-1: #e0e0e0;
+    --grey-2: #c2c2c2;
+    --grey-3: #a3a3a3;
+    --grey-4: #858585;
+    --grey-5: #666666;
+    --grey-6: #525252;
+    --grey-7: #3d3d3d;
+    --grey-8: #292929;
+    --grey-9: #141414;
+
+    /* Light Mode Background Colors */
+    --bgcolor-1: #ffffff;
+    --bgcolor-2: #f9fafb;
+    --bgcolor-3: #f3f4f6;
+    --bgcolor-4: #e5e7eb;
+    --bgcolor-5: #d1d5db;
+    --bgcolor-6: #9ca3af; /* => for borders */
+
+    /* Light Mode Primary Shades */
+    --primary-1: #fff7ed; /* lightest */
+    --primary-2: #ffedd5;
+    --primary-3: #fdba74;
+    --primary-4: #fb923c;
+    --primary-5: #f97316; /* base */
+    --primary-6: #c2410c; /* darkest */
+
+}
+
+.dark {
+    /* Dark Mode Font Colors */
+    --grey-1: #141414;
+    --grey-2: #292929;
+    --grey-3: #3d3d3d;
+    --grey-4: #525252;
+    --grey-5: #666666;
+    --grey-6: #858585;
+    --grey-7: #a3a3a3;
+    --grey-8: #c2c2c2;
+    --grey-9: #e0e0e0;
+
+    /* Dark Mode Background Colors */
+    --bgcolor-1: #111827;
+    --bgcolor-2: #1f2937;
+    --bgcolor-3: #273143;
+    --bgcolor-4: #374151;
+    --bgcolor-5: #4b5563;
+    --bgcolor-6: #6b7280;
+    
+    /* Dark Mode Primary Shades (inverted orange scale) */
+    --primary-1: #c2410c; /* darkest */
+    --primary-2: #ea580c;
+    --primary-3: #f97316; /* base */
+    --primary-4: #fb923c;
+    --primary-5: #fdba74;
+    --primary-6: #ffedd5; /* lightest */
+   
+
+}

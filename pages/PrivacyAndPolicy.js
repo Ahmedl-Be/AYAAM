@@ -50,7 +50,7 @@ export default class PrivacyAndPolicy extends View {
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#policyAccordion">
               <div class="accordion-body text-muted">
-                <ul class=" mb-0">
+                <ul class="list-check mb-0">
                   <li><strong>Personal Details</strong>: name, email, phone, billing/shipping addresses.</li>
                   <li><strong>Account Data</strong>: login credentials, profile info, preferences.</li>
                   <li><strong>Transaction Data</strong>: orders, payments, invoices, refund history.</li>
