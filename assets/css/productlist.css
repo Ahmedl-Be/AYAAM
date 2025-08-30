@@ -8,7 +8,7 @@
 }
 
 .card-img-container {
-  height: 250px;
+  aspect-ratio: 2/2.4;
   overflow: hidden;
   position: relative;
 }
@@ -150,5 +150,10 @@
   #filter-sidebar{
     top: 90px;
   }
-  
+
+.card-img-container {
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  position: relative;
+}
 }
