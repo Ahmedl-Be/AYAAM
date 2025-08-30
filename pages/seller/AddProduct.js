@@ -16,7 +16,6 @@ export default class AddProduct extends View {
     <div class="col-12 col-md-6 col-lg-4">
       <label for="name" class="form-label fw-bold">Product Name</label>
       <input type="text" name="name" class="form-control shadow-sm" required>
-      <div class="invalid-feedback">Please enter your product name.</div>
     </div>
 
     <!-- Price -->
@@ -26,7 +25,6 @@ export default class AddProduct extends View {
         <input type="number" step="0.1" name="price" class="form-control" required>
         <span class="input-group-text bg-success text-white fw-bold">$</span>
       </div>
-      <div class="invalid-feedback">Please enter a valid price.</div>
     </div>
 
     <!-- Category -->
@@ -38,14 +36,12 @@ export default class AddProduct extends View {
         <option value="Men">Men</option>
         <option value="unisex">Unisex</option>
       </select>
-      <div class="invalid-feedback">Please select a category.</div>
     </div>
 
     <!-- Subcategory -->
     <div class="col-12 col-md-6 col-lg-4">
       <label for="subCategory" class="form-label fw-bold">Subcategory</label>
       <input type="text" name="subcategory" class="form-control shadow-sm" placeholder="e.g. Bags" required>
-      <div class="invalid-feedback">Please enter a subcategory.</div>
     </div>
 
     
@@ -66,7 +62,6 @@ export default class AddProduct extends View {
     <div class="col-12">
       <label for="description" class="form-label fw-bold">Description</label>
       <textarea name="description" class="form-control shadow-sm" rows="3" required></textarea>
-      <div class="invalid-feedback">Please enter description.</div>
     </div>
 
     <!-- Stock Section -->

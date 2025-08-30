@@ -261,7 +261,7 @@ function generateStockCard(productIndex, stockIndex, stock = {}) {
             ? stock.sizes.map((sz, sizeIndex) => `
                 <div class="row g-3 size-item align-items-center mt-2">
                   <div class="col-md-5">
-                    <input type="text" name="stock[${productIndex}][${stockIndex}][sizes][${sizeIndex}][size]" class="form-control shadow-sm" placeholder="e.g. M" value="${sz.size || ''}" required>
+                    <input type="text" name="stock[${productIndex}][${stockIndex}][sizes][${sizeIndex}][size]" class="form-control shadow-sm" placeholder="e.g. M" value="${sz.name || ''}" required>
                     <div class="invalid-feedback">Please enter a size name.</div>
                   </div>
                   <div class="col-md-5">
@@ -303,12 +303,12 @@ function generateStockCard(productIndex, stockIndex, stock = {}) {
       </div>
     </div>
   `;
-  // تعديل المعاينة عشان تعكس أسماء الملفات الجديدة
+
   const inputFile = card.querySelector("input[type='file']");
   const hiddenInput = card.querySelector("input[type='hidden']");
   const preview = card.querySelector(".image-preview");
   inputFile.addEventListener("change", function () {
-    preview.innerHTML = ""; // مسح أي محتوى قديم
+    preview.innerHTML = "";
     if (inputFile.files && inputFile.files.length > 0) {
       const newImages = Array.from(inputFile.files).map(file => file.name);
       hiddenInput.value = [...(stock.images || []), ...newImages].join(", ");
@@ -329,7 +329,6 @@ function generateStockCard(productIndex, stockIndex, stock = {}) {
     }
   });
 
-  // إزالة صورة عند الضغط على زر الحذف
   const removeButtons = card.querySelectorAll(".remove-image-btn");
   removeButtons.forEach(button => {
     button.addEventListener("click", function () {
@@ -368,7 +367,7 @@ function initializeEditForm(productIndex, product) {
   const stockSection = document.getElementById("editStockSection");
   const addStockBtn = document.getElementById("addStockBtn");
 
-  console.log("Product Data:", product); // لفحص البيانات الكاملة
+  console.log("Product Data:", product); 
 
   const nameRegex = /^[^0-9]+$/;
 
@@ -720,7 +719,7 @@ function generateStockHTML(stock) {
             </tr>
           </thead>
           <tbody>
-            ${s.sizes.map(sz => `<tr><td>${sz.size}</td><td>${sz.qty}</td></tr>`).join("")}
+            ${s.sizes.map(sz => `<tr><td>${sz.name}</td><td>${sz.qty}</td></tr>`).join("")}
           </tbody>
         </table>
       `;

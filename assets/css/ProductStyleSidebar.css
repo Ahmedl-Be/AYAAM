@@ -1,19 +1,25 @@
+  @import url(design.sys.css);
+
   .offcanvas {
-            background-color: #e6f4ea;
-            color: #065f46;
-        }
-        .offcanvas .nav-link {
-            color: #10b981;
-        }
-        .offcanvas .nav-link:hover, .offcanvas .nav-link.active {
-            background-color: #d1e7dd;
-            color: #065f46;
-        }
-        .toggle-btn {
-            background-color: #10b981;
-            color: #ffffff;
-            border: none;
-        }
-        .toggle-btn:hover {
-            background-color: #34d399;
-        }
+    background-color: var(--bgcolor-2); 
+    color: var(--primary-3);
+}
+
+.offcanvas .nav-link {
+    color: var(--primary-4);
+}
+
+.offcanvas .nav-link:hover, .offcanvas .nav-link.active {
+    background-color: var(--bgcolor-3);
+    color: var(--primary-5); 
+}
+
+.toggle-btn {
+    background-color: var(--primary-5);
+    color: var(--bgcolor-1);
+    border: none;
+}
+
+.toggle-btn:hover {
+    background-color: var(--primary-4); 
+}

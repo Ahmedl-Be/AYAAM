@@ -1,0 +1,132 @@
+@import url(design.sys.css);
+
+/* === Sales History Dashboard Styles === */
+.salesHistoryDashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bgcolor-1); /* Light: #ffffff, Dark: #111827 */
+    color: var(--grey-7); /* Light: #3d3d3d, Dark: #a3a3a3 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Added shadow for consistency */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.menu-toggle {
+    background-color: var(--primary-5); /* Light: #f97316, Dark: #fdba74 */
+    color: var(--bgcolor-1); /* Light: #ffffff, Dark: #111827 */
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-toggle:hover {
+    background-color: var(--primary-4); /* Light: #fb923c, Dark: #fb923c */
+}
+
+/* Make "Sales History Dashboard" look nicer with statistical color */
+.salesHistoryDashboard h1 {
+    color: var(--primary-6); /* Light: #c2410c, Dark: #ffedd5 */
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    background-color: var(--bgcolor-1); /* Light: #ffffff, Dark: #111827 */
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+}
+
+.stat.best { background-color: var(--primary-1); } /* Light: #fff7ed, Dark: #c2410c */
+.stat.least { background-color: var(--primary-2); } /* Light: #ffedd5, Dark: #ea580c */
+.stat.total { background-color: var(--primary-3); } /* Light: #fdba74, Dark: #f97316 */
+
+.stat div {
+    color: var(--primary-4); /* Light: #fb923c, Dark: #fb923c */
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.controls input {
+    padding: 8px 15px;
+    border: 1px solid var(--bgcolor-6); /* Light: #9ca3af, Dark: #6b7280 */
+    border-radius: 8px;
+    width: 100%;
+    max-width: 300px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    background-color: var(--bgcolor-1); /* Light: #ffffff, Dark: #111827 */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: right;
+    border-bottom: 1px solid var(--bgcolor-6); /* Light: #9ca3af, Dark: #6b7280 */
+}
+
+th {
+    background-color: var(--primary-5); /* Light: #f97316, Dark: #fdba74 */
+    color: var(--bgcolor-1); /* Light: #ffffff, Dark: #111827 */
+    font-weight: 600;
+}
+
+.chart-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.chart-card {
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--bgcolor-1); /* Light: #ffffff, Dark: #111827 */
+}
+
+.chart-card h3 {
+    color: var(--primary-4); /* Light: #fb923c, Dark: #fb923c */
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.chart-card canvas {
+    width: 100%;
+    height: auto;
+}
+
+/* Solid background colors for chart card */
+.chart-container .chart-card { 
+    background-color: var(--primary-4); /* Light: #fb923c, Dark: #fb923c */
+}
