@@ -1,45 +1,21 @@
+
 import View from "../../components/core/view.js";
+import { renderEmptyState, renderUserForm, renderUsers, renderUsersTable, UserEvents } from "../../components/dashboard/admin-users.js";
 import { localStore } from "../../scripts/utils/storage.js";
 
+
 export default class UsersPage extends View {
-  template() {
-    const users = localStore.read("users", []);
-    return `
-      <section>
-        <h2>Users</h2>
-        <button id="addUser">+ Add User</button>
-        <ul>
-          ${users.map((user, i) => `
-            <li>
-              ${user.name} (${user.email})
-              <button data-index="${i}" class="deleteUser">Delete</button>
-            </li>
-          `).join("")}
-        </ul>
-      </section>
-    `;
-  }
+    template() {
+        const element = document.createElement("div")
+        element.setAttribute("id", "user")
+        console.log( renderUsers(element))
+        const fun =renderUsers(element)
+        return  fun.outerHTML;    }
 
-  script() {
-    document.getElementById("addUser").onclick = () => {
-      const users = localStore.read("users", []);
-      const name = prompt("Name?");
-      const email = prompt("Email?");
-      if (!name || !email) return;
+    script() {
+        let user = document.getElementById("user")
+        UserEvents(user);
+        
+    }
 
-      users.push({ name, email });
-      localStore.write("users", users);
-      this.render(); // rerender subview
-    };
-
-    document.querySelectorAll(".deleteUser").forEach(btn => {
-      btn.onclick = () => {
-        const idx = btn.dataset.index;
-        const users = localStore.read("users", []);
-        users.splice(idx, 1);
-        localStore.write("users", users);
-        this.render(); // rerender subview
-      };
-    });
-  }
 }

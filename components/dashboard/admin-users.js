@@ -131,7 +131,7 @@ export function renderUsers(container) {
             </div>
         <!-- .......display user table if there are users , if its empty display empty state..........-->
             <div class="card-body p-0">
-                ${users.length > 0 ? renderUsersTable(users) : renderEmptyState()}
+                // ${users.length > 0 ? renderUsersTable(users) : renderEmptyState()}
             </div>
         </div>
 
@@ -152,9 +152,10 @@ export function renderUsers(container) {
     `;
 
     UserEvents(container);
+    return container;
 }
 
-function renderUsersTable(users) {
+ export function renderUsersTable(users) {
     return `
         <div class="table-responsive">
             <table class="table table-hover mb-0" >
@@ -186,7 +187,7 @@ function renderUsersTable(users) {
     `;
 }
 
-function renderUserRow(user) {
+export function renderUserRow(user) {
 
 
     return `
@@ -255,7 +256,7 @@ function renderUserRow(user) {
 }
 
 // when there are no users render the empty state 
-function renderEmptyState() {
+export function renderEmptyState() {
     return `
         <div class="text-center py-5">
             <i class="fas fa-users text-muted" style="font-size: 4rem;"></i>
@@ -266,7 +267,7 @@ function renderEmptyState() {
 }
 
 //adding new user form
-function renderUserForm() {
+export function renderUserForm() {
     return `
         <form id="newUserForm" class="needs-validation" novalidate>
             <div class="row g-3">
@@ -349,7 +350,7 @@ function renderUserForm() {
     `;
 }
 //Event Listeners
-function UserEvents(container) {
+export function UserEvents(container) {
     // Add user button
     document.getElementById("addUserBtn")?.addEventListener("click", () => {
         const form = document.getElementById("userForm");
@@ -435,7 +436,7 @@ function UserEvents(container) {
 }
 
 // Event Handlers
-function handleUserFormSubmit(e) {
+export function handleUserFormSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -473,7 +474,7 @@ function handleUserFormSubmit(e) {
 
         // Re-render users
         const container = document.getElementById("adminContent");
-        renderUsers(container);
+         renderUsers(container);
     }
 
     e.target.classList.add("was-validated");

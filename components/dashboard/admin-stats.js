@@ -1,7 +1,7 @@
 import { localStore } from "../../scripts/utils/storage.js";
 
 // creating charts with enhanced options
-function chartCreation(canvasId, labels, data, colors, type = 'pie') {
+export function chartCreation(canvasId, labels, data, colors, type = 'pie') {
     setTimeout(() => {
         const ctx = document.getElementById(canvasId);
         if (ctx) {
@@ -21,7 +21,7 @@ function chartCreation(canvasId, labels, data, colors, type = 'pie') {
 }
 
 // Enhanced chart creation with better styling and animations
-function createChartInstance(ctx, type, labels, data, colors) {
+export function createChartInstance(ctx, type, labels, data, colors) {
     new Chart(ctx, {
         type: type,
         data: {
@@ -74,7 +74,7 @@ export function renderUsersStats(container) {
     const users = localStore.read("users") || [];
     
     //counting user types
-    const totalUsers = users.length;
+    const totalUsers = users.length-1; //MINUS MASTER
     const sellers = users.filter(user => user.role === "seller").length;
     const admins = users.filter(user => user.role === "admin").length;
     const customer = users.filter(user => user.role === "user").length;

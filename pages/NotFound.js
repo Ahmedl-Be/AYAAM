@@ -1,129 +1,61 @@
 import View from "../components/core/view.js";
-import { ProductEvents, renderProductsTable } from "../components/dashboard/admin-products.js";
-import { Button } from "../components/ui/buttons.js";
-import { navigate } from "../scripts/utils/navigation.js";
+import { calculateOrderStats, cleanupOrdersDashboard, handleDashboardClicks, initializeOrderCharts, initializeOrdersDashboard, prepareChartData, quickStatusUpdate, renderChartCard, renderOrdersDashboard, renderOrdersTable, renderStatCard, renderTopProductsCard, setupEventListeners } from "../components/dashboard/admin-orders.js";
 import { localStore } from "../scripts/utils/storage.js";
 
 
-export default class RenderProducts extends View {
+export default class OrdersStatsPage extends View {
     template() {
-        const products = localStore.read("products") || [];
+        const ordersData = localStore.read('orders') || [];
+
+        // Calculate statistics
+        const stats = calculateOrderStats(ordersData);
+        // Prepare chart data
+        const chartData = prepareChartData(ordersData);
 
         return `
-        <div id="pro">
-        <!--.............................Header Section.......................... -->
-        <div class="card border-0 shadow-lg mb-4">
-            <div class="card-header bg-primary text-white py-3">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h2 class="card-title mb-1 h4">
-                            <i class="fas fa-box me-2"></i>
-                            Product Management
-                        </h2>
-                        <p class="card-text mb-0 opacity-75">
-                            Manage and oversee all products in the system
-                        </p>
-                    </div>
+        <div id="orders">
+        <div class="container-fluid py-4">
+            <!-- Dashboard Header -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Orders Dashboard</h2>
+                    <p class="text-muted">Overview of <span class="fw-bold text-danger">AYAAM</span>'s order performance</p>
                 </div>
             </div>
-        </div>
 
-        <!--.....................................Stats Row....................................-->
-                                <!--........Total Product card..........-->
-        <div class="row g-3 mb-4">
-            <div class="col-6 col-md-3">
-                <div class="card border-0 shadow-lg h-100">
-                    <div class="card-body text-center">
-                        <div class="h4 text-primary mb-1">${products.length}</div>
-                        <small class="text-muted text-uppercase fw-semibold">Total Products</small>
-                    </div>
-                </div>
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                ${renderStatCard('$' + stats.totalRevenue, 'Total Revenue', 'fa-dollar-sign', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)')}
+                ${renderStatCard(stats.totalOrders, 'Total Orders', 'fa-shopping-cart', 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)')}
+                ${renderStatCard(stats.pendingOrders, 'Pending Orders', 'fa-clock', 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)')}
+                ${renderStatCard(stats.confirmedOrders, 'Confirmed Orders', 'fa-check-circle', 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)')}
             </div>
-                                <!--............Stock card..............-->
-            <div class="col-6 col-md-3">
-                <div class="card border-0 shadow-lg h-100">
-                    <div class="card-body text-center">
-                        <div class="h4 text-success mb-1">${products.filter(p => p.stock && p.stock.length > 0).length}</div>
-                        <small class="text-muted text-uppercase fw-semibold">In Stock</small>
-                    </div>
-                </div>
-            </div>
-                                <!--............items on sale Card..............-->
-            <div class="col-6 col-md-3">
-                <div class="card border-0 shadow-lg h-100">
-                    <div class="card-body text-center">
-                        <div class="h4 text-info mb-1">${products.filter(p => p.sale > 0).length}</div>
-                        <small class="text-muted text-uppercase fw-semibold">On Sale</small>
-                    </div>
-                </div>
-            </div>
-                                <!--............Categories Card..............-->
-            <div class="col-6 col-md-3">
-                <div class="card border-0 shadow-lg h-100">
-                    <div class="card-body text-center">
-                        <div class="h4 text-warning mb-1">${[...new Set(products.map(p => p.category))].length}</div>
-                        <small class="text-muted text-uppercase fw-semibold">Categories</small>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- .................................Toolbar ................................-->
-        <div class="card border-0 shadow-lg mb-4">
-            <div class="card-body">
-                <div class="row g-3 align-items-center">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0">
-                                <i class="fas fa-search text-muted"></i>
-                            </span>
-                            <input type="text" class="form-control border-start-0" 
-                                placeholder="Search products..." id="searchInput">
+            <!-- Charts Row -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    ${renderChartCard('Orders by Category', 'categoryChart', 'fa-tags')}
+                </div>
+                <div class="col-md-4">
+                    ${renderChartCard('Orders by Status', 'statusChart', 'fa-chart-pie')}
+                </div>
+                <div class="col-md-4">
+                    ${renderTopProductsCard(chartData.topProducts)}
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="fas fa-list me-2"></i>Recent Orders</h6>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <select class="form-select" id="categoryFilter">
-                            <option value="">All Categories</option>
-                            <option value="Men">Men</option>
-                            <option value="Women">Women</option>
-                            <option value="Unisex">Unisex</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ..............Bulk Actions Bar (Display: none by default) ...............-->
-        <div class="card border-0 shadow-sm mb-4 d-none" id="bulkActionsBar">
-            <div class="card-body py-2">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <span class="fw-semibold">
-                            <span class="text-danger fw-bold"  id="selectedCount">0</span> product(s) selected
-                        </span>
-                    </div>
-                    <div class="col-auto">
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-outline-danger" id="bulkDeleteBtn">
-                                <i class="fas fa-trash me-1"></i>Delete
-                            </button>
+                        <div class="card-body p-0">
+                            ${renderOrdersTable(ordersData)}
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!--.......................... Products Table .................................-->
-        <div class="card border-1 shadow-sm mb-4">
-            <!--.................Table Title...................-->
-            <div class="card-header bg-white py-2 shadow-sm">
-                <h5 class="card-title mb-0">
-                    <i class="fas fa-table me-2 text-primary"></i>
-                    Products List
-                </h5>
-            </div>
-            <div class="card-body p-0">
-                ${products.length > 0 ? renderProductsTable(products) : renderEmptyState()}
             </div>
         </div>
         </div>
@@ -131,8 +63,13 @@ export default class RenderProducts extends View {
     }
 
     script() {
-        let pro = document.getElementById("pro")
-        ProductEvents(pro);
+        const ordersData = localStore.read('orders',[]) ;
+        // Prepare chart data
+        const chartData = prepareChartData(ordersData);
+    
+        setTimeout(() => initializeOrdersDashboard(chartData), 100);
+
+
     }
 
 }

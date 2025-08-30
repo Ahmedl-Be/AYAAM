@@ -78,7 +78,7 @@ export function renderOrdersDashboard(container) {
             {
                 "productId": "uha004",
                 "productName": "Unisex Denim Strapback",
-                "qty": 1,
+                "qty": 2,
                 "price": "27.99",
                 "size": "M",
                 "category": "Unisex",
@@ -103,7 +103,7 @@ export function renderOrdersDashboard(container) {
             <div class="row mb-4">
                 <div class="col-12">
                     <h2 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Orders Dashboard</h2>
-                    <p class="text-muted">Overview of your store's order performance</p>
+                    <p class="text-muted">Overview of <span class="fw-bold text-danger">AYAAM</span>'s order performance</p>
                 </div>
             </div>
 
@@ -148,7 +148,7 @@ export function renderOrdersDashboard(container) {
 }
 
 // Reusable stat card
-function renderStatCard(value, label, icon, gradient) {
+export function renderStatCard(value, label, icon, gradient) {
     return `
     <div class="col-md-3">
         <div class="card border-0 shadow-sm h-100" style="background:${gradient};">
@@ -161,8 +161,8 @@ function renderStatCard(value, label, icon, gradient) {
     </div>`;
 }
 
-// Reusable chart card
-function renderChartCard(title, canvasId, icon) {
+//chart card
+export function renderChartCard(title, canvasId, icon) {
     return `
     <div class="card border-0 shadow-sm h-100">
         <div class="card-header bg-white">
@@ -175,7 +175,7 @@ function renderChartCard(title, canvasId, icon) {
 }
 
 // Top products card
-function renderTopProductsCard(topProducts) {
+export function renderTopProductsCard(topProducts) {
     return `
     <div class="card border-0 shadow-sm h-100">
         <div class="card-header bg-white">
@@ -203,7 +203,7 @@ function renderTopProductsCard(topProducts) {
 }
 
 // Orders table
-function renderOrdersTable(orders) {
+export function renderOrdersTable(orders) {
     if (orders.length === 0) {
         return `
         <div class="text-center py-5">
@@ -287,13 +287,13 @@ export function initializeOrdersDashboard(chartData) {
 }
 
 // Event listeners
-function setupEventListeners() {
+export function setupEventListeners() {
     document.removeEventListener('click', handleDashboardClicks);
     document.addEventListener('click', handleDashboardClicks);
 }
 
 // Handle clicks
-function handleDashboardClicks(event) {
+export function handleDashboardClicks(event) {
     const target = event.target.closest('[data-action]');
     if (!target) return;
 
@@ -308,7 +308,7 @@ function handleDashboardClicks(event) {
 }
 
 // Calculate statistics
-function calculateOrderStats(orders) {
+export function calculateOrderStats(orders) {
     let totalRevenue = 0;
     let pendingOrders = 0;
     let confirmedOrders = 0;
@@ -331,7 +331,7 @@ function calculateOrderStats(orders) {
 }
 
 // Chart data
-function prepareChartData(orders) {
+export function prepareChartData(orders) {
     const categoryData = {};
     const statusData = { pending: 0, confirmed: 0 };
     const productRevenue = {};
@@ -375,7 +375,7 @@ function getStatusBadgeClass(status) {
 }
 
 // Initialize charts
-function initializeOrderCharts(chartData) {
+export function initializeOrderCharts(chartData) {
     if (window.categoryChartInstance) window.categoryChartInstance.destroy();
     if (window.statusChartInstance) window.statusChartInstance.destroy();
 
@@ -405,7 +405,7 @@ function initializeOrderCharts(chartData) {
 }
 
 // Quick status update
-function quickStatusUpdate(orderId, newStatus) {
+export function quickStatusUpdate(orderId, newStatus) {
     const orders = localStore.read("orders") || [];
     const order = orders.find(o => o.orderId === orderId);
 
