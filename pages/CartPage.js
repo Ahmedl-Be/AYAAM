@@ -17,7 +17,7 @@ export default class CartPage extends View {
     template() {
         return `
             <header class="sticky-top bg-white" id='navbar' data-fade></header>
-            <div id="cart-container" data-fade>
+            <div id="cart-container">
                 <div class='container-lg '>
 
                     <!-- ITEMS INSIDE CART AND SUMMARY-->
@@ -36,7 +36,7 @@ export default class CartPage extends View {
                 </div>
             </div>
 
-            <!-- RELARED SECTION-->
+            <!-- RELATED SECTION-->
 
             <div id="related-items" class="marginTop-related mb-4 ms-lg-0 me-lg-0 ps-lg-0 pe-lg-0" data-fade>
                 

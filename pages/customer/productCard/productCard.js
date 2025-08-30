@@ -12,7 +12,7 @@ export function ProductCard(product) {
   card.className = "col-md-6 col-lg-4 col-sm-12  mb-4";
 
 card.innerHTML = `
-<div class="card shadow-sm h-100" data-fade>
+<div class="card shadow-sm h-100">
   <div class="card-img-container position-relative">
     <img 
       src="../../data/imgs/products/${product.category.toLowerCase()}/${product.subcategory.toLowerCase()}/${product.id.toLowerCase()}/${images[0]}" 

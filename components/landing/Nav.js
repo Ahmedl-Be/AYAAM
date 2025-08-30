@@ -5,6 +5,7 @@ import { Icon } from "../ui/icons.js";
 import { Button } from "../ui/buttons.js";
 import { Toggler } from "../ui/toggler.js";
 import { navigate } from "../../scripts/utils/navigation.js";
+import Toast from "../ui/toast.js";
 
 export default class Navbar extends Component {
   constructor(_config = {}, _params = {}) {
@@ -35,33 +36,40 @@ export default class Navbar extends Component {
                   ${Button(Icon("user", "solid", "fa-lg"), "profileDropdown", "btn border-0 bg-transparent p-0", 'data-bs-toggle="dropdown" aria-expanded="false"')}
           <!-- Drop-down Profile-->
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                    ${this.user ? `
+                    ${this.user ?
+        `
                           <li class="dropdown-item-text">Hello, ${this.user.name}</li>
                           <li><hr class="dropdown-divider"></li>
-
+<!-- SHOP - STORE - DASHBOARD -->
                           <li>
                               ${((_u) => {
           switch (_u.role) {
             case 'master' || 'admin':
               return `
-                                    <a class="dropdown-item d-flex" href="#/admin" data-route>
-                                      ${Icon("chart-simple", "solid", "me-2")} Dashboard
-                                    </a>
-                                    `
+                                                              <a class="dropdown-item d-flex" href="#/admin" data-route>
+                                                                ${Icon("chart-simple", "solid", "me-2")} Dashboard
+                                                              </a>
+                                                              `
             case 'seller':
-              return `
-                                    <a class="dropdown-item d-flex" href="#/seller" data-route>
-                                      ${Icon("store", "solid", "me-2")} Manage Store
-                                    </a>
-                                    `
+
+              return _u.status === 'active' ? `  
+                                                              <a class="dropdown-item d-flex" href="#/seller" data-route>
+                                                                ${Icon("store", "solid", "me-2")} Manage Store
+                                                              </a>
+                                                              `
+                : `
+                                                              <a class="dropdown-item d-flex " id="locked">
+                                                                ${Icon("lock", "solid", "me-2")} Manage Store
+                                                              </a>
+                                                              `
+
 
             default:
               return `
-                                      <a class="dropdown-item d-flex" href = "#/catalog" data - route >
-                                        ${Icon("bag-shopping", "solid", "me-2")} Shop
-                                    </a>
-                                    `
-          }
+                                                                <a class="dropdown-item d-flex" href = "#/catalog" data - route >
+                                                                  ${Icon("bag-shopping", "solid", "me-2")} Shop
+                                                              </a>
+                                    `}
         })(this.user)}
                           </li>
 
@@ -71,7 +79,8 @@ export default class Navbar extends Component {
                             </button>
                           </li>`
 
-        : `<li>
+        : `
+                      <li>
                             <a class="dropdown-item d-flex" href="#/login" data-route>
                               ${Icon("right-to-bracket", "solid", "me-2")} Login
                             </a>
@@ -83,10 +92,6 @@ export default class Navbar extends Component {
                           </li>
                         `
       }
-                    <li><hr class="dropdown-divider"></li>
-                    <li><button class="dropdown-item d-flex" id="toggleDarkMode">
-                      ${Icon("moon", "solid", "me-2")} Dark Mode
-                    </button></li>
                   </ul>
                 </div>
 
@@ -194,7 +199,9 @@ export default class Navbar extends Component {
     });
 
 
-
+    document.querySelector('#locked').addEventListener('click', () => {
+      Toast.notify('You will be able to access your store once your data is verfied :D','black',2000)
+    })
 
 
 
