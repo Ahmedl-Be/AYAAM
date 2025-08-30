@@ -19,7 +19,7 @@ export default class CardsSection extends Component {
                 <div style="width: 60px; height: 4px; background: black; margin: 10px auto; border-radius: 2px;"></div>
             </div>
 <!--- Cards List  -->
-            <div class="row flex-nowrap overflow-auto gx-3" id="product-list-${this.id}"></div>
+            <div class="row flex-nowrap overflow-auto pt-2 gx-3" id="product-list-${this.id}"></div>
 
 <!--- Browse Items  -->            
             <div class="text-center mt-4">

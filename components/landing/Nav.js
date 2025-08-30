@@ -18,12 +18,12 @@ export default class Navbar extends Component {
     return `
       <nav class="navbar navbar-light container border-bottom">
 <!-- First Row (visible on all screens) -->
-        <div class="row p-0 m-0 w-100 g-3">
+        <div class="row p-0 m-0 w-100 ">
 
 <!-- LOGO -->
-            <div class="col-6 col-md-3 d-flex align-items-center">
-            <h5 class="mb-4 font-weight-bold text-uppercase">
-            ${Anchor("AYAAM", "/home", "navbar-brand")}
+            <div class="col-6 col-md-3  ">
+            <h5 class=" font-weight-bold text-uppercase d-flex align-items-center my-0 h-100">
+            ${Anchor("AYAAM", "/home", "navbar-brand d-flex align-items-center")}
             </h5>
               
             </div>
@@ -31,7 +31,6 @@ export default class Navbar extends Component {
 <!-- ICONS - moves to third position on md+ -->
             <div class="icons d-flex justify-content-end align-content-center col-6 col-md-3 order-2 order-md-3">
               <div class="d-flex align-items-center gap-3">
-                ${Button(Icon("bell", "solid", ""), "ico-notify")}
 
     <!-- Profile Icon -->
                 <div class="dropdown">
@@ -110,7 +109,7 @@ export default class Navbar extends Component {
             </div>
 
 <!-- SEARCH BAR - becomes second on md+ -->
-            <div class="col-12 order-4 order-md-2 col-md-6 search-bar">
+            <div class="col-12 order-4 order-md-2 col-md-6 search-bar pb-1">
               <form class="d-flex search-container form-control rounded-5">
                 <div class="input-group row">
                   <div class="col px-2 col-1"><i class="fas fa-search fa-fw" id="searchInputIcon"></i></div>
