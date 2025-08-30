@@ -24,5 +24,5 @@ export function hideLoader() {
   const loader = document.getElementById("app-loader");
   window.setTimeout(() => {
     if (loader) loader.style.display = "none";
-  },400)
+  },0)
 }

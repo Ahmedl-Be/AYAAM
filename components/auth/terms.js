@@ -1,6 +1,6 @@
 export default function TermsModal() {
     return `
-        <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" data-fade>
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content rounded-3 shadow-lg">
       <div class="modal-header">
@@ -33,7 +33,7 @@ export default function TermsModal() {
         </p>
       </div>
 
-      <div class="modal-footer">
+      <div class="modal-footer" data-fade>
         <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
       </div>
     </div>

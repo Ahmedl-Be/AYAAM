@@ -14,17 +14,17 @@ export default class Catalog extends View {
   }
   template() {
     return `
-    <header class="sticky-top bg-white" id='navbar'></header>
+    <header class="sticky-top bg-white" id='navbar' data-fade></header>
     <div class="container py-4">
-    <div class="d-flex align-items-center justify-content-between mb-3">
+    <div class="d-flex align-items-center justify-content-between mb-3" data-fade>
       <h2 class="mb-0 text-uppercase fw-light">Shop Our Amazing Products</h2>
     </div>
 
     <div class="row">
       <!-- LEFT: Filters -->
-      <aside class="col-12 col-lg-3 mb-4 mb-lg-0" id="filter-sidebar">
+      <aside class="col-12 col-lg-3 mb-4 mb-lg-0" id="filter-sidebar" data-fade>
         <!-- mobile toggle -->
-        <button class="btn btn-outline-dark w-100 d-lg-none mb-3" data-bs-toggle="collapse" data-bs-target="#filtersCollapse">
+        <button class="btn btn-outline-dark w-100 d-lg-none mb-3" data-bs-toggle="collapse" data-bs-target="#filtersCollapse" data-fade>
           <i class="fa-solid fa-filter me-2"></i> Filters
         </button>
 

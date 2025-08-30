@@ -5,7 +5,7 @@ import View from "../../components/core/view.js";
 export default class FaqsPage extends View {
     template() {
         return `
-       <div class="faq-section">
+       <div class="faq-section" >
     <h2>Frequently Asked Questions</h2>
     <div class="accordion" id="faqAccordion">
 

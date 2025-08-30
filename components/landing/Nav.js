@@ -1,11 +1,9 @@
 import Component from "../core/component.js";
-import { localStore } from "../../scripts/utils/storage.js";
 import { getCurrentUser, logout } from "../../data/authentication.js";
 import { Navlink, Anchor } from "../ui/links.js";
 import { Icon } from "../ui/icons.js";
 import { Button } from "../ui/buttons.js";
 import { Toggler } from "../ui/toggler.js";
-import View from "../core/view.js";
 import { navigate } from "../../scripts/utils/navigation.js";
 
 export default class Navbar extends Component {

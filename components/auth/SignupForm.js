@@ -9,7 +9,7 @@ export default class SignupForm extends Component {
         const terms = new TermsPage
         return `
     <!-- SIGNUP FORM -->
-              <form id="signupForm" class="">
+              <form id="signupForm" class="" data-fade>
         <!-- Name Field -->
                 <div class="mb-3">
                     <label for="name" class="form-label">Full Name</label>

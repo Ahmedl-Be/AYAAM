@@ -1,10 +1,14 @@
+/* ANIMATIONS */
+@import url(animations.css);
+
+
+
 @import url(landing.css);
 @import url(slider.css);
 @import url(productlist.css);
 @import url(cart.css);
 @import url(checkout.css) ;
 @import url(profile.css) ;
-
 @import url(about.css);
 @import url(privacy.css);
 @import url(faq.css);
@@ -12,9 +16,7 @@
 @import url(ProductStyleSidebar.css);
 @import url(mainDashboardStyle.css);
 @import url(IncomingOrderStyle.css);
-
 @import url(productStyle.css);
-
 #app-loader{
 	transition: all 0.5s;
 }
