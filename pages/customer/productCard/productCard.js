@@ -56,21 +56,22 @@ export function ProductCard(product) {
     </div>
 
 <div class="d-flex gap-2 mt-3">
+
+  <!-- Larger dark button -->
   <button 
-    class="btn btn-outline-dark flex-fill d-flex align-items-center justify-content-center gap-2 py-2" 
+    class="btn btn-dark flex-grow-1 d-flex align-items-center justify-content-center gap-2 py-2 fs-6" 
     data-id="${product.id}" id="viewDetailsBtn">
-      <i class="fa-solid fa-eye"></i> 
-      <span>View</span>
+      <i class="fa-solid fa-eye"></i> View
   </button>
 
+  <!-- Smaller button: bg white, text black -->
   <button 
-    class="btn btn-dark flex-fill d-flex align-items-center justify-content-center gap-2 py-2" 
-    data-id="${product.id}" id="addToCartBtn">
-      <i class="fa-solid fa-cart-plus"></i>
-      <span>Cart</span>
+    class="btn btn-light border d-flex align-items-center justify-content-center text-dark" 
+    data-id="${product.id}" id="addToCartBtn" style="width: 50px; height: 40px;">
+      <i class="fa-solid fa-cart-plus text-dark"></i>
   </button>
-</div>
 
+</div>
   </div>
 </div>
 `;
@@ -81,23 +82,50 @@ export function ProductCard(product) {
   const viewDetailsBtn = card.querySelector('#viewDetailsBtn');
   const addToCartBtn = card.querySelector('#addToCartBtn');
 
-
   addToCartBtn.addEventListener("click", () => {
-    // Use first color and size if available, or null
-    const defaultVariant = product.stock[0];
-    const selectedColor = defaultVariant?.color || null;
-    let selectedSize = null;
-    if (defaultVariant?.sizes && defaultVariant.sizes.length > 0) {
-      selectedSize = defaultVariant.sizes[0].name;
-    };
+    // find first in-stock size across variants (fall back to size=null for one-size items)
+    const stock = product.stock || [];
+    let chosen = null;
+
+    for (const variant of stock) {
+      const sizes = variant.sizes || [];
+      for (const sz of sizes) {
+        // determine quantity / availability using common fields
+        const qty = (typeof sz.qty === 'number') ? sz.qty
+                  : (typeof sz.quantity === 'number') ? sz.quantity
+                  : (typeof sz.stock === 'number') ? sz.stock
+                  : (typeof sz.count === 'number') ? sz.count
+                  : null;
+
+        const available = (typeof qty === 'number') ? qty > 0
+                        : (typeof sz.available === 'boolean') ? sz.available
+                        : (typeof sz.inStock === 'boolean') ? sz.inStock
+                        : true; // assume available if no info
+
+        if (available) {
+          chosen = {
+            color: variant?.color ?? null,
+            size: (sz?.name && sz.name.trim() !== '') ? sz.name : null
+          };
+          break;
+        }
+      }
+      if (chosen) break;
+    }
+
+    if (!chosen) {
+      // nothing available
+      if (Toast?.show) Toast.show('This product is out of stock', { type: 'warning' });
+      else alert('This product is out of stock');
+      return;
+    }
 
     addToCart({
       product,
-      selectedColor,
-      selectedSize,
+      selectedColor: chosen.color,
+      selectedSize: chosen.size,
       qty: 1,
     });
-
   })
 
   viewDetailsBtn.addEventListener("click", () => {
