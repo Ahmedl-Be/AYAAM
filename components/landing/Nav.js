@@ -199,13 +199,13 @@ export default class Navbar extends Component {
         navigate("/catalog");
       }
     }
+    searchBar.addEventListener("keydown", searchHandler);
+    navSearchIcon.addEventListener("click", searchHandler);
 
 
     document.querySelector('#locked')?.addEventListener('click', () => {
       Toast.notify('You will be able to access your store once your data is verfied :D','black',2000)
     })
-    searchBar.addEventListener("keydown", searchHandler);
-    navSearchIcon.addEventListener("click", searchHandler);
 
 
 
