@@ -8,7 +8,7 @@ export default function Footer() {
     <div class="row text-md-left">
 
       <!-- Brand / About -->
-      <div class="col col-6 col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+      <div class="col col-12 col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
         <h5 class="mb-4 font-weight-bold text-uppercase">AYAAM</h5>
         <p>
           AYAAM is the new wave of eCommerce — a space where sellers, shoppers, and creators all play a role. Think of it as a marketplace with personality, built for connection as much as for commerce.
@@ -44,7 +44,7 @@ export default function Footer() {
       </div>
 
       <!-- Contact -->
-      <div class="col col-6 col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+      <div class="col col-12 col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
         <h5 class="mb-4 font-weight-bold text-uppercase">Contact</h5>
         <p><i class="bi bi-house-fill"></i> Tanta, Gharbia, EG</p>
         <p><a href="mailto:support@ayaam.example" style="text-decoration: none;"><i class="bi bi-envelope-fill"></i> support@ayaam.example </a></p>
