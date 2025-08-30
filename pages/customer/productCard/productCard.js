@@ -82,23 +82,50 @@ export function ProductCard(product) {
   const viewDetailsBtn = card.querySelector('#viewDetailsBtn');
   const addToCartBtn = card.querySelector('#addToCartBtn');
 
-
   addToCartBtn.addEventListener("click", () => {
-    // Use first color and size if available, or null
-    const defaultVariant = product.stock[0];
-    const selectedColor = defaultVariant?.color || null;
-    let selectedSize = null;
-    if (defaultVariant?.sizes && defaultVariant.sizes.length > 0) {
-      selectedSize = defaultVariant.sizes[0].name;
-    };
+    // find first in-stock size across variants (fall back to size=null for one-size items)
+    const stock = product.stock || [];
+    let chosen = null;
+
+    for (const variant of stock) {
+      const sizes = variant.sizes || [];
+      for (const sz of sizes) {
+        // determine quantity / availability using common fields
+        const qty = (typeof sz.qty === 'number') ? sz.qty
+                  : (typeof sz.quantity === 'number') ? sz.quantity
+                  : (typeof sz.stock === 'number') ? sz.stock
+                  : (typeof sz.count === 'number') ? sz.count
+                  : null;
+
+        const available = (typeof qty === 'number') ? qty > 0
+                        : (typeof sz.available === 'boolean') ? sz.available
+                        : (typeof sz.inStock === 'boolean') ? sz.inStock
+                        : true; // assume available if no info
+
+        if (available) {
+          chosen = {
+            color: variant?.color ?? null,
+            size: (sz?.name && sz.name.trim() !== '') ? sz.name : null
+          };
+          break;
+        }
+      }
+      if (chosen) break;
+    }
+
+    if (!chosen) {
+      // nothing available
+      if (Toast?.show) Toast.show('This product is out of stock', { type: 'warning' });
+      else alert('This product is out of stock');
+      return;
+    }
 
     addToCart({
       product,
-      selectedColor,
-      selectedSize,
+      selectedColor: chosen.color,
+      selectedSize: chosen.size,
       qty: 1,
     });
-
   })
 
   viewDetailsBtn.addEventListener("click", () => {
