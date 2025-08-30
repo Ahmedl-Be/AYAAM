@@ -1,7 +1,6 @@
 import View from "../components/core/view.js";
 import Toast from "../components/ui/toast.js";
 import SellerForm from "../components/auth/SellerForm.js";
-import TermsModal from "../components/auth/terms.js";
 import Modal from "../components/auth/modal.js";
 
 
@@ -37,7 +36,7 @@ export default class SellersRegistration extends View {
         </div>
 
 <!-- Terms Modal -->
-        ${Modal('Terms & Conditions', TermsModal())}
+        ${Modal()}
         `
     }
 

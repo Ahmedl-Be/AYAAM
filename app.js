@@ -11,7 +11,7 @@ const routes = {
   /* AUTHENTICATION & AUTHORIZATION */
   "/signup": { loader: () => import("./pages/SignupPage.js") },
   "/login": { loader: () => import("./pages/LoginPage.js") },
-  "/confirm-seller": { loader: () => import("./pages/sellersRegistration.js") },
+  "/confirm-seller": { loader: () => import("./pages/sellersRegistration.js"), roles: ['admin', 'user', 'master', 'seller'] },
 
   /* LANDING */
   "/home": { loader: () => import("./pages/HomePage.js") },

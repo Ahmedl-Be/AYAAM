@@ -4,7 +4,6 @@ import { localStore } from '../../scripts/utils/storage.js';
 import Component from '../core/component.js';
 import Toast from '../ui/toast.js';
 import Modal from './modal.js';
-import TermsModal from './terms.js';
 
 export default class SignupForm extends Component {
     template() {
@@ -101,7 +100,7 @@ export default class SignupForm extends Component {
             </div>
 
             <!-- The Terms Modal -->
-            ${Modal('Terms & Conditions', TermsModal())}
+            ${Modal()}
             
             </form>
                   `
