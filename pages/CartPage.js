@@ -1,4 +1,4 @@
-import CartItems from "../components/cart/cartItems.js";
+import CartItems from "../components/cart/CartItems.js";
 import RelatedProducts from "../components/cart/RelatedProducts.js";
 import SummaryCart from "../components/cart/SummaryCart.js";
 import View from "../components/core/view.js";
@@ -51,5 +51,5 @@ export default class CartPage extends View {
         this.mount(SummaryCart, "#summary");
         this.mount(RelatedProducts, "#related-items");
     }
-    
+
 }
