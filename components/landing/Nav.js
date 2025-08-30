@@ -162,7 +162,7 @@ export default class Navbar extends Component {
     const btnDark = this.parent.querySelector("#toggleDarkMode");
     if (btnDark) {
       btnDark.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
+        document.body.classList.toggle("dark");
       });
     };
 

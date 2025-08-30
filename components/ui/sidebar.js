@@ -18,7 +18,7 @@ export function Sidebar(sections = [], title = "") {
     </button>
 
     <!-- ...............Sidebar for LG screens................ -->
-    <div class="d-none d-lg-block bg-light border-end position-fixed h-100" 
+    <div class="d-none d-lg-flex flex-column bg-light border-end position-fixed h-100"
         style="width: 250px; z-index: 1020;">
         <div class="mt-4">
             <h5 class="mb-4">${title}</h5>
@@ -48,7 +48,7 @@ export function Sidebar(sections = [], title = "") {
             </div>
         </div>
         <!--................ Logout btn................ -->
-        <div class="p-3 border-top">
+        <div class="p-3 mt-auto">
             <button class="btn btn-outline-danger w-100 sidebar-logoutBtn" >
                 <i class="fas fa-sign-out-alt"></i> Logout
             </button>

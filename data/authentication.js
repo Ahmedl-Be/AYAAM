@@ -135,7 +135,7 @@ export function logout() {
     sessionStore.clear();
     sessionStore.write('currentProduct', currentP, '');
     localStore.remove("currentUser");
-    console.log("✅ Logged out");
+    navigate('/home')
 }
 
 /* ===========function to validate email======= */
