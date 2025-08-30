@@ -40,7 +40,7 @@ export default function Footer() {
         <p><a href="#/info/policy" class="text-light text-decoration-none">Privacy & Policy</a></p>
         <p><a href="#/info/terms" class="text-light text-decoration-none">Terms of use</a></p>
         <p><a href="#/info/faqs" class="text-light text-decoration-none" data-route>FAQs</a></p>
-        <p><a href="#sale" class="text-light text-decoration-none" data-route>Sell with AYAAN</a></p>
+        <p><a href="#/sell-with-us" class="text-light text-decoration-none" data-route>Sell with AYAAM</a></p>
       </div>
 
       <!-- Contact -->

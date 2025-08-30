@@ -8,9 +8,10 @@ const routes = {
   /* FALL BACK */
   "/404": { loader: () => import("./pages/NotFound.js") },
 
-  /* LOGIN / SIGN UP */
+  /* AUTHENTICATION & AUTHORIZATION */
   "/signup": { loader: () => import("./pages/SignupPage.js") },
   "/login": { loader: () => import("./pages/LoginPage.js") },
+  "/confirm-seller": { loader: () => import("./pages/sellersRegistration.js") },
 
   /* LANDING */
   "/home": { loader: () => import("./pages/HomePage.js") },
@@ -31,7 +32,8 @@ const routes = {
 
   /* INFO PAGES */
   "/info": { loader: () => import("./pages/SupportPage.js") },
- 
+  "/sell-with-us": { loader: () => import("./pages/SellWithUsPage.js") },
+
 }
 
 /* ====== APP ROOT ELEMENT ====== */
