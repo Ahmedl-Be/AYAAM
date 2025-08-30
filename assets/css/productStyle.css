@@ -1,18 +1,19 @@
+@import url(design.sys.css);
+
 .price {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #b12704;
 }
 
 .old-price {
   text-decoration: line-through;
-  color: #888;
+  color: var(--gray-3);
   margin-left: 10px;
   font-size: 1rem;
 }
 
 .discount {
-  color: green;
+  color: var(--primary-4);
   font-weight: bold;
 }
 
@@ -36,15 +37,26 @@
 
 #addToCartBtn{
   color: white;
-  width: 11rem;
+  width: 12rem;
 }
 
 #backToCatalogBtn{
-  background-color: #e7f3e7;
   transition: all 0.4s ease;
-  width: 11rem;
+  width: 12rem;
+  border: 2px solid var(--primary-3);
 }
 
 #backToCatalogBtn:hover{
-  background-color: #ccc8c8;
+  background-color: var(--primary-4);
+  color: white;
+}
+
+.outlineSingleProduct {
+  outline: none; 
+}
+
+.outlineSingleProduct:focus{
+  border-color: var(--primary-2);
+  box-shadow: 0 0 0 3px var(--primary-2);
+  outline: none;
 }

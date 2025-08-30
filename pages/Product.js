@@ -103,7 +103,7 @@ ${(defaultVariant?.sizes?.length && defaultVariant.sizes.some((s) => s.name))
           ? `
     <div class="sizes mb-4">
       <label class="form-label fw-bold"><i class="fa-solid fa-ruler"></i> Size:</label>
-      <select id="sizeSelect" class="form-select">
+      <select id="sizeSelect" class="form-select outlineSingleProduct">
         ${defaultVariant.sizes
             .map(
               (s) => `
@@ -120,7 +120,7 @@ ${(defaultVariant?.sizes?.length && defaultVariant.sizes.some((s) => s.name))
             <!-- Color Selector -->
             <div class="colors mb-4">
               <label class="form-label fw-bold"><i class="fa-solid fa-palette"></i> Color:</label>
-              <select id="colorSelect" class="form-select">
+              <select id="colorSelect" class="form-select outlineSingleProduct">
                 ${(product.stock || [])
           .map((v) => `<option value="${v.color}">${v.color}</option>`)
           .join("")}
@@ -130,7 +130,7 @@ ${(defaultVariant?.sizes?.length && defaultVariant.sizes.some((s) => s.name))
             <!-- Quantity Selector -->
             <div class="mb-4">
               <label class="form-label fw-bold"><i class="fa-solid fa-box"></i> Quantity:</label>
-              <input type="number" id="qtyInput" class="form-control" value="1" min="1">
+              <input type="number" id="qtyInput" class="form-control outlineSingleProduct" value="1" min="1">
             </div>
 
             ${product.offers?.length ? `<p class="mt-2 text-success"><i class="fa-solid fa-gift"></i> ${product.offers.join(", ")}</p>` : ""}
@@ -138,10 +138,10 @@ ${(defaultVariant?.sizes?.length && defaultVariant.sizes.some((s) => s.name))
             ${product.material ? `<p class="mt-2"><strong>Material:</strong> ${product.material}</p>` : ""}
 
             <button id="addToCartBtn" class="btn btn-dark btn-cart">
-              <i class="fa-solid fa-cart-shopping text-white"></i> Add to Cart
+              <i class="fa-solid fa-cart-shopping"></i> Add to Cart
             </button>
 
-            <button id="backToCatalogBtn" class="btn btn-cart text-success-emphasis border ms-lg-2">
+            <button id="backToCatalogBtn" class="btn btn-cart ms-lg-2">
               <i class="fa fa-home" aria-hidden="true"></i> Back to Catalog
             </button>
           </div>
