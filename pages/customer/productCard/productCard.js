@@ -1,5 +1,7 @@
 import { navigate } from "../../../scripts/utils/navigation.js";
 import { sessionStore } from "../../../scripts/utils/storage.js";
+import { addToCart } from "./addToCart.js";
+import Toast from "../../../components/ui/toast.js";
 
 export function ProductCard(product) {
   const stock = product.stock[0];
@@ -11,7 +13,7 @@ export function ProductCard(product) {
   const card = document.createElement("div");
   card.className = "col-md-6 col-lg-4 col-sm-12  mb-4";
 
-card.innerHTML = `
+  card.innerHTML = `
 <div class="card shadow-sm h-100">
   <div class="card-img-container position-relative">
     <img 
@@ -21,9 +23,9 @@ card.innerHTML = `
     <button class="arrow left">&#10094;</button>
     <button class="arrow right">&#10095;</button>
     ${discounted ?
-       `<span class="discount-badge">${(sale*100).toFixed(0)}% SALE</span>`
-        :
-        `<span class="discount-badge d-none">0% SALE</span>` }
+      `<span class="discount-badge">${(sale * 100).toFixed(0)}% SALE</span>`
+      :
+      `<span class="discount-badge d-none">0% SALE</span>`}
   </div>
 
   <div class="card-body d-flex flex-column justify-content-between">
@@ -37,14 +39,14 @@ card.innerHTML = `
 
       <div class="d-flex justify-content-between align-items-start">
         ${discounted
-          ? `
+      ? `
             <div class="d-flex flex-column">
               <span class="new-price fw-bold text-success">${discounted} USD</span>
               <span class="old-price text-decoration-line-through text-muted ms-0 fs-6">${price} USD</span>
             </div>
           `
-          : `<span class="new-price fw-bold">${price} USD</span>`
-        }
+      : `<span class="new-price fw-bold">${price} USD</span>`
+    }
 
         <div class="d-flex gap-1 flex-wrap">
           <small class="badge bg-dark rounded-pill">${product.category}</small>
@@ -53,11 +55,22 @@ card.innerHTML = `
       </div>
     </div>
 
-    <button 
-      class="add-to-cart-btn btn btn-dark add-to-cart mt-3 d-flex align-items-center justify-content-center gap-2" 
-      data-id="${product.id}" id="viewDetailsBtn">
-        <i class="fa-solid fa-cart-shopping text-white"></i> View Details      
-    </button>
+<div class="d-flex gap-2 mt-3">
+  <button 
+    class="btn btn-outline-dark flex-fill d-flex align-items-center justify-content-center gap-2 py-2" 
+    data-id="${product.id}" id="viewDetailsBtn">
+      <i class="fa-solid fa-eye"></i> 
+      <span>View</span>
+  </button>
+
+  <button 
+    class="btn btn-dark flex-fill d-flex align-items-center justify-content-center gap-2 py-2" 
+    data-id="${product.id}" id="addToCartBtn">
+      <i class="fa-solid fa-cart-plus"></i>
+      <span>Cart</span>
+  </button>
+</div>
+
   </div>
 </div>
 `;
@@ -65,12 +78,30 @@ card.innerHTML = `
   const imgEl = card.querySelector("img");
   const leftArrow = card.querySelector(".arrow.left");
   const rightArrow = card.querySelector(".arrow.right");
+  const viewDetailsBtn = card.querySelector('#viewDetailsBtn');
+  const addToCartBtn = card.querySelector('#addToCartBtn');
 
-  
-  const viewDetailsBtn = card.querySelector('#viewDetailsBtn')
-  
-  viewDetailsBtn.addEventListener("click",()=>{
-    sessionStore.write('currentProduct',product.id,'')
+
+  addToCartBtn.addEventListener("click", () => {
+    // Use first color and size if available, or null
+    const defaultVariant = product.stock[0];
+    const selectedColor = defaultVariant?.color || null;
+    let selectedSize = null;
+    if (defaultVariant?.sizes && defaultVariant.sizes.length > 0) {
+      selectedSize = defaultVariant.sizes[0].name;
+    };
+
+    addToCart({
+      product,
+      selectedColor,
+      selectedSize,
+      qty: 1,
+    });
+
+  })
+
+  viewDetailsBtn.addEventListener("click", () => {
+    sessionStore.write('currentProduct', product.id, '')
     navigate('/product')
   });
 

@@ -112,7 +112,7 @@ export default class Navbar extends Component {
             <div class="col-12 order-4 order-md-2 col-md-6 search-bar pb-1">
               <form class="d-flex search-container form-control rounded-5">
                 <div class="input-group row">
-                  <div class="col px-2 col-1"><i class="fas fa-search fa-fw" id="searchInputIcon"></i></div>
+                  <div class="col px-2 col-1" id="navSearchIcon"><i class="fas fa-search fa-fw" id="searchInputIcon"></i></div>
                   <input type="text" id="searchInput" class="border-0 col col-11" placeholder="Search for products..."/>
                 </div>
               </form>
@@ -182,21 +182,23 @@ export default class Navbar extends Component {
 
     // handel search-bar
     const searchBar = document.getElementById("searchInput");
-    searchBar.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        const query = e.target.value;
-        if (query) {
-          sessionStorage.setItem("searchTerm", query);
-          // fire a custom event so i can listen in Catalog page
-          window.dispatchEvent(new CustomEvent("search-updated", { detail: query }));
-          e.target.value = ""
-          navigate("/catalog");
-        }
+    const navSearchIcon = document.getElementById("navSearchIcon");
+
+    function searchHandler(e) {
+      // get query depending on event source
+      const query = e.target === searchBar ? e.target.value : searchBar.value;
+
+      // allow both "Enter" key or click
+      if ((e.key === "Enter" && query) || (e.type === "click" && query)) {
+        sessionStorage.setItem("searchTerm", query);
+        window.dispatchEvent(new CustomEvent("search-updated", { detail: query }));
+        searchBar.value = "";
+        navigate("/catalog");
       }
-    });
+    }
 
-
-
+    searchBar.addEventListener("keydown", searchHandler);
+    navSearchIcon.addEventListener("click", searchHandler);
 
 
 

@@ -3,6 +3,7 @@ import { navigate } from "../scripts/utils/navigation.js";
 import Navbar from "../components/landing/Nav.js";
 import Toast from './../components/ui/toast.js';
 import { localStore, sessionStore } from "../scripts/utils/storage.js";
+import { addToCart } from "./customer/productCard/addToCart.js";
 
 export default class Product extends View {
   constructor(_config, _params = {}) {
@@ -174,7 +175,7 @@ ${(defaultVariant?.sizes?.length && defaultVariant.sizes.some((s) => s.name))
       document.getElementById("backToCatalogBtn").addEventListener("click", () => navigate("/catalog"));
     }
 
-    /** ---------- Add to Cart (your original logic) ---------- **/
+    
     function setupAddToCart(product) {
       const btn = document.getElementById("addToCartBtn");
       if (!btn) return;
@@ -186,60 +187,14 @@ ${(defaultVariant?.sizes?.length && defaultVariant.sizes.some((s) => s.name))
         const qtyInput = document.getElementById("qtyInput");
         const qty = parseInt(qtyInput?.value || "1", 10);
 
-        if (!selectedColor) {
-          Toast.notify("⚠️ Please select a color.", "warning");
-          return;
-        }
-
-        const variant = product.stock.find((v) => v.color === selectedColor);
-        let sizeData;
-        if (selectedSize) {
-          sizeData = variant?.sizes.find((s) => s.name === selectedSize);
-          if (!sizeData) {
-            Toast.notify("❌ This size is not available for the selected color.", "danger");
-            return;
-          }
-        }
-
-        const maxQty = sizeData ? sizeData.qty : variant?.qty || Infinity;
-        let cart = JSON.parse(sessionStorage.getItem("shoppingCart")) || [];
-
-        const existingItem = cart.find(
-          (item) =>
-            item.id === product.id &&
-            item.color === selectedColor &&
-            (selectedSize ? item.size === selectedSize : true)
-        );
-
-        if (existingItem) {
-          if (existingItem.qty + qty > maxQty) {
-            Toast.notify(`⚠️ Only ${maxQty} units available. You already have ${existingItem.qty}.`, "warning");
-            return;
-          }
-          existingItem.qty += qty;
-          sessionStorage.setItem("shoppingCart", JSON.stringify(cart));
-          Toast.notify(`✅ Quantity updated! Added +${qty}. Total: ${existingItem.qty}`, "info");
-          return;
-        }
-
-        if (qty > maxQty) {
-          Toast.notify(`⚠️ Only ${maxQty} units available.`, "warning");
-          return;
-        }
-
-        cart.push({
-          id: product.id,
-          name: product.name,
-          price: (product.price * (1 - product.sale)).toFixed(2),
-          size: selectedSize || null,
-          color: selectedColor,
+        addToCart({
+          product,
+          selectedColor,
+          selectedSize,
           qty,
         });
-
-        sessionStorage.setItem("shoppingCart", JSON.stringify(cart));
-        window.dispatchEvent(new Event("cartUpdated")); // Navbar update
-        Toast.notify(`🛒 ${qty} x ${product.name} (${selectedSize || "One Size"}, ${selectedColor}) added to cart!`, "success");
       });
     }
+
   }
 }

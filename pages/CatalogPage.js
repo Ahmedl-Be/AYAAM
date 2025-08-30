@@ -2,7 +2,7 @@ import View from "../components/core/view.js";
 import { ProductList } from "./customer/productList/ProductList.js";
 import Navbar from "../components/landing/Nav.js";
 import Footer from "../components/landing/Footer.js";
-
+import Toast from "../components/ui/toast.js";
 
 export default class Catalog extends View {
   constructor(_config, _params = {}) {
@@ -15,9 +15,10 @@ export default class Catalog extends View {
   template() {
     return `
     <header class="sticky-top bg-white" id='navbar'></header>
+    <div id="toastMsg"></div>
     <div class="container py-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
-      <h2 class="mb-0 text-uppercase fw-light">Shop Our Amazing Products</h2>
+      <h2 class="mb-0 text-uppercase fw-light" id="catalogSlogan">Shop Our Amazing Products</h2>
     </div>
 
     <div class="row">
@@ -201,7 +202,9 @@ export default class Catalog extends View {
   script() {
 
     this.mount(Navbar, "#navbar");
+    this.mount(Toast, "#toastMsg");
     const products = JSON.parse(localStorage.getItem("products")) || [];
+    const catalogSlogan = document.getElementById("catalogSlogan");
 
 
     // Central filter state
@@ -215,18 +218,29 @@ export default class Catalog extends View {
       maxPrice: null,
       discount: null,
       offers: new Set(),
-      search : sessionStorage.getItem("searchTerm") || "",
+      search: sessionStorage.getItem("searchTerm") || "",
+    };
+
+
+    // Set slogan on initial load
+    if (state.search && state.search.trim() !== "") {
+      catalogSlogan.innerText = `Searching For ${state.search}...`;
+    } else {
+      catalogSlogan.innerText = "Shop Our Amazing Products";
     };
 
 
     // ****handel search*****
     const applySearch = () => {
+    catalogSlogan.innerText = state.search && state.search.trim() !== ""
+      ? `Searching For ${state.search}...`
+      : "Shop Our Amazing Products";
       ProductList("product-list", "results-count", state);
     };
     // listen to custom event (works even if already on Catalog)
     window.addEventListener("search-updated", (e) => {
-        state.search = e.detail;
-        applySearch();
+      state.search = e.detail;
+      applySearch();
     });
 
 
@@ -581,7 +595,8 @@ export default class Catalog extends View {
       state.discount = null;
       state.offers.clear();
       state.search = ""
-      sessionStorage.setItem("searchTerm","")
+      sessionStorage.setItem("searchTerm", "")
+      catalogSlogan.innerText = "Shop Our Amazing Products";
 
       // Reset all filter inputs
       document.querySelectorAll('.filter-input').forEach(input => {
