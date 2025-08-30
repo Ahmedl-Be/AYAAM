@@ -25,11 +25,14 @@ export default class Catalog extends View {
       <!-- LEFT: Filters -->
       <aside class="col-12 col-lg-3 mb-4 mb-lg-0" id="filter-sidebar">
         <!-- mobile toggle -->
-        <button class="btn btn-outline-dark w-100 d-lg-none mb-3" data-bs-toggle="collapse" data-bs-target="#filtersCollapse">
-          <i class="fa-solid fa-filter me-2"></i> Filters
-        </button>
+      <button 
+         class="btn btn-dark w-100 d-lg-none mb-3 text-white mt-4" 
+         data-bs-toggle="collapse" 
+         data-bs-target="#filtersCollapse">
+         <i class="fa-solid fa-filter me-2"></i> Filters
+      </button>
 
-        <div id="filtersCollapse" class="collapse d-lg-block">
+        <div id="filtersCollapse" class="collapse d-lg-block bg-white">
           <form id="filters" class="small">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <strong>Filters</strong>
@@ -534,11 +537,7 @@ export default class Catalog extends View {
       });
 
     };
-
-
-
-
-
+    
     function filterProductByOffers() {
 
       const filterOffersBody = document.getElementById('filterOffersBody');

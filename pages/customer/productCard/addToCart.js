@@ -2,7 +2,7 @@ import Toast from "../../../components/ui/toast.js";
 
 export function addToCart({ product, selectedColor, selectedSize, qty }) {
   if (!selectedColor) {
-    Toast.notify("⚠️ Please select a color.", "warning");
+    Toast.notify("Please select a color", "warning");
     return false;
   }
 
@@ -11,7 +11,7 @@ export function addToCart({ product, selectedColor, selectedSize, qty }) {
   if (selectedSize) {
     sizeData = variant?.sizes.find((s) => s.name === selectedSize);
     if (!sizeData) {
-      Toast.notify("❌ This size is not available for the selected color.", "danger");
+      Toast.notify("This size is not available for the selected color", "danger");
       return false;
     }
   }
@@ -28,18 +28,18 @@ export function addToCart({ product, selectedColor, selectedSize, qty }) {
 
   if (existingItem) {
     if (existingItem.qty + qty > maxQty) {
-      Toast.notify(`⚠️ Only ${maxQty} units available. You already have ${existingItem.qty}.`, "warning");
+      Toast.notify(`Only ${maxQty} units available,You already have ${existingItem.qty}.`, "warning");
       return false;
     }
     existingItem.qty += qty;
     sessionStorage.setItem("shoppingCart", JSON.stringify(cart));
-    Toast.notify(`✅ Quantity updated! Added +${qty}. Total: ${existingItem.qty}`, "info");
+    Toast.notify(`Quantity updated! Added +${qty}. Total: ${existingItem.qty}`, "info");
     window.dispatchEvent(new Event("cartUpdated"));
     return true;
   }
 
   if (qty > maxQty) {
-    Toast.notify(`⚠️ Only ${maxQty} units available.`, "warning");
+    Toast.notify(`Only ${maxQty} units available`, "warning");
     return false;
   }
 
@@ -54,6 +54,6 @@ export function addToCart({ product, selectedColor, selectedSize, qty }) {
 
   sessionStorage.setItem("shoppingCart", JSON.stringify(cart));
   window.dispatchEvent(new Event("cartUpdated"));
-  Toast.notify(`🛒 ${qty} x ${product.name} (${selectedSize || "One Size"}, ${selectedColor}) added to cart!`, "success");
+  Toast.notify(`${qty} x ${product.name} (${selectedSize || "One Size"}, ${selectedColor}) added to cart!`, "success");
   return true;
 }
