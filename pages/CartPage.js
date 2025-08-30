@@ -1,4 +1,4 @@
-import CartItems from "../components/cart/cartItems.js";
+import CartItems from "../components/cart/CartItems.js";
 import RelatedProducts from "../components/cart/RelatedProducts.js";
 import SummaryCart from "../components/cart/SummaryCart.js";
 import View from "../components/core/view.js";
@@ -16,7 +16,7 @@ export default class CartPage extends View {
     }
     template() {
         return `
-            <header class="sticky-top bg-white" id='navbar'></header>
+            <header class="sticky-top bg-white" id='navbar' data-fade></header>
             <div id="cart-container">
                 <div class='container-lg '>
 
@@ -36,9 +36,9 @@ export default class CartPage extends View {
                 </div>
             </div>
 
-            <!-- RELARED SECTION-->
+            <!-- RELATED SECTION-->
 
-            <div id="related-items" class="marginTop-related mb-4 ms-lg-0 me-lg-0 ps-lg-0 pe-lg-0" >
+            <div id="related-items" class="marginTop-related mb-4 ms-lg-0 me-lg-0 ps-lg-0 pe-lg-0" data-fade>
                 
             </div>
         
@@ -51,5 +51,5 @@ export default class CartPage extends View {
         this.mount(SummaryCart, "#summary");
         this.mount(RelatedProducts, "#related-items");
     }
-    
+
 }

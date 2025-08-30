@@ -1,5 +1,4 @@
 import { getCurrentUser } from "../data/authentication.js";
-import { showLoader, hideLoader } from "./utils/loader.js";
 import { parseQuery, navigate } from "./utils/navigation.js";
 import { sessionStore } from "./utils/storage.js";
 
@@ -120,6 +119,7 @@ export default class Router {
                 params
             );
             this.currentView.render();
+            scrollAnimate();
 
             if (this.currentView.onSubRoute) {
                 this.currentView.onSubRoute(pathPart, params);
@@ -143,6 +143,18 @@ export default class Router {
 
             this.currentView = new FallbackClass({ parent: this.root, route: "/404" });
             this.currentView.render();
+            scrollAnimate();
         }
     }
+}
+
+export function scrollAnimate() {
+    // simple fade-in animation on scroll
+    const elements = document.querySelectorAll('[data-fade]');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.2 });
+    elements.forEach(el => observer.observe(el));
 }

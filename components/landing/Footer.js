@@ -1,4 +1,7 @@
+import { getCurrentUser } from "../../data/authentication.js"
+
 export default function Footer() {
+  const currentUser = getCurrentUser()
     return `
 
   <div class="container text-md-left">
@@ -16,8 +19,15 @@ export default function Footer() {
       <div class="col col-6 col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
         <h5 class="mb-4 font-weight-bold text-uppercase">Quick Links</h5>
         <p><a href="#/home" class="text-light text-decoration-none" data-route>Home</a></p>
-        <p><a href="#/login" class="text-light text-decoration-none" data-route>Login</a></p>
-        <p><a href="#/signup" class="text-light text-decoration-none" data-route>Sign Up</a></p>
+        ${currentUser ?
+        `
+        <p><a href="#/profile" class="text-light text-decoration-none" data-route>Profile</a></p>
+        `
+        :
+        ` <p><a href="#/login" class="text-light text-decoration-none" data-route>Login</a></p>
+          <p><a href="#/signup" class="text-light text-decoration-none" data-route>Sign Up</a></p>
+        `
+        }
         <p><a href="#/catalog" class="text-light text-decoration-none" data-route>Catalog</a></p>
         <p><a href="#/about" class="text-light text-decoration-none" data-route>About Us</a></p>
         

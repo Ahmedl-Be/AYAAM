@@ -6,23 +6,7 @@
 
 
 
-.icon {
-    background-color: transparent;
-    border: none;
-    border-radius: 50%;
-    position: relative;
-}
 
-.icon::after {
-    /*     content: ''; */
-    background-color: rgb(138, 18, 18);
-    position: absolute;
-    color: white;
-    border-radius: 50%;
-    right: 0;
-    width: 0.5em;
-    height: 0.5em;
-}
 
 @container style(--notify: true) {
     .icon::after {
@@ -41,6 +25,21 @@
 #navbar a:hover {
     color: #f97316;
 }
+
+#locked *,
+#locked {
+    color: rgb(212, 212, 212) !important;
+}
+
+#locked *:hover,
+#locked:hover,
+#locked *:focus,
+#locked:focus {
+    color: rgb(212, 212, 212) !important;
+    background-color: #fff;
+    cursor: not-allowed;
+}
+
 #footer i {
     color: rgb(185, 185, 185);
     transition: color 0.5s;

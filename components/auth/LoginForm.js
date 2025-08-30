@@ -7,7 +7,7 @@ export default class LoginForm extends Component {
     template() {
         return `
     <!-- LOGIN FORM -->
-              <form id="loginForm" class="">
+              <form id="loginForm" class="" data-fade>
 
         <!-- Email Field -->
                 <div class="mb-3">

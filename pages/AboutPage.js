@@ -14,9 +14,9 @@ export default class AboutPage extends View {
     }
     template() {
         return `
-        <header class="sticky-top bg-white" id='navbar'></header>
+        <header class="sticky-top bg-white" id='navbar' data-fade></header>
         <main>
-            <section class="about-section container">
+            <section class="about-section container " data-fade>
                     <h2 class="col col-12 mb-5" style="font-size: 2.5rem;">About Our Project</h2>
                     <p class="text-muted mb-5">
                         AYAAM is a collaborative milestone project built with passion and curiosity.
@@ -27,7 +27,7 @@ export default class AboutPage extends View {
             </section>
 
 
-            <div class="container">
+            <div class="container" data-fade>
                 <div class="row text-center mb-5 w-100">
                     <h2 class="col col-12" style="font-size: 2.5rem;">Meet Our Team</h2>
                     <p class="text-muted" s>- The people who brought AYAAM to life -</p>
@@ -37,7 +37,7 @@ export default class AboutPage extends View {
 
 
     <!-- YASSER -->
-                <div class="">
+                <div class="" data-fade>
                     <div class=" team-card">
                         <img src="/assets/images/us/yas.jpg" alt="Yasser Fathallah" >
                         <div class="team-overlay">
@@ -55,7 +55,7 @@ export default class AboutPage extends View {
                 </div>
 
     <!-- BELTAGY -->
-                <div class="">
+                <div class="" data-fade>
                     <div class=" team-card">
                         <img src="/assets/images/us/beltagy.jpg" alt="Yasser Fathallah" >
                         <div class="team-overlay">
@@ -72,7 +72,7 @@ export default class AboutPage extends View {
                 </div>
 
     <!-- OSSAMA -->
-                <div class="">
+                <div class="" data-fade>
                     <div class=" team-card">
                         <img src="/assets/images/us/ossama.jpg" alt="Yasser Fathallah" >
                         <div class="team-overlay">
@@ -89,7 +89,7 @@ export default class AboutPage extends View {
                 </div>
 
     <!-- AZZA -->
-                <div class="">
+                <div class="" data-fade>
                     <div class=" team-card">
                         <img src="/assets/images/us/azza.jpg" alt="Yasser Fathallah" >
                         <div class="team-overlay">
@@ -106,7 +106,7 @@ export default class AboutPage extends View {
                 </div>
 
     <!-- MARIAM -->
-                <div class="">
+                <div class="" data-fade>
                     <div class=" team-card">
                         <img src="/assets/images/us/mariam.jpg" alt="Yasser Fathallah" >
                         <div class="team-overlay">
@@ -125,7 +125,7 @@ export default class AboutPage extends View {
                 </div>
             </div>
         </main>
-        <footer class="bg-dark text-light pt-5 pb-4 mt-5" id='footer'>${Footer()}</footer>
+        <footer class="bg-dark text-light pt-5 pb-4 mt-5" id='footer' data-fade>${Footer()}</footer>
         `
     }
 

@@ -19,20 +19,20 @@ export default class HomePage extends View {
   }
   template() {
     return `
-            <header class="sticky-top bg-white" id='navbar'></header>
+            <header class="sticky-top bg-white" id='navbar' data-fade></header>
             <div class="toast-body" id="toastMsg"></div>
-            <section class="container-fluid" id="hero"></section>
+            <section class="container-fluid" id="hero" data-fade></section>
 
       <!-- Brands Slider -->
-            <section id='slider'>${Slider()}</section>
+            <section id='slider' data-fade>${Slider()}</section>
       
       <!-- Featured Section -->
-            <section id='featured-section'></section>
+            <section id='featured-section' data-fade></section>
       
       <!-- News Letter --> 
-            <section id='newsletter'></section>
+            <section id='newsletter' data-fade></section>
 
-            <footer class="bg-dark text-light pt-5 pb-4 mt-5" id='footer'>${Footer()}</footer>
+            <footer class="bg-dark text-light pt-5 pb-4 mt-5" id='footer' data-fade>${Footer()}</footer>
         `;
   }
 
