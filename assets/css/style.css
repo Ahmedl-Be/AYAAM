@@ -17,6 +17,7 @@
 @import url(mainDashboardStyle.css);
 @import url(IncomingOrderStyle.css);
 @import url(productStyle.css);
+@import url(sellwithus.css);
 #app-loader{
 	transition: all 0.5s;
 }

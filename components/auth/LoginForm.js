@@ -42,6 +42,7 @@ export default class LoginForm extends Component {
                 <button type="submit" class="btn btn-primary w-100 py-2">
                     Log In
                 </button>
+            </form>
                   `
     }
 
