@@ -19,7 +19,7 @@ export default class CartPage extends View {
     template() {
         return `
             <header class="sticky-top bg-white" id='navbar' data-fade></header>
-            <div id="toast"></div>
+            <div class="toast-body" id="toastMsg"></div>
             <div id="cart-container">
                 <div class='container-lg '>
 
@@ -53,7 +53,7 @@ export default class CartPage extends View {
 
     script() {
         this.mount(Navbar, "#navbar");
-        this.mount(Toast, "#toast");
+        this.mount(Toast, "#toastMsg");
         this.mount(CartItems, "#cart-items");
         this.mount(SummaryCart, "#summary");
         this.mount(RelatedProducts, "#related-items");
