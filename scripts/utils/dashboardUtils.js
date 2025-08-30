@@ -43,7 +43,7 @@ export function generateId(prefix = '', second = '') {
     const words = second.trim().split(/\s+/);
     const first = words[0] ? words[0][0].toUpperCase() : '';
     const secondLetter = words[1] ? words[1][0].toUpperCase() : '';
-
+    
     const timestamp = Date.now().toString();
     const last6 = timestamp.slice(-6);
 

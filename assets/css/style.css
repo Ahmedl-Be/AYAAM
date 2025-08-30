@@ -36,4 +36,8 @@
 	background-image: linear-gradient(rgba(0, 4, 12, 0.2), rgba(90, 90, 196, 0.2));
 }
 
-
+@media (min-width: 992px) {
+  #main {
+    margin-left: 250px; /* Matches sidebar width */
+  }
+}
