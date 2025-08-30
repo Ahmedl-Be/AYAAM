@@ -2,7 +2,9 @@ import SummaryCart from "../components/cart/SummaryCart.js";
 import CheckOutForm from "../components/checkout/CheckOutForm.js";
 import CheckoutReceit from "../components/checkout/CheckoutReceit.js";
 import View from "../components/core/view.js";
+import Footer from "../components/landing/Footer.js";
 import Navbar from "../components/landing/Nav.js";
+import Toast from "../components/ui/toast.js";
 import { CartManager } from "../scripts/cartScripts/cartManager.js";
 import { navigate } from "../scripts/utils/navigation.js";
 import { sessionStore } from "../scripts/utils/storage.js";
@@ -22,6 +24,7 @@ export default class CheckoutPage extends View {
     template() {
         return `
            <header class="sticky-top bg-white" id='navbar'></header>
+           <div id="toast"></div>
            <div class=" container">
             <div class="row">
 
@@ -46,23 +49,20 @@ export default class CheckoutPage extends View {
                 </div>
             </div>
            </div>
+
+        <!--   __________________Footer_____________ -->
+        <footer class="bg-dark text-light pt-5 pb-4 mt-5" id='footer'>${Footer()}</footer>
+
         `
     }
 
     script() {
 
-        this.mount(Navbar, "#navbar");
+        this.mount(Navbar, "#toast");
+        this.mount(Toast, "#navbar");
         this.mount(CheckOutForm, "#check-out-form");
         this.mount(CheckoutReceit, "#summary-checkout");
         
-
-        // document.getElementById('pay').addEventListener('click', () => {
-        //     navigate('/home');
-        // });
-
-        // document.getElementById('continue-shoping').addEventListener('click', () => {
-        //     navigate('/catalog');
-        // });
     }
 
 }

@@ -2,8 +2,6 @@ import { CartManager } from "../../scripts/cartScripts/cartManager.js";
 import Component from "../core/component.js";
 
 
-
-
 export default class CheckoutReceit extends Component{
 
     template() {

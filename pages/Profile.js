@@ -1,13 +1,16 @@
 import View from "../components/core/view.js";
+import Footer from "../components/landing/Footer.js";
 import Navbar from "../components/landing/Nav.js";
 import ProfileForm from "../components/profile/ProfileForm.js";
 import TableOrders from "../components/profile/TableOrders.js";
+import Toast from './../components/ui/toast.js';
 
 
 export default class Profile extends View {
     template() {
         return `
         <header class="sticky-top bg-white" id='navbar'></header>
+        <div id="toast"></div>
         <div class="container">
             <div class="row">
                 <!-- Main Content -->
@@ -18,11 +21,13 @@ export default class Profile extends View {
                 <div id="orders-table" class="col-md-8 p-3"></div>
             </div>
         </div>
+        <footer class="bg-dark text-light pt-5 pb-4 mt-5" id='footer'>${Footer()}</footer>
         `
     }
 
     script() {
         this.mount(Navbar, "#navbar");
+        this.mount(Toast, "#toast");
         this.mount(ProfileForm, "#profile-form");
         this.mount(TableOrders, "#orders-table");
        

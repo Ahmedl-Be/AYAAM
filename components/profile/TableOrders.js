@@ -2,19 +2,22 @@ import { localStore, sessionStore } from "../../scripts/utils/storage.js";
 import View from "../core/view.js";
 
 
-const currentUserData = sessionStore.read("currentUser"); 
-const orders = localStore.read("orders")||[];
-
-const userOrders = orders.filter(order => order.userId === currentUserData?.id);
-console.log(userOrders , "Current user orders");
-
 
 
 export default class TableOrders extends View {
     template() {
+        
+        const currentUserData = sessionStore.read("currentUser"); 
+        const orders = localStore.read("orders")||[];
+        
+        const userOrders = orders.filter(order => order.userId === currentUserData?.id);
+        console.log(userOrders , "Current user orders");
+
+
+        
         return `
             <div class="accordion card shadow-none" id="ordersAccordion">
-                <tale class=""table>
+                <tale class="orders-table-container">
                 ${userOrders.map((order, i) => `
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading-${i}">
@@ -23,8 +26,8 @@ export default class TableOrders extends View {
                             </button>
                         </h2>
                         <div id="collapse-${i}" class="accordion-collapse collapse" aria-labelledby="heading-${i}" data-bs-parent="#ordersAccordion">
-                            <div class="accordion-body p-0">
-                                <table class="table table-sm table-borderless mb-0 text-center">
+                            <div class="accordion-body p-0 table-responsive orderTable">
+                                <table class="table table-sm table-borderless mb-0 text-center ">
                                     <tr class="bg-light">
                                         <th>Product</th>
                                         <th>Name</th>
