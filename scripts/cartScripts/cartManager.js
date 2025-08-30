@@ -1,3 +1,4 @@
+import Toast from "../../components/ui/toast.js";
 import { localStore, sessionStore } from "../utils/storage.js";
 
 
@@ -41,16 +42,6 @@ export function CartManager() {
     sessionStore.write("shoppingCart", this.cart);
   };
 
-  // Update quantity UI
-  this.rerender = function () {
-    this.cart.forEach(item => {
-      const qtyEl = document.querySelector(
-        `.cart-item[data-id="${item.id}"][data-color="${item.color}"][data-size="${item.size}"] .qty`
-      );
-      if (qtyEl) qtyEl.innerText = item.qty;
-    });
-  };
-  
   // Calculate totals
   this.calculateTotal = function () {
     const totals = this.cart.reduce((acc, item) => {
@@ -87,81 +78,63 @@ export function CartManager() {
   
 
   // Increase item quantity
-    this.increaseQty = function (id, color, size, btnEl) {
+  this.increaseQty = function(id, color, size) {
         const item = this.cart.find(
-        i => i.id === id && i.color === color && i.size === size
+          i => i.id === id && i.color === color && i.size === size
         );
-    
+        
         const product = this.products.find(p => p.id === id);
         const stockItem = product?.stock.find(s => s.color === color);
         const sizeObj = stockItem?.sizes.find(sz => sz.name === size) || {};
-    
-        if (!item) return;
-    
-        if (item.qty < (sizeObj.qty || 0)) {
-        item.qty += 1;
-        this.saveCart();
-    
-        // Update UI
-        const parent = btnEl.closest(".cart-item");
-        const qtyEl = parent.querySelector(".qty");
-        if (qtyEl) qtyEl.innerText = item.qty;
-    
-        const totals = this.calculateTotal();
-        this.updateTotalUI(totals);
-        } else {
-        btnEl.disabled = true;
-        btnEl.style.cursor = "not-allowed";
-        console.log("End of stock");
-        }
 
-    };
+        const qtyTxt = document.querySelector('.qty');
+
+        if (item.qty < (sizeObj.qty )) {
+          item.qty += 1;
+          Toast.notify(`✅ Quantity updated! Total: ${item.qty}`, "info");
+          console.log( item);
+          const totals = this.calculateTotal();
+          this.updateTotalUI(totals);
+          this.saveCart();
+        } 
+  };
+
   
   // Decrease item quantity
-  this.decreaseQty = function(id, color, size, btnEl) {
+  this.decreaseQty = function(id, color, size) {
         const item = this.cart.find(i => i.id === id && i.color === color && i.size === size);
         if (!item) return;
 
-        item.qty -= 1;
-        this.saveCart();
+        const qtyTxt = document.querySelector('.qty');
 
-        if (item.qty <= 0) {
-            this.removeItem(id, color, size);
-            return;
-        }
-
-        if (btnEl) {
-            const qtyEl = btnEl.closest(".cart-card")?.querySelector(".qty");
-            if (qtyEl) qtyEl.textContent = item.qty;
-
-            if (item.qty === 1) {
-                const decBtn = btnEl.closest(".cart-card")?.querySelector("button.decrease-btn");
-                if (decBtn) {
-                    decBtn.classList.remove("decrease-btn");
-                    decBtn.classList.add("delete-btn");
-                    decBtn.innerHTML = `<i class="fa-regular fa-trash-can fa-fw hoverIcon pointer"></i>`;
-                }
-            }
+        if (item.qty > 1) {
+          item.qty -= 1;
+          Toast.notify(`⚠️ Quantity decreased . Total: ${item.qty}`, "warning");
+          
+          this.saveCart();
+        } else {
+          this.removeItem(id, color, size);
         }
 
         const totals = this.calculateTotal();
         this.updateTotalUI(totals);
     };
 
-    // Remove item from cart
+
+    //Remove item from cart
    this.removeItem = function(id, color, size) {
-        this.cart = this.cart.filter(
+          this.cart = this.cart.filter(
             i => !(i.id === id && i.color === color && i.size === size)
         );
-        this.saveCart();
+          Toast.notify("❌ Item Removed", "danger");         
 
-        const card = document.querySelector(`.cart-card[data-id="${id}"][data-color="${color}"][data-size="${size}"]`);
-        if (card) card.remove();
+        this.saveCart();
 
         const totals = this.calculateTotal();
         this.updateTotalUI(totals);
         console.log(this.cart)
     };
+
   
   
   // Count total items in cart
@@ -170,132 +143,3 @@ export function CartManager() {
   };
 
 }
-
-
-// export function CartManager(){
-
-//   // ___________Get local data to work on____________
-//   this.products = localStore.read("products", []);
-  
-
-
-//   // __________Get user cart from session_____________
-//   this.cart = sessionStore.read("shoppingCart", []);
-//   console.log("Cart items" , this.cart)
-
-
-
-//   // ___________________Get detailed cart items____________________
-//   this.getCartItems = function (){
-//     return this.cart.map(item => {
-//       const product = this.products.find(p => p.id === item.id);
-//       if (!product) return { ...item, error: "Product not found" };
-
-//       const stockItem = product?.stock.find(s => s.color === item.color);
-//       const sizeInStock = stockItem?.sizes.find(sz => sz.name === item.size);
-
-//       return {
-//         ...item,
-//         description: product?.description || "",
-//         realPrice: product?.price || 0,
-//         brand: product?.brand || "",
-//         category: product?.category || "",
-//         subcategory: product?.subcategory || "",
-//         offers: ["Free Shipping"],
-//         stockQty: sizeInStock?.qty || 0,
-//         total: Number((item.price * item.qty).toFixed(2)),
-//         images: stockItem?.images?.map(imgName =>
-//           `./data/imgs/products/${product.category.toLowerCase()}/${product.subcategory.toLowerCase()}/${product.id.toLowerCase()}/${imgName}`
-//         ) || [],
-//         img: stockItem?.images
-//           ? `./data/imgs/products/${product.category.toLowerCase()}/${product.subcategory.toLowerCase()}/${product.id.toLowerCase()}/${stockItem.images[0]}`
-//           : ""
-//       };
-//     });
-//   }
-
-//   // _________________Save cart to session__________________________
-//   this.saveCart = function () {
-//     sessionStore.write("shoppingCart", this.cart);
-//   };
-
-
-//   //___________________Increase QTY__________________________________
-//   this.increaseQty = function(id, color, size) {
-//         const item = this.cart.items.find(
-//           i => i.id === id && i.color === color && i.size === size
-//         );
-        
-//         const product = this.products.find(p => p.id === id);
-//         const stockItem = product?.stock.find(s => s.color === color);
-//         const sizeObj = stockItem?.sizes.find(sz => sz.name === size) || {};
-
-//         if (item.qty < (sizeObj.qty || 0)) {
-//           item.qty += 1;
-//           this.saveCart();
-//         } else {
-//           const btnDis =document.getElementById(`${item.id}-${item.color}-${item.size}`) ;
-//            if (btnDis){
-//               btnDis.disabled = true ;
-//               btnDis.style.cursor = 'not-allowed';
-//             } 
-
-//         }
-//     };
-
-// //____________________Increase QTY________________________________________
-//  this.decreaseQty = function(id, color, size) {
-//         const item = this.cart.find(
-//             i => i.id === id && i.color === color && i.size === size
-//         );
-//         if (!item) return; 
-
-//         item.qty -= 1;
-
-//         if (item.qty <= 0) {
-//             this.removeItem(id, color, size);
-//         } else {
-//             this.saveCart();
-//             // this.rerender();
-//         }
-//   };
-
-
-
-//   //__________________________Remove Item__________________________
-//   this.removeItem = function(id, color, size) {
-//         this.cart.items = this.cart.filter(
-//             i => !(i.id === id && i.color === color && i.size === size)
-//         );
-//         this.saveCart();
-//         // this.rerender();
-//   };
-
-
-
-//   //_______________________________Calulate Total___________________
-//   this.calculateTotal = function () {
-//     const totals = this.cart.reduce((acc, item) => {
-//       const product = this.products.find(p => p.id === item.id);
-//       if (!product) return acc;
-  
-//       const qty = item.qty || 0;
-//       const priceAfterDiscount = item.price;
-  
-//       acc.subtotal += product.price * qty;
-//       acc.total += priceAfterDiscount * qty;
-//       return acc;
-//     }, { subtotal: 0, total: 0 });
-  
-//     totals.discountTotal = totals.subtotal - totals.total;
-//     return totals;
-//   };
-
-//   //_____________________Count Items________________________
-
-//   this.itemCount = function() {
-//     return this.cart.reduce((sum, item) => sum + (item.qty || 0), 0);
-//   };
-  
-
-// }

@@ -3,12 +3,13 @@ import { CartManager } from "../../scripts/cartScripts/cartManager.js";
 import { navigate } from "../../scripts/utils/navigation.js";
 import { localStore, sessionStore } from "../../scripts/utils/storage.js";
 import Component from "../core/component.js";
+import Toast from "../ui/toast.js";
 
 
 export default class CheckOutForm extends Component{
     template(){
         return `
-            <form class="needs-validation" novalidate>
+            <form id="checkout-form" class="needs-validation" novalidate>
                 <div class="row g-3">
                     <!--  ____________________ Name Inputs ____________________  -->
                     <div class="col-md-6">
@@ -18,7 +19,7 @@ export default class CheckOutForm extends Component{
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Last Name*</label>
-                        <input type="text" class="form-control" placeholder="Last name" id="lname" required>
+                        <input type="text" class="form-control" placeholder="Last name" id="lname" >
                         <div class="invalid-feedback">Please enter your last name.</div>
                     </div>
 
@@ -137,8 +138,7 @@ export default class CheckOutForm extends Component{
         `
     }
 
-
-    script() {
+ script() {
         const fnameEl = document.getElementById('fname');
         const lnameEl = document.getElementById('lname');
         const emailEl = document.getElementById('email');
@@ -146,9 +146,7 @@ export default class CheckOutForm extends Component{
         const cardNum = document.getElementById('card-num');
         const expDate = document.getElementById('exp-date');
         const cvv = document.getElementById('cvv');
-        // const cityEl = document.getElementById('city');
-        // const stateEl = document.getElementById('state');
-        // const zCodeEl = document.getElementById('zip-code');
+ 
        
         //read user info from session storage
         const userData = getCurrentUser();
@@ -193,10 +191,6 @@ export default class CheckOutForm extends Component{
 
             if(userData.email) emailEl.value = userData.email;
             if(userData.phone) phoneEl.value = userData.phone;
-            // if(userData.city) cityEl.value = userData.city;
-            // if(userData.state) stateEl.value = userData.state;
-            // if(userData.zipCode) zCodeEl.value = userData.zipCode;
-
 
             document.querySelectorAll("#fname , #lname , #email  , #phone ").forEach(input => {
                 input.disabled = true ;
@@ -270,12 +264,11 @@ export default class CheckOutForm extends Component{
             }
         });
 
-        const forms = document.querySelectorAll('.needs-validation');
+        const form = document.querySelector('#checkout-form');
 
-        Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 const selectedPay = document.querySelector('input[name="pay-method"]:checked');
-
+                //check required for visa form
                 if (selectedPay && selectedPay.value === 'visa') {
                     cardNum.setAttribute("required", "true");
                     expDate.setAttribute("required", "true");
@@ -334,11 +327,59 @@ export default class CheckOutForm extends Component{
                     form.classList.add('was-validated');
 
                     if(shoppingCartItems === null || shoppingCartItems.length === 0){
-                        alert("Please Choose an Item Before");
-                        navigate('/catalog')
+                        Toast.notify("Please Choose an Item Before !", "warning");
+                        setTimeout(() => {
+                            navigate('/catalog');
+                        }, 1000);
+                        return;
                     }
-                } else {
-                    event.preventDefault();
+                } 
+
+                if (selectedPay && selectedPay.value === 'visa') {
+                    console.log(cardNum.value.replace(/-/g, "") , expDate.value , cvv.value);
+                    try {
+                        const currentAmount = parseFloat(sessionStore.read("currentTotal")) || 0;
+                        const credits = localStore.read("creditCard") || [];
+                        
+                        console.log("Looking for card details:", {
+                            cardNumber: cardNum.value.replace(/-/g, ""),
+                            expDate: expDate.value,
+                            cvv: cvv.value
+                        });
+                        console.log("Available credit cards:", credits);
+                        
+                        const credit = credits.find(
+                            card => card.cardNumber === cardNum.value.replace(/-/g, "") &&
+                            card.expDate === expDate.value &&
+                            card.cvv === cvv.value
+                        );
+                        
+                        console.log("Found matching credit card:", credit);
+
+
+                        // Check if sufficient balance
+                        if (credit.balance < currentAmount) {
+                            Toast.notify(`Insufficient funds! Available: $${credit.balance}, Required: $${currentAmount}`, "error");
+                            console.log("Insufficient funds - payment failed");
+                            return;
+                        }
+
+                        // Process payment
+                        credit.balance -= currentAmount;
+                        localStore.write("creditCard", credits);
+                        Toast.notify(`Payment successful! Remaining balance: $${credit.balance.toFixed(2)}`, "success");
+                        sessionStore.write("currentTotal", "");
+                        console.log("Payment processed successfully");
+                        
+                    } catch (error) {
+                        console.error("Error processing payment:", error);
+                        Toast.notify("Payment processing error occurred!", "error");
+                        return;
+                    }
+                }
+                   
+                
+                event.preventDefault();
 
                     const formData = {
                         Name: userData.name,
@@ -432,11 +473,14 @@ export default class CheckOutForm extends Component{
                     sessionStore.write("shoppingCart" , [])
 
                     console.log(orderLocal);
-                    navigate('/home');
+                    Toast.notify("Your Order is Sent now ", "success");
+                    setTimeout(() => {
+                        navigate('/profile');
+                    }, 1000);
                     console.log("all is Done")
-                }
-            }, false);
-        });
+                
+            });
 
     }
 }
+

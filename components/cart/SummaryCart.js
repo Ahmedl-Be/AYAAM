@@ -1,6 +1,7 @@
 import Component from "../core/component.js";
 import { CartManager } from "../../scripts/cartScripts/cartManager.js";
 import { navigate } from "../../scripts/utils/navigation.js";
+import { sessionStore } from "../../scripts/utils/storage.js";
 
 
 
@@ -58,9 +59,11 @@ export default class SummaryCart extends Component {
     }
 
     script() {
+        const cartManager = new CartManager();
         document.querySelectorAll('.checkout-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                navigate('/checkout')
+                navigate('/checkout');
+                sessionStore.write("currentTotal" , cartManager.calculateTotal().total);
             })
         })
 

@@ -1,176 +1,142 @@
-import { localStore, sessionStore } from "../utils/storage.js";
+import { CartManager } from "../../scripts/cartScripts/cartManager.js";
+import Component from "../core/component.js"
 
 
-export function CartManager() {
-  // Get local data to work on
-  this.products = localStore.read("products", []);
 
-  // Get user cart from session
-  this.cart = sessionStore.read("shoppingCart", []);
-  console.log("Cart items" , this.cart)
-  // Get detailed cart items
-  this.getCartItem = function () {
-    return this.cart.map(item => {
-      const product = this.products.find(p => p.id === item.id);
-      if (!product) return { ...item, error: "Product not found" };
+export default class CartItems extends Component {
 
-      const stockItem = product?.stock.find(s => s.color === item.color);
-      const sizeInStock = stockItem?.sizes.find(sz => sz.name === item.size);
+    template() {
+        const cartManager = new CartManager();
+        const items = cartManager.getCartItem();
+        console.log(items);
+        return `
+            <div class="cart-items-container" id="cart-container">  
+                 <div class="cart-items-container">
+                    
+                        <div class=' border-bottom bordernoneMD text-center text-md-start '>
+                            <h2>Bag</h2>
+                            <p class='fw-semibold d-block d-md-none'> 
+                                <span class='text-secondary border-end border-2 px-2' id='totalItems'> ${cartManager.itemCount()} Items</span> 
+                                <span class='ms-1 total' >$ ${(cartManager.calculateTotal().total).toFixed(2)}</span> 
+                            </p>
+                        </div>
 
-      return {
-        ...item,
-        description: product?.description || "",
-        realPrice: product?.price || 0,
-        brand: product?.brand || "",
-        category: product?.category || "",
-        subcategory: product?.subcategory || "",
-        offers: ["Free Shipping"],
-        stockQty: sizeInStock?.qty || 0,
-        total: Number((item.price * item.qty).toFixed(2)),
-        images: stockItem?.images?.map(imgName =>
-          `./data/imgs/products/${product.category.toLowerCase()}/${product.subcategory.toLowerCase()}/${product.id.toLowerCase()}/${imgName}`
-        ) || [],
-        img: stockItem?.images
-          ? `./data/imgs/products/${product.category.toLowerCase()}/${product.subcategory.toLowerCase()}/${product.id.toLowerCase()}/${stockItem.images[0]}`
-          : ""
-      };
-    });
-  };
+                        <div class='py-4' id='cart-container' >
+                            ${items.length === 0
+                                ? ` <h6 id="no-items"> There are no items in your bag. </h6> `
+                                : items.map(item =>
+                                    `
+                                                        <div class='py-4 borderblockMD w-100 h cart-card' data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                                                            <div class='d-flex align-align-items-center gap-4 '>
+                                                                <div  >
+                                                                    <div class="cart-image-container">
+                                                                        <img src="${item.img}" class="img-cart default-img" />
+                                                                    </div>
+                                                                    <div class='cart-item rounded-pill border p-2 my-2 d-flex align-items-center justify-content-around'>
+                                                                        <!-- BTN MINUS -->
+                                                                        ${item.qty >= 2
+                                        ? `<button class="bg-transparent border-0 decrease-btn" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                                                                                <i class="fa-solid fa-minus fa-fw pointer"></i>
+                                                                            </button>`
+                                        : `<button class="bg-transparent border-0 delete-btn" data-id="${item.id}" data-color="${item.color}" data-size="${item.size}">
+                                                                                <i class="fa-regular fa-trash-can fa-fw hoverIcon pointer"></i>
+                                                                            </button>`
+                                    }
+                                                                        <!-- ____________Span Qty _______________ -->
+                                                                        <span class="qty"> ${item.qty} </span>
 
-  // Save cart to session
-  this.saveCart = function () {
-    sessionStore.write("shoppingCart", this.cart);
-  };
+                                                                        <!-- BTN Plus -->
+                                                                        <button class='bg-transparent border-0 btn-increase icrease-btn'  
+                                                                            data-id="${item.id}"
+                                                                            data-color= "${item.color}"
+                                                                            data-size = "${item.size}" 
+                                                                            ${item.qty >= (item.stockQty) ? "disabled" : ""}
+                                                                        >
+                                                                            <i class="fa-solid fa-plus fa-fw li-pointer"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='fw-semibold w-75'>
+                                                                    <div class=' d-md-flex justify-content-between align-items-center'>
+                                                                        <p >${item.name}</p>
+                                                        
+                                                                        <p>
+                                                                            <!-- ____________________price after sale_________________ -->
+                                                                            $${item.price} 
+                                                                            ${item.sale ? `<span class="text-secondary ms-2 text-decoration-line-through">
+                                                                                $ ${item.realPrice}
+                                                                            </span>` : ""}
+                                                                        </p>
+                                                                    </div>
+                                                                    <p class="card-text line-clamp text-muted small mb-2">${item.description}</p>
+                                                                    <div class=' d-flex align-items-center gap-5'>
+                                                                        <p class='text-secondary'>${item.color}</p>
+                                                                        <p class='text-secondary'>Size : ${item.size}</p>
+                                                                    </div>
+                                                                    <p class=' text-secondary'>Brand : <span class='text-primary'>${item.brand}</span></p>
+                                                                    <p class='d-flex align-items-center gap-2'>${item.category}
+                                                                        <i class="fa-solid fa-angle-right fa-fw centerArIcon" style="color: #0D6EFD;"></i>
+                                                                        ${item.subcategory}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    `
+                                ).join("")
+                            }
+                        </div>
+                    </div>
 
-  // Update quantity UI
-  this.rerender = function () {
-    this.cart.forEach(item => {
-      const qtyEl = document.querySelector(
-        `.cart-item[data-id="${item.id}"][data-color="${item.color}"][data-size="${item.size}"] .qty`
-      );
-      if (qtyEl) qtyEl.innerText = item.qty;
-    });
-  };
-  
-  // Calculate totals
-  this.calculateTotal = function () {
-    const totals = this.cart.reduce((acc, item) => {
-      const product = this.products.find(p => p.id === item.id);
-      if (!product) return acc;
-  
-      const qty = item.qty || 0;
-      const priceAfterDiscount = item.price;
-  
-      acc.subtotal += product.price * qty;
-      acc.total += priceAfterDiscount * qty;
-      return acc;
-    }, { subtotal: 0, total: 0 });
-  
-    totals.discountTotal = totals.subtotal - totals.total;
-    return totals;
-  };
-  
-  // Update totals in DOM
-  this.updateTotalUI = function (totals) {
-     const subtotalEls = document.querySelectorAll(".subtotal");
-    const totalEls = document.querySelectorAll(".total");
-    const discountEls = document.querySelectorAll(".discount");
-    const totalItemsEls = document.querySelectorAll('#totalItems');
-    const hNoItems = document.querySelector('#no-items');
-  
-    subtotalEls.forEach(el => el.innerText =`SubTotal : $ ${ totals.subtotal.toFixed(2)}`);
-    totalEls.forEach(el => el.innerText =  totals.total.toFixed(2));
-    discountEls.forEach(el => el.innerText =`Discount :$ ${totals.discountTotal.toFixed(2)}` );
-    totalItemsEls.forEach(el => el.innerText = `${this.itemCount()} Items`);
-  
-    console.log(this.calculateTotal().subtotal)
-  };
-  
+            </div>
+        `
 
-  // Increase item quantity
-    this.increaseQty = function (id, color, size, btnEl) {
-        const item = this.cart.find(
-        i => i.id === id && i.color === color && i.size === size
-        );
-    
-        const product = this.products.find(p => p.id === id);
-        const stockItem = product?.stock.find(s => s.color === color);
-        const sizeObj = stockItem?.sizes.find(sz => sz.name === size) || {};
-    
-        if (!item) return;
-    
-        if (item.qty < (sizeObj.qty || 0)) {
-        item.qty += 1;
-        this.saveCart();
-    
-        // Update UI
-        const parent = btnEl.closest(".cart-item");
-        const qtyEl = parent.querySelector(".qty");
-        if (qtyEl) qtyEl.innerText = item.qty;
-    
-        const totals = this.calculateTotal();
-        this.updateTotalUI(totals);
-        } else {
-        btnEl.disabled = true;
-        btnEl.style.cursor = "not-allowed";
-        console.log("End of stock");
-        }
+    }
 
-    };
-  
-  // Decrease item quantity
-  this.decreaseQty = function(id, color, size, btnEl) {
-        const item = this.cart.find(i => i.id === id && i.color === color && i.size === size);
-        if (!item) return;
 
-        item.qty -= 1;
-        this.saveCart();
+    script() {
+        const cartManager = new CartManager();
+        const items = cartManager.getCartItem();
+        console.log(items);
 
-        if (item.qty <= 0) {
-            this.removeItem(id, color, size);
-            return;
-        }
+        document.querySelectorAll('.icrease-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.dataset.id;
+                const color = e.currentTarget.dataset.color;
+                const size = e.currentTarget.dataset.size;
 
-        if (btnEl) {
-            const qtyEl = btnEl.closest(".cart-card")?.querySelector(".qty");
-            if (qtyEl) qtyEl.textContent = item.qty;
+                cartManager.increaseQty(id, color, size, e.currentTarget);
+            });
+        });
 
-            if (item.qty === 1) {
-                const decBtn = btnEl.closest(".cart-card")?.querySelector("button.decrease-btn");
-                if (decBtn) {
-                    decBtn.classList.remove("decrease-btn");
-                    decBtn.classList.add("delete-btn");
-                    decBtn.innerHTML = `<i class="fa-regular fa-trash-can fa-fw hoverIcon pointer"></i>`;
+        document.querySelectorAll('.decrease-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.dataset.id;
+                const color = e.currentTarget.dataset.color;
+                const size = e.currentTarget.dataset.size;
+
+                cartManager.decreaseQty(id, color, size, e.currentTarget);
+            });
+        });
+
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = e.currentTarget.dataset.id;
+                const color = e.currentTarget.dataset.color;
+                const size = e.currentTarget.dataset.size;
+
+                const card = document.querySelector(`.cart-card[data-id="${id}"][data-color="${color}"][data-size="${size}"]`);
+                console.log(card)
+
+                if (card) {
+                    cartManager.removeItem(id, color, size, card);
                 }
-            }
-        }
-
-        const totals = this.calculateTotal();
-        this.updateTotalUI(totals);
-    };
-
-    // Remove item from cart
-   this.removeItem = function(id, color, size) {
-        this.cart = this.cart.filter(
-            i => !(i.id === id && i.color === color && i.size === size)
-        );
-        this.saveCart();
-
-        const card = document.querySelector(`.cart-card[data-id="${id}"][data-color="${color}"][data-size="${size}"]`);
-        if (card) card.remove();
-
-        const totals = this.calculateTotal();
-        this.updateTotalUI(totals);
-        console.log(this.cart)
-    };
-  
-  
-  // Count total items in cart
-  this.itemCount = function () {    
-    return  this.cart.reduce((sum, item) => sum + (item.qty || 0), 0);
-  };
+            });
+        });
+    }
 
 }
+
 
 
 

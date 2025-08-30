@@ -1,26 +1,31 @@
 import { sessionStore } from "../../scripts/utils/storage.js";
 import View from "../core/view.js";
+import Toast from "../ui/toast.js";
 
 
-const userData = sessionStore.read("currentUser");
 
 
 export default class ProfileForm extends View {
+    
+
     template() {
+
+        const userData = sessionStore.read("currentUser");
+
         return `
             <div class="card shadow-none px-4 py-3 ">
-                    <div class="text-center mb-4">
-                        <div class="avatar mb-1">
-                            <img src="../assets/images/thumbnails/user_131490.png"/>
+            
+            <form id="profile-form" class="row g-3 needs-validation" novalidate>
+                        <div class="text-center mb-4">
+                            <div class="profile-avatar mb-1">
+                                <img src="../assets/images/thumbnails/user_131490.png"/>
+                            </div>
+                            <h5 class="mb-0">${userData.name}</h5>
+                            <button id="edit-btn" type="button" class="btn btn-primary m-auto mt-2">Change Your Information</button>
+                            <button id="save-btn" type="submit" class="btn btn-success m-auto  mt-2">Save Changes</button>
                         </div>
-                        <h5 class="mb-0">${userData.name}</h5>
-                        <button id="edit-btn" type="button" class="btn btn-primary m-auto mt-2">Change Your Information</button>
-                        <button id="save-btn" type="submit" class="btn btn-success m-auto  mt-2">Save Changes</button>
-                    </div>
 
-                    <h6 class="mb-3">Personal Information</h6>
-
-                    <form class="row g-3 needs-validation" novalidate>
+                        <h6 class="mb-3">Personal Information</h6>
                         <div class="col-md-6">
                             <label class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" placeholder="Name" value="${userData.name}" required  disabled >
@@ -82,6 +87,8 @@ export default class ProfileForm extends View {
     }
 
     script() {
+        const userData = sessionStore.read("currentUser");
+
         const editBtn = document.getElementById('edit-btn');
         const saveBtn = document.getElementById('save-btn');
         const inputeArr = document.querySelectorAll(".card input");
@@ -133,6 +140,7 @@ export default class ProfileForm extends View {
             form.classList.remove('was-validated'); 
             editBtn.style.display = 'block';
             saveBtn.style.display = 'none';
+            Toast.notify("Your Info is Updated" , "success");
         });
     }
     
