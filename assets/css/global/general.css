@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus,
+input:focus {
+    outline: none !important;
+    border: none !important;
+}
+
+*, input,
+a, a:hover{
+    font-family: "Roboto", sans-serif;
+}
+
+/* LOGO */
+.main-logo {
+    padding-left: 8px;
+    height: 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.main-logo img {
+    object-fit: cover;
+    
+}
+
+.brand-name{
+    font-weight: 600;
+    font-size: 1.5rem;
+    transform: translateY(4px);
+}
+
+/* OVERRIDES FOR BS STYLES */
+
+.btn-primary, .bg-primary{
+    background-color: var(--brand) !important;
+    border: none;
+}
+
+.text-success-emphasis {
+    background-color: rgba(249, 116, 22, 0.068) !important;
+    border-color: rgba(249, 116, 22, 0.127) !important;
+}
+.text-success-emphasis:hover {
+    background-color: rgba(249, 116, 22, 0.223) !important;
+    border-color: rgba(249, 115, 22, .3) !important;
+}
+
+
+/* NOTFOUND PAGE */
+.center-center {
+    background: #fdfdfd;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.notfound-container {
+    max-width: 600px;
+    padding: 2rem;
+}
+
+.notfound-icon {
+    font-size: 5rem;
+    color: var(--brand);
+}

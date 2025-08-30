@@ -1,24 +1,24 @@
- /* Scoped Styles for Sell IAAM page */
- .sell-iaam {
+ /* Scoped Styles for Sell AYAAM page */
+ .sell-ayaam {
      --brand: #f97316;
  }
 
- .sell-iaam .why-iaam i {
+ .sell-ayaam .why-ayaam i {
      color: var(--brand);
  }
 
- .sell-iaam .hero {
+ .sell-ayaam .hero {
      background: radial-gradient(800px 300px at 50% -10%, rgba(249, 115, 22, .15), transparent),
          linear-gradient(180deg, #fff, #fdfdfd);
      border-bottom: 1px solid rgba(0, 0, 0, .08);
  }
 
- .sell-iaam .hero .badge-brand {
+ .sell-ayaam .hero .badge-brand {
      background: rgba(249, 115, 22, .15);
      color: var(--brand);
  }
 
- .sell-iaam .statistics {
+ .sell-ayaam .statistics {
      display: flex;
      justify-content: center !important;
      gap: 5%;
@@ -28,7 +28,7 @@
 
  }
 
- .sell-iaam .statistics .highlight-card {
+ .sell-ayaam .statistics .highlight-card {
      width: 300px;
      border-radius: 16px;
      border: 1px solid rgba(0, 0, 0, .05);
@@ -39,12 +39,12 @@
 
  }
 
- .sell-iaam .statistics .highlight-card:hover {
+ .sell-ayaam .statistics .highlight-card:hover {
      transform: translateY(-4px);
      box-shadow: 0 12px 28px rgba(0, 0, 0, .08);
  }
 
- .sell-iaam .stat {
+ .sell-ayaam .stat {
      font-size: 2.5rem;
      font-weight: 700;
      color: var(--brand);
@@ -52,7 +52,7 @@
 
  }
 
- .sell-iaam-map {
+ .sell-ayaam-map {
      height: 400px;
      width: 100%;
      border-radius: 16px;
@@ -60,7 +60,7 @@
      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
  }
 
- .sell-iaam footer {
+ .sell-ayaam footer {
      background: #f9f9f9;
      border-top: 1px solid rgba(0, 0, 0, .05);
  }

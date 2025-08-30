@@ -14,21 +14,21 @@ export default class SellWithUsPage extends View {
     }
     template() {
         return `
-        <div class="sell-iaam">
+        <div class="sell-ayaam">
 
         <!-- Hero -->
         <header class="hero py-5 mb-5">
             <div class="container">
             <div class="row align-items-center g-4">
                 <div class="col-lg-7" data-fade>
-                <h1 class="display-5 fw-bold mb-3">Sell with <span style="color:var(--brand)">IAAM</span></h1>
-                <p class="lead text-muted">Turn your passion into profit. Join thousands of sellers growing their business on IAAM’s trusted multi-actor eCommerce platform.</p>
+                <h1 class="display-5 fw-bold mb-3">Sell with <span style="color:var(--brand)">AYAAM</span></h1>
+                <p class="lead text-muted">Turn your passion into profit. Join thousands of sellers growing their business on AYAAM’s trusted multi-actor eCommerce platform.</p>
                 <a class="btn btn-lg btn-warning mt-3" onclick="window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })">
                     <i class="fa-solid fa-user-plus"></i> Start Selling Today
                 </a>
                 </div>
                 <div class="col-lg-5 text-center" data-fade>
-                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Sell with IAAM" class="img-fluid" style="max-height:280px;" />
+                <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png" alt="Sell with AYAAM" class="img-fluid" style="max-height:280px;" />
                 </div>
             </div>
             </div>
@@ -55,10 +55,10 @@ export default class SellWithUsPage extends View {
 
         </section>
 
-        <!-- Why Sell with IAAM -->
-        <section class="container mb-5 why-iaam">
+        <!-- Why Sell with AYAAM -->
+        <section class="container mb-5 why-ayaam">
             <div class="text-center mb-5" data-fade>
-            <h2 class="h3 fw-bold">Why Choose <span style="color:var(--brand)">IAAM?</span></h2>
+            <h2 class="h3 fw-bold">Why Choose <span style="color:var(--brand)">AYAAM?</span></h2>
             <p class="text-muted">We give you more than just a platform — we give you the tools to grow, the support to succeed, and the audience to thrive.</p>
             </div>
             <div class="row g-4">
@@ -73,7 +73,7 @@ export default class SellWithUsPage extends View {
                 <div class="highlight-card p-4 text-center h-100">
                 <i class="fa-solid fa-earth-americas fa-2x mb-3"></i>
                 <h5 class="fw-bold mb-2">Wider Reach</h5>
-                <p class="small text-muted">Showcase your products to a broad audience across regions with IAAM’s growing customer base.</p>
+                <p class="small text-muted">Showcase your products to a broad audience across regions with AYAAM’s growing customer base.</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3" data-fade>
@@ -97,9 +97,9 @@ export default class SellWithUsPage extends View {
         <section class="container mb-5">
             <div class="text-center mb-4">
             <h2 class="h3 fw-bold">Our Warehouses Network</h2>
-            <p class="text-muted">Wherever you are in Egypt, IAAM has a warehouse near you to store and distribute your products efficiently.</p>
+            <p class="text-muted">Wherever you are in Egypt, AYAAM has a warehouse near you to store and distribute your products efficiently.</p>
             </div>
-            <div id="map" class="sell-iaam-map"></div>
+            <div id="map" class="sell-ayaam-map"></div>
         </section>
 
         <!-- Success Stories -->
@@ -107,12 +107,12 @@ export default class SellWithUsPage extends View {
             <div class="container">
             <div class="text-center mb-5" data-fade>
                 <h2 class="h3 fw-bold">Success Stories</h2>
-                <p class="text-muted">Don’t just take our word for it. See how sellers like you grew with IAAM.</p>
+                <p class="text-muted">Don’t just take our word for it. See how sellers like you grew with AYAAM.</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-4" data-fade>
                 <div class="highlight-card p-4 h-100">
-                    <p class="small">“IAAM helped me turn my handmade craft hobby into a thriving business. I reached more customers in 3 months than in 2 years offline.”</p>
+                    <p class="small">“AYAAM helped me turn my handmade craft hobby into a thriving business. I reached more customers in 3 months than in 2 years offline.”</p>
                     <div class="d-flex align-items-center mt-3">
                     <img src="/assets/images/us/mariam.jpg" alt="" class="rounded-circle me-3" width="45" height="45">
                     <div>
@@ -136,7 +136,7 @@ export default class SellWithUsPage extends View {
                 </div>
                 <div class="col-md-4" data-fade>
                 <div class="highlight-card p-4 h-100">
-                    <p class="small">“IAAM’s wide reach gave me access to new markets I never thought possible. My sales tripled in the first year.”</p>
+                    <p class="small">“AYAAM’s wide reach gave me access to new markets I never thought possible. My sales tripled in the first year.”</p>
                     <div class="d-flex align-items-center mt-3">
                     <img src="/assets/images/us/ossama.jpg" alt="" class="rounded-circle me-3" width="45" height="45">
                     <div>
@@ -153,10 +153,10 @@ export default class SellWithUsPage extends View {
         <!-- Call to Action -->
         <section id="signup" class="py-5 text-center" data-fade>
             <div class="container">
-            <h2 class="display-6 fw-bold mb-3">Ready to Grow with IAAM?</h2>
-            <p class="mb-4 text-muted">Be part of IAAM’s vibrant seller community and unlock your business potential today.</p>
+            <h2 class="display-6 fw-bold mb-3">Ready to Grow with AYAAM?</h2>
+            <p class="mb-4 text-muted">Be part of AYAAM’s vibrant seller community and unlock your business potential today.</p>
             <a href="#/confirm-seller" class="btn btn-lg btn-warning shadow-lg px-4 py-3">
-                <i class="fa-solid fa-arrow-right me-2"></i> Join IAAM Now
+                <i class="fa-solid fa-arrow-right me-2"></i> Join AYAAM Now
             </a>
             </div>
         </section>
@@ -183,7 +183,7 @@ export default class SellWithUsPage extends View {
         warehouses.forEach(loc => {
             L.marker(loc.coords)
                 .addTo(map)
-                .bindPopup(`<b>${loc.name}</b><br>IAAM Storage Facility`);
+                .bindPopup(`<b>${loc.name}</b><br>AYAAM Storage Facility`);
         });
     }
     

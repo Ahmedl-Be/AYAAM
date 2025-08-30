@@ -1,8 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url(./client/slider.css);
+
 
 
 
@@ -21,9 +18,18 @@
 
 }
 
-#navbar  i:hover,
-#navbar a:hover {
+#navbar button:hover,
+#navbar button:hover i,
+#navbar a:hover ,
+#navbar a:hover i{
     color: #f97316;
+}
+
+#navbar button:focus,
+#navbar button:focus i,
+#navbar a:focus,
+#navbar a:focus i{
+    background-color: rgba(249, 116, 22, 0.068) !important;
 }
 
 #locked *,
@@ -48,6 +54,7 @@
 
 #footer a {
     transition: color 0.5s;
+    color: #f5f2f9;
 }
 
 #footer i:hover,

@@ -15,33 +15,35 @@ export default class Navbar extends Component {
 
   template() {
     return `
-      <nav class="navbar navbar-light container border-bottom">
+      <nav class="navbar navbar-light container border-bottom" data-fade>
 <!-- First Row (visible on all screens) -->
         <div class="row p-0 m-0 w-100 ">
 
 <!-- LOGO -->
             <div class="col-6 col-md-3  ">
             <h5 class=" font-weight-bold text-uppercase d-flex align-items-center my-0 h-100">
-            ${Anchor("AYAAM", "/home", "navbar-brand d-flex align-items-center")}
+            <div class='navbar-brand d-flex align-items-center'>
+              <a class="main-logo" href="#/" data-route>
+                  <img src="/assets/images/logo/nobg-lg.png" width="30" height="auto" alt="AYAAM Logo">
+                  <span class="brand-name">AYAAM</span>
+              </a>
+            </div>
             </h5>
               
             </div>
 
 <!-- ICONS - moves to third position on md+ -->
-            <div class="icons d-flex justify-content-end align-content-center col-6 col-md-3 order-2 order-md-3">
-              <div class="d-flex align-items-center gap-3">
+            <div class=" d-flex justify-content-end align-content-center col-6 col-md-3 order-2 order-md-3">
+              <div class=" d-flex align-items-center gap-2">
 
     <!-- Profile Icon -->
-                <div class="dropdown">
-                  ${Button(Icon("user", "solid", "fa-lg"), "profileDropdown", "btn border-0 bg-transparent p-0", 'data-bs-toggle="dropdown" aria-expanded="false"')}
+                <div class="dropdown ">
+                  ${Button(Icon("user", "solid", "fa-lg p-0") + (this.user ?`Hello, ${this.user.name}`:'') , "profileDropdown", "btn border-0 bg-transparent p-0 d-flex ", 'data-bs-toggle="dropdown" aria-expanded="false"')}
           <!-- Drop-down Profile-->
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                     ${this.user ?
         `
-                          <li class="dropdown-item-text">Hello, ${this.user.name}</li>
-                          <li><hr class="dropdown-divider"></li>
-<!-- SHOP - STORE - DASHBOARD -->
-                          <li>
+                          
                               ${((_u) => {
           switch (_u.role) {
             case 'master' || 'admin':

@@ -45,17 +45,3 @@
 .slider .item:hover {
     filter: grayscale(0);
 }
-
-.slider[reverse="true"] .item {
-    animation: reversePlay 10s linear infinite;
-}
-
-@keyframes reversePlay {
-    from {
-        left: calc(var(--width) * -1);
-    }
-
-    to {
-        left: 100%;
-    }
-}

@@ -1,7 +1,7 @@
 /* === Color Palette CSS === */
 :root {
     /* accent orange */
-    --brand: #f97316;
+    --brand: rgb(249, 115, 22);
 
     /* Light Mode Font Colors */
     --grey-1: #e0e0e0;

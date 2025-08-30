@@ -4,7 +4,7 @@ export default function Footer() {
   const currentUser = getCurrentUser()
     return `
 
-  <div class="container text-md-left">
+  <div class="container text-md-left" data-fade>
     <div class="row text-md-left">
 
       <!-- Brand / About -->
@@ -47,7 +47,7 @@ export default function Footer() {
       <div class="col col-12 col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
         <h5 class="mb-4 font-weight-bold text-uppercase">Contact</h5>
         <p><i class="bi bi-house-fill"></i> Tanta, Gharbia, EG</p>
-        <p><a href="mailto:support@ayaam.example" style="text-decoration: none;"><i class="bi bi-envelope-fill"></i> support@ayaam.example </a></p>
+        <p><a href="mailto:support@ayaam.example" style="text-decoration: none;"><i class="fa-solid fa-envelope"></i> support@ayaam.example </a></p>
         <p><i class="bi bi-phone-fill"></i> +1 234 567 88</p>
         <!-- Social Media -->
         <div class=" ms-0 text-left">
