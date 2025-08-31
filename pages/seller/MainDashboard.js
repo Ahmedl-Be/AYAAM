@@ -1,4 +1,5 @@
 import View from "../../components/core/view.js";
+import { getCurrentUser } from "../../data/authentication.js";
 import { localStore } from "../../scripts/utils/storage.js";
 
 export default class MainDasboard extends View {
@@ -54,10 +55,22 @@ const orderList = document.getElementById("orderList");
     const summaryTotal = document.getElementById("summaryTotal");
     const summaryOrders = document.getElementById("summaryOrders");
     const summaryProducts = document.getElementById("summaryProducts");
+    const user = getCurrentUser()
+    let products = localStore.read("products", []).filter(prod => prod.sellerId === user.id);
+    let prodIds = products.map(p => p.id);
 
-    let products = localStore.read("products") || [];
-    let orders = localStore.read("orders") || [];
+    let orders = localStore.read("orders", [])
+      .map(order => {
+        const matched = order.orderItems.filter(item =>
+          prodIds.includes(item.productId) 
+        );
 
+        return matched.length > 0
+          ? { ...order, items: matched }   
+          : null;
+      })
+      .filter(order => order !== null);    
+    console.log(orders)
     function updateUI() {
       orderList.innerHTML = '';
       const validOrders = orders.filter(order => 

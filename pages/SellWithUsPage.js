@@ -158,7 +158,7 @@ export default class SellWithUsPage extends View {
             <h2 class="display-6 fw-bold mb-3">Ready to Grow with AYAAM?</h2>
             <p class="mb-4 text-muted">Be part of AYAAM’s vibrant seller community and unlock your business potential today.</p>
             <a href="#/confirm-seller" class="btn btn-lg btn-warning shadow-lg px-4 py-3">
-                <i class="fa-solid fa-arrow-right me-2"></i> Join AYAAM Now
+                <i class="fa-solid fa-arrow-right me-2"></i> Upgrade to Seller
             </a>
             </div>
         </section>

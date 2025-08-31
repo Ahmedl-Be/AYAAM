@@ -69,8 +69,13 @@ export default class Router {
             }
 
             if (routeConfig.roles) {
+
                 const user = getCurrentUser();
                 if (!user) {
+                    if (pathPart.startsWith("/sell-with-us")) {
+                        navigate('/signup');
+                        return
+                    }
                     navigate("/login");
                     return;
                 }
