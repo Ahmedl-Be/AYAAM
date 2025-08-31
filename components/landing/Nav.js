@@ -38,7 +38,7 @@ export default class Navbar extends Component {
 
     <!-- Profile Icon -->
                 <div class="dropdown ">
-                  ${Button(Icon("user", "solid", "fa-lg p-0") + (this.user ? `Hello, ${this.user.name.split(' ')[0]}`:'') , "profileDropdown", "btn border-0 bg-transparent p-0 d-flex ", 'data-bs-toggle="dropdown" aria-expanded="false"')}
+                  ${Button(Icon("user", "solid", "fa-lg p-0") + (this.user ? `Hi ,${this.user.name.split(' ')[0]}`:'') , "profileDropdown", "btn border-0 bg-transparent p-0 d-flex ", 'data-bs-toggle="dropdown" aria-expanded="false"')}
           <!-- Drop-down Profile-->
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                     ${this.user ?

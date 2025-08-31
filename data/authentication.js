@@ -4,7 +4,7 @@ import { localStore, sessionStore } from "../scripts/utils/storage.js";
 import { fakeCards } from "./creditcart/cards.js";
 
 /* ======================= SIGNUP =========================== */
-export function signup(_name, _email, _password, _repeatedPassword, _phone = '01000000000', _role = 'user') {
+export function signup(_name, _email, _password, _repeatedPassword, _phone = '01000000000', _role = 'customer') {
     const users = localStore.read('users', []);
 
     const name = _name;
@@ -67,7 +67,7 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone = '01
  * @param {string} _identifier
  * @param {string} _password
  * @param {boolean} _remember - If true, keep logged in using localStorage
- * @returns {object|null} The logged-in user object or null if failed
+ * @returns {null} The logged-in user object or null if failed
  */
 export function login(_identifier, _password, _remember = false) {
     const users = localStore.read("users", []);
@@ -96,48 +96,7 @@ export function login(_identifier, _password, _remember = false) {
     return user;
 }
 
-export function redirect(_role) {
-    const currentUser = getCurrentUser();
-    const redirected = sessionStore.read('redirectedPage', '');
-
-    if (!currentUser) {
-        navigate('/login');
-        return;
-    }
-
-    if (redirected && redirected !== '/home') {
-        sessionStore.remove('redirectedPage');
-        navigate(redirected);
-        return;
-    }
-
-    switch (_role) {
-        case 'master':
-        case 'admin':
-            if (currentUser.status !== "active") {
-                // inactive amin go home
-                navigate(`/home`);
-                break;
-            }
-            navigate(`/admin`);
-            break;
-
-        case 'seller':
-            if (currentUser.status !== "active") {
-                // inactive sellers go home
-                navigate(`/home`);
-                break;
-            }
-            navigate(`/seller`);
-            break;
-
-        default:
-            navigate(`/home`);
-    }
-}
-
-
-/* ==================== CURRENT USER ======================== */
+/* ==================== GET CURRENT USER ======================== */
 /**
  * Get the currently logged-in user (from session or local).
  * @returns {object|null}
@@ -147,6 +106,27 @@ export function getCurrentUser() {
         sessionStore.read("currentUser", null) ||
         localStore.read("currentUser", null)
     );
+}
+
+/* ==================== UPADTE CURRENT USER ======================== */
+/**
+ * Get the currently logged-in user update then save it to local storage.
+ * @param {string} _updated
+ * @returns {null}
+ */
+export function updateUser(_updated) {
+    let users = localStore.read('users', []);
+
+    users = users.map(user => {
+        if (user.email === _updated.email) {
+            return _updated; 
+        }
+        return user;
+    });
+
+    localStore.write("users", users);
+    if (localStore.exists('currentUser',true)) localStore.write('currentUser', _updated);
+    sessionStore.write('currentUser', _updated)
 }
 
 /* ======================= LOGOUT =========================== */
@@ -182,11 +162,67 @@ export function validatePassword(_password) {
     // Return true if password matches regex, false otherwise
     return regex.test(_password);
 }
-/* ==================RE PASSWORD=================== */
+
+/* ==================== ACCESS CONTROL ======================== */
+export function canAccess(user, area) {
+    if (!user) return false;
+
+    // banned users blocked everywhere
+    if (user.status === "banned") return false;
+
+    // dashboard sections require active users
+    if (area === "dashboard") {
+        return user.status === "active";
+    }
+
+    // public/home always accessible
+    return true;
+}
+
+/* ==================== REDIRECT USER ======================== */
+/**
+ * Redirect the currently logged-in user based on the role.
+ * @param {string} _role
+ * @returns {object|null}
+ */
+export function redirect(_role) {
+    const currentUser = getCurrentUser();
+    const redirected = sessionStore.read('redirectedPage', '');
+
+    if (!currentUser) {
+        navigate('/login');
+        return;
+    }
+
+    if (redirected && redirected !== '/home') {
+        sessionStore.remove('redirectedPage');
+        navigate(redirected);
+        return;
+    }
+
+    switch (_role) {
+        case 'master':
+        case 'admin':
+            if (!canAccess(currentUser, "dashboard")) {
+                navigate(`/home`);
+                break;
+            }
+            navigate(`/admin`);
+            break;
+
+        case 'seller':
+            if (!canAccess(currentUser, "dashboard")) {
+                navigate(`/home`);
+                break;
+            }
+            navigate(`/seller`);
+            break;
+
+        default:
+            navigate(`/home`);
+    }
+}
 
 
 
-/* ==================Fack Credit Cards=================== */
-
-localStore.write("creditCard" , fakeCards );
 

@@ -7,14 +7,14 @@ import Footer from "../components/landing/Footer.js";
 import Newsletter from "../components/landing/Newsletter.js";
 import Toast from "../components/ui/toast.js";
 import CardsSection from "../components/landing/Section.js";
-import { localStore } from "../scripts/utils/storage.js";
+import { localStore, sessionStore } from "../scripts/utils/storage.js";
 import FloatBtns from "../components/ui/floating.js";
 
 export default class HomePage extends View {
-  constructor(_config , _params = {}) {
+  constructor(_config, _params = {}) {
     // Call base constructor
     super({
-      title: 'Home | AYAAM' 
+      title: 'Home | AYAAM'
     }, _params);
 
   }
@@ -46,12 +46,18 @@ export default class HomePage extends View {
     this.mount(FloatBtns, "#floatBtns");
     this.mount(HeroSection, '#hero', { ads });
 
-    this.mount(CardsSection,'#featured-section',{
+    this.mount(CardsSection, '#featured-section', {
       id: 'featured',
       title: "Featured Items",
-      items: localStore.read('products' || []).slice(0,4),
+      items: localStore.read('products' || []).slice(0, 4),
     })
     this.mount(Newsletter, '#newsletter');
+
+    const _fallback = sessionStore.read('fallback-msg', '')
+    if (_fallback) {
+      Toast.notify(_fallback, 'danger');
+      sessionStore.write('fallback-msg', '');
+    }
   }
 
   render() {

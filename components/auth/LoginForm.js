@@ -1,4 +1,4 @@
-import { getCurrentUser, login, redirect, signup, validateEmail, validatePassword } from '../../data/authentication.js';
+import { getCurrentUser, login, logout, redirect, signup, validateEmail, validatePassword } from '../../data/authentication.js';
 import { navigate } from '../../scripts/utils/navigation.js';
 import Component from '../core/component.js';
 import Toast from '../ui/toast.js';
@@ -73,32 +73,47 @@ export default class LoginForm extends Component {
             }
         })
 
-        // Form submission
+        // Form Submission
         form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const isEmailValid = checkEmail();
-                if (!isEmailValid) {
-                    return;
-                }
-
-                const user = login(emailF.value.toLowerCase(), passwordF.value, rememberMe);
-            if (!user) {
-                Toast.notify("❌ Invalid Email or Password!","danger")
-                    const emailError = document.getElementById('emailError');
-                    const pwError = document.getElementById('passwordError');
-                    emailError.textContent = 'Invalid Email Or Password';
-                    pwError.textContent = 'Invalid Email Or Password';
-                    emailF.classList.add("is-invalid");
-                    passwordF.classList.add("is-invalid");
-                    return;
+            e.preventDefault();
+            const isEmailValid = checkEmail();
+            if (!isEmailValid) {
+                return;
             }
-            
-            Toast.notify("✅ Logged In Succefully! Redirecting...", "success");
 
+            const user = login(emailF.value.toLowerCase(), passwordF.value, rememberMe);
+
+            //Case: invalid email/password
+            if (!user) {
+                Toast.notify("❌ Invalid Email or Password!", "danger")
+                const emailError = document.getElementById('emailError');
+                const pwError = document.getElementById('passwordError');
+                emailError.textContent = 'Invalid Email Or Password';
+                pwError.textContent = 'Invalid Email Or Password';
+                emailF.classList.add("is-invalid");
+                passwordF.classList.add("is-invalid");
+                return;
+            }
+        
+            //Case: banned users
+            if (user && user.status === "banned") {
+                Toast.notify("🚫 Your account has been banned. Contact support.", "danger");
+                emailF.classList.add("is-invalid");
+                passwordF.classList.add("is-invalid");
+                logout();
+                return;
+            }
+
+            //Case: seller inactive
+            if (user.role === "seller" && user.status !== "active") {
+                Toast.notify(" Your seller account is not active yet. Please wait for approval.", "warning");
+                setTimeout(() => navigate('/home'), 1500);
+                return;
+            }
+
+            //Normal success
+            Toast.notify("✅ Logged In Successfully! Redirecting...", "success");
             setTimeout(() => redirect(user.role), 1500);
-
-            
-
 
         });
 

@@ -51,7 +51,7 @@ export default class AdminDashboard extends Views {
         <div class="toast-body" id="toastMsg"></div>
             <div class="container-fluid">
                 <div class="row">
-                    ${Sidebar(sections,userName)}
+                    ${Sidebar('/admin',sections,userName)}
                     
                     <main class="col pt-3" id="main">
 

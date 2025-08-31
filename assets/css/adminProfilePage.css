@@ -1,8 +1,9 @@
 
 /* Admin Profile Container */
 .admin-profile-container {
-    background: linear-gradient(135deg, #ebd876b6 10%, #e9ecef 60%);
-}
+    background: radial-gradient(1200px 400px at 50% -10%, rgba(249, 115, 22, .25), transparent),
+        linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(255, 255, 255, 0));
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
 
 /* Profile Header Section */
 .admin-profile-header {
@@ -11,22 +12,23 @@
 
 /* Profile Avatar */
 .admin-profile-avatar {
-    background: linear-gradient(135deg, #f5dc99 0%, #df7373 100%) !important;
+    background: var(--brand);
+    border: 1px solid rgba(255, 255, 255, 0.022);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: bold;
-    text-shadow: 0 2px 4px rgba(207, 69, 69, 0.5);
-    box-shadow: 0 8px 15px rgba(207, 69, 69, 0.5);
-    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    font-size: 3rem !important;
+    transition: all 0.5s ease-in-out;
     margin: 0 auto;
 }
 
 .admin-profile-avatar:hover {
     transform: translateY(-2px) scale(1.1);
     box-shadow: 0 12px 32px rgba(234, 117, 102, 0.4);
+    cursor: pointer;
 }
 
 /* Profile Name */
@@ -41,15 +43,15 @@
 
 /* Role */
 .admin-profile-role-badge {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-    border: none;
-    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--brand);
+    color: var(--brand);
+    transition: all 0.5s ease-in-out;
+    
 }
 
 .admin-profile-role-badge:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(234, 197, 102, 0.4);
 }
 
 /* Information Cards */
@@ -70,7 +72,6 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #e1da13, rgb(233, 172, 60), #e1da13);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -102,7 +103,7 @@
 .admin-profile-edit-btn {
     background: transparent;
     border:none;
-    color: #667eea;
+    color: var(--brand);
     border-radius: 8px;
     padding: 4px 8px;
     transition: all 0.2s ease;
@@ -110,7 +111,7 @@
 }
 
 .admin-profile-edit-btn:hover {
-    background: rgba(255, 166, 0, 0.441);
+    background: rgba(255, 166, 0, 0.167);
     color: orangered;
     transform: scale(1.02);
 }
@@ -119,7 +120,7 @@
 .admin-profile-password-toggle-btn {
     background: transparent;
     border: none;
-    color: #3498db;
+    color: var(--brand);
     border-radius: 8px;
     padding: 4px 8px;
     transition: all 0.2s ease;
@@ -172,9 +173,10 @@
 }
 
 
-.admin-profile-grid .col-6:nth-child(1) .admin-profile-info-card { animation-delay: 0.1s; }
+.admin- -grid .col-6:nth-child(1) .admin-profile-info-card { animation-delay: 0.1s; }
 .admin-profile-grid .col-6:nth-child(2) .admin-profile-info-card { animation-delay: 0.2s; }
 .admin-profile-grid .col-6:nth-child(3) .admin-profile-info-card { animation-delay: 0.2s; }
 .admin-profile-grid .col-6:nth-child(4) .admin-profile-info-card { animation-delay: 0.3s; }
 .admin-profile-grid .col-6:nth-child(5) .admin-profile-info-card { animation-delay: 0.4s; }
 .admin-profile-grid .col-6:nth-child(6) .admin-profile-info-card { animation-delay: 0.5s; } 
+}

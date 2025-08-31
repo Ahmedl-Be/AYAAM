@@ -1,4 +1,5 @@
 import { localStore } from "../scripts/utils/storage.js";
+import { fakeCards } from "./creditcart/cards.js";
 import { products } from "./products/products.js";
 import { users } from "./users/users.js";
 
@@ -16,14 +17,20 @@ export default function seedData() {
   }
 
   // Seed Products
-  if (!localStore.exists("products", true)) {
+  if (!localStore.exists("products", false)) {
     localStore.write("products", products);
   }
 
   // Seed Orders
-  if (!localStore.exists("orders", true)) {
+  if (!localStore.exists("orders", false)) {
     localStore.write("orders", []);
   }
+
+  // Seed Credit Cards
+  if (!localStore.exists("creditCard", true)) {
+    localStore.write("creditCard", fakeCards);
+  }
+
 
   // localStorage.setItem("orders", JSON.stringify([
   //   {

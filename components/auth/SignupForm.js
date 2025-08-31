@@ -1,4 +1,4 @@
-import { getCurrentUser, redirect, signup, validateEmail, validatePassword } from '../../data/authentication.js';
+import { getCurrentUser, login, redirect, signup, validateEmail, validatePassword } from '../../data/authentication.js';
 import TermsPage from '../../pages/info/TermsPage.js';
 import { localStore } from '../../scripts/utils/storage.js';
 import Component from '../core/component.js';

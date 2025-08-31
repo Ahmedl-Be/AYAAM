@@ -29,8 +29,13 @@ export class AdminProfile extends View {
                 </div>
                 <h4 class="admin-profile-name mb-3 mt-3">${currentUser.name}</h4>
                 <span class="badge admin-profile-role-badge px-3 py-2">
-                    <i class="fas fa-crown me-2"></i>
-                    ${capitalizeWords(currentUser.role || 'Admin')}
+                ${currentUser.role === 'admin' ?
+                    `<i class="fas fa-crown me-2"></i>
+                    ${capitalizeWords('Admin')}`
+            : `<i class="fas fa-cash-register me-2"></i>
+                    ${capitalizeWords('Seller')}`
+                }
+                    
                 </span>
             </div>
 

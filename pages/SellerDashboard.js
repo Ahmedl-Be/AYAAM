@@ -1,86 +1,91 @@
-
 import View from "../components/core/view.js";
+import { Sidebar, SidebarEvents } from "../components/ui/sidebar.js";
+import { getCurrentUser } from './../data/authentication.js';
+import Toast from "../components/ui/toast.js";
+
 import MainDasboard from "./seller/MainDashboard.js";
 import SellerProducts from "./seller/SellerProducts.js";
-import incomeingOrder from "./seller/IncomingOrders.js";
+import IncomingOrders from "./seller/IncomingOrders.js";
 import AddProduct from "./seller/AddProduct.js";
-import salesHistory from "./seller/SalesHistory.js";
+import SalesHistory from "./seller/SalesHistory.js";
 
 export default class SellerDashboard extends View {
     constructor(_config, _params = {}) {
-        // Call base constructor
         super({
-            title: 'Manage your store | AYAAM'
+            title: "Seller Dashboard | AYAAM"
         }, _params);
-
     }
-    template() {
-        return `
-<!-- Sidebar Toggle Button -->
-    <button class="btn toggle-btn position-fixed top-0 start-0 m-3"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#sidebar"
-            aria-controls="sidebar">
-        <i class="fas fa-bars"></i>
-    </button>
 
-    <!-- Sidebar -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="sidebarLabel"><i class="fas fa-list"></i> list</h5>
-            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    template() {
+        const user = getCurrentUser();
+        if (!user) return `<p>Please log in</p>`;
+        const userName = user.name.split(" ")[0];
+
+        const sections = [
+            {
+                id: "management",
+                title: "Store Management",
+                icon: "fas fa-store",
+                items: [
+                    { id: "dashboard", title: "Dashboard", icon: "fas fa-home", url: "/dashboard" },
+                    { id: "products", title: "Products", icon: "fas fa-box", url: "/products" },
+                    { id: "addproduct", title: "Add Product", icon: "fas fa-plus", url: "/addproduct" },
+                    { id: "incoming", title: "Incoming Orders", icon: "fas fa-truck", url: "/incomeingOrders" },
+                    { id: "sales", title: "Sales History", icon: "fas fa-history", url: "/salesHistory" }
+                ]
+            }
+        ];
+
+        return `
+        <div class="toast-body" id="toastMsg"></div>
+        <div class="container-fluid">
+            <div class="row">
+                ${Sidebar('/seller' ,sections, userName)}
+
+                <main class="col pt-3" id="main">
+                    <div class="row">
+                        <div class="col-12" id="seller-dashbord">
+                            <h1 class="text-center">Seller Dashboard</h1>
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
-        <div class="offcanvas-body">
-            <ul class="nav flex-column gap-2">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#/seller/dashboard"><i class="fas fa-box"></i> Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#/seller/products"><i class="fas fa-box"></i> Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#/seller/incomeingOrders"><i class="fas fa-box"></i> Incoming Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#/seller/salesHistory"><i class="fas fa-box"></i> Sales History</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div id="seller-dashbord"></div>
         `;
     }
 
     script() {
-     this.subview(MainDasboard, {
-                parent: "seller-dashbord",
-                route: "dashboard",
-                title: "seller - dashbord"
-            });
+        this.mount(Toast, "#toastMsg");
 
-      this.subview(SellerProducts, {
-                parent: "seller-dashbord",
-                route: "products",
-                title: "seller - products"
-            });
+        this.subview(MainDasboard, {parent: "seller-dashbord", route: "dashboard", title: "Seller - Dashboard"
+        });
 
-  this.subview(AddProduct, {
-                parent: "seller-dashbord",
-                route: "addproduct",
-                title: "Add New Product"
-            });
+        this.subview(SellerProducts, { parent: "seller-dashbord", route: "products", title: "Seller - Products"
+        });
 
-      this.subview(incomeingOrder, {
-                parent: "seller-dashbord",
-                route: "incomeingOrders",
-                title: "seller - incomeingOrders"
-            });
+        this.subview(AddProduct, {
+            parent: "seller-dashbord",
+            route: "addproduct",
+            title: "Add New Product"
+        });
 
-    this.subview(salesHistory, {
-                parent: "seller-dashbord",
-                route: "salesHistory",
-                title: "seller - salesHistory"
-            });
+        this.subview(IncomingOrders, {
+            parent: "seller-dashbord",
+            route: "incomeingOrders",
+            title: "Seller - Incoming Orders"
+        });
+
+        this.subview(SalesHistory, {
+            parent: "seller-dashbord",
+            route: "salesHistory",
+            title: "Seller - Sales History"
+        });
+
+        // default route
+        if (!location.hash || !location.hash.startsWith("#/seller/")) {
+            location.hash = "#/seller/dashboard";
+        }
+
+        SidebarEvents();
     }
 }

@@ -13,15 +13,17 @@ export default class Component {
   template() { return ""; }
 
   /* === SCRIPT: Attach event listeners or logic === */
-  script() {}
+  script() { }
 
   /* === LIFECYCLE HOOKS: Optional overrides === */
-  onEnter() {}
-  onLeave() {}
-  onSubRoute(_path, _params) {}
+  onEnter() { }
+  onLeave() { }
+  onSubRoute(_path, _params) { }
 
   /* === Render: Called by Router or parent === */
   render() {
+    document.body.style.overflow = "auto";
+    document.body.style.paddingRight = "0";
     this.onEnter();
 
     if (!this.parent) {
@@ -35,7 +37,7 @@ export default class Component {
 
   /* === Mount a child component inside a selector === */
   mount(_ComponentClass, _selector, _params = {}) {
-    const parent = _selector instanceof HTMLElement? _selector: this.parent.querySelector(_selector);
+    const parent = _selector instanceof HTMLElement ? _selector : this.parent.querySelector(_selector);
     if (!parent) {
       console.warn(`Mount failed: selector '${_selector}' not found`);
       return;

@@ -55,14 +55,14 @@ const data = [
             },
             {
                 color: "Brown",
-                images: ['brown-f.png', 'brown-b.png', 'brown-in.png', 'brown-s.png', 'brown-top.png'],
+                images: ['brown-f.png', 'brown-b.png', 'brown-s.png', 'brown-top.png'],
                 sizes: [
                     { name: 'One Size', qty: 5 },
                 ]
             },
             {
                 color: "Lightgrey",
-                images: ['lightgrey-f.png', 'lightgrey-b.png', 'lightgrey-in.png', 'lightgrey-s.png', 'lightgrey-top.png'],
+                images: ['lightgrey-f.png', 'lightgrey-b.png', 'lightgrey-s.png', 'lightgrey-top.png'],
                 sizes: [
                     { name: 'One Size', qty: 4 },
                 ]
@@ -96,7 +96,7 @@ const data = [
             },
             {
                 color: "Black",
-                images: ['black-top.png', 'black-front.png', 'black-back.png', 'black-side.png', 'black-in.png'],
+                images: ['black-top.png', 'black-front.png', 'black-back.png', 'black-side.png'],
                 sizes: [
                     { name: 'M', qty: 3 },
                     { name: 'L', qty: 4 },

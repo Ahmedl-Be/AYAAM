@@ -4,7 +4,7 @@ import { AdminProfile } from "../../pages/admin/AdminProfile.js";
 import { getInitials, getRandomColor } from "../../scripts/utils/dashboardUtils.js";
 
 // sidebar component
-export function Sidebar(sections = [], title = "") {
+export function Sidebar(_base, sections = [], title = "") {
     return `
     <!-- ...............Toggle Button (visible only on md and smaller)................ -->
     <button 
@@ -24,11 +24,11 @@ export function Sidebar(sections = [], title = "") {
         style="width: 250px; z-index: 1020;">
 
         <div class="mt-4">
-            <button class="btn row d-flex text-decoration-none p-0 admin-profile-btn ms-2 w-100" style="cursor: pointer;" title="Go To Profile">
+            <button class="btn row d-flex text-decoration-none p-0 profile-btn ms-2 w-100" style="cursor: pointer;" title="Go To Profile">
                 <div class="col col-3 rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 0.875rem; font-weight: bold;">
                     ${getInitials(title)}
                 </div>
-                <h5 class="col col-8 mb-4 pt-2 wlc-tiltle"> Hello! ${title}</h5>
+                <h5 class="col col-9 mb-4 pt-2 wlc-tiltle"> Hello! ${title}</h5>
             </button>
             <button 
             class=" list-group-item d-flex align-items-center gap-3 mb-2 ms-5 text-decoration-underline sidebar-homeBtn " 
@@ -50,7 +50,7 @@ export function Sidebar(sections = [], title = "") {
                             <li class="list-group-item text-truncate ps-4" 
                                 style="cursor: pointer;" 
                                 data-section="${item.id}">
-                                <a href="#/admin${item.url}" data-route><i class="${item.icon}"></i> <span>${item.title}</span></a>
+                                <a href="#${_base + item.url}" data-route><i class="${item.icon}"></i> <span>${item.title}</span></a>
                             </li>
                             `).join("")}
                         </ul>
@@ -69,7 +69,7 @@ export function Sidebar(sections = [], title = "") {
     <!-- ...............Offcanvas Sidebar for MD and SM................ -->
     <div class="offcanvas offcanvas-start d-lg-none db-sidebar" id="sidebarOffcanvas" style="width: 250px; ">
         <div class="offcanvas-header mt-4">
-            <button class="btn row d-flex text-decoration-none p-0 admin-profile-btn w-100" style="cursor: pointer;" title="Go To Profile">
+            <button class="btn row d-flex text-decoration-none p-0 profile-btn w-100" style="cursor: pointer;" title="Go To Profile">
                 <div class="col col-3 rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 0.875rem; font-weight: bold;">
                     ${getInitials(title)}
                 </div>
@@ -97,7 +97,7 @@ export function Sidebar(sections = [], title = "") {
                             <li class="list-group-item text-truncate" 
                                 data-bs-dismiss="offcanvas" 
                                 data-section="${item.id}">
-                                <a href="#/admin${item.url}" data-route> <i class="${item.icon}"></i> <span>${item.title}</span></a>
+                                <a href="#${_base + item.url}" data-route> <i class="${item.icon}"></i> <span>${item.title}</span></a>
                             </li>
                             `).join("")}
                         </ul>
@@ -113,19 +113,19 @@ export function Sidebar(sections = [], title = "") {
         </div>
     </div>
 
-    <!-- Admin Profile Modal -->
-    <div class="modal fade" id="adminProfileModal" tabindex="-1" aria-labelledby="adminProfileModalLabel" aria-hidden="true">
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="adminProfileModalLabel">
+                    <h5 class="modal-title" id="profileModalLabel">
                         <i class="fas fa-user-circle me-2"></i>
-                        Admin Profile
+                        Profile info
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-0" id="adminProfileContainer">
-                    <!-- AdminProfile content will be rendered here -->
+                <div class="modal-body p-0" id="profileContainer">
+                    <!-- profile content will be rendered here -->
                 </div>
             </div>
         </div>
@@ -150,18 +150,18 @@ export function SidebarEvents() {
     });
 
     // Admin Profile Popup Buttons
-    document.querySelectorAll('.admin-profile-btn').forEach(btn => {
+    document.querySelectorAll('.profile-btn').forEach(btn => {
         btn?.addEventListener('click', (e) => {
             e.preventDefault();
-            showAdminProfilePopup();
+            showProfilePopup();
         });
     });
 }
 
 //  show admin profile in popup
-function showAdminProfilePopup() {
-    const modal = new bootstrap.Modal(document.getElementById('adminProfileModal'));
-    const container = document.getElementById('adminProfileContainer');
+function showProfilePopup() {
+    const modal = new bootstrap.Modal(document.getElementById('profileModal'));
+    const container = document.getElementById('profileContainer');
     
     // Create and render AdminProfile
     const adminProfile = new AdminProfile();

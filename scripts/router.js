@@ -1,4 +1,4 @@
-import { getCurrentUser } from "../data/authentication.js";
+import { getCurrentUser, logout } from "../data/authentication.js";
 import { parseQuery, navigate } from "./utils/navigation.js";
 import { sessionStore } from "./utils/storage.js";
 
@@ -43,7 +43,7 @@ export default class Router {
             const params = parseQuery(queryString || "");
 
 
-            if (pathPart !== '/login' && pathPart !== '/signup') {
+            if (pathPart !== '/login' && pathPart !== '/signup' && pathPart !== '/signup') {
                 sessionStore.write('redirectedPage', fullPath);
             }
 
@@ -77,6 +77,20 @@ export default class Router {
                 if (!routeConfig.roles.includes(user.role)) {
                     navigate("/404");
                     return;
+                }
+                if (user.role === "seller") {
+                    if (user.status === "inactive") {
+                        if (pathPart.startsWith("/seller")) {
+                            navigate("/home");
+                            sessionStore.write('fallback-msg', "You can't access your shop. Your data are under review.");
+                            return;
+                        }
+                    }
+                    if (user.status === "banned") {
+                        logout();
+                        navigate("/login");
+                        return;
+                    }
                 }
             }
 
