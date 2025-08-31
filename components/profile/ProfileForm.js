@@ -1,3 +1,4 @@
+import { getCurrentUser } from "../../data/authentication.js";
 import { getInitials, getRandomColor } from "../../scripts/utils/dashboardUtils.js";
 import { localStore, sessionStore } from "../../scripts/utils/storage.js";
 import View from "../core/view.js";
@@ -11,7 +12,7 @@ export default class ProfileForm extends View {
 
     template() {
 
-        const userData = sessionStore.read("currentUser");
+        const userData = getCurrentUser();
         const colorClass = getRandomColor();
 
         return `
@@ -71,10 +72,10 @@ export default class ProfileForm extends View {
                             </div>
                         </div>
 
-                        ${`
+                        ${ `
                             <div class="col-md-12">
                                 <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="adrs" placeholder="Address" value="${userData?.address}"  disabled required">
+                                <input type="text" class="form-control" id="adrs" placeholder="Address" value="${userData?.address ? userData.address : ''}"  disabled required">
                                 <div class="invalid-feedback">
                                     Please enter your address.
                                 </div>

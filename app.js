@@ -32,7 +32,7 @@ const routes = {
 
   /* INFO PAGES */
   "/info": { loader: () => import("./pages/SupportPage.js") },
-  "/sell-with-us": { loader: () => import("./pages/SellWithUsPage.js") },
+  "/sell-with-us": { loader: () => import("./pages/SellWithUsPage.js"), roles: ["customer"] },
 
 }
 
