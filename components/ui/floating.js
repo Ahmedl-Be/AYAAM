@@ -11,7 +11,9 @@ export default class FloatBtns extends Component {
             </button>
 <!-- Customer Support -->
             <button id="supportBtn" class="btn" title="Customer Support">
-                <i class="fa-solid fa-headset"></i>
+                <a href="mailto:support@ayaam.example" style="text-decoration: none; color: white;">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
             </button>
         </div>
         ` 
@@ -36,9 +38,5 @@ export default class FloatBtns extends Component {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        // Go to Reach Us page
-        supportBtn?.addEventListener("click", () => {
-            window.location.href = "#/reach-us";
-        });
     }
 }
