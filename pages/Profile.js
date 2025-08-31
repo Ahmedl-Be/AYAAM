@@ -30,7 +30,7 @@ export default class Profile extends View {
     script() {
         this.mount(Navbar, "#navbar");
         this.mount(Toast, "#toast");
-        <div id="floatBtns"></div>
+        this.mount(FloatBtns, "#floatBtns");
         this.mount(ProfileForm, "#profile-form");
         this.mount(TableOrders, "#orders-table");
        

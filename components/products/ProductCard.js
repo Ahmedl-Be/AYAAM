@@ -10,6 +10,7 @@ export default class ProductCard extends Component {
 
     getFirstImage() {
         return (
+            this.product.stock?.[1]?.images?.[0] ||
             this.product.stock?.[0]?.images?.[0] ||
             "https://via.placeholder.com/300x200"
         );
@@ -75,18 +76,11 @@ export default class ProductCard extends Component {
 
               <div class="d-flex gap-2 mt-3">
 
-                <!-- Larger dark button -->
+                <!-- View Button -->
                 <button 
                     class="btn btn-dark flex-grow-1 d-flex align-items-center justify-content-center gap-2 py-2 fs-6 viewDetailsBtn" 
                     data-id="${this.product.id}">
-                    <i class="fa-solid fa-eye"></i> View
-                </button>
-
-                <!-- Smaller button: bg white, text black -->
-                <button 
-                    class="btn btn-light border d-flex align-items-center justify-content-center text-dark addToCartBtn" 
-                    data-id="${this.product.id}" style="width: 50px; height: 40px;">
-                    <i class="fa-solid fa-cart-plus text-dark"></i>
+                    <i class="fa-solid fa-eye"></i> View Details
                 </button>
 
                 </div>

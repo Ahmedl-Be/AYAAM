@@ -18,13 +18,19 @@ export default class ProfileForm extends View {
             <div class="card shadow-none px-4 py-3 ">
             
             <form id="profile-form" class="row g-3 needs-validation" novalidate>
-                        <div class="text-center mb-4">
-                            <div class="profile-avatar  mb-1">
-                                ${getInitials(userData.name)}
+                        <div class="col col-12 d-flex align-items-center justify-content-start flex-md-column pb-4">
+                            <div class="col col-4 col-md-12 col-lg-5 mb-2" >
+                                <div class=" col col-4 profile-avatar  mb-1">
+                                    ${getInitials(userData.name)}
+                                </div>
                             </div>
-                            <h5 class="mb-0">${userData?.name}</h5>
-                            <button id="edit-btn" type="button" class="btn brand-bg text-white m-auto mt-2">Update Profile</button>
-                            <button id="save-btn" type="submit" class="btn btn-success m-auto  mt-2">Save Changes</button>
+                            
+                            <div class="col col-8 col-md-12 col-lg-9 d-flex flex-column align-content-center justify-content-center">
+                                <h5 class="mb-3 text-center">${userData?.name}</h5>
+                                <button id="edit-btn" type="button" class="btn brand-bg text-white ">Update Profile</button>
+                                <button id="save-btn" type="submit" class="btn btn-success ">Save Changes</button>
+                            </div>
+                            
                         </div>
 
                         <h6 class="mb-3 mt-0">Personal Information</h6>

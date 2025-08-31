@@ -26,6 +26,11 @@
   cursor: pointer;
 }
 
+
+.badge.bg-dark{
+  background-color: var(--brand) !important;
+}
+
 .sizes span:hover, .colors span:hover {
   border-color: #000;
 }
