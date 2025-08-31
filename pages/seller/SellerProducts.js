@@ -1,6 +1,7 @@
 import View from "../../components/core/view.js";
 import { localStore } from "../../scripts/utils/storage.js";
 import { Anchor } from "../../components/ui/links.js";
+import { showConfirmDialog } from "../../scripts/utils/dashboardUtils.js";
 
 export default class SellerProducts extends View {
   template() {
@@ -10,12 +11,9 @@ export default class SellerProducts extends View {
       <div class="col-12 col-lg-10 p-4 bg-white shadow rounded">
         <div class="d-flex gap-3 mb-3">
 
-          ${Anchor(`<i class="fas fa-plus"></i> New Product`,"/seller/addproduct","btn btn-success" )}   
+          ${Anchor(`<i class="fas fa-plus"></i> New Product`,"/seller/addproduct" )}   
 
           <input type="text" id="searchInput" class="form-control w-50 w-lg-25" placeholder="Search...">
-          <button id="searchBtn" class="btn btn-success">
-            <i class="fa fa-search"></i>
-          </button>
         </div>
 
         <div class="table-responsive">
@@ -70,7 +68,7 @@ export default class SellerProducts extends View {
   }
 
   script() {
-           function loadProducts() {
+function loadProducts() {
   let products = localStore.read("products") || [];
   let tableBody = document.getElementById("productTableBody");
   tableBody.innerHTML = "";
@@ -93,8 +91,9 @@ export default class SellerProducts extends View {
     `;
     tableBody.appendChild(row);
 
-    row.querySelector(".btn-remove").addEventListener("click", function () {
-      if (confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
+    row.querySelector(".btn-remove").addEventListener("click", async function () {
+      const confirmed = await showConfirmDialog("Are you sure you want to delete this product?", "Confirm deletion");
+      if (confirmed) {
         products.splice(index, 1);
         localStorage.setItem("products", JSON.stringify(products));
         loadProducts();
@@ -674,7 +673,7 @@ function initializeEditForm(productIndex, product) {
         }
       });
 
-      console.log("Updated Product:", updatedProduct); // لفحص البيانات قبل التخزين
+      console.log("Updated Product:", updatedProduct); 
       let products = JSON.parse(localStorage.getItem("products")) || [];
       products[productIndex] = updatedProduct;
       localStorage.setItem("products", JSON.stringify(products));
@@ -747,10 +746,9 @@ function generateStockHTML(stock) {
   return html;
 }
 
-document.getElementById("searchBtn").addEventListener("click", search);
-
-function search() {
-  const input = document.getElementById("searchInput").value.trim().toLowerCase();
+const searchInput = document.getElementById("searchInput");
+searchInput.addEventListener("input", function () {
+  const input = this.value.trim().toLowerCase();
   const table = document.getElementById("productTableBody");
   const rows = table.getElementsByTagName("tr");
 
@@ -767,8 +765,8 @@ function search() {
       row.style.display = "none";
     }
   }
-  document.getElementById("searchInput").value = "";
-}
+});
+
 loadProducts();
   }
 }

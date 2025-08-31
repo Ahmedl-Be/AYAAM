@@ -91,7 +91,6 @@
 
 .salesHistoryDashboard th, td {
     padding: 15px;
-    text-align: right;
     border-bottom: 1px solid var(--bgcolor-6); /* Light: #9ca3af, Dark: #6b7280 */
 }
 

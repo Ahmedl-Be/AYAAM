@@ -518,7 +518,7 @@ export default class AddProduct extends View {
           const qty = qtyInput ? qtyInput.value : "";
 
           if (size && qty) {
-            sizes.push({ size, qty: parseInt(qty) });
+            sizes.push({ name, qty: parseInt(qty) });
           }
         });
 
