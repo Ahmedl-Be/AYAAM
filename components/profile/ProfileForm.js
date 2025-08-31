@@ -1,5 +1,5 @@
 import { getCurrentUser } from "../../data/authentication.js";
-import { getInitials, getRandomColor } from "../../scripts/utils/dashboardUtils.js";
+import { getInitials } from "../../scripts/utils/dashboardUtils.js";
 import { localStore, sessionStore } from "../../scripts/utils/storage.js";
 import View from "../core/view.js";
 import Toast from "../ui/toast.js";
@@ -13,7 +13,6 @@ export default class ProfileForm extends View {
     template() {
 
         const userData = getCurrentUser();
-        const colorClass = getRandomColor();
 
         return `
             <div class="card shadow-none px-4 py-3 ">
@@ -27,7 +26,7 @@ export default class ProfileForm extends View {
                             </div>
                             
                             <div class="col col-8 col-md-12 col-lg-9 d-flex flex-column align-content-center justify-content-center">
-                                <h5 class="mb-3 text-center">${userData?.name}</h5>
+                                <h5 class="mb-3 text-center user-name">${userData?.name}</h5>
                                 <button id="edit-btn" type="button" class="btn brand-bg text-white ">Update Profile</button>
                                 <button id="save-btn" type="submit" class="btn btn-success ">Save Changes</button>
                             </div>
@@ -75,7 +74,7 @@ export default class ProfileForm extends View {
                         ${ `
                             <div class="col-md-12">
                                 <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="adrs" placeholder="Address" value="${userData?.address ? userData.address : ''}"  disabled required">
+                                <input type="text" class="form-control" id="adrs" placeholder="Address" value="${userData?.city ? userData.city : ''} " " ${userData?.state ? userData.state : ''}"  disabled required">
                                 <div class="invalid-feedback">
                                     Please enter your address.
                                 </div>
@@ -118,6 +117,7 @@ export default class ProfileForm extends View {
                 }
             });
 
+
         });
 
         saveBtn.addEventListener('click', (e) => {
@@ -128,12 +128,25 @@ export default class ProfileForm extends View {
                 return; 
             }
 
+            const adrsEl = document.getElementById('adrs');
+            let city = "";
+            let state = "";
+
+            if (adrsEl && adrsEl.value.trim() !== "") {
+            const parts = adrsEl.value.trim().split(" ");
+                city = parts[0]?.trim() || "";
+                state = parts[1]?.trim() || "";
+            }
+
+
             const updatedUser = {
                 name: document.getElementById('name').value.trim(),
+                Name: document.getElementById('name').value.trim(),
                 birth: document.getElementById('birth').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
                 email: document.getElementById('email').value.trim(),
-                address : document.getElementById('adrs')?.value.trim(), 
+                city ,
+                state ,
                 gender: document.querySelector('input[name="gender"]:checked').value
             };
 
@@ -143,19 +156,28 @@ export default class ProfileForm extends View {
 
             sessionStore.write("currentUser" , newData)
 
-            const allUsers = localStore.read("users").map(user => {
-                if(user.id === userData.id) {
-                    if(!user.birth){
-                        user.birth = userData.birth ; 
-                    }
+           const users = localStore.read("users", []); 
 
-                    if(user.addressDetail !== userData.address){
-                        user.addressDetail = userData.address ;
-                    }
+            const updatedUsers = users.map(user => {
+                if (user.id === userData.id) {
+                    return { ...user, ...newData };
                 }
+                return user; 
             });
 
-            localStore.write("users" , allUsers);
+            localStore.write("users", updatedUsers);
+
+             const initialsEl = document.querySelector(".profile-avatar");
+            if (initialsEl) {
+                initialsEl.textContent = getInitials(newData.name);
+            }
+
+            const nameHeading = document.querySelector(".user-name");
+            if (nameHeading) {
+                nameHeading.textContent = newData.name;
+            }
+
+
 
             inputeArr.forEach((input , i)=>{
                 input.disabled = true;
@@ -163,6 +185,7 @@ export default class ProfileForm extends View {
             form.classList.remove('was-validated'); 
             editBtn.style.display = 'block';
             saveBtn.style.display = 'none';
+            location.reload();
             Toast.notify("Your Info is Updated" , "success");
         });
     }

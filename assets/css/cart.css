@@ -50,7 +50,7 @@
 
 .line-clamp {
     display: -webkit-box;
-    line-clamp: 3; 
+    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;  
     overflow: hidden;
     text-overflow: ellipsis;
@@ -86,7 +86,7 @@
 }
 
 .marginTop-related{
-    margin-top: 2rem;
+    margin-top: 12rem;
 }
 
 .slider-container {
@@ -95,15 +95,16 @@
   width: 100%;
 }
 
-.slider {
+.cursoul {
   display: flex;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  gap: 10px;
   background-color: white !important;
 }
 
 .slide {
-  flex: 0 0 100%; 
+  flex: 0 0 100%;   
   box-sizing: border-box;
   padding: 0.5rem;
 }
@@ -127,6 +128,11 @@
 
 .right-btn {
   right: 10px;
+}
+
+.brand-bg:hover{
+      background-color: var(--brand);
+      color: white;
 }
 
 @media all and (min-width : 768px) {
@@ -163,15 +169,13 @@
     }
 
     .slide {
-        flex: 0 0 33.33%;
-    }
+    flex: 0 0 33.33%; 
+  }
     
 }
 
 @media (min-width: 1024px) {
   .slide {
-    flex: 0 0 25%; /* تلت الشاشة */
+    flex: 0 0 25%; 
   }
 }
-
-
