@@ -4,7 +4,7 @@ import Navbar from "../components/landing/Nav.js";
 import Toast from "../components/ui/toast.js";
 import FaqsPage from "./info/FaqsPage.js";
 import PrivacyPage from "./info/PrivacyPage.js";
-import ReachUsPage from "./info/ReachUsPage.js";
+import ReachUsPage from "./info/ReachUs.js";
 import TermsPage from "./info/TermsPage.js";
 
 export default class SupportPage extends View {

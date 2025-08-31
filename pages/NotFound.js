@@ -28,9 +28,6 @@ export default class NotFound extends View {
     }
 
     script() {
-        document.getElementById('back-btn').addEventListener('click', () => {
-            navigate('/home')
-        })
     }
 
 }
