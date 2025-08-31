@@ -73,11 +73,23 @@ export default class ProductCard extends Component {
                   </div>
               </div>
 
-              <button 
-                  class="add-to-cart-btn btn btn-dark add-to-cart mt-3 d-flex align-items-center justify-content-center gap-2" 
-                  data-id="${this.product.id}" id="viewDetailsBtn-${this.product.id}">
-                      <i class="fa-solid fa-cart-shopping text-white"></i> View Details      
-              </button>
+              <div class="d-flex gap-2 mt-3">
+
+                <!-- Larger dark button -->
+                <button 
+                    class="btn btn-dark flex-grow-1 d-flex align-items-center justify-content-center gap-2 py-2 fs-6 viewDetailsBtn" 
+                    data-id="${this.product.id}">
+                    <i class="fa-solid fa-eye"></i> View
+                </button>
+
+                <!-- Smaller button: bg white, text black -->
+                <button 
+                    class="btn btn-light border d-flex align-items-center justify-content-center text-dark addToCartBtn" 
+                    data-id="${this.product.id}" style="width: 50px; height: 40px;">
+                    <i class="fa-solid fa-cart-plus text-dark"></i>
+                </button>
+
+                </div>
           </div>
       </div>
     `;
@@ -85,13 +97,14 @@ export default class ProductCard extends Component {
 
     /* === SCRIPT === */
     script() {
-        const btn = this.el.querySelector(`#viewDetailsBtn-${this.product.id}`);
-        if (btn) {
-            btn.addEventListener("click", () => {
-                sessionStore.write('currentProduct', this.product.id, '')
-                navigate(`/product`)          
+        document.querySelectorAll('.viewDetailsBtn').forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const productId = e.currentTarget.dataset.id;
+                sessionStore.write('currentProduct', productId);
+                navigate('/product');
             });
-        }
+        });
+
     }
 
     render() {

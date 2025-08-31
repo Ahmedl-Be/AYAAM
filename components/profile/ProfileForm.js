@@ -1,4 +1,5 @@
-import { sessionStore } from "../../scripts/utils/storage.js";
+import { getInitials, getRandomColor } from "../../scripts/utils/dashboardUtils.js";
+import { localStore, sessionStore } from "../../scripts/utils/storage.js";
 import View from "../core/view.js";
 import Toast from "../ui/toast.js";
 
@@ -11,38 +12,39 @@ export default class ProfileForm extends View {
     template() {
 
         const userData = sessionStore.read("currentUser");
+        const colorClass = getRandomColor();
 
         return `
             <div class="card shadow-none px-4 py-3 ">
             
             <form id="profile-form" class="row g-3 needs-validation" novalidate>
                         <div class="text-center mb-4">
-                            <div class="profile-avatar mb-1">
-                                <img src="../assets/images/thumbnails/user_131490.png"/>
+                            <div class="profile-avatar  mb-1">
+                                ${getInitials(userData.name)}
                             </div>
-                            <h5 class="mb-0">${userData.name}</h5>
-                            <button id="edit-btn" type="button" class="btn btn-primary m-auto mt-2">Change Your Information</button>
+                            <h5 class="mb-0">${userData?.name}</h5>
+                            <button id="edit-btn" type="button" class="btn brand-bg text-white m-auto mt-2">Update Profile</button>
                             <button id="save-btn" type="submit" class="btn btn-success m-auto  mt-2">Save Changes</button>
                         </div>
 
-                        <h6 class="mb-3">Personal Information</h6>
-                        <div class="col-md-6">
+                        <h6 class="mb-3 mt-0">Personal Information</h6>
+                        <div class="col-12">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Name" value="${userData.name}" required  disabled >
+                            <input type="text" class="form-control" id="name" placeholder="Name" value="${userData?.name}" required  disabled >
                             <div class="invalid-feedback">
                                 Please enter your name.
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-12">
                             <label class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control" id="birth" value="${userData.birth && `${userData.birth}`}" required disabled >
+                            <input type="date" class="form-control" id="birth" max="2009-12-31" value="${userData?.birth && `${userData?.birth}`}" required disabled >
                             <div class="invalid-feedback">
                                 Please select your date of birth.
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-12">
                             <label class="form-label">Gender</label>
                             <div>
                                 <input type="radio" name="gender" id="male" value="male" required disabled checked> 
@@ -55,18 +57,18 @@ export default class ProfileForm extends View {
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-12">
                             <label class="form-label">Phone Number</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Phone Number" value="${userData.phone}" required disabled  pattern="[0-9]{11}">
+                            <input type="text" class="form-control" id="phone" placeholder="Phone Number" value="${userData?.phone}" required disabled  pattern="[0-9]{11}">
                             <div class="invalid-feedback">
                                 Please enter a valid phone number (11 digits).
                             </div>
                         </div>
 
-                        ${userData.address ? `
+                        ${userData?.address ? `
                             <div class="col-md-12">
                                 <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="adrs" placeholder="Address" value="${userData.address}"  disabled required">
+                                <input type="text" class="form-control" id="adrs" placeholder="Address" value="${userData?.address}"  disabled required">
                                 <div class="invalid-feedback">
                                     Please enter your address.
                                 </div>
@@ -75,7 +77,7 @@ export default class ProfileForm extends View {
 
                         <div class="col-md-12">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" value="${userData.email}" id="email" placeholder="Email Address" disabled  required>
+                            <input type="email" class="form-control" value="${userData?.email}" id="email" placeholder="Email Address" disabled  required>
                             <div class="invalid-feedback">
                                 Please enter a valid email.
                             </div>
@@ -133,6 +135,20 @@ export default class ProfileForm extends View {
             console.log("new" , newData);
 
             sessionStore.write("currentUser" , newData)
+
+            const allUsers = localStore.read("users").map(user => {
+                if(user.id === userData.id) {
+                    if(!user.birth){
+                        user.birth = userData.birth ; 
+                    }
+
+                    if(user.addressDetail !== userData.address){
+                        user.addressDetail = userData.address ;
+                    }
+                }
+            });
+
+            localStore.write("users" , allUsers);
 
             inputeArr.forEach((input , i)=>{
                 input.disabled = true;

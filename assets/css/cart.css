@@ -11,7 +11,7 @@
 }
 
 .checkoutBTN:hover{
-    background-color: #0dcaf0 !important;
+    background-color: var(--brand) !important;
     color: white;
     transition: all 1s;
 }
@@ -78,6 +78,12 @@
   align-self: flex-start; 
 }
 
+.img-card-related{
+ width: 100%;
+  height: 250px; 
+  object-fit: contain;
+  background-color: #fff; 
+}
 
 .marginTop-related{
     margin-top: 2rem;
