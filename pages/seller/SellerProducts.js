@@ -2,6 +2,7 @@ import View from "../../components/core/view.js";
 import { localStore } from "../../scripts/utils/storage.js";
 import { Anchor } from "../../components/ui/links.js";
 import { getProductThumbnail, showConfirmDialog } from "../../scripts/utils/dashboardUtils.js";
+import { getCurrentUser } from "../../data/authentication.js";
 
 export default class SellerProducts extends View {
   template() {
@@ -741,9 +742,9 @@ export default class SellerProducts extends View {
             images: [...existingImages, ...newImages]
           });
         });
-
+        let user = getCurrentUser()
         // Save to localStorage
-        const products = JSON.parse(localStorage.getItem("products")) || [];
+        let products = localStore.read("products", []).filter(prod => prod.sellerId === user.id);
         products[productIndex] = updatedProduct;
         localStorage.setItem("products", JSON.stringify(products));
         
