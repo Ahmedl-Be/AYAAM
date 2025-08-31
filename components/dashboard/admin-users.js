@@ -221,7 +221,7 @@ export function renderUserRow(user) {
                 ${getRoleBadge(user.role)}
             </td>
             <td>
-                <span class="badge ${user.status === "active" ? "bg-success" : "bg-secondary"}">
+                <span class="badge ${user.status === "active" ? "bg-success" : user.status === "inactive" ? "bg-secondary" : "bg-danger"}">
                     <i class="fas fa-circle me-1" style="font-size: 0.5rem;"></i>
                     ${capitalizeWords(user.status || "Active")}
                 </span>
@@ -694,6 +694,7 @@ export function editUser(userId) {
                                         <select class="form-select" id="editUserStatus">
                                             <option value="active" ${user.status === "active" || !user.status ? "selected" : ""}>Active</option>
                                             <option value="inactive" ${user.status === "inactive" ? "selected" : ""}>Inactive</option>
+                                            <option value="banned" ${user.status === "banned" ? "selected" : ""}>Banned</option>
                                         </select>
                                     </div>
                                 </div>

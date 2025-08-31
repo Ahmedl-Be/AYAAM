@@ -27,7 +27,7 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone = '01
         console.warn("USER ALREADY EXISTS LOGIN...");
         return null;
     }
-    
+
     /* VALIDATE PASSOWRD */
     if (!validatePassword(password)) {
         console.warn(` Passwords must have:
@@ -78,10 +78,9 @@ export function login(_identifier, _password, _remember = false) {
         return null;
     }
 
-    // 🚨 Block banned users
+    // Block banned users
     if (user.status === "banned") {
         console.warn("This account is banned.");
-        return null;
     }
 
     // Save session
@@ -119,13 +118,13 @@ export function updateUser(_updated) {
 
     users = users.map(user => {
         if (user.email === _updated.email) {
-            return _updated; 
+            return _updated;
         }
         return user;
     });
 
     localStore.write("users", users);
-    if (localStore.exists('currentUser',true)) localStore.write('currentUser', _updated);
+    if (localStore.exists('currentUser', true)) localStore.write('currentUser', _updated);
     sessionStore.write('currentUser', _updated)
 }
 
@@ -135,10 +134,12 @@ export function updateUser(_updated) {
  */
 export function logout() {
     let currentP = sessionStore.read('currentProduct', '');
+    let fallback = sessionStore.read('fallback-msg', '');
     sessionStore.clear();
     sessionStore.write('currentProduct', currentP, '');
+    sessionStore.write('fallback-msg', fallback, '');
     localStore.remove("currentUser");
-    navigate('/home')
+    
 }
 
 /* ===========function to validate email======= */

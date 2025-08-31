@@ -87,8 +87,8 @@ export default class Router {
                         }
                     }
                     if (user.status === "banned") {
+                        sessionStore.write('fallback-msg', "You Are banned!");
                         logout();
-                        navigate("/login");
                         return;
                     }
                 }
