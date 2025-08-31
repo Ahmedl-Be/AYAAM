@@ -15,7 +15,7 @@ const data = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
         stock: [
@@ -42,7 +42,7 @@ const data = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
         stock: [
@@ -81,7 +81,7 @@ const data = [
         offers: [
             'free shipping', 'Highly Rated'
         ],
-        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
         stock: [
@@ -126,7 +126,7 @@ const data = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
         stock: [
@@ -169,7 +169,7 @@ const data = [
         price: 50,
         sale: 0.2,
         offers: [],
-        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
         stock: [
@@ -215,7 +215,7 @@ const data = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'syasserexamplecom', // random based on sellers we add later
+        sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
         stock: [

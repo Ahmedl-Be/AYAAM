@@ -1,99 +1,11 @@
 import { localStore } from "../../scripts/utils/storage.js";    
 import Toast from "../ui/toast.js";
 
-
-
 // Render dashboard
 export function renderOrdersDashboard(container) {
-    localStorage.setItem("orders", JSON.stringify([
-    {
-        "orderId": "1756486109839-master57842",
-        "userId": "master57842",
-        "userName": "Yasser",
-        "userEmail": "yasser@example.com",
-        "orderDate": "29/08/2025",
-        "orderItems": [
-            {
-                "productId": "uha003",
-                "productName": "Jordan Rise",
-                "qty": 2,
-                "price": "27.97",
-                "size": "M",
-                "category": "Unisex",
-                "color": "Cyan",
-                "img": "./data/imgs/products/unisex/hat/uha003/cyan-top.png",
-                "state": "pending"
-            }
-        ]
-    },
-    {
-        "orderId": "1756486291207-master57842",
-        "userId": "master57842",
-        "userName": "Yasser",
-        "userEmail": "yasser@example.com",
-        "orderDate": "29/08/2025",
-        "orderItems": [
-            {
-                "productId": "mbbl001",
-                "productName": "Classic Blazer",
-                "qty": 1,
-                "price": "220.00",
-                "size": "S",
-                "category": "Men",
-                "color": "Blue",
-                "img": "./data/imgs/products/men/top/mbbl001/BHblueblazer1.jpg",
-                "state": "pending"
-            },
-            {
-                "productId": "wsh002",
-                "productName": "Sports Shoes",
-                "qty": 1,
-                "price": "59.99",
-                "size": "36",
-                "category": "Women",
-                "color": "Beige",
-                "img": "./data/imgs/products/women/shoes/wsh002/Shoes4.jpeg",
-                "state": "pending"
-            },
-            {
-                "productId": "uha003",
-                "productName": "Jordan Rise",
-                "qty": 1,
-                "price": "27.97",
-                "size": "L",
-                "category": "Unisex",
-                "color": "Cyan",
-                "img": "./data/imgs/products/unisex/hat/uha003/cyan-top.png",
-                "state": "pending"
-            }
-        ]
-    },
-    {
-        "orderId": "1756486969458-master57842",
-        "userId": "master57842",
-        "userName": "Yasser",
-        "userEmail": "yasser@example.com",
-        "orderDate": "29/08/2025",
-        "orderItems": [
-            {
-                "productId": "uha004",
-                "productName": "Unisex Denim Strapback",
-                "qty": 2,
-                "price": "27.99",
-                "size": "M",
-                "category": "Unisex",
-                "color": "Light blue",
-                "img": "./data/imgs/products/unisex/hat/uha004/lightblue-face.png",
-                "state": "pending"
-            }
-        ]
-    }
-]));
     const ordersData = localStore.read('orders') || [];
-
     // Calculate statistics
     const stats = calculateOrderStats(ordersData);
-
     // Prepare chart data
     const chartData = prepareChartData(ordersData);
 
@@ -103,7 +15,7 @@ export function renderOrdersDashboard(container) {
             <div class="row mb-4">
                 <div class="col-12">
                     <h2 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Orders Dashboard</h2>
-                    <p class="text-muted">Overview of <span class="fw-bold text-danger">AYAAM</span>'s order performance</p>
+                    <p class="text-muted">Overview of <span class="fw-bold text-primary">AYAAM</span>'s order performance</p>
                 </div>
             </div>
 
@@ -112,7 +24,8 @@ export function renderOrdersDashboard(container) {
                 ${renderStatCard('$' + stats.totalRevenue, 'Total Revenue', 'fa-dollar-sign', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)')}
                 ${renderStatCard(stats.totalOrders, 'Total Orders', 'fa-shopping-cart', 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)')}
                 ${renderStatCard(stats.pendingOrders, 'Pending Orders', 'fa-clock', 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)')}
-                ${renderStatCard(stats.confirmedOrders, 'Confirmed Orders', 'fa-check-circle', 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)')}
+                ${renderStatCard(stats.shippedOrders, 'Shipped Orders', 'fa-truck', 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)')}
+                ${renderStatCard(stats.deliveredOrders, 'Delivered Orders', 'fa-check-circle', 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)')}
             </div>
 
             <!-- Charts Row -->
@@ -150,7 +63,7 @@ export function renderOrdersDashboard(container) {
 // Reusable stat card
 export function renderStatCard(value, label, icon, gradient) {
     return `
-    <div class="col col-12 col-md-3">
+    <div class="col col-12 col-md-2 col-lg">
         <div class="card border-0 shadow-sm h-100" style="background:${gradient};">
             <div class="card-body text-white text-center">
                 <i class="fas ${icon} fa-2x mb-2"></i>
@@ -230,11 +143,13 @@ export function renderOrdersTable(orders) {
             <tbody>
                 ${orders.map(order => {
                     const total = order.orderItems.reduce((sum, item) => sum + (parseFloat(item.price) * item.qty), 0).toFixed(2);
+                    
                     const status = order.state || 'pending';
+                    
                     const statusClass = getStatusBadgeClass(status);
 
                     return `
-                        <tr>
+                        <tr id="order-row-${order.orderId}">
                             <td><code>${order.orderId}</code></td>
                             <td>
                                 <strong>${order.userName}</strong><br>
@@ -251,8 +166,12 @@ export function renderOrdersTable(orders) {
                                     </div>
                                 `).join('')}
                             </td>
-                            <td><span class="badge ${statusClass}">${status}</span></td>
-                            <td><strong class="text-success">$${total}</strong></td>
+                            <td>
+                                <span id="status-badge-${order.orderId}" class="badge ${statusClass}">
+                                    ${getStatusIcon(status)} ${capitalizeStatus(status)}
+                                </span>
+                            </td>
+                            <td><strong class="text-success">${total}</strong></td>
                             <td><small>${order.orderDate}</small></td>
                             <td>
                                 <div class="dropdown">
@@ -261,13 +180,23 @@ export function renderOrdersTable(orders) {
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="#" data-action="status-update" data-order-id="${order.orderId}" data-status="pending">
-                                                <i class="fas fa-clock me-2"></i>Mark Pending
+                                            <a class="dropdown-item ${status === 'pending' ? 'active' : ''}" href="#" data-action="status-update" data-order-id="${order.orderId}" data-status="pending">
+                                                <i class="fas fa-clock me-2 text-warning"></i>Mark as Pending
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="#" data-action="status-update" data-order-id="${order.orderId}" data-status="confirmed">
-                                                <i class="fas fa-check me-2"></i>Mark Confirmed
+                                            <a class="dropdown-item ${status === 'confirmed' ? 'active' : ''}" href="#" data-action="status-update" data-order-id="${order.orderId}" data-status="confirmed">
+                                                <i class="fas fa-check me-2 text-info"></i>Mark as Confirmed
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item ${status === 'shipped' ? 'active' : ''}" href="#" data-action="status-update" data-order-id="${order.orderId}" data-status="shipped">
+                                                <i class="fas fa-truck me-2 text-primary"></i>Mark as Shipped
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item ${status === 'delivered' ? 'active' : ''}" href="#" data-action="status-update" data-order-id="${order.orderId}" data-status="delivered">
+                                                <i class="fas fa-check-circle me-2 text-success"></i>Mark as Delivered
                                             </a>
                                         </li>
                                     </ul>
@@ -312,32 +241,51 @@ export function calculateOrderStats(orders) {
     let totalRevenue = 0;
     let pendingOrders = 0;
     let confirmedOrders = 0;
+    let shippedOrders = 0;
+    let deliveredOrders = 0;
 
     orders.forEach(order => {
         const orderTotal = order.orderItems.reduce((sum, item) => sum + (parseFloat(item.price) * item.qty), 0);
         totalRevenue += orderTotal;
 
-        const status = order.state?.toLowerCase() || 'pending';
-        if (status === 'confirmed') confirmedOrders++;
-        else pendingOrders++;
+        // Handle cases where state might be undefined
+        const status = (order.state || 'pending').toLowerCase();
+        
+        switch(status) {
+            case 'confirmed': 
+                confirmedOrders++;
+                break;
+            case 'shipped': 
+                shippedOrders++;
+                break;
+            case 'delivered': 
+                deliveredOrders++;
+                break;
+            default: 
+                pendingOrders++;
+                break;
+        }
     });
 
     return {
         totalRevenue: totalRevenue.toFixed(2),
         totalOrders: orders.length,
         pendingOrders,
-        confirmedOrders
+        confirmedOrders,
+        shippedOrders,
+        deliveredOrders
     };
 }
 
 // Chart data
 export function prepareChartData(orders) {
     const categoryData = {};
-    const statusData = { pending: 0, confirmed: 0 };
+    const statusData = { pending: 0, confirmed: 0, shipped: 0, delivered: 0 };
     const productRevenue = {};
 
     orders.forEach(order => {
-        const status = order.state?.toLowerCase() || 'pending';
+        // Handle cases where state might be undefined
+        const status = (order.state || 'pending').toLowerCase();
         statusData[status] = (statusData[status] || 0) + 1;
 
         order.orderItems.forEach(item => {
@@ -365,13 +313,29 @@ export function prepareChartData(orders) {
     return { categoryData, statusData, topProducts };
 }
 
-// Status badge
+// Status badge functions
 function getStatusBadgeClass(status) {
     switch(status?.toLowerCase()) {
         case 'pending': return 'bg-warning text-dark';
-        case 'confirmed': return 'bg-success';
+        case 'confirmed': return 'bg-info text-white';
+        case 'shipped': return 'bg-primary text-white';
+        case 'delivered': return 'bg-success text-white';
         default: return 'bg-warning text-dark';
     }
+}
+
+function getStatusIcon(status) {
+    switch(status?.toLowerCase()) {
+        case 'pending': return '<i class="fas fa-clock"></i>';
+        case 'confirmed': return '<i class="fas fa-check"></i>';
+        case 'shipped': return '<i class="fas fa-truck"></i>';
+        case 'delivered': return '<i class="fas fa-check-circle"></i>';
+        default: return '<i class="fas fa-clock"></i>';
+    }
+}
+
+function capitalizeStatus(status) {
+    return status.charAt(0).toUpperCase() + status.slice(1);
 }
 
 // Initialize charts
@@ -385,9 +349,18 @@ export function initializeOrderCharts(chartData) {
             type: 'doughnut',
             data: {
                 labels: Object.keys(chartData.categoryData),
-                datasets: [{ data: Object.values(chartData.categoryData), backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF'] }]
+                datasets: [{ 
+                    data: Object.values(chartData.categoryData), 
+                    backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF'] 
+                }]
             },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false, 
+                plugins: { 
+                    legend: { position: 'bottom' } 
+                } 
+            }
         });
     }
 
@@ -396,33 +369,120 @@ export function initializeOrderCharts(chartData) {
         window.statusChartInstance = new Chart(statusCtx, {
             type: 'pie',
             data: {
-                labels: ['Pending', 'Confirmed'],
-                datasets: [{ data: [chartData.statusData.pending, chartData.statusData.confirmed], backgroundColor: ['#FFC107','#28A745'] }]
+                labels: ['Pending', 'Confirmed', 'Shipped', 'Delivered'],
+                datasets: [{ 
+                    data: [
+                        chartData.statusData.pending, 
+                        chartData.statusData.confirmed,
+                        chartData.statusData.shipped,
+                        chartData.statusData.delivered
+                    ], 
+                    backgroundColor: ['#FFC107','#17A2B8','#007BFF','#28A745'] 
+                }]
             },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false, 
+                plugins: { 
+                    legend: { position: 'bottom' } 
+                } 
+            }
         });
     }
 }
 
-// Quick status update
+// Enhanced quick status update with real-time UI updates
 export function quickStatusUpdate(orderId, newStatus) {
     const orders = localStore.read("orders") || [];
-    const order = orders.find(o => o.orderId === orderId);
+    const orderIndex = orders.findIndex(o => o.orderId === orderId);
 
-    if (order) {
-        order.state = newStatus;
+    if (orderIndex !== -1) {
+        // Update the order status
+        orders[orderIndex].state = newStatus;
+        
+       
         localStore.write("orders", orders);
-        Toast.notify(`Order #${orderId} status updated to ${newStatus}!`, 'success');
+        
+
+        // Update the status badge in real-time
+        updateStatusBadgeInUI(orderId, newStatus);
+
+        // Update dropdown active states
+        updateDropdownActiveStates(orderId, newStatus);
+
+        // Update statistics cards with fresh data
+        const updatedOrders = localStore.read("orders") || [];
+        updateStatisticsCards(updatedOrders);
+
+        // Update charts with fresh data
+        const chartData = prepareChartData(updatedOrders);
+        initializeOrderCharts(chartData);
+
+        // Show success toast
+        Toast.notify(`Order #${orderId} status updated to ${capitalizeStatus(newStatus)}!`, 'success');
+    } else {
+        console.error('Order not found:', orderId);
+        Toast.notify(`Error: Order #${orderId} not found!`, 'error');
+    }
+}
+
+// Update status badge in UI without full reload
+function updateStatusBadgeInUI(orderId, newStatus) {
+    const statusBadge = document.getElementById(`status-badge-${orderId}`);
+    if (statusBadge) {
+        // Update badge class and content
+        statusBadge.className = `badge ${getStatusBadgeClass(newStatus)}`;
+        statusBadge.innerHTML = `${getStatusIcon(newStatus)} ${capitalizeStatus(newStatus)}`;
+        
+        // Add animations
+        statusBadge.style.transform = 'scale(1.05)';
+        statusBadge.style.transition = 'transform 0.2s ease';
         setTimeout(() => {
-            const mainContent = document.getElementById('mainContent');
-            if (mainContent) renderOrdersDashboard(mainContent);
-        }, 1000);
+            statusBadge.style.transform = 'scale(1)';
+        }, 200);
+    }
+}
+
+// Update dropdown active states
+function updateDropdownActiveStates(orderId, newStatus) {
+    const orderRow = document.getElementById(`order-row-${orderId}`);
+    if (orderRow) {
+        const dropdownItems = orderRow.querySelectorAll('.dropdown-item');
+        dropdownItems.forEach(item => {
+            const itemStatus = item.dataset.status;
+            if (itemStatus === newStatus) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Update statistics cards in real time
+function updateStatisticsCards(orders) {
+    const stats = calculateOrderStats(orders);
+    
+    // Update each stat card
+    const statCards = document.querySelectorAll('.card h3');
+    if (statCards.length >= 5) {
+        statCards[0].textContent = '$' + stats.totalRevenue;
+        statCards[1].textContent = stats.totalOrders;
+        statCards[2].textContent = stats.pendingOrders;
+        statCards[3].textContent = stats.shippedOrders;
+        statCards[4].textContent = stats.deliveredOrders;
     }
 }
 
 // Cleanup
 export function cleanupOrdersDashboard() {
     document.removeEventListener('click', handleDashboardClicks);
-    if (window.categoryChartInstance) { window.categoryChartInstance.destroy(); window.categoryChartInstance = null; }
-    if (window.statusChartInstance) { window.statusChartInstance.destroy(); window.statusChartInstance = null; }
+    if (window.categoryChartInstance) { 
+        window.categoryChartInstance.destroy(); 
+        window.categoryChartInstance = null; 
+    }
+    if (window.statusChartInstance) { 
+        window.statusChartInstance.destroy(); 
+        window.statusChartInstance = null; 
+    }
 }

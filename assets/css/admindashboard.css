@@ -1,0 +1,59 @@
+@media (max-width: 768px) {
+	#adminContent td:nth-child(1),
+	#adminContent th:nth-child(1),
+	#adminContent td:nth-child(2),
+	#adminContent th:nth-child(2),
+	#adminContent td:nth-child(4),
+	#adminContent th:nth-child(4),
+	#adminContent td:nth-child(6),
+	#adminContent th:nth-child(6) {
+		display: none;
+	}
+}
+.sortable-header:hover {
+	background-image: linear-gradient(rgba(0, 4, 12, 0.2), rgba(90, 90, 196, 0.2));
+}
+.db-sidebar{
+	background-color:white !important;}
+
+.db-sidebar li a {
+	text-decoration: none;
+	color: black;
+	display: block;
+	width: 100%;
+	height: 100%;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+.db-sidebar li {
+	cursor: pointer;
+	background-color: transparent;	
+	&:hover {
+		background-image: linear-gradient(
+			rgba(123, 153, 214, 0.2),
+			rgba(209, 209, 226, 0.2)
+		);
+	}
+}
+
+
+.db-sidebar .sidebar-homeBtn{
+	display: block;
+	&:hover {
+		transform: scale(1.03);
+	}
+}
+.wlc-tiltle:hover{
+	text-decoration: underline;
+	transform: scale(1.02);
+	
+	
+}
+
+@media (min-width: 992px) {
+	#main {
+		margin-left: 250px; /* Matches sidebar width */
+	}
+}
+

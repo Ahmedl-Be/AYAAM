@@ -15,13 +15,13 @@ export default class SellerStatsPage extends View {
         const inactiveSellers = totalSellers - activeSellers;
         const totalProducts = products.length;
 
-        // Enhanced seller metrics
+        // seller 
         const avgProductsPerSeller = totalSellers > 0 ? (totalProducts / totalSellers).toFixed(1) : 0;
         const activeSellerPercent = totalSellers > 0 ? ((activeSellers / totalSellers) * 100).toFixed(1) : 0;
 
         // Calculate top 3 sellers by product count
         const sellerProductCounts = allSellers.map(seller => ({
-            name: seller.name || `Seller ${seller.id}`,
+            name: seller.name ,
             count: products.filter(product => product.sellerId === seller.id).length
         }));
 
@@ -30,7 +30,7 @@ export default class SellerStatsPage extends View {
             .slice(0, 3)
             .filter(seller => seller.count > 0);
 
-        // Create enhanced chart for seller status
+        // chart for seller status
         const sellerLabels = ['Active', 'Inactive'];
         const sellerData = [activeSellers, inactiveSellers];
         const sellerColors = ['#28a745', '#6c757d'];
@@ -40,9 +40,13 @@ export default class SellerStatsPage extends View {
         }
 
         return `
+        <div class="col-12">
+            <h2 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Seller Stats</h2>
+            <p class="text-muted">Overview of <span class="fw-bold text-primary">AYAAM</span>'s Sellers </p>
+        </div>
         <div class="row">
-            <div class="col-md-3 mb-3">
-                <div class="card bg-info text-white shadow-sm">
+            <div class="col-md-3 mb-3 " >
+                <div class="card bg-info text-white shadow-sm py-2">
                     <div class="card-body text-center">
                         <i class="fas fa-store mb-2" style="font-size: 2rem;"></i>
                         <h3 class="mb-1">${totalSellers}</h3>
@@ -72,7 +76,7 @@ export default class SellerStatsPage extends View {
             </div>
             <div class="col-md-3 mb-3">
                 <div class="card bg-purple text-white shadow-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center py-4">
                         <i class="fas fa-chart-line mb-2" style="font-size: 2rem;"></i>
                         <h3 class="mb-1">${avgProductsPerSeller}</h3>
                         <p class="mb-0">Avg Products/Seller</p>

@@ -44,7 +44,7 @@ export function toProduct(_obj) {
 /* ===========Create User from object========== */
 export function toUser(_obj) {
     const user = new User();
-    user.Id = generateID(_obj.role);
+    user.Id = _obj.id ? _obj.id : generateID(_obj.role);
     user.Name = _obj.name;
     user.Email = _obj.email.toLowerCase();
     user.Password = _obj.password;

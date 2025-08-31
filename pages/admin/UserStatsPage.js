@@ -8,10 +8,10 @@ export default class UsersStatsPage extends View {
     const users = localStore.read("users") || [];
     
     //counting user types
-    const totalUsers = users.length-1; // MINUS MASTER
+    const totalUsers = users.length;
     const sellers = users.filter(user => user.role === "seller").length;
     const admins = users.filter(user => user.role === "admin").length;
-    const customer = users.filter(user => user.role === "user").length;
+    const customer = users.filter(user => user.role === "customer").length;
     
     // Calculate growth trend (simplified)
     const recentUsers = users.filter(user => {
@@ -36,6 +36,10 @@ export default class UsersStatsPage extends View {
             chartCreation('usersChart', userLabels, userData, userColors, 'pie');
         } 
             return `
+        <div class="col-12">
+            <h2 class="mb-0"><i class="fas fa-chart-bar me-2"></i>All Users Stats</h2>
+            <p class="text-muted">Overview of <span class="fw-bold text-primary">AYAAM</span>'s Users </p>
+        </div>
         <div id="stats">    
         <div class="row">
             <div class="col-md-3 mb-3">

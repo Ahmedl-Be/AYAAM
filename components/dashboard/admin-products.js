@@ -205,7 +205,7 @@ function renderProductRow(product) {
                             style="width: 40px; height: 40px; object-fit: fill;" 
                         />
                     <div>
-                        <div class="fw-semibold">${product.name}</div>
+                        <div class="fw-semibold">${truncateText(product.name,20)}</div>
                         <small class="text-muted">${product.brand || 'No Brand'}</small>
                     </div>
                 </div>
@@ -222,8 +222,8 @@ function renderProductRow(product) {
                 <div>
                     ${product.sale > 0 ? `
                         <span class="text-decoration-line-through text-muted small">$${product.price}</span>
-                        <div class="fw-bold text-danger">$${(product.price - product.sale).toFixed(2)}</div>
-                        <small class="badge bg-danger">-$${product.sale}</small>
+                        <div class="fw-bold text-danger">$${(product.price *(1-product.sale)).toFixed(2)}</div>
+                        <small class="badge bg-danger">%${(product.sale*100).toFixed(0)}</small>
                     ` : `
                         <span class="fw-bold">$${product.price}</span>
                     `}

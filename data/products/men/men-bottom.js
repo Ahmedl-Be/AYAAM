@@ -10,7 +10,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 550,
         material: "Cotton-Twill",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -40,7 +40,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 650,
         material: "Canvas",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -69,7 +69,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 700,
         material: "Polyester-Spandex",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -98,7 +98,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 1200,
         material: "Poly-Blend",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -127,7 +127,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 900,
         material: "Ripstop Nylon",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -156,7 +156,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 800,
         material: "Poly-Spandex",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -185,7 +185,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 2000,
         material: "Wool-Blend",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -214,7 +214,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 600,
         material: "Cotton-Spandex",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -243,7 +243,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 2500,
         material: "Wool-Blend",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -272,7 +272,7 @@ const menProductPants = [
         subCategory: "Pants",
         price: 1800,
         material: "Tech-Blend",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {

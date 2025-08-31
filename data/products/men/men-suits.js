@@ -10,7 +10,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2500,
     material: "Wool Blend",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -32,7 +32,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2600,
     material: "Polyester & Viscose",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -54,7 +54,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 3000,
     material: "Wool",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -76,7 +76,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2800,
     material: "Wool Blend",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -98,7 +98,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2400,
     material: "Linen & Cotton",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -120,7 +120,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2700,
     material: "Wool",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -142,7 +142,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 3200,
     material: "Velvet",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -164,7 +164,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2300,
     material: "Linen",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -186,7 +186,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2600,
     material: "Cotton Blend",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
@@ -208,7 +208,7 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 3500,
     material: "Wool & Satin",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {

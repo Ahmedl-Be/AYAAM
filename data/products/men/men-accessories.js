@@ -12,7 +12,7 @@ const menProductsAcc = [
         sale:0,
         price: 300,
         material: "Leather",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -37,7 +37,7 @@ const menProductsAcc = [
         sale:0,
         price: 1200,
         material: "Stainless Steel & Leather",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -62,7 +62,7 @@ const menProductsAcc = [
         sale:0,
         price: 250,
         material: "Wool Blend",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -87,7 +87,7 @@ const menProductsAcc = [
         sale:0,
         price: 450,
         material: "Metal Alloy",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -112,7 +112,7 @@ const menProductsAcc = [
         sale:0,
         price: 350,
         material: "Leather",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -137,7 +137,7 @@ const menProductsAcc = [
         sale:0,
         price: 150,
         material: "Acrylic",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -162,7 +162,7 @@ const menProductsAcc = [
         sale:0,
         price: 200,
         material: "Silk",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -187,7 +187,7 @@ const menProductsAcc = [
         sale:0,
         price: 500,
         material: "Stainless Steel",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -212,7 +212,7 @@ const menProductsAcc = [
         sale:0,
         price: 180,
         material: "Polyester",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
@@ -237,7 +237,7 @@ const menProductsAcc = [
         sale:0,
         price: 900,
         material: "Polyester & Nylon",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {

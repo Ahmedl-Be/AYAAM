@@ -81,7 +81,7 @@ export function renderUsers(container) {
                             <option value="">All Roles</option>
                             <option value="admin">Admin</option>
                             <option value="seller">Seller</option>
-                            <option value="user">User</option>
+                            <option value="customer">Customer</option>
                         </select>
                     </div>
                     <div class="col-12 col-lg-4 ms-auto text-end">
@@ -158,7 +158,7 @@ export function renderUsers(container) {
  export function renderUsersTable(users) {
     return `
         <div class="table-responsive">
-            <table class="table table-hover mb-0" >
+            <table class="table table-hover mb-0">
                 <thead class="table-primary">
                     <tr>
                         <th scope="col" class="ps-4">
@@ -197,7 +197,7 @@ export function renderUserRow(user) {
                 <input type="checkbox" class="form-check-input user-checkbox" value="${user.id}">
             </td>
             <td>
-                <div class="fw-semibold">${user.id}</div>
+                <div class="fw-small">${user.id}</div>
             </td>
             <td>
                 <!--....the user's name in circle with random colors formatted with initials(1st letters capital).....-->
@@ -319,7 +319,7 @@ export function renderUserForm() {
                         <option value="">Select Role</option>
                         <option value="admin">Admin</option>
                         <option value="seller">Seller</option>
-                        <option value="user">User</option>
+                        <option value="customer">Customer</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select a role.
@@ -684,7 +684,7 @@ export function editUser(userId) {
                                         <select class="form-select" id="editUserRole">
                                             <option value="admin" ${user.role === "admin" ? "selected" : ""}>Admin</option>
                                             <option value="seller" ${user.role === "seller" ? "selected" : ""}>Seller</option>
-                                            <option value="user" ${user.role === "user" ? "selected" : ""}>User</option>
+                                            <option value="user" ${user.role === "customer" ? "selected" : ""}>Customer</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
@@ -740,7 +740,7 @@ export function editUser(userId) {
                 localStore.write("users", users);
 
                 // Show success message
-                Toast.notify(`New password: ${newPassword}`, "success");
+                Toast.notify(`New password has been changed and sent to ${users[userIndex].email}`, "success");
             }
         });
 

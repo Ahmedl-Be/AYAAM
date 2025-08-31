@@ -8,7 +8,6 @@ export default class UsersPage extends View {
     template() {
         const element = document.createElement("div")
         element.setAttribute("id", "user")
-        console.log( renderUsers(element))
         const fun =renderUsers(element)
         return  fun.outerHTML;    }
 

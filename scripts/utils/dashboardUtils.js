@@ -78,8 +78,6 @@ export function getRandomColor() {
         "bg-info",
         "bg-warning",
         "bg-danger",
-        "bg-secondary",
-        "bg-dark"
     ];
     var coloredCircle = `class="rounded-circle ${colors[Math.floor(Math.random() * colors.length)]} text-white d-flex align-items-center justify-content-center me-3 p-3"`;
     return coloredCircle;

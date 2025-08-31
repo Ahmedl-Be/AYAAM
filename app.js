@@ -22,10 +22,10 @@ const routes = {
   "/profile": { loader: () => import("./pages/Profile.js") },
 
   /* LOGIN NEEDED*/
-  "/checkout": { loader: () => import("./pages/CheckOutPage.js"), roles: ['admin', 'user', 'master', 'seller'] },
+  "/checkout": { loader: () => import("./pages/CheckOutPage.js"), roles: ['admin', 'customer',  'seller'] },
 
   /* ADMIN ONLY PAGES */
-  "/admin": { loader: () => import("./pages/AdminDashboard.js"), roles: ["admin", "master"] },
+  "/admin": { loader: () => import("./pages/AdminDashboard.js"), roles: ["admin"] },
 
   /* SELLER ONLY PAGES */
   "/seller": { loader: () => import("./pages/SellerDashboard.js"), roles: ["seller"] },

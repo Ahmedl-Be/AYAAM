@@ -13,7 +13,7 @@ const dresses = [
             'free shipping'
         ],
 
-        sellerId: 'seller_2',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -62,7 +62,7 @@ const dresses = [
             'free shipping'
         ],
 
-        sellerId: 'seller_1',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -120,7 +120,7 @@ const dresses = [
             'free shipping'
         ],
 
-        sellerId: 'seller_1',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -160,7 +160,7 @@ const dresses = [
             'free shipping'
         ],
 
-        sellerId: 'seller_2',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -193,7 +193,7 @@ const dresses = [
             'free shipping'
         ],
 
-        sellerId: 'seller_2',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -234,7 +234,7 @@ const dresses = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'seller_3',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -285,7 +285,7 @@ const dresses = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'seller_3',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -346,7 +346,7 @@ const dresses = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'seller_3',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -394,7 +394,7 @@ const dresses = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'seller_1',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
@@ -426,7 +426,7 @@ const dresses = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'seller_3',
+        sellerId: 'SellM1',
         category: "Women",
         subCategory: "Dresses",
 
