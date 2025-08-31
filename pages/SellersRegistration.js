@@ -5,6 +5,7 @@ import Modal from "../components/auth/modal.js";
 
 
 
+
 export default class SellersRegistration extends View {
   constructor(_config, _params = {}) {
     // Call base constructor

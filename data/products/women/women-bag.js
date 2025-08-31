@@ -20,21 +20,21 @@ const data =
                     color: "Brown",
                     images: ["bag3.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 5 }
+                        { name: "One Size", qty: 5 }
                     ]
                 },
                 {
                     color: "Black",
                     images: ["bag2.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 7 }
+                        { name: "One Size", qty: 7 }
                     ]
                 },
                 {
                     color: "Multicolor",
                     images: ["bag1.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 4 }
+                        { name: "One Size", qty: 4 }
                     ]
                 }
             ],
@@ -57,14 +57,14 @@ const data =
                     color: "Khaki",
                     images: ["bag4.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 2 }
+                        { name: "One Size", qty: 2 }
                     ]
                 },
                 {
                     color: "White",
                     images: ["bag5.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 4 }
+                        { name: "One Size", qty: 4 }
                     ]
                 }
             ],
@@ -87,14 +87,14 @@ const data =
                     color: "Pink",
                     images: ["bag7.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 2 }
+                        { name: "One Size", qty: 2 }
                     ]
                 },
                 {
                     color: "White",
                     images: ["bag6.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 4 }
+                        { name: "One Size", qty: 4 }
                     ]
                 }
             ],
@@ -117,7 +117,7 @@ const data =
                     color: "Beige",
                     images: ["bag15.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 2 }
+                        { name: "One Size", qty: 2 }
                     ]
                 }
             ],
@@ -140,7 +140,7 @@ const data =
                     color: "Black",
                     images: ["bag13.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 4 }
+                        { name: "One Size", qty: 4 }
                     ]
                 }
             ],
@@ -163,7 +163,7 @@ const data =
                     color: "White",
                     images: ["bag12.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 3 }
+                        { name: "One Size", qty: 3 }
                     ]
                 }
             ],
@@ -186,14 +186,14 @@ const data =
                     color: "White",
                     images: ["bag10.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 3 }
+                        { name: "One Size", qty: 3 }
                     ]
                 },
                 {
                     color: "Brown",
                     images: ["bag11.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 3 }
+                        { name: "One Size", qty: 3 }
                     ]
                 }
             ],
@@ -216,14 +216,14 @@ const data =
                     color: "Green",
                     images: ["bag9.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 3 }
+                        { name: "One Size", qty: 3 }
                     ]
                 },
                 {
                     color: "White",
                     images: ["bag8.jpeg"],
                     sizes: [
-                        { name: "OS", qty: 4 }
+                        { name: "One Size", qty: 4 }
                     ]
                 }
             ],

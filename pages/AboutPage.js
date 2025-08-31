@@ -1,6 +1,7 @@
 import View from "../components/core/view.js";
 import Footer from "../components/landing/Footer.js";
 import Navbar from "../components/landing/Nav.js";
+import FloatBtns from "../components/ui/floating.js";
 
 
 
@@ -15,6 +16,7 @@ export default class AboutPage extends View {
     template() {
         return `
         <header class="sticky-top bg-white" id='navbar' data-fade></header>
+        <div id="floatBtns"></div>
         <main>
             <section class="about-section container " data-fade>
                     <h2 class="col col-12 mb-5" style="font-size: 2.5rem;">About Our Project</h2>
@@ -131,6 +133,7 @@ export default class AboutPage extends View {
 
     script() {
         this.mount(Navbar, "#navbar");
+        this.mount(FloatBtns, "#floatBtns");
     }
     
 }

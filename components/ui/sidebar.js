@@ -22,13 +22,13 @@ export function Sidebar(sections = [], title = "") {
     <!-- ...............Sidebar for LG screens................ -->
     <div class="d-none d-lg-flex flex-column bg-light border-end position-fixed h-100 db-sidebar"
         style="width: 250px; z-index: 1020;">
+
         <div class="mt-4">
-            <button class="btn  text-decoration-none p-0 admin-profile-btn " style="cursor: pointer;" title="Go To Profile">
-                <div  ${getRandomColor()}" 
-                    style="width: 40px; height: 40px; font-size: 0.875rem; font-weight: bold; margin: 0 40%">
+            <button class="btn row d-flex text-decoration-none p-0 admin-profile-btn ms-2 w-100" style="cursor: pointer;" title="Go To Profile">
+                <div class="col col-3 rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 0.875rem; font-weight: bold;">
                     ${getInitials(title)}
                 </div>
-                <h5 class="mb-4 pt-2 ms-3 wlc-tiltle"> Hello! ${title}</h5>
+                <h5 class="col col-8 mb-4 pt-2 wlc-tiltle"> Hello! ${title}</h5>
             </button>
             <button 
             class=" list-group-item d-flex align-items-center gap-3 mb-2 ms-5 text-decoration-underline sidebar-homeBtn " 
@@ -69,12 +69,11 @@ export function Sidebar(sections = [], title = "") {
     <!-- ...............Offcanvas Sidebar for MD and SM................ -->
     <div class="offcanvas offcanvas-start d-lg-none db-sidebar" id="sidebarOffcanvas" style="width: 250px; ">
         <div class="offcanvas-header mt-4">
-            <button class="btn  text-decoration-none p-0 admin-profile-btn " style="cursor: pointer;">
-                <div  ${getRandomColor()}" 
-                    style="width: 30px; height: 30px; font-size: 0.875rem; font-weight: bold; margin: 0 40%">
+            <button class="btn row d-flex text-decoration-none p-0 admin-profile-btn w-100" style="cursor: pointer;" title="Go To Profile">
+                <div class="col col-3 rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-size: 0.875rem; font-weight: bold;">
                     ${getInitials(title)}
                 </div>
-                <h5 class="mb-0  ms-3 wlc-tiltle"> Hello! ${title}</h5>
+                <h5 class="col col-8 mb-4 pt-2 wlc-tiltle px-0 "> Hello! ${title}</h5>
             </button>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>

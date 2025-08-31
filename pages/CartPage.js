@@ -5,7 +5,7 @@ import View from "../components/core/view.js";
 import Footer from "../components/landing/Footer.js";
 import Navbar from "../components/landing/Nav.js";
 import Toast from "../components/ui/toast.js";
-
+import FloatBtns from "../components/ui/floating.js";
 
 
 export default class CartPage extends View {
@@ -20,6 +20,7 @@ export default class CartPage extends View {
         return `
             <header class="sticky-top bg-white" id='navbar' data-fade></header>
             <div class="toast-body" id="toastMsg"></div>
+            <div id="floatBtns"></div>
             <div id="cart-container">
                 <div class='container-lg '>
 
@@ -54,6 +55,7 @@ export default class CartPage extends View {
     script() {
         this.mount(Navbar, "#navbar");
         this.mount(Toast, "#toastMsg");
+        this.mount(FloatBtns, "#floatBtns");
         this.mount(CartItems, "#cart-items");
         this.mount(SummaryCart, "#summary");
         this.mount(RelatedProducts, "#related-items");

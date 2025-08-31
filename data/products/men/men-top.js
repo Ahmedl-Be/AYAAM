@@ -135,7 +135,7 @@ const menProductTop = [
 		category: "Men",
 		subCategory: "Top",
 		sale:0,
-		price: 220,
+		price: 40.7,
 		stock: [
 			{
 				color: "Blue",

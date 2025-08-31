@@ -6,6 +6,7 @@ import Footer from "../components/landing/Footer.js";
 import Navbar from "../components/landing/Nav.js";
 import Toast from "../components/ui/toast.js";
 import { CartManager } from "../scripts/cartScripts/cartManager.js";
+import FloatBtns from "../components/ui/floating.js";
 import { navigate } from "../scripts/utils/navigation.js";
 import { sessionStore } from "../scripts/utils/storage.js";
 
@@ -25,6 +26,7 @@ export default class CheckoutPage extends View {
         return `
            <header class="sticky-top bg-white" id='navbar'></header>
            <div id="toast"></div>
+           <div id="floatBtns"></div>
            <div class=" container">
             <div class="row">
 
@@ -60,6 +62,7 @@ export default class CheckoutPage extends View {
 
         this.mount(Navbar, "#toast");
         this.mount(Toast, "#navbar");
+        this.mount(FloatBtns, "#floatBtns");
         this.mount(CheckOutForm, "#check-out-form");
         this.mount(CheckoutReceit, "#summary-checkout");
         

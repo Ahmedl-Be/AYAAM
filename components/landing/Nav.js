@@ -38,15 +38,17 @@ export default class Navbar extends Component {
 
     <!-- Profile Icon -->
                 <div class="dropdown ">
-                  ${Button(Icon("user", "solid", "fa-lg p-0") + (this.user ?`Hello, ${this.user.name}`:'') , "profileDropdown", "btn border-0 bg-transparent p-0 d-flex ", 'data-bs-toggle="dropdown" aria-expanded="false"')}
+                  ${Button(Icon("user", "solid", "fa-lg p-0") + (this.user ? `Hello, ${this.user.name.split(' ')[0]}`:'') , "profileDropdown", "btn border-0 bg-transparent p-0 d-flex ", 'data-bs-toggle="dropdown" aria-expanded="false"')}
           <!-- Drop-down Profile-->
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                     ${this.user ?
         `
-                          
+                      <a class="dropdown-item d-flex" href="#/profile" data-route>
+                                                                ${Icon("user", "solid", "me-2")} Your profile
+                                                              </a>    
                               ${((_u) => {
           switch (_u.role) {
-            case 'master' || 'admin':
+            case 'admin':
               return `
                                                               <a class="dropdown-item d-flex" href="#/admin" data-route>
                                                                 ${Icon("chart-simple", "solid", "me-2")} Dashboard
@@ -134,6 +136,7 @@ export default class Navbar extends Component {
               <ul class="navbar-nav flex-grow-1">
                 ${Navlink("HOME", "/home")}
                 ${Navlink("CATALOG", "/catalog")}
+                ${Navlink("SUPPORT", "/info/reach-us")}
                 ${Navlink("ABOUT US", "/about")}
               </ul>
             </div>
@@ -145,6 +148,7 @@ export default class Navbar extends Component {
           <ul class="navbar-nav d-flex flex-row justify-content-center w-100 px-0">
             ${Navlink("HOME", "/home", "mx-3")}
             ${Navlink("CATALOG", "/catalog", "mx-3")}
+            ${Navlink("SUPPORT", "/info/reach-us", "mx-3")}
             ${Navlink("ABOUT US", "/about", "mx-3")}
           </ul>
         </div>

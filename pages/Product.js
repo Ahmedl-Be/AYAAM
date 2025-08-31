@@ -4,6 +4,7 @@ import Navbar from "../components/landing/Nav.js";
 import Toast from './../components/ui/toast.js';
 import { localStore, sessionStore } from "../scripts/utils/storage.js";
 import { addToCart } from "./customer/productCard/addToCart.js";
+import FloatBtns from "../components/ui/floating.js";
 
 export default class Product extends View {
   constructor(_config, _params = {}) {
@@ -19,6 +20,7 @@ export default class Product extends View {
     return `
       <header class="sticky-top bg-white" id="navbar"></header>
       <div id="toastMsg"></div>
+      <div id="floatBtns"></div>
       <div class="container my-5">
         <div id="product-container"></div>
       </div>
@@ -28,6 +30,7 @@ export default class Product extends View {
   script() {
     this.mount(Navbar, "#navbar");
     this.mount(Toast, "#toastMsg");
+    this.mount(FloatBtns, "#floatBtns");
 
     const productId = sessionStore.read("currentProduct", "");
     if (!productId) {

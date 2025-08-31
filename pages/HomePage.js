@@ -8,6 +8,7 @@ import Newsletter from "../components/landing/Newsletter.js";
 import Toast from "../components/ui/toast.js";
 import CardsSection from "../components/landing/Section.js";
 import { localStore } from "../scripts/utils/storage.js";
+import FloatBtns from "../components/ui/floating.js";
 
 export default class HomePage extends View {
   constructor(_config , _params = {}) {
@@ -21,6 +22,7 @@ export default class HomePage extends View {
     return `
             <header class="sticky-top bg-white" id='navbar' data-fade></header>
             <div class="toast-body" id="toastMsg"></div>
+            <div id="floatBtns"></div>
             <section class="container-fluid" id="hero" data-fade></section>
 
       <!-- Brands Slider -->
@@ -41,6 +43,7 @@ export default class HomePage extends View {
   script() {
     this.mount(Toast, "#toastMsg")
     this.mount(Navbar, "#navbar");
+    this.mount(FloatBtns, "#floatBtns");
     this.mount(HeroSection, '#hero', { ads });
 
     this.mount(CardsSection,'#featured-section',{

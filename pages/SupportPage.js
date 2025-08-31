@@ -6,12 +6,14 @@ import FaqsPage from "./info/FaqsPage.js";
 import PrivacyPage from "./info/PrivacyPage.js";
 import ReachUsPage from "./info/ReachUs.js";
 import TermsPage from "./info/TermsPage.js";
+import FloatBtns from "../components/ui/floating.js";
 
 export default class SupportPage extends View {
   template() {
     return `
       <header class="sticky-top bg-white" id='navbar'></header>
       <div class="toast-body" id="toastMsg"></div>
+      <div id="floatBtns"></div>
       <section>
         <nav class="tabs-nav">
           <a href="#/info/policy" class="tab-link" data-route>Privacy & Policy</a>
@@ -28,6 +30,7 @@ export default class SupportPage extends View {
   script() {
     this.mount(Toast, "#toastMsg")
     this.mount(Navbar, "#navbar");
+    this.mount(FloatBtns, "#floatBtns");
 
     // register subviews
     this.subview(TermsPage, {

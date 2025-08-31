@@ -148,9 +148,7 @@ export default class CartItems extends Component {
                 this.updateCartItemControls(id, color, size);
                 
                 // Dispatch event for navbar and other components
-                document.dispatchEvent(new CustomEvent("cartUpdated", {
-                    detail: { action: 'itemIncreased', id, color, size }
-                }));
+                window.dispatchEvent(new Event("cartUpdated"));
             });
         }
 
@@ -164,9 +162,7 @@ export default class CartItems extends Component {
                 cartManager.decreaseQty(id, color, size, e.currentTarget);
                 this.updateCartItemControls(id, color, size);
                 
-                document.dispatchEvent(new CustomEvent("cartUpdated", {
-                    detail: { action: 'itemDecreased', id, color, size }
-                }));
+                window.dispatchEvent(new Event("cartUpdated"));
             });
         }
 
@@ -179,9 +175,7 @@ export default class CartItems extends Component {
                 const cartManager = new CartManager();
                 cartManager.removeItem(id, color, size, cartCard);
                 
-                document.dispatchEvent(new CustomEvent("cartUpdated", {
-                    detail: { action: 'itemRemoved', id, color, size }
-                }));
+                window.dispatchEvent(new Event("cartUpdated"));
 
                 // For delete, re-render the whole component
                 this.render();
@@ -208,9 +202,7 @@ export default class CartItems extends Component {
                 cartManager.increaseQty(id, color, size);
                 this.updateCartItemControls(id, color, size);
                 
-                document.dispatchEvent(new CustomEvent("cartUpdated", {
-                    detail: { action: 'itemIncreased', id, color, size }
-                }));
+                window.dispatchEvent(new Event("cartUpdated"));
             });
         });
 
@@ -223,9 +215,7 @@ export default class CartItems extends Component {
                 cartManager.decreaseQty(id, color, size);
                 this.updateCartItemControls(id, color, size);
                 
-                document.dispatchEvent(new CustomEvent("cartUpdated", {
-                    detail: { action: 'itemDecreased', id, color, size }
-                }));
+                window.dispatchEvent(new Event("cartUpdated"));
             });
         });
 
@@ -239,9 +229,7 @@ export default class CartItems extends Component {
 
                 if (card) {
                     cartManager.removeItem(id, color, size);
-                    document.dispatchEvent(new CustomEvent("cartUpdated", {
-                        detail: { action: 'itemRemoved', id, color, size }
-                    }));                    
+                    window.dispatchEvent(new Event("cartUpdated"));                  
                     this.render();
                 }
             });

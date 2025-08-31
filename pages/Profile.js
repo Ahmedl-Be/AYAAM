@@ -4,6 +4,7 @@ import Navbar from "../components/landing/Nav.js";
 import ProfileForm from "../components/profile/ProfileForm.js";
 import TableOrders from "../components/profile/TableOrders.js";
 import Toast from './../components/ui/toast.js';
+import FloatBtns from "../components/ui/floating.js";
 
 
 export default class Profile extends View {
@@ -11,6 +12,7 @@ export default class Profile extends View {
         return `
         <header class="sticky-top bg-white" id='navbar'></header>
         <div id="toast"></div>
+        <div id="floatBtns"></div>
         <div class="container">
             <div class="row">
                 <!-- Main Content -->
@@ -28,6 +30,7 @@ export default class Profile extends View {
     script() {
         this.mount(Navbar, "#navbar");
         this.mount(Toast, "#toast");
+        <div id="floatBtns"></div>
         this.mount(ProfileForm, "#profile-form");
         this.mount(TableOrders, "#orders-table");
        

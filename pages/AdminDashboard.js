@@ -23,7 +23,7 @@ export default class AdminDashboard extends Views {
     template() {
         const user = getCurrentUser();
         if (!user) return `<p>Please log in</p>`;
-        const userName = user.name;
+        const userName = user.name.split(' ')[0];
         const sections = [
             {
                 id: "ecommerce",
@@ -73,6 +73,13 @@ export default class AdminDashboard extends Views {
         this.subview(SellerStatsPage, { parent: "adminContent", route: "sellersStats", title: "Seller Stats | AYAAM" });
         this.subview(UsersPage, { parent: "adminContent", route: "users", title: "Users | AYAAM" });
         this.subview(UsersStatsPage, { parent: "adminContent", route: "usersStats", title: "Users Stats | AYAAM" });
+
+        // default route if hash empty
+        if (!location.hash || !location.hash.startsWith("#/admin/")) {
+            location.hash = "#/admin/productsStats";
+        }
         SidebarEvents();
+
+
     } 
 }

@@ -1,5 +1,6 @@
 import View from "../components/core/view.js";
 import Footer from "../components/landing/Footer.js";
+import FloatBtns from "../components/ui/floating.js";
 import { Button } from "../components/ui/buttons.js";
 import { navigate } from "../scripts/utils/navigation.js";
 
@@ -14,6 +15,7 @@ export default class SellWithUsPage extends View {
     }
     template() {
         return `
+        <div id="floatBtns"></div>
         <div class="sell-ayaam">
 
         <!-- Hero -->
@@ -167,6 +169,7 @@ export default class SellWithUsPage extends View {
     }
 
     script() {
+        this.mount(FloatBtns, "#floatBtns");
         // Init Leaflet map
         var map = L.map('map').setView([26.8206, 30.8025], 5.5);
 

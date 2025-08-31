@@ -105,7 +105,7 @@ export function showLoader() {
 }
 
 // Hide custom loader
-export function hideLoader(_time = 1000) {
+export function hideLoader(_time = 0) {
   const loader = document.getElementById("app-loader");
   if (loader) {
 

@@ -50,21 +50,21 @@ const data = [
                 color: "Black",
                 images: ['black-f.png', 'black-b.png', 'black-s.png', 'black-top.png'],
                 sizes: [
-                    { name: '', qty: 2 },
+                    { name: 'One Size', qty: 2 },
                 ]
             },
             {
                 color: "Brown",
                 images: ['brown-f.png', 'brown-b.png', 'brown-in.png', 'brown-s.png', 'brown-top.png'],
                 sizes: [
-                    { name: '', qty: 5 },
+                    { name: 'One Size', qty: 5 },
                 ]
             },
             {
                 color: "Lightgrey",
                 images: ['lightgrey-f.png', 'lightgrey-b.png', 'lightgrey-in.png', 'lightgrey-s.png', 'lightgrey-top.png'],
                 sizes: [
-                    { name: '', qty: 4 },
+                    { name: 'One Size', qty: 4 },
                 ]
             },
         ],
@@ -223,21 +223,21 @@ const data = [
                 color: "Camo",
                 images: ['camo-male.png', 'camo-details.png', 'camo-details2.png', 'camo-dimentions.png'],
                 sizes: [
-                    { name: '', qty: 3 }
+                    { name: 'One Size', qty: 3 }
                 ]
             },
             {
                 color: "Pink",
                 images: ['pink-female.png', 'pink-details.png', 'pink-dimentions.png', 'pink-top.png'],
                 sizes: [
-                    { name: '', qty: 2 },
+                    { name: 'One Size', qty: 2 },
                 ]
             },
             {
                 color: "Rose",
                 images: ['rose-female.png', 'rose-details.png', 'rose-details2.png', 'rose-dimentions.png', 'rose-top.png'],
                 sizes: [
-                    { name: '', qty: 4 },
+                    { name: 'One Size', qty: 4 },
                 ]
             },
         ],
