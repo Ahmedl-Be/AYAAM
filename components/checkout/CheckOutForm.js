@@ -429,14 +429,14 @@ export default class CheckOutForm extends Component{
 
             // Collect form data
             const formData = {
-                Name: userData ? userData.name : `${fnameEl.value} ${lnameEl.value}`,
+                name: userData ? userData.name : `${fnameEl.value} ${lnameEl.value}`,
                 email: userData ? userData.email : emailEl.value,
                 phone: userData ? userData.phone : phoneEl.value,
                 city: cityEl.value,
                 state: stateEl.value,
-                address: `${cityEl.value}, ${stateEl.value}`,
-                zipCode: zipCodeEl.value,
                 addressDetail: addressDetailEl.value,
+                // address: `${cityEl.value}, ${stateEl.value}`,
+                zipCode: zipCodeEl.value,
                 payMethod: selectedPayment ? selectedPayment.value : "",
                 cardNumber: selectedPayment && selectedPayment.value === 'visa' ? cardNum.value : "",
                 expDate: selectedPayment && selectedPayment.value === 'visa' ? expDate.value : "",
@@ -508,6 +508,7 @@ export default class CheckOutForm extends Component{
                             userName: userData.name,
                             userEmail: userData.email,
                             orderDate: `${day}/${month}/${year}` ,
+                            state: "pending" ,
                             orderItems: items.map(item => ({
                                 productId: item.id,
                                 productName: item.name,
@@ -517,7 +518,6 @@ export default class CheckOutForm extends Component{
                                 category: item.category,
                                 color: item.color,
                                 img: item.img,
-                                state: "pending" 
                             })),
                 }
                     

@@ -39,7 +39,7 @@ export default class SummaryCart extends Component {
                         <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar brand-bg text-center text-white" style="width: 75%">75% Confirm Your Order</div>
                         </div>
-                        <button class='w-100 py-3 fw-bold border-0 rounded-pill brand-bg text-white mt-3 checkoutBTN checkout-btn'>
+                        <button class='w-100 py-3 fw-bold border-0 rounded-pill brand-bg-check bg-black text-white mt-3 checkoutBTN checkout-btn'>
                             CheckOut
                         </button>
                     </div>
@@ -51,7 +51,7 @@ export default class SummaryCart extends Component {
                         <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar brand-bg text-center text-white" style="width: 75%">75% Confirm Your Order</div>
                         </div>
-                        <button class='w-100 py-3 fw-bold border-0 rounded-pill brand-bg text-white mt-3 checkoutBTN checkout-btn'>
+                        <button class='w-100 py-3 fw-bold border-0 rounded-pill brand-bg-check bg-black text-white mt-3 checkoutBTN checkout-btn'>
                             CheckOut
                         </button>
                     </div>
@@ -79,7 +79,27 @@ export default class SummaryCart extends Component {
                 navigate('/checkout');
                 sessionStore.write("currentTotal" , cartManager.calculateTotal().total);
             })
-        })
+        });
+        document.addEventListener('cartUpdated', () => {
+            const cartManager = new CartManager(); 
+            const totals = cartManager.calculateTotal();
+
+            document.querySelectorAll(".subtotal").forEach(el => {
+                el.innerHTML = `SubTotal : $ <span>${totals.subtotal.toFixed(2)}</span>`;
+            });
+
+            document.querySelectorAll(".total").forEach(el => {
+                el.innerText = totals.total.toFixed(2);
+            });
+
+            document.querySelectorAll(".discount").forEach(el => {
+                el.innerText = `Discount :$ ${totals.discountTotal.toFixed(2)}`;
+            });
+
+            document.querySelectorAll('#totalItems').forEach(el => {
+                el.innerText = `${cartManager.itemCount()} Items`;
+            });
+        });
 
     }
 }
