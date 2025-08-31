@@ -18,6 +18,7 @@ const data = [
         sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
+        status: "approved",
         stock: [
             {
                 color: "Grey",
@@ -45,6 +46,7 @@ const data = [
         sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
+        status: "approved",
         stock: [
             {
                 color: "Black",
@@ -84,6 +86,7 @@ const data = [
         sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
+        status: "approved",
         stock: [
             {
                 color: "Cyan",
@@ -129,6 +132,7 @@ const data = [
         sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
+        status: "approved",
         stock: [
             {
                 color: "Light blue",
@@ -172,6 +176,8 @@ const data = [
         sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
+        status: "approved",
+        status: "approved",
         stock: [
             {
                 color: "Black",
@@ -218,6 +224,8 @@ const data = [
         sellerId: 'SellMoh3', // random based on sellers we add later
         category: "UniSex",
         subCategory: "Hat", // for later use
+        status: "approved",
+        status: "approved",
         stock: [
             {
                 color: "Camo",
