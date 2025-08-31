@@ -71,7 +71,7 @@ export default class ProfileForm extends View {
                             </div>
                         </div>
 
-                        ${userData?.address ? `
+                        ${`
                             <div class="col-md-12">
                                 <label class="form-label">Address</label>
                                 <input type="text" class="form-control" id="adrs" placeholder="Address" value="${userData?.address}"  disabled required">
@@ -79,7 +79,7 @@ export default class ProfileForm extends View {
                                     Please enter your address.
                                 </div>
                             </div>       
-                        ` : " "}
+                        `}
 
                         <div class="col-md-12">
                             <label class="form-label">Email</label>

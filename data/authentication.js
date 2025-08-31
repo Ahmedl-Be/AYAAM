@@ -27,6 +27,7 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone = '01
         console.warn("USER ALREADY EXISTS LOGIN...");
         return null;
     }
+    
     /* VALIDATE PASSOWRD */
     if (!validatePassword(password)) {
         console.warn(` Passwords must have:
@@ -70,17 +71,23 @@ export function signup(_name, _email, _password, _repeatedPassword, _phone = '01
  */
 export function login(_identifier, _password, _remember = false) {
     const users = localStore.read("users", []);
-    const user = users.find(_user => _user.email === _identifier  && _user.password === _password);
+    const user = users.find(_user => _user.email === _identifier && _user.password === _password);
 
     if (!user) {
         console.warn("Invalid email or password!!!!!");
         return null;
     }
 
-    //Save session
+    // 🚨 Block banned users
+    if (user.status === "banned") {
+        console.warn("This account is banned.");
+        return null;
+    }
+
+    // Save session
     sessionStore.write("currentUser", user);
 
-    //Optional keep logged in
+    // Optional keep logged in
     if (_remember) {
         localStore.write("currentUser", user);
     }
@@ -89,28 +96,43 @@ export function login(_identifier, _password, _remember = false) {
     return user;
 }
 
-
 export function redirect(_role) {
+    const currentUser = getCurrentUser();
     const redirected = sessionStore.read('redirectedPage', '');
 
-    if (redirected && redirected !== '/home') {
+    if (!currentUser) {
+        navigate('/login');
+        return;
+    }
 
+    if (redirected && redirected !== '/home') {
         sessionStore.remove('redirectedPage');
         navigate(redirected);
-    } else {
-        switch (_role) {
-            case 'master':
-                navigate(`/admin`);
-                break;
-            case 'admin':
-                navigate(`/admin`);
-                break;
-            case 'seller':
-                navigate(`/seller`);
-                break;
-            default:
+        return;
+    }
+
+    switch (_role) {
+        case 'master':
+        case 'admin':
+            if (currentUser.status !== "active") {
+                // inactive amin go home
                 navigate(`/home`);
-        }
+                break;
+            }
+            navigate(`/admin`);
+            break;
+
+        case 'seller':
+            if (currentUser.status !== "active") {
+                // inactive sellers go home
+                navigate(`/home`);
+                break;
+            }
+            navigate(`/seller`);
+            break;
+
+        default:
+            navigate(`/home`);
     }
 }
 

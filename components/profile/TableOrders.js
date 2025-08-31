@@ -16,19 +16,11 @@ export default class TableOrders extends View {
 
         const stateIcons = {
             pending: "⏳",
-            processing: "🔄",
             shipped: "🚚",
             delivered: "✅", 
             cancelled: "❌"
         };
 
-        function getOrderState(orderItems) {
-            if (orderItems.some(item => item.state === 'cancelled')) return 'Cancelled';
-            if (orderItems.some(item => item.state === 'pending')) return 'Pending';
-            if (orderItems.some(item => item.state === 'processing')) return 'Processing';
-            if (orderItems.every(item => item.state === 'delivered')) return 'Completed';
-            return 'Unknown';
-        }
         
 
         return `
@@ -39,14 +31,13 @@ export default class TableOrders extends View {
                         <button type="button" class="btn brand-bg mt-2" id="satrt-shopping"> Start Shopping Now </button>
                     </div>`  
                     :userOrders.map((order, i) => {
-                        const orderState = getOrderState(order.orderItems || []);
-                        const icon = stateIcons[orderState.toLowerCase()] || "❓";
+                        const icon = stateIcons[order.state] || "❓";
 
                         return `
                         <div class="accordion-item orderTable">
                             <h2 class="accordion-header" id="heading-${i}">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${i}" aria-expanded="false" aria-controls="collapse-${i}">
-                                    Order ${i + 1} - ${order.orderDate} - ${icon} ${orderState}
+                                    Order ${i + 1} - ${order.orderDate} - ${icon} ${order.state}
                                 </button>
                             </h2>
                             <div id="collapse-${i}" class="accordion-collapse collapse" aria-labelledby="heading-${i}" data-bs-parent="#ordersAccordion">
@@ -60,7 +51,6 @@ export default class TableOrders extends View {
                                             <th>Size</th>
                                             <th>Quantity</th>
                                             <th>Price</th>
-                                            <th>State</th>
                                         </tr>
                                         ${order.orderItems.map(item => `
                                             <tr>
@@ -71,9 +61,6 @@ export default class TableOrders extends View {
                                                 <td>${item.size || "No Size"}</td>
                                                 <td>${item.qty}</td>
                                                 <td>$${item.price}</td>
-                                                <td>
-                                                    ${icon} ${orderState}
-                                                </td>
                                             </tr>
                                         `).join('')}
                                     </table>
