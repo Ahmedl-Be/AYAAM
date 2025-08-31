@@ -4,6 +4,7 @@ import MainDasboard from "./seller/MainDashboard.js";
 import SellerProducts from "./seller/SellerProducts.js";
 import incomeingOrder from "./seller/IncomingOrders.js";
 import AddProduct from "./seller/AddProduct.js";
+import salesHistory from "./seller/SalesHistory.js";
 
 export default class SellerDashboard extends View {
     constructor(_config, _params = {}) {
@@ -27,7 +28,7 @@ export default class SellerDashboard extends View {
     <!-- Sidebar -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="sidebarLabel"><i class="fas fa-list"></i> القائمة</h5>
+            <h5 class="offcanvas-title" id="sidebarLabel"><i class="fas fa-list"></i> list</h5>
             <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -74,6 +75,12 @@ export default class SellerDashboard extends View {
                 parent: "seller-dashbord",
                 route: "incomeingOrders",
                 title: "seller - incomeingOrders"
+            });
+
+    this.subview(salesHistory, {
+                parent: "seller-dashbord",
+                route: "salesHistory",
+                title: "seller - salesHistory"
             });
     }
 }

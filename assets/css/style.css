@@ -16,6 +16,8 @@
 @import url(ProductStyleSidebar.css);
 @import url(mainDashboardStyle.css);
 @import url(IncomingOrderStyle.css);
+@import url(salesHistoryStyle.css);
+@import url(./client/slider.css);
 @import url(productStyle.css);
 @import url(sellwithus.css);
 @import url(./client/about.css);

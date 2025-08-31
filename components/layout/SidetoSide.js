@@ -11,18 +11,18 @@ export default function SideToSide(_leftPanel, _rightPanel, _options = 'hideLeft
 
     return `
        <div class="container-fluid">
-      <div class="row min-vh-100">
-        <!-- Left Half -->
-        <div class="col-md-6 ${_options === 'hideLeft'? hideOnSmall: display}">
-          ${_leftPanel}
-        </div>
+        <div class="row h-100">
+            <!-- Left Half -->
+            <div class="col-md-6  ${_options === 'hideLeft'? hideOnSmall: display}" style="height: 100vh !important; overflow:hidden;">
+              ${_leftPanel}
+            </div>
 
-        <!-- Right Half -->
-        <div class="col-md-6 ${_options === 'hideRight'? hideOnSmall: display}">
-          ${_rightPanel}
+          <!-- Right Half -->
+            <div class="col-md-6 ${_options === 'hideRight' ? hideOnSmall : display}" style="height: 100vh !important; overflow:hidden;">
+              ${_rightPanel}
+            </div>
         </div>
       </div>
-    </div>
     
     `
 }

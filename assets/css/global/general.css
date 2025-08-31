@@ -17,6 +17,10 @@ a, a:hover{
     font-family: "Roboto", sans-serif;
 }
 
+a {
+    color: rgb(205, 117, 53);
+}
+
 /* LOGO */
 .main-logo {
     padding-left: 8px;

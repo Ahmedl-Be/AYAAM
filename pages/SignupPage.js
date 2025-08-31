@@ -21,16 +21,16 @@ export default class SignupPage extends View {
           <div class="w-100" style="max-width: 400px">
             <div class="text-center mb-5">
               <h2>Create Account</h2>
-              <p class="text-muted">Fill in your details to get started</p>
+              <p class="text-muted">Fill in your details and start shopping.</p>
             </div>
             <div class='container-fluid m-0 p-0' id='form-root'></div>
-            
+            <div class="mt-4 text-center">Have account? <a href="#/login" data-route>Login.</a></div>
           </div>
         </div>
       </div>`
       return `
         <div class="toast-body" id="toastMsg"></div>
-        ${SideToSide(HalfImage('','',''),formHalf,'hideLeft')}
+        ${SideToSide(HalfImage('/assets/images/thumbnails/woman.jpg','',''),formHalf,'hideLeft')}
         `
     }
 

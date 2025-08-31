@@ -1,29 +1,141 @@
-  .dashboard { max-width: 1200px; margin: 0 auto; padding-left: 70px; } /* مساحة للسidebar */
-        .summary-card {
-            text-align: center;
-            padding: 10px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #ffffff, #e6f4ea);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .chart-card, .order-table {
-            padding: 10px;
-            margin-top: 15px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #ffffff, #f0faf4);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .order-item {
-            padding: 8px 0;
-            border-bottom: 1px solid #d1e7dd;
-            transition: background-color 0.3s;
-        }
-        .order-item:last-child { border-bottom: none; }
-        .order-item:hover {
-            background-color: #e8f3ec;
-        }
-        .order-item span {
-            padding: 0 10px;
-        }
-        .text-primary { color: #065f46 !important; }
-    
+@import url(design.sys.css);
+
+/* === Seller Dashboard Styles === */
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.menu-toggle {
+    background-color: var(--primary-5);
+    color: var(--bgcolor-1);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-toggle:hover {
+    background-color: var(--primary-4);
+}
+
+/* Make "Seller Dashboard" look nicer with statistical color */
+.dashboard h1.text-center.mb-3 {
+    color: #1E40AF; /* Dark blue for statistical feel */
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dashboard .summary-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.dashboard .summary-card {
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    background-color: var(--bgcolor-1);
+}
+
+.dashboard .summary-card:hover {
+    transform: translateY(-5px);
+}
+
+.dashboard .summary-card h3 {
+    color: var(--primary-3);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.dashboard .summary-card .value {
+    color: var(--primary-4);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.dashboard .summary-card .sub-value {
+    color: var(--primary-2);
+    font-size: 14px;
+}
+
+/* Solid background colors for summary cards based on order */
+.dashboard .row.g-3.mb-3 .summary-card:nth-child(1) { /* Total Sales */
+    background-color: var(--primary-1);
+}
+
+.dashboard .row.g-3.mb-3 .summary-card:nth-child(2) { /* Total Orders */
+    background-color: var(--primary-2);
+}
+
+.dashboard .row.g-3.mb-3 .summary-card:nth-child(3) { /* Products */
+    background-color: var(--primary-3);
+}
+
+.dashboard .chart-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.dashboard .chart-card {
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--bgcolor-1);
+}
+
+.dashboard .chart-card h3 {
+    color: var(--primary-4);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.dashboard .chart-card canvas {
+    width: 100%;
+    height: auto;
+}
+
+/* Solid background colors for each chart card */
+.chart-container .chart-card:nth-child(1) { /* Monthly Sales */
+    background-color: var(--primary-4);
+}
+
+.chart-container .chart-card:nth-child(2) { /* Orders Overview */
+    background-color: var(--primary-5);
+}
+
+.recent-orders {
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--bgcolor-1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recent-orders h3 {
+    color: #1E40AF; /* Dark green for statistical feel */
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.recent-orders p {
+    color: var(--grey-5);
+    font-size: 15px;
+}
