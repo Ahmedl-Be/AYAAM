@@ -57,18 +57,16 @@ export function ProductCard(product) {
 
 <div class="d-flex gap-2 mt-3">
 
-  <!-- Larger dark button -->
   <button 
     class="btn btn-dark flex-grow-1 d-flex align-items-center justify-content-center gap-2 py-2 fs-6" 
     data-id="${product.id}" id="viewDetailsBtn">
       <i class="fa-solid fa-eye"></i> View
   </button>
 
-  <!-- Smaller button: bg white, text black -->
   <button 
     class="btn btn-light border d-flex align-items-center justify-content-center text-dark" 
     data-id="${product.id}" id="addToCartBtn" style="width: 50px; height: 40px;">
-      <i class="fa-solid fa-cart-plus text-dark"></i>
+      <i class="fa-solid fa-cart-plus"></i>
   </button>
 
 </div>

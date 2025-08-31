@@ -17,8 +17,8 @@ const menProductSuits = [
         color: "Black",
         images: ["prod_p01.jpg"],
         sizes: [
-          { name: "48", quantity: 5 },
-          { name: "50", quantity: 3 }
+          { name: "48", qty: 5 },
+          { name: "50", qty: 3 }
         ]
       }
     ]
@@ -39,8 +39,8 @@ const menProductSuits = [
         color: "Navy",
         images: ["prod_p02.jpg"],
         sizes: [
-          { name: "48", quantity: 4 },
-          { name: "50", quantity: 6 }
+          { name: "48", qty: 4 },
+          { name: "50", qty: 6 }
         ]
       }
     ]
@@ -61,8 +61,8 @@ const menProductSuits = [
         color: "Gray Check",
         images: ["prod_p03.jpg"],
         sizes: [
-          { name: "48", quantity: 2 },
-          { name: "50", quantity: 5 }
+          { name: "48", qty: 2 },
+          { name: "50", qty: 5 }
         ]
       }
     ]
@@ -83,8 +83,8 @@ const menProductSuits = [
         color: "Charcoal",
         images: ["prod_p04.jpg"],
         sizes: [
-          { name: "48", quantity: 3 },
-          { name: "50", quantity: 4 }
+          { name: "48", qty: 3 },
+          { name: "50", qty: 4 }
         ]
       }
     ]
@@ -105,8 +105,8 @@ const menProductSuits = [
         color: "Light Gray",
         images: ["prod_p05.jpg"],
         sizes: [
-          { name: "48", quantity: 6 },
-          { name: "50", quantity: 3 }
+          { name: "48", qty: 6 },
+          { name: "50", qty: 3 }
         ]
       }
     ]
@@ -127,8 +127,8 @@ const menProductSuits = [
         color: "Blue Pinstripe",
         images: ["prod_p06.jpg"],
         sizes: [
-          { name: "48", quantity: 5 },
-          { name: "50", quantity: 4 }
+          { name: "48", qty: 5 },
+          { name: "50", qty: 4 }
         ]
       }
     ]
@@ -149,8 +149,8 @@ const menProductSuits = [
         color: "Burgundy",
         images: ["prod_p07.jpg"],
         sizes: [
-          { name: "48", quantity: 2 },
-          { name: "50", quantity: 3 }
+          { name: "48", qty: 2 },
+          { name: "50", qty: 3 }
         ]
       }
     ]
@@ -171,8 +171,8 @@ const menProductSuits = [
         color: "White",
         images: ["prod_p08.jpg"],
         sizes: [
-          { name: "48", quantity: 4 },
-          { name: "50", quantity: 5 }
+          { name: "48", qty: 4 },
+          { name: "50", qty: 5 }
         ]
       }
     ]
@@ -193,8 +193,8 @@ const menProductSuits = [
         color: "Olive",
         images: ["prod_p09.jpg"],
         sizes: [
-          { name: "48", quantity: 3 },
-          { name: "50", quantity: 2 }
+          { name: "48", qty: 3 },
+          { name: "50", qty: 2 }
         ]
       }
     ]
@@ -215,8 +215,8 @@ const menProductSuits = [
         color: "Black",
         images: ["prod_p010.jpg"],
         sizes: [
-          { name: "48", quantity: 4 },
-          { name: "50", quantity: 3 }
+          { name: "48", qty: 4 },
+          { name: "50", qty: 3 }
         ]
       }
     ]
