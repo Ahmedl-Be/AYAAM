@@ -10,6 +10,7 @@ const menProductShoes = [
 		subCategory: "Shoes",
 		sale:0,
 		price: 19.99,
+		status: "approved",
 		stock: [
 			{
 				color: "Brown",
@@ -59,6 +60,7 @@ const menProductShoes = [
 		subCategory: "Shoes",
 		sale:0,
 		price: 29.99,
+		status: "approved",
 		stock: [
 			{
 				color: "Black",

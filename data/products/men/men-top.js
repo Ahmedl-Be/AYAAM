@@ -12,6 +12,7 @@ const menProductTop = [
 		subCategory: "Top",
 		sale:0,
 		price: 29.99,
+		status: "approved",
 		stock: [
 			{
 				color: "Grey",
@@ -67,6 +68,7 @@ const menProductTop = [
 		subCategory: "Top",
 		sale:0,
 		price: 49.99,
+		status: "approved",
 		stock: [
 			{
 				color: "Green",
@@ -110,6 +112,7 @@ const menProductTop = [
 		subCategory: "Top",
 		sale:0,
 		price: 19.99,
+		status: "approved",
 		stock: [
 			{
 				color: "White",
@@ -136,6 +139,7 @@ const menProductTop = [
 		subCategory: "Top",
 		sale:0,
 		price: 40.7,
+		status: "approved",
 		stock: [
 			{
 				color: "Blue",
