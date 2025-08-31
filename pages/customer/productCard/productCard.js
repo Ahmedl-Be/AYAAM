@@ -23,7 +23,7 @@ export function ProductCard(product) {
     <button class="arrow left">&#10094;</button>
     <button class="arrow right">&#10095;</button>
     ${discounted ?
-      `<span class="discount-badge">${(sale * 100).toFixed(0)}% SALE</span>`
+      `<span class="discount-badge badge bg-dark position-absolute top-0 start-0 m-2 px-2 py-2">${(sale * 100).toFixed(0)}% SALE</span>`
       :
       `<span class="discount-badge d-none">0% SALE</span>`}
   </div>
