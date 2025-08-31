@@ -19,7 +19,7 @@ export default class CheckOutForm extends Component{
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Last Name*</label>
-                        <input type="text" class="form-control" placeholder="Last name" id="lname" >
+                        <input type="text" class="form-control" placeholder="Last name" id="lname" required>
                         <div class="invalid-feedback">Please enter your last name.</div>
                     </div>
 
@@ -40,8 +40,8 @@ export default class CheckOutForm extends Component{
                                 <option>USA</option>
                             </select>
                             <input type="text" class="form-control" placeholder="+20 1222365478" id="phone" required>
-                            <div class="invalid-feedback">Please enter your phone number.</div>
                         </div>
+                        <div class="invalid-feedback">Please enter your phone number.</div>
                     </div>
 
                     <!-- ______________City_______________-->
@@ -68,11 +68,11 @@ export default class CheckOutForm extends Component{
                     <!-- ______________Detailed Address_______________-->
                     <div class="col-12">
                         <label class="form-label">Address in Detail*</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter a your address in detail...." id="adrs-detail" required></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Enter your address in detail...." id="adrs-detail" required></textarea>
                         <div class="invalid-feedback">Please enter your address details.</div>
                     </div>
 
-                    <!-- ______________Shipping Method_______________-->
+                    <!-- ______________Payment Method_______________-->
                     <div class="col-12">
                         <label class="form-label">Payment Method*</label>
                         <div class="row g-3">
@@ -100,7 +100,7 @@ export default class CheckOutForm extends Component{
                                                 Visa
                                             </div>
                                             <i class="fa-solid fa-chevron-down" id="arrow-down"></i>
-                                            <i class="fa-solid fa-chevron-up " id="arrow-up"></i> 
+                                            <i class="fa-solid fa-chevron-up" id="arrow-up"></i> 
                                         </label>
                                     </div>
                                 </div>
@@ -110,345 +110,399 @@ export default class CheckOutForm extends Component{
                             <div class="collapse mt-3" id="visa-info">
                                 <div class="card card-body">
                                     <h5 class="mb-2">Visa Information</h5>
-                                    <label class="form-label">Card Number*</label>
-                                    <input type="text" class="form-control mb-3" id="card-num" placeholder="---- ---- ---- ----" required>
-                                    <div class="invalid-feedback">Please enter a valid 16-digit card number.</div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Card Number*</label>
+                                        <input type="text" class="form-control" id="card-num" placeholder="---- ---- ---- ----">
+                                        <div class="invalid-feedback">Please enter a valid 16-digit card number.</div>
+                                    </div>
 
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label class="form-label">EXP.*</label>
-                                            <input type="text"  class="form-control"id="exp-date" placeholder="MM/YYYY" required>
+                                            <input type="text" class="form-control" id="exp-date" placeholder="MM/YY">
                                             <div class="invalid-feedback">Please enter expiration date of your card.</div>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">CVV*</label>
-                                            <input type="text" class="form-control" id="cvv" placeholder="---" required maxlength="3" required>
+                                            <input type="text" class="form-control" id="cvv" placeholder="---" maxlength="3">
                                             <div class="invalid-feedback">Please enter CVV.</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="invalid-feedback">Please select a payment method.</div>
                     </div>
 
-                    <button class='w-50 m-auto py-3 fw-bold border-0 rounded-pill bg-black text-white mt-3 checkoutBTN checkout-btn' id="submit-btn" type="submit">Confirm Payment</button>
+                    <button class='w-50 m-auto py-3 fw-bold border-0 rounded-pill brand-bg text-white mt-3 checkoutBTN checkout-btn' id="submit-btn" type="submit">Confirm Payment</button>
                 </div>
             </form>
-
         `
     }
 
- script() {
+    script() {
         const fnameEl = document.getElementById('fname');
         const lnameEl = document.getElementById('lname');
         const emailEl = document.getElementById('email');
         const phoneEl = document.getElementById('phone');
+        const cityEl = document.getElementById('city');
+        const stateEl = document.getElementById('state');
+        const zipCodeEl = document.getElementById('zip-code');
+        const addressDetailEl = document.getElementById('adrs-detail');
         const cardNum = document.getElementById('card-num');
         const expDate = document.getElementById('exp-date');
         const cvv = document.getElementById('cvv');
- 
-       
-        //read user info from session storage
+        
+        // Read user info from session storage
         const userData = getCurrentUser();
-        console.log(userData)
+        console.log(userData);
 
-        // _____________________collaps Visa ________________________________
-
+        // _____________________Collapse Visa ________________________________
         const visaCollapse = new bootstrap.Collapse(document.getElementById('visa-info'), { toggle: false });
         const arrUp = document.getElementById('arrow-up');
         const arrDown = document.getElementById('arrow-down');
-        const paysways = document.querySelectorAll('input[name="pay-method"]');
+        const paymentMethods = document.querySelectorAll('input[name="pay-method"]');
 
         arrUp.style.display = 'none';  
         arrDown.style.display = 'inline-block';
 
-        let visaOpen = false ;
+        let visaOpen = false;
 
-        paysways.forEach(payM =>{
-            payM.addEventListener('click' , (e)=>{
+        paymentMethods.forEach(payMethod => {
+            payMethod.addEventListener('click', (e) => {
                 console.log(e.target.value);
                 if (e.target.value === 'visa') {
                     visaCollapse.show();
                     visaOpen = true;
-
                     arrUp.style.display = 'inline-block';
                     arrDown.style.display = 'none';
                 } else {
                     visaCollapse.hide();
                     visaOpen = false;
-
                     arrUp.style.display = 'none';
                     arrDown.style.display = 'inline-block';
-                }
-            });
-        });
-
-          if(userData && userData.name){
-            const [fname , lname] = userData.name.split(" ");
-            fnameEl.value = fname || " ";
-            lnameEl.value = lname || " ";
-
-
-            if(userData.email) emailEl.value = userData.email;
-            if(userData.phone) phoneEl.value = userData.phone;
-
-            document.querySelectorAll("#fname , #lname , #email  , #phone ").forEach(input => {
-                input.disabled = true ;
-            });
-        }
-
-
-        //bootstrap Validation
-
-        cardNum.addEventListener("input", function (e) {
-            let value = e.target.value.replace(/\D/g, "");
-            value = value.substring(0, 16); 
-
-            let formatNumVal = value.match(/.{1,4}/g)?.join("-") || "";
-            e.target.value = formatNumVal;
-
-            if (value.length === 16) {
-            cardNum.classList.remove("is-invalid");
-            cardNum.classList.add("is-valid");
-            } else {
-            cardNum.classList.remove("is-valid");
-            cardNum.classList.add("is-invalid");
-            }
-        });
-
-
-        // Function to validate exp date
-        function validateExpDate(exp) {
-            if (!/^(0[1-9]|1[0-2])\/\d{4}$/.test(exp)) return false;
-
-            const [month, year] = exp.split("/").map(Number);
-            const today = new Date();
-            const currentYear = today.getFullYear();
-            const currentMonth = today.getMonth() + 1;
-
-            return (year > currentYear) || (year === currentYear && month >= currentMonth);
-        }
-
-        // Expiration date live validation
-        expDate.addEventListener("input", function (e) {
-            let value = e.target.value.replace(/[^\d\/]/g, ""); 
-
-            if (value.length === 2 && !value.includes("/")) {
-                value = value + "/";
-            }
-
-            value = value.substring(0, 7); 
-            e.target.value = value;
-
-            if (validateExpDate(value)) {
-                expDate.classList.remove("is-invalid");
-                expDate.classList.add("is-valid");
-            } else {
-                expDate.classList.remove("is-valid");
-                expDate.classList.add("is-invalid");
-            }
-        });
-
-        //cvv check
-        cvv.addEventListener("input", function (e) {
-            let value = e.target.value.replace(/\D/g, "");
-            value = value.substring(0, 3);
-            e.target.value = value;
-
-            if (value.length === 3) {
-                cvv.classList.remove("is-invalid");
-                cvv.classList.add("is-valid");
-            } else {
-                cvv.classList.remove("is-valid");
-                cvv.classList.add("is-invalid");
-            }
-        });
-
-        const form = document.querySelector('#checkout-form');
-
-            form.addEventListener('submit', event => {
-                const selectedPay = document.querySelector('input[name="pay-method"]:checked');
-                //check required for visa form
-                if (selectedPay && selectedPay.value === 'visa') {
-                    cardNum.setAttribute("required", "true");
-                    expDate.setAttribute("required", "true");
-                    cvv.setAttribute("required", "true");
-                } else {
-                    cardNum.removeAttribute("required");
-                    expDate.removeAttribute("required");
-                    cvv.removeAttribute("required");
-                }
-
-                let isValid = form.checkValidity();
-
-                const city = document.getElementById('city').value;
-                const state = document.getElementById('state').value;
-                const zipcode = document.getElementById('zip-code').value;
-
-                if (selectedPay && selectedPay.value === 'visa') {
-                    let value = cardNum.value.replace(/\D/g, "");
-                    let cvvValue = cvv.value.replace(/\D/g, "");
-                    let expValid = validateExpDate(expDate.value);
-
-                    if (value.length !== 16 || !expValid || cvvValue.length !== 3) {
-                        isValid = false;
-
-                        // card number
-                        if (value.length !== 16) {
-                            cardNum.classList.add("is-invalid");
-                        } else {
-                            cardNum.classList.remove("is-invalid");
-                        }
-
-                        // exp date
-                        if (!expValid) {
-                            expDate.classList.add("is-invalid");
-                        } else {
-                            expDate.classList.remove("is-invalid");
-                        }
-
-                        // cvv
-                        if (cvvValue.length !== 3) {
-                            cvv.classList.add("is-invalid");
-                        } else {
-                            cvv.classList.remove("is-invalid");
-                        }
-                    }
-                } else {
+                    
+                    // Clear visa validation when switching to cash
                     cardNum.classList.remove("is-valid", "is-invalid");
                     expDate.classList.remove("is-valid", "is-invalid");
                     cvv.classList.remove("is-valid", "is-invalid");
                 }
+            });
+        });
 
-                const shoppingCartItems = sessionStore.read("shoppingCart");
-                if (!isValid || shoppingCartItems === null || shoppingCartItems.length === 0) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    form.classList.add('was-validated');
+        // Pre-fill user data if available
+        if (userData && userData.name) {
+            const nameParts = userData.name.split(" ");
+            fnameEl.value = nameParts[0] || "";
+            lnameEl.value = nameParts.slice(1).join(" ") || "";
 
-                    if(shoppingCartItems === null || shoppingCartItems.length === 0){
-                        Toast.notify("Please Choose an Item Before !", "warning");
-                        setTimeout(() => {
-                            navigate('/catalog');
-                        }, 1000);
+            if (userData.email) emailEl.value = userData.email;
+            if (userData.phone) phoneEl.value = userData.phone;
+
+            // Load address from localStorage if exists
+            if (userData.city || userData.state || userData.addressDetail) {
+                cityEl.value = userData.city || "";
+                stateEl.value = userData.state || "";
+                addressDetailEl.value = userData.addressDetail || "";
+            }
+
+            // Disable pre-filled fields
+            document.querySelectorAll("#fname, #lname, #email, #phone").forEach(input => {
+                input.disabled = true;
+            });
+        }
+
+
+        // Card number formatting and validation
+        cardNum.addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, "");
+            value = value.substring(0, 16);
+            let formatNumVal = value.match(/.{1,4}/g)?.join("-") || "";
+            e.target.value = formatNumVal;
+        });
+
+        cardNum.addEventListener("blur", function (e) {
+            let value = e.target.value.replace(/\D/g, "");
+            if (value.length === 16) {
+                cardNum.classList.remove("is-invalid");
+                cardNum.classList.add("is-valid");
+            } else if (value.length > 0) {
+                cardNum.classList.remove("is-valid");
+                cardNum.classList.add("is-invalid");
+            }
+        });
+
+        // Function to validate exp date
+        function validateExpDate(exp) {
+            // Check format MM/YY
+            if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(exp)) {
+                return false;
+            }
+
+            let [month, year] = exp.split("/").map(Number);
+            year += 2000; // Convert YY to YYYY
+
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const currentMonth = now.getMonth() + 1;
+
+            // Check if the card is expired
+            if (year < currentYear || (year === currentYear && month < currentMonth)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        // Expiration date formatting and validation
+        expDate.addEventListener("input", function (e) {
+            let value = e.target.value.replace(/[^\d\/]/g, ""); 
+            
+            // Auto-add slash after 2 digits
+            if (value.length === 2 && !value.includes("/")) {
+                value = value + "/";
+            }
+            
+            value = value.substring(0, 5); // Limit to MM/YY
+            e.target.value = value;
+        });
+
+        expDate.addEventListener("blur", function (e) {
+            let value = e.target.value;
+            
+            if (value.length > 0) {
+                if (validateExpDate(value)) {
+                    expDate.classList.remove("is-invalid");
+                    expDate.classList.add("is-valid");
+                } else {
+                    expDate.classList.remove("is-valid");
+                    expDate.classList.add("is-invalid");
+                }
+            }
+        });
+
+        // CVV validation
+        cvv.addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, "");
+            value = value.substring(0, 3);
+            e.target.value = value;
+        });
+
+        cvv.addEventListener("blur", function (e) {
+            let value = e.target.value;
+            
+            if (value.length > 0) {
+                if (value.length === 3) {
+                    cvv.classList.remove("is-invalid");
+                    cvv.classList.add("is-valid");
+                } else {
+                    cvv.classList.remove("is-valid");
+                    cvv.classList.add("is-invalid");
+                }
+            }
+        });
+
+        // Form submission
+        const form = document.querySelector('#checkout-form');
+        
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const selectedPayment = document.querySelector('input[name="pay-method"]:checked');
+            
+            // Handle visa field requirements dynamically
+            if (selectedPayment && selectedPayment.value === 'visa') {
+                cardNum.setAttribute("required", "true");
+                expDate.setAttribute("required", "true");
+                cvv.setAttribute("required", "true");
+            } else {
+                cardNum.removeAttribute("required");
+                expDate.removeAttribute("required");
+                cvv.removeAttribute("required");
+            }
+
+            let isValid = form.checkValidity();
+            let customValidationPassed = true;
+
+            // Custom validation for visa fields
+            if (selectedPayment && selectedPayment.value === 'visa') {
+                const cardValue = cardNum.value.replace(/\D/g, "");
+                const cvvValue = cvv.value.replace(/\D/g, "");
+                const expValid = validateExpDate(expDate.value);
+
+                // Card number validation
+                if (cardValue.length !== 16) {
+                    cardNum.classList.add("is-invalid");
+                    cardNum.classList.remove("is-valid");
+                    customValidationPassed = false;
+                } else {
+                    cardNum.classList.remove("is-invalid");
+                    cardNum.classList.add("is-valid");
+                }
+
+                // Expiration date validation
+                if (!expValid) {
+                    expDate.classList.add("is-invalid");
+                    expDate.classList.remove("is-valid");
+                    customValidationPassed = false;
+                    if (typeof Toast !== 'undefined') {
+                        Toast.notify("⚠️ Enter valid expiration date in MM/YY format", "warning");
+                    }
+                } else {
+                    expDate.classList.remove("is-invalid");
+                    expDate.classList.add("is-valid");
+                }
+
+                // CVV validation
+                if (cvvValue.length !== 3) {
+                    cvv.classList.add("is-invalid");
+                    cvv.classList.remove("is-valid");
+                    customValidationPassed = false;
+                } else {
+                    cvv.classList.remove("is-invalid");
+                    cvv.classList.add("is-valid");
+                }
+            }
+
+            // Check if shopping cart has items
+            const shoppingCartItems = sessionStore.read("shoppingCart");
+            if (!shoppingCartItems || shoppingCartItems.length === 0) {
+                if (typeof Toast !== 'undefined') {
+                    Toast.notify("Please choose an item before checkout!", "warning");
+                    setTimeout(() => {
+                        navigate('/catalog');
+                    }, 1000);
+                }
+                return;
+            }
+
+            // If form is not valid, show validation feedback
+            if (!isValid || !customValidationPassed) {
+                form.classList.add('was-validated');
+                return;
+            }
+
+            // Process visa payment if selected
+            if (selectedPayment && selectedPayment.value === 'visa') {
+                try {
+                    const currentAmount = parseFloat(sessionStore.read("currentTotal")) || 0;
+                    const credits = localStore.read("creditCard") || [];
+                    
+                    const credit = credits.find(
+                        card => card.cardNumber === cardNum.value.replace(/-/g, "") &&
+                        card.expDate === expDate.value &&
+                        card.cvv === cvv.value
+                    );
+                    
+                    if (!credit) {
+                        if (typeof Toast !== 'undefined') {
+                            Toast.notify("❌ Invalid credit card details!", "error");
+                        }
                         return;
                     }
-                } 
 
-                if (selectedPay && selectedPay.value === 'visa') {
-                    console.log(cardNum.value.replace(/-/g, "") , expDate.value , cvv.value);
-                    try {
-                        const currentAmount = parseFloat(sessionStore.read("currentTotal")) || 0;
-                        const credits = localStore.read("creditCard") || [];
-                        
-                        console.log("Looking for card details:", {
-                            cardNumber: cardNum.value.replace(/-/g, ""),
-                            expDate: expDate.value,
-                            cvv: cvv.value
-                        });
-                        console.log("Available credit cards:", credits);
-                        
-                        const credit = credits.find(
-                            card => card.cardNumber === cardNum.value.replace(/-/g, "") &&
-                            card.expDate === expDate.value &&
-                            card.cvv === cvv.value
-                        );
-                        
-                        console.log("Found matching credit card:", credit);
-
-
-                        // Check if sufficient balance
-                        if (credit.balance < currentAmount) {
+                    // Check if sufficient balance
+                    if (credit.balance < currentAmount) {
+                        if (typeof Toast !== 'undefined') {
                             Toast.notify(`Insufficient funds! Available: $${credit.balance}, Required: $${currentAmount}`, "error");
-                            console.log("Insufficient funds - payment failed");
-                            return;
                         }
-
-                        // Process payment
-                        credit.balance -= currentAmount;
-                        localStore.write("creditCard", credits);
-                        Toast.notify(`Payment successful! Remaining balance: $${credit.balance.toFixed(2)}`, "success");
-                        sessionStore.write("currentTotal", "");
-                        console.log("Payment processed successfully");
-                        
-                    } catch (error) {
-                        console.error("Error processing payment:", error);
-                        Toast.notify("Payment processing error occurred!", "error");
                         return;
+                    }
+
+                    // Process payment
+                    credit.balance -= currentAmount;
+                    localStore.write("creditCard", credits);
+                    if (typeof Toast !== 'undefined') {
+                        Toast.notify(`Payment successful! Remaining balance: $${credit.balance.toFixed(2)}`, "success");
+                    }
+                    sessionStore.write("currentTotal", "");
+                    
+                } catch (error) {
+                    console.error("Error processing payment:", error);
+                    if (typeof Toast !== 'undefined') {
+                        Toast.notify("Payment processing error occurred!", "error");
+                    }
+                    return;
+                }
+            }
+
+            // Collect form data
+            const formData = {
+                Name: userData ? userData.name : `${fnameEl.value} ${lnameEl.value}`,
+                email: userData ? userData.email : emailEl.value,
+                phone: userData ? userData.phone : phoneEl.value,
+                city: cityEl.value,
+                state: stateEl.value,
+                address: `${cityEl.value}, ${stateEl.value}`,
+                zipCode: zipCodeEl.value,
+                addressDetail: addressDetailEl.value,
+                payMethod: selectedPayment ? selectedPayment.value : "",
+                cardNumber: selectedPayment && selectedPayment.value === 'visa' ? cardNum.value : "",
+                expDate: selectedPayment && selectedPayment.value === 'visa' ? expDate.value : "",
+                cvv: selectedPayment && selectedPayment.value === 'visa' ? cvv.value : "",
+            };
+
+            console.log("Form Data:", formData);
+            
+            // Update user data in session
+            if (userData) {
+                const newData = { ...userData, ...formData };
+                sessionStore.write("currentUser", newData);
+
+               const allUsers = localStore.read("users") || [];
+
+                for (let i = 0; i < allUsers.length; i++) {
+                    if (allUsers[i].id === userData.id) {
+                        allUsers[i] = { ...allUsers[i], ...formData };
+                        localStore.write("users", allUsers); 
+                        console.log("Updated User:", allUsers[i]); 
+                        
                     }
                 }
-                   
-                
-                event.preventDefault();
+            }
 
-                    const formData = {
-                        Name: userData.name,
-                        email: userData.email,
-                        phone: userData.phone,
-                        city: city,
-                        state: state,
-                        address : city + "," +state ,
-                        zipCode: zipcode,
-                        payMethod: selectedPay ? selectedPay.value : "",
-                        cardNumber: selectedPay && selectedPay.value === 'visa' ? cardNum.value : "",
-                        expDate: selectedPay && selectedPay.value === 'visa' ? expDate.value : "",
-                        cvv: selectedPay && selectedPay.value === 'visa' ? cvv.value : "",
-                    };
-
-                    console.log("Form Data:", formData);
-                    const newData = {...userData , ...formData}
-                    sessionStore.write("currentUser" , newData);
-                    
-
-                    form.querySelectorAll("input, textarea").forEach(el => {
-                        if (!el.disabled) {
-                            if (el.type === "checkbox" || el.type === "radio") {
-                                el.checked = false;
-                            } else {
-                                el.value = "";
-                            }
-                        }
-                    });
-
-                    form.classList.remove('was-validated');
-                    form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
-                        el.classList.remove('is-valid', 'is-invalid');
-                    });
+            // Load address to inputs
+            if (userData.address) {
+                cityEl.value = userData.address.city || "";
+                stateEl.value = userData.address.state || "";
+                addressDetailEl.value = userData.address.detailAddress || "";
+            } else {
+                cityEl.value = "";
+                stateEl.value = "";
+                addressDetailEl.value = "";
+            }
 
 
-                    const cartManager = new CartManager();
-                    const items = cartManager.getCartItem();
-                    const localProducts = localStore.read("products", []);
+            // Update product stock
+            const cartManager = new CartManager();
+            const items = cartManager.getCartItem();
+            const localProducts = localStore.read("products", []);
 
-                    items.forEach(cartItem => {
-                        const product = localProducts.find(p => p.id === cartItem.id);
-                        if (!product) return;
+            items.forEach(cartItem => {
+                const product = localProducts.find(p => p.id === cartItem.id);
+                if (!product) return;
 
-                        const stockItem = product.stock.find(s => s.color === cartItem.color);
-                        if (!stockItem) return;
+                const stockItem = product.stock.find(s => s.color === cartItem.color);
+                if (!stockItem) return;
 
-                        const sizeObj = stockItem.sizes.find(sz => sz.name === cartItem.size);
-                        if (!sizeObj) return;
+                const sizeObj = stockItem.sizes.find(sz => sz.name === cartItem.size);
+                if (!sizeObj) return;
 
-                        console.log("QTY Before", sizeObj.qty);
+                sizeObj.qty = Math.max(0, sizeObj.qty - cartItem.qty);
+            });
 
-                        sizeObj.qty -= cartItem.qty; 
-                        if (sizeObj.qty < 0) sizeObj.qty = 0;
+            localStore.write("products", localProducts);
+            
+            // Create order
+            const orderLocal = localStore.read("orders") || [];
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, "0");       
+            const month = String(today.getMonth() + 1).padStart(2, "0"); 
+            const year = today.getFullYear();  
+                            
 
-                        console.log("QTY After", sizeObj.qty);
-                    });
-
-                    localStore.write("products", localProducts);
-                    
-                    const orderLocal = localStore.read("orders") || [];
-
-
-                    const today = new Date();
-                    const day = String(today.getDate()).padStart(2, "0");       
-                    const month = String(today.getMonth() + 1).padStart(2, "0"); 
-                    const year = today.getFullYear();  
-                                    
-                    const order = {
+            const order = {
                             orderId: Date.now() + "-" + userData.id,
                             userId : userData.id,
                             userName: userData.name,
@@ -465,22 +519,38 @@ export default class CheckOutForm extends Component{
                                 img: item.img,
                                 state: "pending" 
                             })),
-                    }
-                            
-                    orderLocal.push(order);
-                    console.log(orderLocal);
-                    localStore.write("orders" , orderLocal);
-                    sessionStore.write("shoppingCart" , [])
+                }
+                    
+            orderLocal.push(order);
+            localStore.write("orders", orderLocal);
+            sessionStore.write("shoppingCart", []);
 
-                    console.log(orderLocal);
-                    Toast.notify("Your Order is Sent now ", "success");
-                    setTimeout(() => {
-                        navigate('/profile');
-                    }, 1000);
-                    console.log("all is Done")
-                
+            // Clear form
+            form.reset();
+            form.classList.remove('was-validated');
+            form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+                el.classList.remove('is-valid', 'is-invalid');
             });
 
+            // Hide visa collapse if it was open
+            if (visaOpen) {
+                visaCollapse.hide();
+                arrUp.style.display = 'none';
+                arrDown.style.display = 'inline-block';
+                visaOpen = false;
+            }
+
+            console.log("Order created:", order);
+            if (typeof Toast !== 'undefined') {
+                Toast.notify("Your order has been placed successfully!", "success");
+            }
+            
+            setTimeout(() => {
+                if (typeof navigate !== 'undefined') {
+                    navigate('/profile');
+                }
+            }, 1000);
+        });
     }
 }
 

@@ -19,9 +19,16 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      overflow: hidden;
       margin: 0 auto;
+      background-color: var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      font-size: xx-large;
 }
+
 .profile-avatar img {
       width: 90%;
       height: 90%;
@@ -29,10 +36,8 @@
 }
 
 .orders-table-container{
-
       max-height: 700px;
-      overflow-y: scroll;
-
+      /* overflow-y: scroll; */
 }
 
 .orderTable{
@@ -49,6 +54,16 @@
     border-radius: 20%;
 }
 
+.brand-bg{
+      background-color: var(--brand);
+      color: white;
+}
+
+.brand-bg:hover{
+      background-color: #333 !important;
+      color: white;
+
+}
 
 .order-state{
       width: 20px !important;

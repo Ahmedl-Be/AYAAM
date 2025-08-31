@@ -91,6 +91,7 @@ export default class CartItems extends Component {
         `
     }
 
+
     // Method to update a specific cart item's controls
     updateCartItemControls(id, color, size) {
         const cartManager = new CartManager();
@@ -127,6 +128,7 @@ export default class CartItems extends Component {
 
         // Re-attach event listeners for this specific item
         this.attachItemEventListeners(cartCard);
+        
     }
 
     // Method to attach event listeners to a specific cart item
@@ -144,7 +146,11 @@ export default class CartItems extends Component {
                 const cartManager = new CartManager();
                 cartManager.increaseQty(id, color, size, e.currentTarget);
                 this.updateCartItemControls(id, color, size);
-                window.dispatchEvent(new Event("cartUpdated")); // Navbar update
+                
+                // Dispatch event for navbar and other components
+                document.dispatchEvent(new CustomEvent("cartUpdated", {
+                    detail: { action: 'itemIncreased', id, color, size }
+                }));
             });
         }
 
@@ -157,7 +163,10 @@ export default class CartItems extends Component {
                 const cartManager = new CartManager();
                 cartManager.decreaseQty(id, color, size, e.currentTarget);
                 this.updateCartItemControls(id, color, size);
-                window.dispatchEvent(new Event("cartUpdated")); // Navbar update
+                
+                document.dispatchEvent(new CustomEvent("cartUpdated", {
+                    detail: { action: 'itemDecreased', id, color, size }
+                }));
             });
         }
 
@@ -169,18 +178,26 @@ export default class CartItems extends Component {
 
                 const cartManager = new CartManager();
                 cartManager.removeItem(id, color, size, cartCard);
-                window.dispatchEvent(new Event("cartUpdated")); // Navbar update
+                
+                document.dispatchEvent(new CustomEvent("cartUpdated", {
+                    detail: { action: 'itemRemoved', id, color, size }
+                }));
 
-                // For delete, just re-render the whole component
+                // For delete, re-render the whole component
                 this.render();
             });
         }
     }
 
-
     script() {
-        
         const cartManager = new CartManager();
+
+        // Set up listener for cart updates from other components (like RelatedProducts)
+        document.addEventListener('cartUpdated', (e) => {
+            if (e.detail && e.detail.action === 'itemAdded') {
+                this.render();
+            }
+        });
 
         document.querySelectorAll('.icrease-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
@@ -190,7 +207,10 @@ export default class CartItems extends Component {
 
                 cartManager.increaseQty(id, color, size);
                 this.updateCartItemControls(id, color, size);
-                window.dispatchEvent(new Event("cartUpdated")); // Navbar update
+                
+                document.dispatchEvent(new CustomEvent("cartUpdated", {
+                    detail: { action: 'itemIncreased', id, color, size }
+                }));
             });
         });
 
@@ -202,7 +222,10 @@ export default class CartItems extends Component {
 
                 cartManager.decreaseQty(id, color, size);
                 this.updateCartItemControls(id, color, size);
-                window.dispatchEvent(new Event("cartUpdated")); // Navbar update
+                
+                document.dispatchEvent(new CustomEvent("cartUpdated", {
+                    detail: { action: 'itemDecreased', id, color, size }
+                }));
             });
         });
 
@@ -213,12 +236,12 @@ export default class CartItems extends Component {
                 const size = e.currentTarget.dataset.size;
 
                 const card = document.querySelector(`.cart-card[data-id="${id}"][data-color="${color}"][data-size="${size}"]`);
-                console.log(card)
 
                 if (card) {
                     cartManager.removeItem(id, color, size);
-                    window.dispatchEvent(new Event("cartUpdated")); // Navbar update
-                    // For delete operations, re-render the whole component
+                    document.dispatchEvent(new CustomEvent("cartUpdated", {
+                        detail: { action: 'itemRemoved', id, color, size }
+                    }));                    
                     this.render();
                 }
             });

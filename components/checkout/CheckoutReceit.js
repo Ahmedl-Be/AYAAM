@@ -37,6 +37,9 @@ export default class CheckoutReceit extends Component{
                     <p>Estimated Taxes : _____</p>
                     
                     <p class='totalCart py-1 py-md-3 mb-md-3 d-flex justify-content-between fw-bold'> Total :  <span class="total">$ ${(cartManager.calculateTotal().total).toFixed(2)}</span>  </p>
+                    <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar brand-bg text-center text-white" style="width: 100%">100% Confirm Your Order</div>
+                    </div>
                 </div>
                
             </div>

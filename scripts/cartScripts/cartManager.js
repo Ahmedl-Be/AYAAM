@@ -97,6 +97,10 @@ export function CartManager() {
           this.updateTotalUI(totals);
           this.saveCart();
         } 
+
+        if(item.qty >= (sizeObj.qty )) Toast.notify(`✅ End Of Stock`, "danger");
+
+        
   };
 
   
