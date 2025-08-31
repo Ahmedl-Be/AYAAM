@@ -43,7 +43,7 @@ export default class Router {
             const params = parseQuery(queryString || "");
 
 
-            if (pathPart !== '/login' && pathPart !== '/signup' && pathPart !== '/signup') {
+            if (pathPart !== '/login' && pathPart !== '/signup' && pathPart !== '/404' && pathPart !== '/confirm-seller') {
                 sessionStore.write('redirectedPage', fullPath);
             }
 
@@ -118,7 +118,7 @@ export default class Router {
 
             // If already inside the same view → just forward to subroute
             if (this.currentView && this.currentView.route === baseRoute) {
-                
+
                 this.currentView.onSubRoute(pathPart, params);
 
                 return;

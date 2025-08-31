@@ -2,7 +2,8 @@ import { getCurrentUser } from "../../data/authentication.js"
 
 export default function Footer() {
   const currentUser = getCurrentUser()
-    return `
+  console.log(currentUser?.role !== 'admin');
+  return `
 
   <div class="container text-md-left" data-fade>
     <div class="row text-md-left">
@@ -20,14 +21,14 @@ export default function Footer() {
         <h5 class="mb-4 font-weight-bold text-uppercase">Quick Links</h5>
         <p><a href="#/home" class="text-light text-decoration-none" data-route>Home</a></p>
         ${currentUser ?
-        `
+      `
         <p><a href="#/profile" class="text-light text-decoration-none" data-route>Profile</a></p>
         `
-        :
-        ` <p><a href="#/login" class="text-light text-decoration-none" data-route>Login</a></p>
+      :
+      ` <p><a href="#/login" class="text-light text-decoration-none" data-route>Login</a></p>
           <p><a href="#/signup" class="text-light text-decoration-none" data-route>Sign Up</a></p>
         `
-        }
+    }
         <p><a href="#/catalog" class="text-light text-decoration-none" data-route>Catalog</a></p>
         <p><a href="#/about" class="text-light text-decoration-none" data-route>About Us</a></p>
         
@@ -40,7 +41,7 @@ export default function Footer() {
         <p><a href="#/info/policy" class="text-light text-decoration-none">Privacy & Policy</a></p>
         <p><a href="#/info/terms" class="text-light text-decoration-none">Terms of use</a></p>
         <p><a href="#/info/faqs" class="text-light text-decoration-none" data-route>FAQs</a></p>
-        ${!(currentUser?.role === ('seller' || 'admin'))? `<p><a href="#/sell-with-us" class="text-light text-decoration-none" data-route>Sell with AYAAM</a></p>`: ''}
+        ${ (currentUser?.role !== 'admin' && currentUser?.role !== 'seller' )? `<p><a href="#/sell-with-us" class="text-light text-decoration-none" data-route>Sell with AYAAM</a></p>`: ''}
       </div>
 
       <!-- Contact -->

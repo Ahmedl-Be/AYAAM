@@ -195,6 +195,7 @@ export function redirect(_role) {
         return;
     }
 
+
     if (redirected && redirected !== '/home') {
         sessionStore.remove('redirectedPage');
         navigate(redirected);

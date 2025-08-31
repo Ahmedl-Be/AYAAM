@@ -1,8 +1,7 @@
 import View from "../components/core/view.js";
 import Footer from "../components/landing/Footer.js";
 import FloatBtns from "../components/ui/floating.js";
-import { Button } from "../components/ui/buttons.js";
-import { navigate } from "../scripts/utils/navigation.js";
+import Navbar from "../components/landing/Nav.js";
 
 
 export default class SellWithUsPage extends View {
@@ -16,6 +15,7 @@ export default class SellWithUsPage extends View {
     template() {
         return `
         <div id="floatBtns"></div>
+        <header class="sticky-top bg-white" id='navbar' data-fade></header>
         <div class="sell-ayaam">
 
         <!-- Hero -->
@@ -170,6 +170,7 @@ export default class SellWithUsPage extends View {
 
     script() {
         this.mount(FloatBtns, "#floatBtns");
+        this.mount(Navbar, "#navbar");
         // Init Leaflet map
         var map = L.map('map').setView([26.8206, 30.8025], 5.5);
 
