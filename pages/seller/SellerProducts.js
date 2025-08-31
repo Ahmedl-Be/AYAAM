@@ -479,7 +479,8 @@ export default class SellerProducts extends View {
     }
 
     function loadProducts() {
-      const products = localStore.read("products") || [];
+      let user = getCurrentUser();
+      let products = localStore.read("products", []).filter(prod => prod.sellerId === user.id);
       const tableBody = document.getElementById("productTableBody");
       tableBody.innerHTML = "";
 
