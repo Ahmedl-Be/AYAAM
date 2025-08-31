@@ -13,7 +13,7 @@ const accessories = [
         offers: [
                 'free shipping'
         ],
-        sellerId: 'seller_2', 
+        sellerId: 'SellAzza5', 
         category: "Women", 
         subCategory: "Accessories", 
         
@@ -43,7 +43,7 @@ const accessories = [
         offers: [
                 'free shipping'
         ],
-        sellerId: 'seller_2', 
+        sellerId: 'SellAzza5', 
         category: "Women", 
         subCategory: "Accessories", 
         
@@ -73,7 +73,7 @@ const accessories = [
         offers: [
             'free shipping'
         ],
-        sellerId: 'seller_2',
+        sellerId: 'SellAzza5',
         category: "Women", 
         subCategory: "Accessories",
         
@@ -104,7 +104,7 @@ const accessories = [
             'free shipping'
         ],
 
-        sellerId: 'seller_1', 
+        sellerId: 'SellAzza5', 
         category: "Women", 
         subCategory: "Accessories", 
             
@@ -134,7 +134,7 @@ const accessories = [
         offers: [
                 ' '
         ],
-        sellerId: 'seller_1',
+        sellerId: 'SellAzza5',
         category: "Women", 
         subCategory: "Accessories", 
         
@@ -159,7 +159,7 @@ const accessories = [
         offers: [
                 ' '
         ],
-        sellerId: 'seller_3', 
+        sellerId: 'SellAzza5', 
         category: "Women", 
         subCategory: "Accessories", 
         
@@ -189,7 +189,7 @@ const accessories = [
         offers: [
                 'free shipping'
         ],
-        sellerId: 'seller_3', 
+        sellerId: 'SellAzza5', 
         category: "Women", 
         subCategory: "Accessories",  
         
@@ -219,7 +219,7 @@ const accessories = [
         offers: [
                 'free shipping'
         ],
-        sellerId: 'seller_2', 
+        sellerId: 'SellAzza5', 
         category: "Women", 
         subCategory: "Accessories", 
         
@@ -249,7 +249,7 @@ const accessories = [
         offers: [
                 'free shipping'
         ],
-        sellerId: 'seller_2', 
+        sellerId: 'SellAzza5', 
         category: "Women", 
         subCategory: "Accessories", 
         
@@ -279,7 +279,7 @@ const accessories = [
         offers: [
                 'free shipping'
         ],
-        sellerId: 'seller_3', 
+        sellerId: 'SellAzza5', 
         category: "Women", 
         subCategory: "Accessories", 
         

@@ -10,15 +10,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2500,
     material: "Wool Blend",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Black",
         images: ["prod_p01.jpg"],
         sizes: [
-          { name: "48", quantity: 5 },
-          { name: "50", quantity: 3 }
+          { name: "48", qty: 5 },
+          { name: "50", qty: 3 }
         ]
       }
     ]
@@ -32,15 +32,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2600,
     material: "Polyester & Viscose",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Navy",
         images: ["prod_p02.jpg"],
         sizes: [
-          { name: "48", quantity: 4 },
-          { name: "50", quantity: 6 }
+          { name: "48", qty: 4 },
+          { name: "50", qty: 6 }
         ]
       }
     ]
@@ -54,15 +54,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 3000,
     material: "Wool",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Gray Check",
         images: ["prod_p03.jpg"],
         sizes: [
-          { name: "48", quantity: 2 },
-          { name: "50", quantity: 5 }
+          { name: "48", qty: 2 },
+          { name: "50", qty: 5 }
         ]
       }
     ]
@@ -76,15 +76,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2800,
     material: "Wool Blend",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Charcoal",
         images: ["prod_p04.jpg"],
         sizes: [
-          { name: "48", quantity: 3 },
-          { name: "50", quantity: 4 }
+          { name: "48", qty: 3 },
+          { name: "50", qty: 4 }
         ]
       }
     ]
@@ -98,15 +98,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2400,
     material: "Linen & Cotton",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Light Gray",
         images: ["prod_p05.jpg"],
         sizes: [
-          { name: "48", quantity: 6 },
-          { name: "50", quantity: 3 }
+          { name: "48", qty: 6 },
+          { name: "50", qty: 3 }
         ]
       }
     ]
@@ -120,15 +120,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2700,
     material: "Wool",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Blue Pinstripe",
         images: ["prod_p06.jpg"],
         sizes: [
-          { name: "48", quantity: 5 },
-          { name: "50", quantity: 4 }
+          { name: "48", qty: 5 },
+          { name: "50", qty: 4 }
         ]
       }
     ]
@@ -142,15 +142,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 3200,
     material: "Velvet",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Burgundy",
         images: ["prod_p07.jpg"],
         sizes: [
-          { name: "48", quantity: 2 },
-          { name: "50", quantity: 3 }
+          { name: "48", qty: 2 },
+          { name: "50", qty: 3 }
         ]
       }
     ]
@@ -164,15 +164,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2300,
     material: "Linen",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "White",
         images: ["prod_p08.jpg"],
         sizes: [
-          { name: "48", quantity: 4 },
-          { name: "50", quantity: 5 }
+          { name: "48", qty: 4 },
+          { name: "50", qty: 5 }
         ]
       }
     ]
@@ -186,15 +186,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 2600,
     material: "Cotton Blend",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Olive",
         images: ["prod_p09.jpg"],
         sizes: [
-          { name: "48", quantity: 3 },
-          { name: "50", quantity: 2 }
+          { name: "48", qty: 3 },
+          { name: "50", qty: 2 }
         ]
       }
     ]
@@ -208,15 +208,15 @@ const menProductSuits = [
     subCategory: "Suits",
     price: 3500,
     material: "Wool & Satin",
-    sellerid: "sahmedbeltagy",
+    sellerId: "SellBelt2",
     status: "approved",
     stock: [
       {
         color: "Black",
         images: ["prod_p010.jpg"],
         sizes: [
-          { name: "48", quantity: 4 },
-          { name: "50", quantity: 3 }
+          { name: "48", qty: 4 },
+          { name: "50", qty: 3 }
         ]
       }
     ]

@@ -1,7 +1,9 @@
 import { logout } from "../../data/authentication.js";
 import { navigate } from "../../scripts/utils/navigation.js";
+import { AdminProfile } from "../../pages/admin/AdminProfile.js";
+import { getInitials, getRandomColor } from "../../scripts/utils/dashboardUtils.js";
 
-// Sidebar.js
+// sidebar component
 export function Sidebar(sections = [], title = "") {
     return `
     <!-- ...............Toggle Button (visible only on md and smaller)................ -->
@@ -18,19 +20,28 @@ export function Sidebar(sections = [], title = "") {
     </button>
 
     <!-- ...............Sidebar for LG screens................ -->
-    <div class="d-none d-lg-flex flex-column bg-light border-end position-fixed h-100"
+    <div class="d-none d-lg-flex flex-column bg-light border-end position-fixed h-100 db-sidebar"
         style="width: 250px; z-index: 1020;">
         <div class="mt-4">
-            <h5 class="mb-4">${title}</h5>
-            <button 
-                class=" list-group-item d-flex align-items-center gap-2 mb-3 sidebar-homeBtn" 
-                title="Go to Home Page"">
-                <i class="fas fa-home"></i> Home
+            <button class="btn  text-decoration-none p-0 admin-profile-btn " style="cursor: pointer;" title="Go To Profile">
+                <div  ${getRandomColor()}" 
+                    style="width: 40px; height: 40px; font-size: 0.875rem; font-weight: bold; margin: 0 40%">
+                    ${getInitials(title)}
+                </div>
+                <h5 class="mb-4 pt-2 ms-3 wlc-tiltle"> Hello! ${title}</h5>
             </button>
+            <button 
+            class=" list-group-item d-flex align-items-center gap-3 mb-2 ms-5 text-decoration-underline sidebar-homeBtn " 
+            title="Go to Home Page">
+            <i class="fas fa-home"></i> Home
+            </button>
+            <hr class="bg-secondary">
             <div class="list-group border-0 ">
                 ${sections.map(section => `
-                    <a class="list-group-item list-group-item-action bg-primary text-white" 
-                    style="cursor: pointer;">
+                    <a class="list-group-item list-group-item-action bg-primary text-white fw-bold " 
+                        data-bs-toggle="collapse" 
+                        href="#lg-collapse-${section.id}" 
+                        role="button">
                         <i class="${section.icon}"></i> <span>${section.title}</span>
                     </a>
                     <div class="collapse show" id="lg-collapse-${section.id}">
@@ -56,34 +67,38 @@ export function Sidebar(sections = [], title = "") {
     </div>
 
     <!-- ...............Offcanvas Sidebar for MD and SM................ -->
-    <div class="offcanvas offcanvas-start d-lg-none" id="sidebarOffcanvas" style="width: 250px;">
-        <div class="offcanvas-header mt-3">
-            <h5 class="offcanvas-title">${title}</h5>
+    <div class="offcanvas offcanvas-start d-lg-none db-sidebar" id="sidebarOffcanvas" style="width: 250px; ">
+        <div class="offcanvas-header mt-4">
+            <button class="btn  text-decoration-none p-0 admin-profile-btn " style="cursor: pointer;">
+                <div  ${getRandomColor()}" 
+                    style="width: 30px; height: 30px; font-size: 0.875rem; font-weight: bold; margin: 0 40%">
+                    ${getInitials(title)}
+                </div>
+                <h5 class="mb-0  ms-3 wlc-tiltle"> Hello! ${title}</h5>
+            </button>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
-            <button 
-                class=" list-group-item d-flex align-items-center gap-2 mb-3 sidebar-homeBtn" 
-                title="Go to Home Page"">
-                <i class="fas fa-home"></i> Home
+            <button class=" list-group-item d-flex align-items-center gap-4 mb-2 ms-5 text-decoration-underline sidebar-homeBtn" 
+                    title="Go to Home Page">
+                    <i class="fas fa-home"></i> Home
             </button>
+            <hr>
         <div class="offcanvas-body p-0">
             <div class="list-group border-0  text-sm-start">
                 ${sections.map(section => `
-                    <a class="list-group-item list-group-item-action bg-primary text-white" 
+                    <a class="list-group-item list-group-item-action bg-primary text-white fw-bold" 
                         data-bs-toggle="collapse" 
                         href="#collapse-${section.id}" 
-                        style="cursor: pointer;" 
                         role="button">
                         <i class="${section.icon}"></i> <span>${section.title}</span>
                     </a>
-                    <div class="collapse" id="collapse-${section.id}">
+                    <div class="collapse show" id="collapse-${section.id}">
                         <ul class="list-group list-group-flush ms-3">
                             ${section.items.map(item => `
                             <li class="list-group-item text-truncate" 
-                                style="cursor: pointer;" 
                                 data-bs-dismiss="offcanvas" 
                                 data-section="${item.id}">
-                                <a href="#/admin${item.url}"> <i class="${item.icon}" data-route></i> <span>${item.title}</span></a>
+                                <a href="#/admin${item.url}" data-route> <i class="${item.icon}"></i> <span>${item.title}</span></a>
                             </li>
                             `).join("")}
                         </ul>
@@ -98,10 +113,27 @@ export function Sidebar(sections = [], title = "") {
             </button>
         </div>
     </div>
+
+    <!-- Admin Profile Modal -->
+    <div class="modal fade" id="adminProfileModal" tabindex="-1" aria-labelledby="adminProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="adminProfileModalLabel">
+                        <i class="fas fa-user-circle me-2"></i>
+                        Admin Profile
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0" id="adminProfileContainer">
+                    <!-- AdminProfile content will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
     `;
 }
-
-
+// functionalities and ev listeners
 export function SidebarEvents() {
     // Home Buttons
     document.querySelectorAll('.sidebar-homeBtn').forEach(btn => {
@@ -117,4 +149,30 @@ export function SidebarEvents() {
             navigate('/login');
         });
     });
+
+    // Admin Profile Popup Buttons
+    document.querySelectorAll('.admin-profile-btn').forEach(btn => {
+        btn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAdminProfilePopup();
+        });
+    });
+}
+
+//  show admin profile in popup
+function showAdminProfilePopup() {
+    const modal = new bootstrap.Modal(document.getElementById('adminProfileModal'));
+    const container = document.getElementById('adminProfileContainer');
+    
+    // Create and render AdminProfile
+    const adminProfile = new AdminProfile();
+    container.innerHTML = adminProfile.template();
+    
+    // Execute any scripts from AdminProfile
+    if (adminProfile.script) {
+        adminProfile.script();
+    }
+    
+    // Show the modal
+    modal.show();
 }

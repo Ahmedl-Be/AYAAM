@@ -46,7 +46,7 @@ const menProductShoes = [
 
 		],
 		material: "Leather",
-		sellerId: "ahmedossama",
+		sellerId: "SellMoh3",
 		sale: 0.1,
 		offers: ["free shipping"],
 	},
@@ -93,7 +93,7 @@ const menProductShoes = [
 
 		],
 		material: "Premium mixed material upper with mesh, synthetic and nubuck elements",
-		sellerId: "ahmedossama",
+		sellerId: "SellMoh3",
 		sale: 0.1,
 		offers: ["free shipping"],
 	},

@@ -48,6 +48,10 @@ export default class ProductsStatsPage extends View {
         }
 
         return `
+        <div class="col-12">
+            <h2 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Products Stats</h2>
+            <p class="text-muted">Overview of <span class="fw-bold text-primary">AYAAM</span>'s Products </p>
+        </div>
         <div class="row">
             <div class="col-md-3 mb-3">
                 <div class="card bg-primary text-white shadow-sm">
@@ -161,7 +165,7 @@ export default class ProductsStatsPage extends View {
                         
                         <div class="d-flex justify-content-between">
                             <span><i class="fas fa-coins text-info me-1"></i> Total inventory value:</span>
-                            <strong>${totalPrice.toFixed(2)}</strong>
+                            <strong>$${totalPrice.toFixed(2)}</strong>
                         </div>
                         
                         ${products.length === 0 ?

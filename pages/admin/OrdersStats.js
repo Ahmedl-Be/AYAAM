@@ -1,5 +1,5 @@
 import View from "../../components/core/view.js";
-import { calculateOrderStats, cleanupOrdersDashboard, initializeOrdersDashboard, prepareChartData, renderChartCard, renderOrdersTable, renderStatCard, renderTopProductsCard, } from "../../components/dashboard/admin-orders.js";
+import { calculateOrderStats, initializeOrdersDashboard, prepareChartData, renderChartCard, renderOrdersTable, renderStatCard, renderTopProductsCard, } from "../../components/dashboard/admin-orders.js";
 import { localStore } from "../../scripts/utils/storage.js";
 
 
@@ -13,22 +13,22 @@ export default class OrdersStatsPage extends View {
         const chartData = prepareChartData(ordersData);
 
         return `
-        <div id="orders">
         <div class="container-fluid py-4">
             <!-- Dashboard Header -->
             <div class="row mb-4">
                 <div class="col-12">
                     <h2 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Orders Dashboard</h2>
-                    <p class="text-muted">Overview of <span class="fw-bold text-danger">AYAAM</span>'s order performance</p>
+                    <p class="text-muted">Overview of <span class="fw-bold text-primary">AYAAM</span>'s order performance</p>
                 </div>
             </div>
 
             <!-- Stats Cards -->
-            <div class="row mb-4 g-2">
+            <div class="row mb-4 ">
                 ${renderStatCard('$' + stats.totalRevenue, 'Total Revenue', 'fa-dollar-sign', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)')}
                 ${renderStatCard(stats.totalOrders, 'Total Orders', 'fa-shopping-cart', 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)')}
                 ${renderStatCard(stats.pendingOrders, 'Pending Orders', 'fa-clock', 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)')}
-                ${renderStatCard(stats.confirmedOrders, 'Confirmed Orders', 'fa-check-circle', 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)')}
+                ${renderStatCard(stats.shippedOrders, 'Shipped Orders', 'fa-truck', 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)')}
+                ${renderStatCard(stats.deliveredOrders, 'Delivered Orders', 'fa-check-circle', 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)')}
             </div>
 
             <!-- Charts Row -->
@@ -58,7 +58,6 @@ export default class OrdersStatsPage extends View {
                 </div>
             </div>
         </div>
-        </div>
     `;
     }
 
@@ -68,8 +67,8 @@ export default class OrdersStatsPage extends View {
         const chartData = prepareChartData(ordersData);
     
         setTimeout(() => initializeOrdersDashboard(chartData), 100);
+       
 
-        
     }
 
 }

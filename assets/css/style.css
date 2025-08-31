@@ -1,8 +1,8 @@
 /* ANIMATIONS */
 @import url(animations.css);
 
-
-
+@import url(adminProfilePage.css);
+@import url(AdminDashboard.css);
 @import url(landing.css);
 @import url(slider.css);
 @import url(productlist.css);
@@ -21,25 +21,3 @@
 	transition: all 0.5s;
 }
 
-@media (max-width: 768px) {
-	#adminContent td:nth-child(1),
-	#adminContent th:nth-child(1),
-	#adminContent td:nth-child(2),
-	#adminContent th:nth-child(2),
-	#adminContent td:nth-child(4),
-	#adminContent th:nth-child(4),
-	#adminContent td:nth-child(6),
-	#adminContent th:nth-child(6) {
-		display: none;
-	}
-}
-
-.sortable-header:hover {
-	background-image: linear-gradient(rgba(0, 4, 12, 0.2), rgba(90, 90, 196, 0.2));
-}
-
-@media (min-width: 992px) {
-  #main {
-    margin-left: 250px; /* Matches sidebar width */
-  }
-}

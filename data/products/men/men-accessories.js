@@ -12,18 +12,18 @@ const menProductsAcc = [
         sale:0,
         price: 300,
         material: "Leather",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Black",
                 images: ["prod_p01.jpg"],
-                sizes: [{ name: "One Size", quantity: 20 }]
+                sizes: [{ name: "One Size", qty: 20 }]
             },
             {
                 color: "Brown",
                 images: ["prod_p02.jpg"],
-                sizes: [{ name: "One Size", quantity: 15 }]
+                sizes: [{ name: "One Size", qty: 15 }]
             },
         ],
     },
@@ -37,18 +37,18 @@ const menProductsAcc = [
         sale:0,
         price: 1200,
         material: "Stainless Steel & Leather",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Silver-Black",
                 images: ["prod_p11.jpg"],
-                sizes: [{ name: "One Size", quantity: 10 }]
+                sizes: [{ name: "One Size", qty: 10 }]
             },
             {
                 color: "Gold-Brown",
                 images: ["prod_p12.jpg"],
-                sizes: [{ name: "One Size", quantity: 5 }]
+                sizes: [{ name: "One Size", qty: 5 }]
             },
         ],
     },
@@ -62,18 +62,18 @@ const menProductsAcc = [
         sale:0,
         price: 250,
         material: "Wool Blend",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Gray",
                 images: ["prod_p21.jpg"],
-                sizes: [{ name: "One Size", quantity: 12 }]
+                sizes: [{ name: "One Size", qty: 12 }]
             },
             {
                 color: "Navy",
                 images: ["prod_p22.jpg"],
-                sizes: [{ name: "One Size", quantity: 8 }]
+                sizes: [{ name: "One Size", qty: 8 }]
             },
         ],
     },
@@ -87,18 +87,18 @@ const menProductsAcc = [
         sale:0,
         price: 450,
         material: "Metal Alloy",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Silver",
                 images: ["prod_p31.jpg"],
-                sizes: [{ name: "One Size", quantity: 15 }]
+                sizes: [{ name: "One Size", qty: 15 }]
             },
             {
                 color: "Gold",
                 images: ["prod_p32.jpg"],
-                sizes: [{ name: "One Size", quantity: 10 }]
+                sizes: [{ name: "One Size", qty: 10 }]
             },
         ],
     },
@@ -112,18 +112,18 @@ const menProductsAcc = [
         sale:0,
         price: 350,
         material: "Leather",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Brown",
                 images: ["prod_p41.jpg"],
-                sizes: [{ name: "One Size", quantity: 25 }]
+                sizes: [{ name: "One Size", qty: 25 }]
             },
             {
                 color: "Black",
                 images: ["prod_p42.jpg"],
-                sizes: [{ name: "One Size", quantity: 20 }]
+                sizes: [{ name: "One Size", qty: 20 }]
             },
         ],
     },
@@ -137,18 +137,18 @@ const menProductsAcc = [
         sale:0,
         price: 150,
         material: "Acrylic",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Black",
                 images: ["prod_p51.jpg"],
-                sizes: [{ name: "One Size", quantity: 18 }]
+                sizes: [{ name: "One Size", qty: 18 }]
             },
             {
                 color: "Blue",
                 images: ["prod_p52.jpg"],
-                sizes: [{ name: "One Size", quantity: 12 }]
+                sizes: [{ name: "One Size", qty: 12 }]
             },
         ],
     },
@@ -162,18 +162,18 @@ const menProductsAcc = [
         sale:0,
         price: 200,
         material: "Silk",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Red",
                 images: ["prod_p61.jpg"],
-                sizes: [{ name: "One Size", quantity: 14 }]
+                sizes: [{ name: "One Size", qty: 14 }]
             },
             {
                 color: "Navy",
                 images: ["prod_p62.jpg"],
-                sizes: [{ name: "One Size", quantity: 16 }]
+                sizes: [{ name: "One Size", qty: 16 }]
             },
         ],
     },
@@ -187,18 +187,18 @@ const menProductsAcc = [
         sale:0,
         price: 500,
         material: "Stainless Steel",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Silver",
                 images: ["prod_p71.jpg"],
-                sizes: [{ name: "One Size", quantity: 20 }]
+                sizes: [{ name: "One Size", qty: 20 }]
             },
             {
                 color: "Gold",
                 images: ["prod_p72.jpg"],
-                sizes: [{ name: "One Size", quantity: 15 }]
+                sizes: [{ name: "One Size", qty: 15 }]
             },
         ],
     },
@@ -212,18 +212,18 @@ const menProductsAcc = [
         sale:0,
         price: 180,
         material: "Polyester",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Black",
                 images: ["prod_p81.jpg"],
-                sizes: [{ name: "One Size", quantity: 25 }]
+                sizes: [{ name: "One Size", qty: 25 }]
             },
             {
                 color: "White",
                 images: ["prod_p82.jpg"],
-                sizes: [{ name: "One Size", quantity: 20 }]
+                sizes: [{ name: "One Size", qty: 20 }]
             },
         ],
     },
@@ -237,18 +237,18 @@ const menProductsAcc = [
         sale:0,
         price: 900,
         material: "Polyester & Nylon",
-        sellerid: "sahmedbeltagy",
+        sellerId: "SellBelt2",
         status: "approved",
         stock: [
             {
                 color: "Black",
                 images: ["prod_p91.jpg"],
-                sizes: [{ name: "Large", quantity: 8 }]
+                sizes: [{ name: "Large", qty: 8 }]
             },
             {
                 color: "Gray",
                 images: ["prod_p92.jpg"],
-                sizes: [{ name: "Large", quantity: 6 }]
+                sizes: [{ name: "Large", qty: 6 }]
             },
         ],
     },

@@ -1,28 +1,26 @@
 import { localStore } from "../../scripts/utils/storage.js";
 
-// creating charts with enhanced options
+// Enhanced chart creation with cleanup
 export function chartCreation(canvasId, labels, data, colors, type = 'pie') {
     setTimeout(() => {
         const ctx = document.getElementById(canvasId);
         if (ctx) {
             // Load Chart.js 
-            if (typeof Chart === 'undefined') {
-                const script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js';
-                document.head.appendChild(script);
-                script.onload = () => {
-                    createChartInstance(ctx, type, labels, data, colors);
-                };
-            } else {
-                createChartInstance(ctx, type, labels, data, colors);
-            }
+             createChartInstance(ctx, type, labels, data, colors);
         }
     }, 100);
 }
 
-// Enhanced chart creation with better styling and animations
+// chart creation with cleanup
 export function createChartInstance(ctx, type, labels, data, colors) {
-    new Chart(ctx, {
+    // IMPORTANT: Destroy existing chart before creating new one
+    const existingChart = Chart.getChart(ctx);
+    if (existingChart) {
+        existingChart.destroy();
+    }
+
+    // Create new chart
+    const newChart = new Chart(ctx, {
         type: type,
         data: {
             labels: labels,
@@ -68,18 +66,49 @@ export function createChartInstance(ctx, type, labels, data, colors) {
             }
         }
     });
+
+    return newChart;
+}
+
+// destroy charts (Dom Issues with cahrtJs library)
+export function destroyChart(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (canvas) {
+        const chart = Chart.getChart(canvas);
+        if (chart) {
+            chart.destroy();
+        }
+    }
+}
+
+// Destroy all charts in a container 
+export function destroyAllChartsInContainer(containerId) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        const canvases = container.querySelectorAll('canvas');
+        canvases.forEach(canvas => {
+            const chart = Chart.getChart(canvas);
+            if (chart) {
+                console.log(`Destroying chart on canvas: ${canvas.id}`);
+                chart.destroy();
+            }
+        });
+    }
 }
 
 export function renderUsersStats(container) {
+    // Clean up any existing charts in this container first
+    destroyAllChartsInContainer(container.id);
+    
     const users = localStore.read("users") || [];
     
     //counting user types
-    const totalUsers = users.length-1; //MINUS MASTER
+    const totalUsers = users.length; //MINUS MASTER
     const sellers = users.filter(user => user.role === "seller").length;
     const admins = users.filter(user => user.role === "admin").length;
-    const customer = users.filter(user => user.role === "user").length;
+    const customer = users.filter(user => user.role === "customer").length;
     
-    // Calculate growth trend (simplified)
+    // Calculate growth
     const recentUsers = users.filter(user => {
         if (user.joinDate) {
             const joinDate = new Date(user.joinDate);
@@ -201,7 +230,7 @@ export function renderUsersStats(container) {
         </div>
     `;
     
-    // Create enhanced pie chart for users
+    // pie chart for users
     const userLabels = ['Customers', 'Sellers', 'Admins'];
     const userData = [customer, sellers, admins];
     const userColors = ['#28a745', '#17a2b8', '#dc3545'];
@@ -212,6 +241,9 @@ export function renderUsersStats(container) {
 }
 
 export function renderSellersStats(container) {
+    // Clean up any existing charts first
+    destroyAllChartsInContainer(container.id);
+    
     const users = localStore.read("users") || [];
     const products = localStore.read("products") || [];
     
@@ -390,6 +422,9 @@ export function renderSellersStats(container) {
 }
 
 export function renderProductsStats(container) {
+    // Clean up any existing charts first
+    destroyAllChartsInContainer(container.id);
+    
     const products = localStore.read("products") || [];
     const users = localStore.read("users") || [];
     
@@ -398,7 +433,7 @@ export function renderProductsStats(container) {
     const women = products.filter(product => product.category === "Women").length;
     const unisex = products.filter(product => product.category === "Unisex").length;
     
-    // Calculate prices with basic metrics (removed premium/budget items)
+    // Calculate prices with basic metrics
     const prices = products.map(product => parseFloat(product.price) || 0);
     const totalPrice = prices.reduce((sum, price) => sum + price, 0);
     const avgPrice = products.length > 0 ? totalPrice / products.length : 0;
@@ -465,7 +500,7 @@ export function renderProductsStats(container) {
         </div>
         
         <div class="row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-3 ">
                 <div class="card shadow-sm">
                     <div class="card-header bg-light">
                         <h5 class="mb-0"><i class="fas fa-list me-2"></i>Product Categories</h5>
@@ -597,7 +632,7 @@ export function renderProductsStats(container) {
         ` : ''}
     `;
     
-    // Create enhanced chart for product categories (without "other")
+    // Create chart for product categories 
     const productLabels = ['Men', 'Women', 'Unisex'];
     const productData = [men, women, unisex];
     const productColors = ['#ffc107', '#dc3545', '#17a2b8'];
