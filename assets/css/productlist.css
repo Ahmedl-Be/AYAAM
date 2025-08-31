@@ -125,7 +125,7 @@
 
 #filter-sidebar {
   position: sticky;
-  top: 135px;
+  top: 99px;
   height: fit-content; 
   max-height: calc(100vh - 100px); 
   overflow-y: auto;
@@ -150,7 +150,7 @@
 
 @media  screen and (max-width:764px) {
   #filter-sidebar{
-    top: 90px;
+    top: 85px;
   }
 
 .card-img-container {
