@@ -146,8 +146,8 @@ It supports different roles (**customer, seller, admin**) with role-based access
 ## 7. How to Run
 1. Clone repo:
    \`\`\`bash
-   git clone https://github.com/YasserFat7alah/e-commerce-iti.git
-   cd ayaam-ecommerce
+   git clone git@github.com:Ahmedl-Be/AYAAM.git
+   cd AYAAM
    \`\`\`
 2. Open \`index.html\` in your browser (no build needed).  
 3. Use \`Live Server\` in VSCode for SPA routing to work smoothly.  
