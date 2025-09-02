@@ -163,10 +163,6 @@ It supports different roles (**customer, seller, admin**) with role-based access
 
 ---
 
-## 9. Resources & Links
-- **GitHub Repository:** [https://github.com/YasserFat7alah/e-commerce-iti.git](#)  
-- **Live Website:** [https://e-commerce-iti-delta.vercel.app/#/home](#)  
-
 ---
 
 ⚡ Built with ❤️ by **Team AYAAM**
